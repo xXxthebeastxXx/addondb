@@ -4,7 +4,7 @@
 | Copyright (C) 2002 - 2008 Nick Jones
 | http://www.php-fusion.co.uk/
 +--------------------------------------------------------+
-| Filename: addons_admin_nav.php
+| Filename: inc_nav.php
 | Author: PHP-Fusion Addons & Infusions Team
 +--------------------------------------------------------+
 | This program is released as free software under the

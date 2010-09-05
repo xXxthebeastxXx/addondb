@@ -22,10 +22,10 @@ require_once THEMES."templates/header.php";
 require_once INFUSIONS."addondb/infusion_db.php";
 require_once INFUSIONS."addondb/inc/inc.functions.php";
 
-if (file_exists(INFUSIONS."addondb/locale/".$settings['locale'].".php")) {
-	include INFUSIONS."addondb/locale/".$settings['locale'].".php";
+if (file_exists(INFUSIONS."addondb/locale/".$settings['locale']."/guidelines.php")) {
+	include INFUSIONS."addondb/".$settings['locale']."/guidelines.php";
 } else {
-	include INFUSIONS."addondb/locale/English/translation_guidelines.php";
+	include INFUSIONS."addondb/locale/English/guidelines.php";
 }
 
 add_to_title($locale['global_200'].$locale['tsg001']);

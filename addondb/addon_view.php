@@ -4,7 +4,7 @@
 | Copyright (C) 2002 - 2010 Nick Jones
 | http://www.php-fusion.co.uk/
 +--------------------------------------------------------+
-| Filename: addons.php
+| Filename: addon_view.php
 | Author: PHP-Fusion Addons & Infusions Team
 +--------------------------------------------------------+
 | This program is released as free software under the

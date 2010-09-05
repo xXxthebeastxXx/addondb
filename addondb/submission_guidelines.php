@@ -23,13 +23,10 @@ require_once INFUSIONS."addondb/infusion_db.php";
 require_once INFUSIONS."addondb/inc/inc.functions.php";
 include INFUSIONS."addondb/check.js";
 
-// Check if locale file is available matching the current site locale setting.
-if (file_exists(INFUSIONS."addondb/locale/".$settings['locale'].".php")) {
-	// Load the locale file matching the current site locale setting.
-	include INFUSIONS."addondb/locale/".$settings['locale'].".php";
+if (file_exists(INFUSIONS."addondb/locale/".$settings['locale']."/guidelines.php")) {
+	include INFUSIONS."addondb/".$settings['locale']."/guidelines.php";
 } else {
-	// Load the infusion's default locale file.
-	include INFUSIONS."addondb/locale/English/submission_guidelines.php";
+	include INFUSIONS."addondb/locale/English/guidelines.php";
 }
 
 add_to_title($locale['global_200'].$locale['msg001']);

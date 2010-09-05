@@ -37,9 +37,7 @@ $result7=dbquery("SELECT addon_id,
                          addon_name, 
                          addon_download_count 
                          FROM ".DB_ADDONS." 
-                         WHERE addon_status = '0' 
-                         AND version_id = '8' 
-                         OR version_id = '12' 
+                         WHERE addon_status = '0'  
                          ORDER BY addon_download_count 
                          DESC LIMIT 0,$popaddons
                          ");
@@ -65,8 +63,7 @@ $resultm=dbquery("SELECT addon_id,
                          addon_download_count 
                          FROM ".DB_ADDONS." 
                          WHERE addon_status = '0' 
-                         AND addon_author_name = '".$userdata['user_name']."' 
-                         AND (version_id = '8' OR version_id = '12') 
+                         AND addon_author_name = '".$userdata['user_name']."'  
                          ORDER BY addon_download_count 
                          DESC LIMIT 0,$popaddons
                          ");
