@@ -25,21 +25,21 @@ if (file_exists(INFUSIONS."addondb/locale/".$settings['locale']."/submitted_addo
 }
 
 openside($locale['addondbp400']);
-$modsq = dbquery("SELECT * FROM ".DB_SUBMISSIONS." WHERE submit_type='m' ORDER BY submit_id DESC");
+$addonsq = dbquery("SELECT * FROM ".DB_SUBMISSIONS." WHERE submit_type='m' ORDER BY submit_id DESC");
 $errosq = dbquery("SELECT * FROM ".DB_ADDON_ERRORS." WHERE error_active ='1'");
 $transq = dbquery("SELECT * FROM ".DB_ADDON_TRANS." WHERE trans_active='1'");
-$totalmq = dbquery("SELECT * FROM ".DB_ADDONS." WHERE mod_status='0'");
+$totalmq = dbquery("SELECT * FROM ".DB_ADDONS." WHERE addon_status='0'");
 $totaltq = dbquery("SELECT * FROM ".DB_ADDON_TRANS." WHERE trans_active='0'");
 $subm_tutorials = dbcount("(submit_id)", DB_SUBMISSIONS, "submit_type='a'");
 
-$mods = dbrows($modsq);
+$addons = dbrows($addonsq);
 $errors = dbrows($errosq);
 $trans = dbrows($transq);
 $totalm = dbrows($totalmq);
 $totalt = dbrows($totaltq);
 
 echo "<div style='text-align:left;'>
-<a href='".INFUSIONS."addondb/admin/submissions.php".$aidlink."'>".$mods.$locale['addondbp405'].$locale['addondbp401']."</a><br />
+<a href='".INFUSIONS."addondb/admin/submissions.php".$aidlink."'>".$addons.$locale['addondbp405'].$locale['addondbp401']."</a><br />
 <a href='".INFUSIONS."addondb/admin/submissions.php".$aidlink."'>".$trans.$locale['addondbp405'].$locale['addondbp403']."</a><br />
 <a href='".INFUSIONS."addondb/admin/error.php".$aidlink."'>".$errors.$locale['addondbp405'].$locale['addondbp407']."</a><br />";
 if ($subm_tutorials != 0) {
