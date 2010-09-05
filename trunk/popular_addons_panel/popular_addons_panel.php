@@ -51,10 +51,10 @@ $result7=dbquery("SELECT addon_id,
 		  echo "<tr><td class='small'><a href='".INFUSIONS."addondb/view.php?addon_id=$data7[addon_id]' class='side' title='".$data7['addon_name']."'>".trimlink($data7['addon_name'], 22)."</a></td>\n";
 		  echo "<td class='small' align='center' width='1%'>".$data7['addon_download_count']."</td></tr>\n";
 		  } 
+		  echo "</table>\n"; 
 	    } else {
 		echo "<div align='center' class='small'>".$locale['paddon_005']."</div>\n";
 		         }
-echo "</table>\n"; 
 
 // My Mods
 
