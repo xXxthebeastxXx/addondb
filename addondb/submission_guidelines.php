@@ -24,7 +24,7 @@ require_once INFUSIONS."addondb/inc/inc.functions.php";
 include INFUSIONS."addondb/check.js";
 
 if (file_exists(INFUSIONS."addondb/locale/".$settings['locale']."/guidelines.php")) {
-	include INFUSIONS."addondb/".$settings['locale']."/guidelines.php";
+	include INFUSIONS."addondb/locale/".$settings['locale']."/guidelines.php";
 } else {
 	include INFUSIONS."addondb/locale/English/guidelines.php";
 }
@@ -97,7 +97,7 @@ echo "<ul>";
     if (iMEMBER) {
     echo "<br />".$locale['msg030']."<br /><br />";
     echo "<label for='coauthor'>".$locale['msg032']."</label><input id='checkcoauth' type='checkbox' />";
-    echo "<div id='showcoauth'><label><br /><a href='".INFUSIONS."addondb/submit_mod.php' title=''>";
+    echo "<div id='showcoauth'><label><br /><a href='".INFUSIONS."addondb/submit.php' title=''>";
     echo "<img src='".INFUSIONS."addondb/img/submit.png' width='300' alt ='".$locale['msg100']."' /></a></div><br />\n";
     } else { echo "<br /><span class='small'>".$locale['msg101']."</span>\n"; }
     
