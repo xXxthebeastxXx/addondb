@@ -136,7 +136,7 @@ function get_newest_version_id() {
 function builduserclassoptionlist($min_addon_level, $max_addon_level, $sel_addon_level = 1) {
 	$res = "";
 	for ($level = $max_addon_level; $level >= $min_addon_level; $level--) {
-		$res .= "<option ".($level == $sel_addon_level ? "selected" : "")." value='".$level."'>".getmodlevel($level)."</option>\n";
+		$res .= "<option ".($level == $sel_addon_level ? "selected" : "")." value='".$level."'>".getaddonlevel($level)."</option>\n";
 	}
 	return $res;
 }
@@ -165,7 +165,7 @@ function buildversionoptionlist($sel_ver_id = 1) {
 	return $res;
 }
 
-function getmodlevel($addonlevel) {
+function getaddonlevel($addonlevel) {
 	global $locale;
 	$levels = array($locale['user0'], $locale['user1'], $locale['user2'], $locale['user3']);
 	$addonlevel = $levels[$addonlevel];

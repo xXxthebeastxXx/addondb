@@ -4,7 +4,7 @@
 | Copyright (C) 2002 - 2010 Nick Jones
 | http://www.php-fusion.co.uk/
 +--------------------------------------------------------+
-| Filename: submit_mod.php
+| Filename: error.php
 | Author: PHP-Fusion Addons & Infusions Team
 +--------------------------------------------------------+
 | This program is released as free software under the
@@ -133,7 +133,7 @@ if (isset($_GET['error']) && isset($_GET['addon_id']) && isnum($_GET['addon_id']
           </tr>
           </table>
           </form></div>
-          <br /><div align='center'><img src='".INFUSIONS."addondb/img/translate.png' width=37' alt ='' /> <a href='".INFUSIONS."addondb/translation_guidelines.php' title=''>".$locale['addondb478']."</a></a></div>
+          <br /><div align='center'><img src='".INFUSIONS."addondb/img/translate.png' width='37' alt ='' /> <a href='".INFUSIONS."addondb/translation_guidelines.php' title=''>".$locale['addondb478']."</a></a></div>
           ";
           closetable();
         }elseif(isnum($_POST['lang'])){

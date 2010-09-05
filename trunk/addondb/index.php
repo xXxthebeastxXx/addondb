@@ -4,12 +4,12 @@
 | Copyright (C) 2002 - 2010 Nick Jones
 | http://www.php-fusion.co.uk/
 +--------------------------------------------------------+
-| Filename: addons.php
+| Filename: index.php
 | Author: PHP-Fusion Addons & Infusions Team
 +--------------------------------------------------------+
 | This program is released as free software under the
 | Affero GPL license. You can redistribute it and/or
-| modify it under the terms of this license which you
+| addonify it under the terms of this license which you
 | can read by viewing the included agpl.txt or online
 | at www.gnu.org/licenses/agpl.html. Removal of this
 | copyright header is strictly prohibited without
@@ -33,7 +33,7 @@ $get_prefix = "";
 $db_count = "";
 $addon_type_list = "";
 $addon_cat_id = "";
-$addon_modtype = "";
+$addon_addontype = "";
 $addon_ver_id = "";
 $addon_orderby_list = "";
 $addon_orderby_dir_list = "";
@@ -52,12 +52,12 @@ if (isset($_GET['addon_cat_id']) && isnum($_GET['addon_cat_id'])) {
 	}
 }
 
-if (isset($_GET['addon_modtype']) && isnum($_GET['addon_modtype'])) {
-	$get_vars .= (empty($get_vars) ? "?" : "&amp;")."addon_modtype=".$_GET['addon_modtype'];
-	if ($_GET['addon_modtype'] != 0) {
-		$addon_modtype = $_GET['addon_modtype'];
-		$db_opts .= " AND tm.addon_type='".$_GET['addon_modtype']."'";
-		$db_count .= " AND tm.addon_type='".$_GET['addon_modtype']."'";
+if (isset($_GET['addon_addontype']) && isnum($_GET['addon_addontype'])) {
+	$get_vars .= (empty($get_vars) ? "?" : "&amp;")."addon_addontype=".$_GET['addon_addontype'];
+	if ($_GET['addon_addontype'] != 0) {
+		$addon_addontype = $_GET['addon_addontype'];
+		$db_opts .= " AND tm.addon_type='".$_GET['addon_addontype']."'";
+		$db_count .= " AND tm.addon_type='".$_GET['addon_addontype']."'";
 	}
 }
 //This should work now
@@ -100,7 +100,7 @@ while ($d_addon_cats = dbarray($q_addon_cats)) {
 $ver_list = "<option value='0'>View All</option>".buildversionoptionlist($addon_ver_id);
 $addon_type_list = "<option value='0'>View All</option>";
 foreach ($addon_types as $k=>$addon_type) {
-	$addon_type_list .= "<option value='".$k."'".($addon_modtype == $k ? " selected" : "").">".$addon_type."</option>\n";
+	$addon_type_list .= "<option value='".$k."'".($addon_addontype == $k ? " selected" : "").">".$addon_type."</option>\n";
 }
 foreach ($addon_orderby as $k=>$addon_orderby) {
 	$addon_orderby_list .= "<option value='".$k."'".($addon_orderby_value == $k ? " selected" : "").">".$addon_orderby."</option>\n";
@@ -130,7 +130,7 @@ echo "<form name='filterform' method='get' action='".FUSION_SELF."'>
 <td class='tbl1' nowrap width='1%'><select name='addon_cat_id' class='textbox' style='width:200px' onchange=\"submit();\">".$cat_list."</select></td>
 <tr>
 <td class='tbl1' width='1%' style='white-space:nowrap' valign='top' align='right'>Type</td>
-<td class='tbl1' width='1%' style='white-space:nowrap'><select name='addon_modtype' class='textbox' style='width:200px' onchange=\"submit();\">".$addon_type_list."</select></td>
+<td class='tbl1' width='1%' style='white-space:nowrap'><select name='addon_addontype' class='textbox' style='width:200px' onchange=\"submit();\">".$addon_type_list."</select></td>
 </tr>
 <tr>
 <td class='tbl1' width='1%' style='white-space:nowrap' valign='top' align='right'>Fusion Version</td>
@@ -189,7 +189,7 @@ if ($rows != 0) {
 		} else {
 			echo "<tr>
 			<td class='tbl2' width='3%' align='center'>-</td>
-			<td class='tbl1' colspan='7'>".(isset($addon_cat_id) || isset($addon_ver_id) || isset($addon_modtype) ? $locale['addondb424'] : $locale['addondb422'])."</td>
+			<td class='tbl1' colspan='7'>".(isset($addon_cat_id) || isset($addon_ver_id) || isset($addon_addontype) ? $locale['addondb424'] : $locale['addondb422'])."</td>
 			</tr>\n";
 		}
 	}
@@ -199,7 +199,7 @@ if ($rows != 0) {
 	</table>\n";
 } else {
 	if (iMEMBER) {
-		echo "<center><br />".(isset($addon_cat_id) || isset($addon_ver_id) || isset($addon_modtype) ? $locale['addondb424'] : $locale['addondb421'])."<br /><br /></center>\n";
+		echo "<center><br />".(isset($addon_cat_id) || isset($addon_ver_id) || isset($addon_addontype) ? $locale['addondb424'] : $locale['addondb421'])."<br /><br /></center>\n";
 	} else {
 		echo "<div style='text-align:center;margin-top:2em;margin-bottom:2em;'>".$locale['addondb425']." <a href='".BASEDIR."register.php' title='".$locale['addondb428']."'>".$locale['addondb426']."</a> ".$locale['addondb427']."</div>";
 	}

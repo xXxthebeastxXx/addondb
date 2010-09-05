@@ -4,12 +4,12 @@
 | Copyright (C) 2002 - 2010 Nick Jones
 | http://www.php-fusion.co.uk/
 +--------------------------------------------------------+
-| Filename: submit_mod.php
+| Filename: submit_addon.php
 | Author: PHP-Fusion Addons & Infusions Team
 +--------------------------------------------------------+
 | This program is released as free software under the
 | Affero GPL license. You can redistribute it and/or
-| modify it under the terms of this license which you
+| addonify it under the terms of this license which you
 | can read by viewing the included agpl.txt or online
 | at www.gnu.org/licenses/agpl.html. Removal of this
 | copyright header is strictly prohibited without
@@ -21,7 +21,7 @@ require_once THEMES."templates/header.php";
 require_once INFUSIONS."addondb/infusion_db.php";
 require_once INFUSIONS."addondb/inc/inc.functions.php";
 
-include INFUSIONS."addondb/locale/".LOCALESET."submit_mod.php";
+include INFUSIONS."addondb/locale/".LOCALESET."submit_addon.php";
 include INFUSIONS."addondb/check.js";
 //add_to_head("<Body style='overflow:hidden'>");
 
@@ -150,7 +150,7 @@ if (!iMEMBER) {
 	if (dbrows($q_addon_cats) != 0) {
 		while ($d_addon_cats = dbarray($q_addon_cats)) $cat_list .= "<option value='".$d_addon_cats['addon_cat_id']."'>".$d_addon_cats['addon_cat_name']."</option>\n";
 		echo $locale['addondb401']."<br /><br />
-<form name='add_mod' method='post' action='".FUSION_SELF."' enctype='multipart/form-data'>
+<form name='add_addon' method='post' action='".FUSION_SELF."' enctype='multipart/form-data'>
 <table align='center' cellpadding='0' cellspacing='0' class='tbl-border'>
 <tr>
 <td class='tbl1' nowrap>".$locale['addondb402'].":</td>
