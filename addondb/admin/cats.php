@@ -32,13 +32,14 @@ if (file_exists(INFUSIONS."addondb/locale/".LOCALESET."admin/admin.php")) {
 
 // Error Messages
 if (isset($_GET['error']) && isnum($_GET['error'])) {
-	echo "<div class='admin-message'>\n";
-	if ($_GET['error'] == 1) { echo $locale['addondb482'];
-	} elseif ($_GET['error'] == 2) { echo $locale['addondb483'];
-	} elseif ($_GET['error'] == 3) { echo "Unknown action error occurred!";
-	} elseif ($_GET['error'] == 4) { echo "Selected cat does not exist in the database!";
-	} else { echo "An unknown error occurred!"; }
-	echo "</div>\n";
+	$errormsg = "<div class='admin-message'>\n";
+	if ($_GET['error'] == 1) { $errormsg .= $locale['addondb482'];
+	} elseif ($_GET['error'] == 2) { $errormsg .= $locale['addondb483'];
+	} elseif ($_GET['error'] == 3) { $errormsg .= "Unknown action error occurred!";
+	} elseif ($_GET['error'] == 4) { $errormsg .= "Selected cat does not exist in the database!";
+	} else { $errormsg .= "An unknown error occurred!"; }
+	$errormsg .= "</div>\n";
+	echo $errormsg;
 }
 
 // Cancel Button
@@ -51,7 +52,7 @@ if (isset($_GET['action']) && isset($_GET['addon_cat_id']) && isnum($_GET['addon
 	$cat_result = dbquery(
 		"SELECT * 
 		FROM ".DB_ADDON_CATS." 
-		WHERE addon_cat_id='".$_GET['addon_cat_id']."'
+		WHERE addon_cat_id='".$_GET['addon_cat_id']."' 
 		LIMIT 1"
 	);
 	if (dbrows($cat_result)) {
@@ -121,7 +122,7 @@ if (isset($_GET['action']) && isset($_GET['addon_cat_id']) && isnum($_GET['addon
 	} elseif (dbcount("(*)", DB_ADDON_CATS, "addon_cat_name='$addon_cat_name'") != 0) {
 		redirect(FUSION_SELF.$aidlink."&amp;error=2");
 	} else {
-		$addon_cat_order = dbresult(dbquery("SELECT MAX(addon_cat_order) FROM ".DB_ADDON_CATS),0) + 1;
+		$addon_cat_order = dbresult(dbquery("SELECT MAX(addon_cat_order) FROM ".DB_ADDON_CATS." WHERE addon_cat_type='$addon_cat_type'"),0) + 1;
 		$result = dbquery(
 			"INSERT INTO ".DB_ADDON_CATS." 
 			VALUES('','".$addon_cat_type."', '".$addon_cat_name."','".$addon_cat_description."','".$addon_cat_access."','".$addon_cat_order."')"
@@ -147,30 +148,30 @@ foreach ($addon_types as $k=>$addon_type) {
 	$tsel = ($addon_cat_type == $k ? " selected='selected'" : "");
 	$addon_type_list .= "<option value='".$k."'$tsel>".$addon_type."</option>\n";
 }
-echo "<form name='add_cat' method='post' action='$cat_formaction'>";
-echo "<table align='center' cellpadding='0' cellspacing='0' class='tbl-border'>".(isset($error) ? "<tr><td class='tbl1 error' align='center' colspan='3'>".$error."</td></tr>" : "")."
-<tr>
-<td class='tbl1' nowrap>".$locale['addondb402']."<strong><span style='color:red'>*</span></strong>:</td>
-<td class='tbl1'><input type='text' class='textbox' name='addon_cat_name' value='".$addon_cat_name."' style='width:250px;'></td>
-</tr>
-<tr>
-<td class='tbl1' nowrap valign='top'>".$locale['addondb404'].":</td>
-<td class='tbl1'><textarea class='textbox' name='addon_cat_description' style='width:250px; height:40px;'>".$addon_cat_description."</textarea></td>
-</tr>
-<tr>
-<td class='tbl1' nowrap>Type</td>
-<td class='tbl1'><select class='textbox' name='addon_cat_type' style='width:250px;'>".$addon_type_list."</select></td>
-</tr>
-<tr>
-<td class='tbl1' nowrap>".$locale['addondb405'].":</td>
-<td class='tbl1'><select class='textbox' name='addon_cat_access' style='width:250px;'>".$access_opts."</select></td>
-</tr>
-<tr>
-<td class='tbl1' nowrap colspan='2' align='center'>".$locale['addondb437']."</td>
-</tr>
-<tr>
-<td class='tbl1' nowrap colspan='2' align='center'><input type='submit' class='button' name='btn_save' value='".$locale['addondb438']."'>".(isset($_GET['action']) && $_GET['action'] == "edit" || isset($error) ? "&nbsp;<input type='submit' class='button' name='btn_cancel' value='".$locale['addondb428']."'>" : "")."</td>
-</tr>
+echo "<form name='add_cat' method='post' action='$cat_formaction'>
+<table align='center' cellpadding='0' cellspacing='0' class='tbl-border'>".(isset($error) ? "<tr><td class='tbl1 error' align='center' colspan='3'>".$error."</td></tr>" : "")."
+	<tr>
+		<td class='tbl1' nowrap>".$locale['addondb402']."<strong><span style='color:red'>*</span></strong>:</td>
+		<td class='tbl1'><input type='text' class='textbox' name='addon_cat_name' value='".$addon_cat_name."' style='width:250px;'></td>
+	</tr>
+	<tr>
+		<td class='tbl1' nowrap valign='top'>".$locale['addondb404'].":</td>
+		<td class='tbl1'><textarea class='textbox' name='addon_cat_description' style='width:250px; height:40px;'>".$addon_cat_description."</textarea></td>
+	</tr>
+	<tr>
+		<td class='tbl1' nowrap>Type</td>
+		<td class='tbl1'><select class='textbox' name='addon_cat_type' style='width:250px;'>".$addon_type_list."</select></td>
+	</tr>
+	<tr>
+		<td class='tbl1' nowrap>".$locale['addondb405'].":</td>
+		<td class='tbl1'><select class='textbox' name='addon_cat_access' style='width:250px;'>".$access_opts."</select></td>
+	</tr>
+	<tr>
+	<td class='tbl1' nowrap colspan='2' align='center'>".$locale['addondb437']."</td>
+	</tr>
+	<tr>
+		<td class='tbl1' nowrap colspan='2' align='center'><input type='submit' class='button' name='btn_save' value='".$locale['addondb438']."'>".(isset($_GET['action']) && $_GET['action'] == "edit" || isset($error) ? "&nbsp;<input type='submit' class='button' name='btn_cancel' value='".$locale['addondb428']."'>" : "")."</td>
+	</tr>
 </table>
 </form>";
 closetable();
@@ -179,7 +180,7 @@ opentable($locale['addondb401']);
 $q_addon_cats = dbquery(
 	"SELECT tc.*, COUNT(tm.addon_id) AS addon_count
 	FROM ".DB_ADDON_CATS." tc LEFT JOIN ".DB_ADDONS." tm USING(addon_cat_id)
-	GROUP BY addon_cat_id ORDER BY addon_cat_order"
+	GROUP BY addon_cat_id ORDER BY addon_cat_type,addon_cat_order"
 );
 $rows = dbrows($q_addon_cats);
 if ($rows != 0) {
@@ -192,9 +193,8 @@ if ($rows != 0) {
 	<td class='forum-caption' align='center' colspan='2'>".$locale['addondb432']."</td>
 	<td class='forum-caption' align='right'>".$locale['addondb420']."</td>
 	</tr>";
-	$r = 0;
+	$r = 0; $up_down = "";
 	while ($d_addon_cats = dbarray($q_addon_cats)) {
-		$up_down = "";
 		if ($rows != 1) {
 			$addon_cat_id = $d_addon_cats['addon_cat_id'];
 			$up = $d_addon_cats['addon_cat_order'] - 1;
