@@ -80,6 +80,14 @@ function get_addon_status($status_id) {
 	else { return "Unknown Status"; }
 }
 
+function get_addon_type($type) {
+	if ($type == 1) { return "Infusion"; }
+	elseif ($type == 2) { return "Theme"; }
+	elseif ($type == 3) { return "Panel"; }
+	elseif ($type == 4) { return "Other"; }
+	else { return "Unknown type"; }
+}
+
 function get_addon_status_mail($status_id) {
 	if ($status_id == 0) { return "Activated"; }
 	elseif ($status_id == 1) { return "Pending Approval"; }
