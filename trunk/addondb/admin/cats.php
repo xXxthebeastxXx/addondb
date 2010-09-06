@@ -149,30 +149,30 @@ foreach ($addon_types as $k=>$addon_type) {
 	$addon_type_list .= "<option value='".$k."'$tsel>".$addon_type."</option>\n";
 }
 echo "<form name='add_cat' method='post' action='$cat_formaction'>
-<table align='center' cellpadding='0' cellspacing='0' class='tbl-border'>".(isset($error) ? "<tr><td class='tbl1 error' align='center' colspan='3'>".$error."</td></tr>" : "")."
-	<tr>
-		<td class='tbl1' nowrap>".$locale['addondb402']."<strong><span style='color:red'>*</span></strong>:</td>
-		<td class='tbl1'><input type='text' class='textbox' name='addon_cat_name' value='".$addon_cat_name."' style='width:250px;'></td>
-	</tr>
-	<tr>
-		<td class='tbl1' nowrap valign='top'>".$locale['addondb404'].":</td>
-		<td class='tbl1'><textarea class='textbox' name='addon_cat_description' style='width:250px; height:40px;'>".$addon_cat_description."</textarea></td>
-	</tr>
-	<tr>
-		<td class='tbl1' nowrap>Type</td>
-		<td class='tbl1'><select class='textbox' name='addon_cat_type' style='width:250px;'>".$addon_type_list."</select></td>
-	</tr>
-	<tr>
-		<td class='tbl1' nowrap>".$locale['addondb405'].":</td>
-		<td class='tbl1'><select class='textbox' name='addon_cat_access' style='width:250px;'>".$access_opts."</select></td>
-	</tr>
-	<tr>
-	<td class='tbl1' nowrap colspan='2' align='center'>".$locale['addondb437']."</td>
-	</tr>
-	<tr>
-		<td class='tbl1' nowrap colspan='2' align='center'><input type='submit' class='button' name='btn_save' value='".$locale['addondb438']."'>".(isset($_GET['action']) && $_GET['action'] == "edit" || isset($error) ? "&nbsp;<input type='submit' class='button' name='btn_cancel' value='".$locale['addondb428']."'>" : "")."</td>
-	</tr>
-</table>
+	<table align='center' cellpadding='0' cellspacing='0' class='tbl-border'>".(isset($error) ? "<tr><td class='tbl1 error' align='center' colspan='3'>".$error."</td></tr>" : "")."
+		<tr>
+			<td class='tbl1' nowrap>".$locale['addondb402']."<strong><span style='color:red'>*</span></strong>:</td>
+			<td class='tbl1'><input type='text' class='textbox' name='addon_cat_name' value='".$addon_cat_name."' style='width:250px;'></td>
+		</tr>
+		<tr>
+			<td class='tbl1' nowrap valign='top'>".$locale['addondb404'].":</td>
+			<td class='tbl1'><textarea class='textbox' name='addon_cat_description' style='width:250px; height:40px;'>".$addon_cat_description."</textarea></td>
+		</tr>
+		<tr>
+			<td class='tbl1' nowrap>Type</td>
+			<td class='tbl1'><select class='textbox' name='addon_cat_type' style='width:250px;'>".$addon_type_list."</select></td>
+		</tr>
+		<tr>
+			<td class='tbl1' nowrap>".$locale['addondb405'].":</td>
+			<td class='tbl1'><select class='textbox' name='addon_cat_access' style='width:250px;'>".$access_opts."</select></td>
+		</tr>
+		<tr>
+		<td class='tbl1' nowrap colspan='2' align='center'>".$locale['addondb437']."</td>
+		</tr>
+		<tr>
+			<td class='tbl1' nowrap colspan='2' align='center'><input type='submit' class='button' name='btn_save' value='".$locale['addondb438']."'>".(isset($_GET['action']) && $_GET['action'] == "edit" || isset($error) ? "&nbsp;<input type='submit' class='button' name='btn_cancel' value='".$locale['addondb428']."'>" : "")."</td>
+		</tr>
+	</table>
 </form>";
 closetable();
 
