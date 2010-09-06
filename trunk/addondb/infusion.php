@@ -37,6 +37,7 @@ $inf_folder = "addondb";
 
 $inf_newtable[1] = DB_ADDON_CATS." (
 addon_cat_id smallint(5) unsigned NOT NULL auto_increment,
+addon_cat_type tinyint(1) unsigned NOT NULL default '0',
 addon_cat_name varchar(100) NOT NULL default '',
 addon_cat_description text NOT NULL,
 addon_cat_access tinyint(1) unsigned NOT NULL default '0',

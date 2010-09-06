@@ -79,6 +79,7 @@ if (isset($_GET['action']) && isset($_GET['addon_cat_id']) && isnum($_GET['addon
 		} elseif ($_GET['action'] == "edit") {
 			// Save Cat
 			if (isset($_POST['btn_save'])) {
+				$addon_cat_type = stripinput($_POST['addon_cat_type']);
 				$addon_cat_name = stripinput($_POST['addon_cat_name']);
 				$addon_cat_description = stripinput($_POST['addon_cat_description']);
 				$addon_cat_access = stripinput($_POST['addon_cat_access']);
@@ -89,6 +90,7 @@ if (isset($_GET['action']) && isset($_GET['addon_cat_id']) && isnum($_GET['addon
 				} else {
 					$result = dbquery(
 						"UPDATE ".DB_ADDON_CATS." SET 
+							addon_cat_type='".$addon_cat_type."',
 							addon_cat_name='".$addon_cat_name."',
 							addon_cat_description='".$addon_cat_description."',
 							addon_cat_access='".$addon_cat_access."' 
@@ -96,6 +98,7 @@ if (isset($_GET['action']) && isset($_GET['addon_cat_id']) && isnum($_GET['addon
 					redirect(FUSION_SELF.$aidlink."&amp;update=ok");
 				}
 			} else {
+				$addon_cat_type = $cat_data['addon_cat_type'];
 				$addon_cat_name = $cat_data['addon_cat_name'];
 				$addon_cat_description = $cat_data['addon_cat_description'];
 				$addon_cat_access = $cat_data['addon_cat_access'];
@@ -109,6 +112,7 @@ if (isset($_GET['action']) && isset($_GET['addon_cat_id']) && isnum($_GET['addon
 		redirect(FUSION_SELF.$aidlink."&amp;error=4");
 	}
 } elseif (isset($_POST['btn_save'])) {
+	$addon_cat_type = stripinput($_POST['addon_cat_type']);
 	$addon_cat_name = stripinput($_POST['addon_cat_name']);
 	$addon_cat_description = stripinput($_POST['addon_cat_description']);
 	$addon_cat_access = stripinput($_POST['addon_cat_access']);
@@ -120,11 +124,12 @@ if (isset($_GET['action']) && isset($_GET['addon_cat_id']) && isnum($_GET['addon
 		$addon_cat_order = dbresult(dbquery("SELECT MAX(addon_cat_order) FROM ".DB_ADDON_CATS),0) + 1;
 		$result = dbquery(
 			"INSERT INTO ".DB_ADDON_CATS." 
-			VALUES('','".$addon_cat_name."','".$addon_cat_description."','".$addon_cat_access."','".$addon_cat_order."')"
+			VALUES('','".$addon_cat_type."', '".$addon_cat_name."','".$addon_cat_description."','".$addon_cat_access."','".$addon_cat_order."')"
 		);
 		redirect(FUSION_SELF.$aidlink."&amp;insert=ok");
 	}
 } else {
+	$addon_cat_type = "";
 	$addon_cat_name = "";
 	$addon_cat_description = "";
 	$addon_cat_access = "";
@@ -134,8 +139,13 @@ if (isset($_GET['action']) && isset($_GET['addon_cat_id']) && isnum($_GET['addon
 
 $user_groups = getusergroups(); $access_opts = ""; $sel = "";
 while (list($key, $user_group) = each($user_groups)) {
-	$sel = ($addon_cat_access == $user_group['0'] ? " selected" : "");
+	$sel = ($addon_cat_access == $user_group['0'] ? " selected='selected'" : "");
 	$access_opts .= "<option value='".$user_group['0']."'$sel>".$user_group['1']."</option>\n";
+}
+$addon_type_list = ""; $tsel = "";
+foreach ($addon_types as $k=>$addon_type) {
+	$tsel = ($addon_cat_type == $k ? " selected='selected'" : "");
+	$addon_type_list .= "<option value='".$k."'$tsel>".$addon_type."</option>\n";
 }
 echo "<form name='add_cat' method='post' action='$cat_formaction'>";
 echo "<table align='center' cellpadding='0' cellspacing='0' class='tbl-border'>".(isset($error) ? "<tr><td class='tbl1 error' align='center' colspan='3'>".$error."</td></tr>" : "")."
@@ -146,6 +156,10 @@ echo "<table align='center' cellpadding='0' cellspacing='0' class='tbl-border'>"
 <tr>
 <td class='tbl1' nowrap valign='top'>".$locale['addondb404'].":</td>
 <td class='tbl1'><textarea class='textbox' name='addon_cat_description' style='width:250px; height:40px;'>".$addon_cat_description."</textarea></td>
+</tr>
+<tr>
+<td class='tbl1' nowrap>Type</td>
+<td class='tbl1'><select class='textbox' name='addon_cat_type' style='width:250px;'>".$addon_type_list."</select></td>
 </tr>
 <tr>
 <td class='tbl1' nowrap>".$locale['addondb405'].":</td>
@@ -172,6 +186,7 @@ if ($rows != 0) {
 	echo "<table width='100%' align='center' cellpadding='0' cellspacing='1' class='tbl-border'>
 	<tr>
 	<td class='forum-caption'>".$locale['addondb402']." - ".$locale['addondb441']."</td>
+	<td class='forum-caption'>Type</td>
 	<td class='forum-caption'>".$locale['addondb405']."</td>
 	<td class='forum-caption' align='center'>".$locale['addondb433']."</td>
 	<td class='forum-caption' align='center' colspan='2'>".$locale['addondb432']."</td>
@@ -196,6 +211,7 @@ if ($rows != 0) {
 		$cls = ($r++%2 == 0 ? "tbl1" : "tbl2");
 		echo " <tr>
 		<td class='".$cls."'><a href='".FUSION_SELF.$aidlink."&amp;action=edit&addon_cat_id=".$d_addon_cats['addon_cat_id']."' title='".$locale['addondb500']."'>".$d_addon_cats['addon_cat_name']."</a></td>
+		<td class='".$cls."'><span class='small'>".get_addon_type($d_addon_cats['addon_cat_type'])."</span></td>
 		<td class='".$cls."'><span class='small'>".getgroupname($d_addon_cats['addon_cat_access'])."</span></td>
 		<td class='".$cls."' align='center'><span class='small'>".$d_addon_cats['addon_count']."</span></td>
 		<td class='".$cls."' align='center'><span class='small'>".$d_addon_cats['addon_cat_order']."</span></td>
