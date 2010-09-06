@@ -59,7 +59,7 @@ $addon_upload_maxsize = 2000000;
 
 
 $addon_ratings = array(1 => "Poor", "Average", "Good", "Very Good", "Awesome!");
-$addon_types = array(1 => "Infusion", "Addon", "Panel", "Other");
+$addon_types = array(1 => "Infusion", "Theme", "Panel", "Other");
 $addon_status = array("Active", "Pending Approval", "Resubmission", "Suspended", "Rejected");
 $addon_orderby = array(
 	"addon_name" => "Addon Name",
