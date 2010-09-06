@@ -144,11 +144,19 @@ if (!iMEMBER) {
 	}
 } else {
 	opentable($locale['addondb400']);
-	$addon_type_list = ""; $cat_list = "";
-	foreach ($addon_types as $k=>$addon_type) $addon_type_list .= "<option value='".$k."'>".$addon_type."</option>\n";
-	$q_addon_cats = dbquery("SELECT addon_cat_id,addon_cat_name FROM ".DB_ADDON_CATS." ORDER BY addon_cat_order");
+	$addon_type_list = ""; $cat_list = ""; $opt = "";
+	foreach ($addon_types as $k=>$addon_type) $addon_type_list .= $k;
+	$q_addon_cats = dbquery("SELECT addon_cat_id,addon_cat_type,addon_cat_name FROM ".DB_ADDON_CATS." ORDER BY addon_cat_type,addon_cat_order");
 	if (dbrows($q_addon_cats) != 0) {
-		while ($d_addon_cats = dbarray($q_addon_cats)) $cat_list .= "<option value='".$d_addon_cats['addon_cat_id']."'>".$d_addon_cats['addon_cat_name']."</option>\n";
+		while ($d_addon_cats = dbarray($q_addon_cats)) {
+			if (get_addon_type($d_addon_cats['addon_cat_type']) != $opt) {
+				if ($opt != "") { $cat_list .= "</optgroup>\n"; }
+				$opt = get_addon_type($d_addon_cats['addon_cat_type']);
+				$cat_list .= "<optgroup label='".get_addon_type($d_addon_cats['addon_cat_type'])."'>\n";
+			}
+			$cat_list .= "<option value='".$d_addon_cats['addon_cat_id']."'>".$d_addon_cats['addon_cat_name']."</option>\n";		
+		}
+		$cat_list .= "</optgroup>\n";
 		echo $locale['addondb401']."<br /><br />
 <form name='add_addon' method='post' action='".FUSION_SELF."' enctype='multipart/form-data'>
 <table align='center' cellpadding='0' cellspacing='0' class='tbl-border'>
