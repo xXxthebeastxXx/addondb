@@ -1,11 +1,11 @@
 <?php
 /*-------------------------------------------------------+
 | PHP-Fusion Content Management System
-| Copyright (C) 2002 - 2008 Nick Jones
+| Copyright (C) 2002 - 2010 Nick Jones
 | http://www.php-fusion.co.uk/
 +--------------------------------------------------------+
 | Filename: cats.php
-| Author: PHP-Fusion Addons & Infusions Team
+| Author: PHP-Fusion Addons Team
 +--------------------------------------------------------+
 | This program is released as free software under the
 | Affero GPL license. You can redistribute it and/or
@@ -22,12 +22,12 @@ if (!checkrights("ADNX") || !defined("iAUTH") || $_GET['aid'] != iAUTH) { die("A
 
 require_once INFUSIONS."addondb/infusion_db.php";
 require_once INFUSIONS."addondb/inc/inc.functions.php";
-require_once INFUSIONS."addondb/inc/inc.nav.php";
+require_once ADDON_INC."inc.nav.php";
 
-if (file_exists(INFUSIONS."addondb/locale/".LOCALESET."admin/admin.php")) {
-	include INFUSIONS."addondb/locale/".LOCALESET."admin/admin.php";
+if (file_exists(ADDON_LOCALE.LOCALESET."admin/admin.php")) {
+	include ADDON_LOCALE.LOCALESET."admin/admin.php";
 } else {
-	include INFUSIONS."addondb/locale/English/admin/admin.php";
+	include ADDON_LOCALE."English/admin/admin.php";
 }
 
 // Error Messages
@@ -86,8 +86,8 @@ if (isset($_GET['action']) && isset($_GET['addon_cat_id']) && isnum($_GET['addon
 				$addon_cat_access = stripinput($_POST['addon_cat_access']);
 				if (empty($addon_cat_name)) {
 					redirect(FUSION_SELF.$aidlink."&amp;error=1");
-				} elseif (dbcount("(*)", DB_ADDON_CATS, "addon_cat_name='$addon_cat_name' AND addon_cat_id!='$addon_cat_id'") != 0) {
-					redirect(FUSION_SELF.$aidlink."&amp;error=2");
+				} elseif (dbcount("(*)", DB_ADDON_CATS, "addon_cat_name='$addon_cat_name' AND addon_cat_id!='$addon_cat_id'") != 0) { 
+				redirect(FUSION_SELF.$aidlink."&amp;error=2");
 				} else {
 					$result = dbquery(
 						"UPDATE ".DB_ADDON_CATS." SET 

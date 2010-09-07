@@ -23,8 +23,15 @@ require_once INFUSIONS."addondb/infusion_db.php";
 
 if (ADDON_MAINTENANCE == true && !iADMIN && FUSION_SELF != "maintenance.php") { redirect(INFUSIONS."addondb/maintenance.php"); }
 
+define("ADDON", INFUSIONS."addondb/");
+define("ADDON_IMG", INFUSIONS."addondb/img/");
+define("ADDON_SCRN", INFUSIONS."addondb/img/screenshots/");
+define("ADDON_LOCALE", INFUSIONS."addondb/locale/");
+define("ADDON_INC", INFUSIONS."addondb/inc/");
+define("ADDON_ADMIN", INFUSIONS."addondb/admin/");
+
 // Screen Shots
-$addon_upload_dir_img = INFUSIONS."addondb/img/screenshots/";
+$addon_upload_dir_img = ADDON_SCRN;
 $addon_upload_exts_img = array(
 	"png" => "image/png",
 	"jpg" => "image/jpg",
@@ -34,7 +41,7 @@ $addon_upload_maxsize_img = 2000000;
 ///////////////
 
 // Translations
-$trans_upload_dir = INFUSIONS."addondb/files/trans/";
+$trans_upload_dir = ADDON."files/trans/";
 $trans_upload_exts = array(
 	"zip" => "application/zip",
 	"rar" => "application/zip",
@@ -45,7 +52,7 @@ $trans_upload_maxsize = 2000000;
 ///////////////
 
 // Mod Files
-$addon_upload_dir = INFUSIONS."addondb/files/";
+$addon_upload_dir = ADDON."files/";
 $addon_upload_prefix = "submitted_addon_";
 $addon_list_dateformat = "%d/%m-%Y";
 $addon_upload_exts = array(
@@ -59,7 +66,7 @@ $addon_upload_maxsize = 2000000;
 
 
 $addon_ratings = array(1 => "Poor", "Average", "Good", "Very Good", "Awesome!");
-$addon_types = array(1 => "Infusion", "Theme", "Panel", "Other");
+$addon_types = array(1 => "Infusion", "Theme", "Panel", "Modification", "Other");
 $addon_status = array("Active", "Pending Approval", "Resubmission", "Suspended", "Rejected");
 $addon_orderby = array(
 	"addon_name" => "Addon Name",
@@ -81,10 +88,11 @@ function get_addon_status($status_id) {
 }
 
 function get_addon_type($type) {
-	if ($type == 1) { return "Infusion"; }
+	    if ($type == 1) { return "Infusion"; }
 	elseif ($type == 2) { return "Theme"; }
 	elseif ($type == 3) { return "Panel"; }
-	elseif ($type == 4) { return "Other"; }
+	elseif ($type == 4) { return "Modification"; }
+	elseif ($type == 5) { return "Other"; }
 	else { return "Unknown type"; }
 }
 

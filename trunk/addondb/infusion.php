@@ -29,7 +29,7 @@ if (file_exists(INFUSIONS."addondb/locale/".LOCALESET."infusion.php")) {
 $inf_title = $locale['addondb100'];
 $inf_description = $locale['addondb101'];
 $inf_version = "3.0.0";
-$inf_developer = "PHP-Fusion Addons & Infusions Team";
+$inf_developer = "PHP-Fusion Addons Team";
 $inf_email = "support@phpfusion-addons.com";
 $inf_weburl = "http://www.phpfusion-addons.com";
 

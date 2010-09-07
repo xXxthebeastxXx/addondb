@@ -138,14 +138,17 @@ if (!iMEMBER) {
 		echo "<center><br />
 		".$locale['addondb420']."<br /><br />
 		".$locale['addondb421']."<br /><br />
-		<a href='".FUSION_SELF."'>".$locale['addondb422']."</a> | <a href='".BASEDIR."index.php'>".$locale['addondb423']."</a><br /><br />".(iADMIN ? "<a href='".BASEDIR."/infusions/addondb/admin/submissions.php".$aidlink."'>".$locale['addondb424']."</a><br /><br />" : "")."
+		<a href='".FUSION_SELF."'>".$locale['addondb422']."</a> | <a href='".BASEDIR."index.php'>".$locale['addondb423']."</a><br />
+		<br />".(iADMIN ? "<a href='".ADDON_ADMIN."submissions.php".$aidlink."'>".$locale['addondb424']."</a><br /><br />" : "")."
 		</center>\n";
 		closetable();
 	}
 } else {
 	opentable($locale['addondb400']);
 	$addon_type_list = ""; $cat_list = ""; $opt = "";
-	foreach ($addon_types as $k=>$addon_type) $addon_type_list .= $k;
+	
+	    foreach ($addon_types as $k=>$addon_type) $addon_type_list .= "<option value='".$k."'>".$addon_type."</option>\n";
+//	foreach ($addon_types as $k=>$addon_type) $addon_type_list .= $k;
 	$q_addon_cats = dbquery("SELECT addon_cat_id,addon_cat_type,addon_cat_name FROM ".DB_ADDON_CATS." ORDER BY addon_cat_type,addon_cat_order");
 	if (dbrows($q_addon_cats) != 0) {
 		while ($d_addon_cats = dbarray($q_addon_cats)) {
@@ -241,7 +244,6 @@ if (!iMEMBER) {
 <td class='tbl1'><select name='addon_forum_status' class='textbox'>
 <option value='0'>".$locale['addondb418']."</option>
 <option value='1'>".$locale['addondb419']."</option>
-<option value='2'>".$locale['addondb419a']."</option>
 </select>
 </td>
 </tr>
