@@ -19,27 +19,27 @@
 require_once "../../maincore.php";
 require_once THEMES."templates/header.php";
 
-require_once INFUSIONS."addondb/infusion_db.php";
 require_once INFUSIONS."addondb/inc/inc.functions.php";
-include INFUSIONS."addondb/check.js";
+require_once ADDON."infusion_db.php";
+include ADDON."check.js";
 
-if (file_exists(INFUSIONS."addondb/locale/".$settings['locale']."/guidelines.php")) {
-	include INFUSIONS."addondb/locale/".$settings['locale']."/guidelines.php";
+if (file_exists(ADDON_LOCALE.$settings['locale']."/guidelines.php")) {
+	include ADDON_LOCALE.$settings['locale']."/guidelines.php";
 } else {
-	include INFUSIONS."addondb/locale/English/guidelines.php";
+	include ADDON_LOCALE."English/guidelines.php";
 }
 
 add_to_title($locale['global_200'].$locale['msg001']);
 
 opentable($locale['msg001']);
 
-echo "<div align='left'><img src='".INFUSIONS."addondb/img/logo.png' width='200' align='left' alt ='' />\n";
+echo "<div align='left'><img src='".ADDON_IMG."logo.png' width='200' align='left' alt ='' />\n";
 echo "<br />";
 echo $locale['msg002'];
 echo "<br /><br />";
 echo "<div class='small'>".$locale['msg003']."</div>";
 echo "<br /><br />";
-echo "<div align='right'><a href='".INFUSIONS."addondb/translation_guidelines.php' title=''>".$locale['msg031']."</a></div><br /><br /><hr /></div>";
+echo "<div align='right'><a href='".ADDON."translation_guidelines.php' title=''>".$locale['msg031']."</a></div><br /><br /><hr /></div>";
 echo "<b>".$locale['msg004']."</b>";
 echo "<br />";
 echo "<ul>
@@ -54,7 +54,7 @@ echo "<br />";
 echo "<ul>";
     echo "<li>".$locale['msg010']."</li>";	      
     echo "<li>".$locale['msg011']."</li><br />";
-    echo "<img src='".INFUSIONS."addondb/img/header_info.jpg' width='416' alt ='' /><br /><br />\n";
+    echo "<img src='".ADDON_IMG."header_info.jpg' width='416' alt ='' /><br /><br />\n";
 	echo "<li>".$locale['msg012']."</li>";
 	echo "<li>".$locale['msg013']."</li>";
 echo "</ul>";
@@ -79,7 +79,7 @@ echo "<ul>";
     echo "<table border='0' width='80%' align='center' cellspacing='0' cellpadding='0'><tr>\n";
 	echo "<td class='tbl1' align='center'><b>".$locale['msg023']."</b></td><td class='tbl1' align='center'><b>".$locale['msg024']."</b></td>";
 	echo "</tr><tr>";
-	echo "<td align='center'><img src='".INFUSIONS."addondb/img/folder_tree.jpg' width='230' alt ='' /></td><td align='center'><img src='".INFUSIONS."addondb/img/user_field_tree.jpg' width='266' alt ='' /></td>";
+	echo "<td align='center'><img src='".ADDON_IMG."folder_tree.jpg' width='230' alt ='' /></td><td align='center'><img src='".ADDON_IMG."user_field_tree.jpg' width='266' alt ='' /></td>";
 	echo "</tr>\n</table>\n";
 	
 	echo "<br /><br />\n";
@@ -97,8 +97,8 @@ echo "<ul>";
     if (iMEMBER) {
     echo "<br />".$locale['msg030']."<br /><br />";
     echo "<label for='coauthor'>".$locale['msg032']."</label><input id='checkcoauth' type='checkbox' />";
-    echo "<div id='showcoauth'><label><br /><a href='".INFUSIONS."addondb/submit.php' title=''>";
-    echo "<img src='".INFUSIONS."addondb/img/submit.png' width='300' alt ='".$locale['msg100']."' /></a></div><br />\n";
+    echo "<div id='showcoauth'><label><br /><a href='".ADDON."submit.php' title=''>";
+    echo "<img src='".ADDON_IMG."submit.png' width='300' alt ='".$locale['msg100']."' /></a></div><br />\n";
     } else { echo "<br /><span class='small'>".$locale['msg101']."</span>\n"; }
     
     echo "<br /><div align='right' class='small'>".$locale['msg200']."</div>\n";
