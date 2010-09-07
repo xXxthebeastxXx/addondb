@@ -71,15 +71,7 @@ if (!isnum($addon_id) || dbrows($q_addons) == 0 || ($d_addons['addon_status'] !=
 	$rating = ($num_votes > 0 ? str_repeat("<img src='".INFUSIONS."addondb/img/star.png' alt='".$locale['addondb414']."'>",ceil($d_rating['sum_rating']/$num_votes)).$votecount : $votecount);
 	$staff_rating = str_repeat("<img src='".INFUSIONS."addondb/img/star.png' alt='".$locale['addondb414']."' />",$d_addons['addon_approved_rating']);
 	$urlprefix = !strstr($d_addons['addon_author_www'], "http://") ? "http://" : "";
-	if ($d_addons['addon_author_name'] != "") {
-		$addon_author = $d_addons['addon_author_name'];
-		if (!iGUEST) {
-		if ($d_addons['addon_author_email'] != "") $addon_author .= " [<a href='mailto:".$d_addons['addon_author_email']."' title='".$locale['addondb500']."'>".$locale['addondb419']."</a>]";
-		}
-		if ($d_addons['addon_author_www'] != "") $addon_author .= " [<a href='".$urlprefix.$d_addons['addon_author_www']."' target='_blank' title='".$locale['addondb501']."'>".$locale['addondb420']."</a>]";
-	} else {
-		$addon_author = "Unknown";
-	}
+
 	if ($d_addons['addon_download_count'] == 0) {
 		$download_count = "[0 ".$locale['addondb422']."]";
 	} elseif ($d_addons['addon_download_count'] == 1) {
@@ -97,16 +89,16 @@ if (!isnum($addon_id) || dbrows($q_addons) == 0 || ($d_addons['addon_status'] !=
 	<td width='155'>
 	";
 	if($d_addons['addon_img'] == ""){
-    echo"<img src='img/screenshots/nos.png'>";
+    echo"<img src='".ADDON_SCRN."nos.png'>";
 	} else {
 	echo'
 	<script type="text/javascript" src="lightbox/prototype.js"></script>
-  <script type="text/javascript" src="lightbox/scriptaculous.js?load=effects,builder"></script>
-  <script type="text/javascript" src="lightbox/lightbox.js"></script>
-  <link rel="stylesheet" href="lightbox/lightbox.css" type="text/css" media="screen" />
+    <script type="text/javascript" src="lightbox/scriptaculous.js?load=effects,builder"></script>
+    <script type="text/javascript" src="lightbox/lightbox.js"></script>
+    <link rel="stylesheet" href="lightbox/lightbox.css" type="text/css" media="screen" />
 	';
     echo"<div align='center'><a href='img/screenshots/".$d_addons['addon_img']."' rel='lightbox' style='outline: none;border:none;'>
-    <img src='img/screenshots/t_".$d_addons['addon_img']."' style='outline: none;border:none;'></a></div>";
+    <img src='".ADDON_SCRN."t_".$d_addons['addon_img']."' style='outline: none;border:none;'></a></div>";
   }
 	echo"
 	</td>
@@ -129,8 +121,24 @@ if (!isnum($addon_id) || dbrows($q_addons) == 0 || ($d_addons['addon_status'] !=
 	<td class='tbl1' nowrap>".$ver."&nbsp;(".$addon_types[$d_addons['addon_type']].")</td>
 	</tr>
 	<tr>
-	<td class='tbl2' nowrap><b>".$locale['addondb405'].":</b></td>
-	<td class='tbl1' nowrap>".$addon_author."</td>
+	<td class='tbl2' nowrap><b>".$locale['addondb405'].":</b></td>\n";
+	
+	$user_auth = dbarray(dbquery("SELECT 
+	                                     user_id, 
+	                                     user_name, 
+	                                     user_status 
+	                                     FROM ".DB_USERS." 
+	                                     WHERE 
+	                                     user_name = '".$d_addons['addon_author_name']."'
+	                                     "));
+	                                     
+		if (!iGUEST) {
+		if ($d_addons['addon_author_email'] != "") { $author_email = "[<a href='mailto:".$d_addons['addon_author_email']."' title='".$locale['addondb500']."'>".$locale['addondb419']."</a>]"; }
+		} else { $author_email = ""; }
+		if ($d_addons['addon_author_www'] != "")  { $author_www = " [<a href='".$urlprefix.$d_addons['addon_author_www']."' target='_blank' title='".$locale['addondb501']."'>".$locale['addondb420']."</a>]";
+	  } else { $author_www = ""; }
+
+	echo "<td class='tbl1' nowrap>".(isset($user_auth['user_name']) ? profile_link($user_auth['user_id'], $user_auth['user_name'], $user_auth['user_status']) : $d_addons['addon_author_name'])." ".$author_email." ".$author_www."</td>
 	</tr>\n";
 	if ($d_addons['addon_co_author_name'] != "") {
 	echo "<tr>
@@ -246,7 +254,7 @@ if (!isnum($addon_id) || dbrows($q_addons) == 0 || ($d_addons['addon_status'] !=
 	}
 	closetable();
 	
-	$result = dbquery("SELECT * FROM ".DB_ADDONS." WHERE addon_author_name = '".$d_addons['addon_author_name']."' AND (version_id = '8' OR version_id = '12') AND addon_id != '".$d_addons['addon_id']."' AND addon_status = '0' ORDER BY addon_download_count DESC");
+	$result = dbquery("SELECT * FROM ".DB_ADDONS." WHERE addon_author_name = '".$d_addons['addon_author_name']."' AND addon_id != '".$d_addons['addon_id']."' AND addon_status = '0' ORDER BY addon_download_count DESC");
 	if (dbrows($result) != 0) { 
 
 	opentable($locale['addondb512'].$d_addons['addon_author_name']);
@@ -265,7 +273,7 @@ if (!isnum($addon_id) || dbrows($q_addons) == 0 || ($d_addons['addon_status'] !=
 	
 	}
 	
-	$result = dbquery("SELECT * FROM ".DB_ADDONS." WHERE addon_co_author_name = '".$d_addons['addon_author_name']."' AND (version_id = '8' OR version_id = '12') AND addon_id != '".$d_addons['addon_id']."' AND addon_status = '0' ORDER BY addon_download_count DESC");
+	$result = dbquery("SELECT * FROM ".DB_ADDONS." WHERE addon_co_author_name = '".$d_addons['addon_author_name']."' AND addon_id != '".$d_addons['addon_id']."' AND addon_status = '0' ORDER BY addon_download_count DESC");
 	if (dbrows($result) != 0) {
 	opentable($locale['addondb513'].$d_addons['addon_author_name']);
 	echo "<table width='100%' border='0' cellpadding='0' cellspacing='1' class='tbl-border'><tr>";
