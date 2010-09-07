@@ -24,6 +24,7 @@ if (file_exists(INFUSIONS."addondb/locale/".$settings['locale']."/submitted_addo
 	include INFUSIONS."addondb/locale/English/submitted_addons_panel.php";
 }
 
+
 openside($locale['addondbp400']);
 $addonsq = dbquery("SELECT * FROM ".DB_SUBMISSIONS." WHERE submit_type='m' ORDER BY submit_id DESC");
 $errosq = dbquery("SELECT * FROM ".DB_ADDON_ERRORS." WHERE error_active ='1'");
@@ -42,9 +43,8 @@ echo "<div style='text-align:left;'>
 <a href='".INFUSIONS."addondb/admin/submissions.php".$aidlink."'>".$addons.$locale['addondbp405'].$locale['addondbp401']."</a><br />
 <a href='".INFUSIONS."addondb/admin/submissions.php".$aidlink."'>".$trans.$locale['addondbp405'].$locale['addondbp403']."</a><br />
 <a href='".INFUSIONS."addondb/admin/error.php".$aidlink."'>".$errors.$locale['addondbp405'].$locale['addondbp407']."</a><br />";
-if ($subm_tutorials != 0) {
-echo "<a href='".BASEDIR."administration/submissions.php".$aidlink."' class='side'>".$subm_tutorials." Submitted Tutorials</a><br />";	}
 echo "</div>
+
 <div style='text-align:center;'><br />".$totalm." ".$locale['addondbp401'].$locale['addondbp406'].$totalt.$locale['addondbp403']."<br />".$locale['addondbp404']."<br /><br />
 <a href='".INFUSIONS."addondb/admin/index.php".$aidlink."'>".$locale['addondbp402']."</a></div>";
 closeside();
