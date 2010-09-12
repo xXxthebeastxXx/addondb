@@ -5,7 +5,7 @@
 | http://www.php-fusion.co.uk/
 +--------------------------------------------------------+
 | Filename: infusion.php
-| Author: PHP-Fusion Addons & Infusions Team
+| Author: PHP-Fusion Addons Team
 +--------------------------------------------------------+
 | This program is released as free software under the
 | Affero GPL license. You can redistribute it and/or
@@ -147,7 +147,7 @@ $inf_sitelink[1] = array(
 
 $inf_sitelink[2] = array(
 	"title" => $locale['addondb102'],
-	"url" => "submission_guidelines.php",
+	"url" => "guidelines.php",
 	"visibility" => "101"
 );
 
