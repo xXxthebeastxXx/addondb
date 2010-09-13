@@ -5,7 +5,7 @@
 | http://www.php-fusion.co.uk/
 +--------------------------------------------------------+
 | Filename: submit_addon.php
-| Author: PHP-Fusion Addons & Infusions Team
+| Author: PHP-Fusion Addons Team
 +--------------------------------------------------------+
 | This program is released as free software under the
 | Affero GPL license. You can redistribute it and/or
@@ -18,12 +18,13 @@
 require_once "../../maincore.php";
 require_once THEMES."templates/header.php";
 
-require_once INFUSIONS."addondb/infusion_db.php";
 require_once INFUSIONS."addondb/inc/inc.functions.php";
-
-include INFUSIONS."addondb/locale/".LOCALESET."submit_addon.php";
-include INFUSIONS."addondb/check.js";
+require_once ADDON."infusion_db.php";
+include ADDON_LOCALE.LOCALESET."submit_addon.php";
+include ADDON_INC."check.js";
 //add_to_head("<Body style='overflow:hidden'>");
+
+$addon_sub_type = ($_REQUEST['addon_type']);
 
 if (!iMEMBER) {
 	opentable($locale['addondb430']);
@@ -45,13 +46,8 @@ if (!iMEMBER) {
 	$submit_info['addon_submitter_name'] = stripinput($_POST['addon_submitter_name']);
 	$submit_info['addon_submitter_id'] = stripinput($_POST['addon_submitter_id']);
 	$submit_info['addon_forum_status'] = stripinput($_POST['addon_forum_status']);	
-
-	
 	$submit_info['addon_valid_css'] = isset($_POST['addon_valid_css']) ? "1" : "0";
 	$submit_info['addon_valid_xhtml'] = isset($_POST['addon_valid_xhtml']) ? "1" : "0";
-	
-
-	
 	$submit_info['addon_author_name'] = stripinput($_POST['addon_author_name']);
 	$submit_info['addon_co_author_name'] = stripinput($_POST['addon_co_author_name']);
 	$submit_info['addon_author_email'] = stripinput($_POST['addon_author_email']);
@@ -134,7 +130,7 @@ if (!iMEMBER) {
 		<a href='javascript:history.back(-1);'>".$locale['addondb432']."</a><br /><br /></center>\n";
 		closetable();
 	} else {
-		opentable($locale['addondb400']);
+		opentable($locale['addondb400'].$addon_sub_type);
 		echo "<center><br />
 		".$locale['addondb420']."<br /><br />
 		".$locale['addondb421']."<br /><br />
@@ -144,10 +140,10 @@ if (!iMEMBER) {
 		closetable();
 	}
 } else {
-	opentable($locale['addondb400']);
+	opentable($locale['addondb400'].$addon_sub_type);
 	$addon_type_list = ""; $cat_list = ""; $opt = "";
 	
-	    foreach ($addon_types as $k=>$addon_type) $addon_type_list .= "<option value='".$k."'>".$addon_type."</option>\n";
+	foreach ($addon_types as $k=>$addon_type) $addon_type_list .= "<option value='".$k."'>".$addon_type."</option>\n";
 //	foreach ($addon_types as $k=>$addon_type) $addon_type_list .= $k;
 	$q_addon_cats = dbquery("SELECT addon_cat_id,addon_cat_type,addon_cat_name FROM ".DB_ADDON_CATS." ORDER BY addon_cat_type,addon_cat_order");
 	if (dbrows($q_addon_cats) != 0) {
@@ -164,7 +160,7 @@ if (!iMEMBER) {
 <form name='add_addon' method='post' action='".FUSION_SELF."' enctype='multipart/form-data'>
 <table align='center' cellpadding='0' cellspacing='0' class='tbl-border'>
 <tr>
-<td class='tbl1' nowrap>".$locale['addondb402'].":</td>
+<td class='tbl1' nowrap>".$addon_sub_type.$locale['addondb402'].":</td>
 <td class='tbl1' nowrap><span class='error'>*</span></td>
 <td class='tbl1' nowrap><input type='text' class='textbox' name='addon_name' style='width:300px;'></td>
 </tr>
@@ -172,11 +168,6 @@ if (!iMEMBER) {
 <td class='tbl1' nowrap>".$locale['addondb403'].":</td>
 <td class='tbl1' nowrap>&nbsp;</td>
 <td class='tbl1'><select class='textbox' name='addon_cat_id' style='width:300px;'>".$cat_list."</select></td>
-</tr>
-<tr>
-<td class='tbl1' nowrap>".$locale['addondb413'].":</td>
-<td class='tbl1' nowrap>&nbsp;</td>
-<td class='tbl1'><select class='textbox' name='addon_type' style='width:300px;'>".$addon_type_list."</select></td>
 </tr>
 <tr>
 <td class='tbl1' nowrap valign='top'>".$locale['addondb404'].":</td>
@@ -250,7 +241,9 @@ if (!iMEMBER) {
 <tr>
 <td class='tbl1' nowrap>".$locale['addondb416'].":</td>
 <td class='tbl1' nowrap>&nbsp;</td>
-<td class='tbl1'><input type='hidden' class='textbox' name='addon_submitter_name' style='width:300px;' value='".$userdata['user_name']."'><b>".$userdata['user_name']."</b><input type='hidden' class='textbox' name='addon_submitter_id' style='width:300px;' value='".$userdata['user_id']."'></td>
+<td class='tbl1'><input type='hidden' class='textbox' name='addon_submitter_name' value='".$userdata['user_name']."'><b>".$userdata['user_name']."</b>
+<input type='hidden' class='textbox' name='addon_submitter_id' value='".$userdata['user_id']."'>
+<input type='hidden' class='textbox' name='addon_type' value='0'></td>
 </tr>
 <tr>
 <td class='tbl1' nowrap colspan='3' align='center'><hr>".$locale['addondb414']."</td>

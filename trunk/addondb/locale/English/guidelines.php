@@ -41,6 +41,8 @@ $locale['msg032'] = "I have read and agree to follow these guidlelines -> ";
 $locale['msg100'] = "Go to the Submission Form";
 $locale['msg101'] = "You must be logged in to access the Addon Submission Form";
 $locale['msg102'] = "Members Only";
+$locale['msg103'] = "Choose Submission Type: ";
+$locale['msg104'] = "--Select--";
 $locale['msg200'] = "Submission Guidelines v1.5";
 
 // Translation Guidelines
