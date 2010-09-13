@@ -27,5 +27,6 @@ Use the controls on the right to find the Addons you want.";
 $locale['addondb431'] = "Category";
 $locale['addondb432'] = "Type";
 $locale['addondb433'] = "Fusion Version";
-$locale['addondb434'] = "Order By";$locale['addondb435'] = " | ";
+$locale['addondb434'] = "Order By";
+$locale['addondb435'] = " | ";
 ?>

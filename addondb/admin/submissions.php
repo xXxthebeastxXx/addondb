@@ -5,7 +5,7 @@
 | http://www.php-fusion.co.uk/
 +--------------------------------------------------------+
 | Filename: submissions.php
-| Author: PHP-Fusion Addons & Infusions Team
+| Author: PHP-Fusion Addons Team
 | Lightbox 2 Copyright Lokesh Dhakar
 +--------------------------------------------------------+
 | This program is released as free software under the
@@ -53,7 +53,7 @@ if (!isset($_GET['action']) || $_GET['action'] == "1") {
 		}
 				opentable($locale['410']);
 		echo "<table cellpadding='0' cellspacing='1' width='400' class='tbl-border center'>\n<tr>\n";
-		echo "<td colspan='2' class='tbl2'><a id='link_submissions' name='link_submissions'></a>\nMods</td>\n";
+		echo "<td colspan='2' class='tbl2'><a id='link_submissions' name='link_submissions'></a>\nAddons</td>\n";
 		echo "</tr>\n".$addons."</table>\n";
 		closetable();
 		$result1 = dbquery("SELECT * FROM ".DB_ADDON_TRANS." WHERE trans_active='1' ORDER BY trans_datestamp DESC");  
@@ -178,9 +178,7 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
 			echo "</div></form>\n";
 			closetable();
 			}
-   
    }
-
 
 }elseif ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && $_GET['t'] == "m")) {
 	if (isset($_POST['add']) && (isset($_GET['submit_id']) && isnum($_GET['submit_id']))) {
@@ -267,8 +265,6 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
               move_uploaded_file($_FILES['addon_download']['tmp_name'], $addon_upload_dir.$upload_name.$addon_ext);
 
               $submit_info['addon_download_list'] = $upload_name.$addon_ext;
-              
-
             }
           }
           

@@ -5,7 +5,7 @@
 | http://www.php-fusion.co.uk/
 +--------------------------------------------------------+
 | Filename: addondb_core.php
-| Author: PHP-Fusion Addons & Infusions Team
+| Author: PHP-Fusion Addons Team
 +--------------------------------------------------------+
 | This program is released as free software under the
 | Affero GPL license. You can redistribute it and/or
@@ -64,49 +64,52 @@ $addon_upload_exts = array(
 $addon_upload_maxsize = 2000000;
 ///////////////
 
-
-$addon_ratings = array(1 => "Poor", "Average", "Good", "Very Good", "Awesome!");
-$addon_types = array(1 => "Infusion", "Theme", "Panel", "Modification", "Other");
-$addon_status = array("Active", "Pending Approval", "Resubmission", "Suspended", "Rejected");
+include ADDON_LOCALE.LOCALESET."inc.functions.php";
+$addon_ratings = array(1 => $locale['func001'], $locale['func002'], $locale['func003'], $locale['func004'], $locale['func005']);
+  $addon_types = array(1 => $locale['func006'], $locale['func007'], $locale['func008'], $locale['func009'], $locale['func010']);
+ $addon_status = array($locale['func011'], $locale['func012'], $locale['func013'], $locale['func014'], $locale['func015']);
 $addon_orderby = array(
-	"addon_name" => "Addon Name",
-	"addon_author_name" => "Addon Author",
-	"addon_date" => "Submission Date"
+	"addon_name" => $locale['func016'],
+	"addon_author_name" => $locale['func017'],
+	"addon_date" => $locale['func018']
 );
 $addon_orderby_dir = array(
-	"ASC" => "Ascending",
-	"DESC" => "Descending"
+	"ASC" => $locale['func023'],
+	"DESC" => $locale['func024']
 );
 
 function get_addon_status($status_id) {
-	if ($status_id == 0) { return "Active"; }
-	elseif ($status_id == 1) { return "Pending Approval"; }
-	elseif ($status_id == 2) { return "Resubmission"; }
-	elseif ($status_id == 3) { return "Suspended"; }
-	elseif ($status_id == 4) { return "Rejected"; }
-	else { return "Unknown Status"; }
+include ADDON_LOCALE.LOCALESET."inc.functions.php";
+	if ($status_id == 0) { return $locale['func011']; }
+	elseif ($status_id == 1) { return $locale['func012']; }
+	elseif ($status_id == 2) { return $locale['func013']; }
+	elseif ($status_id == 3) { return $locale['func014']; }
+	elseif ($status_id == 4) { return $locale['func015']; }
+	else { return $locale['func019']; }
 }
 
 function get_addon_type($type) {
-	    if ($type == 1) { return "Infusion"; }
-	elseif ($type == 2) { return "Theme"; }
-	elseif ($type == 3) { return "Panel"; }
-	elseif ($type == 4) { return "Modification"; }
-	elseif ($type == 5) { return "Other"; }
-	else { return "Unknown type"; }
+include ADDON_LOCALE.LOCALESET."inc.functions.php";
+	    if ($type == 1) { return $locale['func006']; }
+	elseif ($type == 2) { return $locale['func007']; }
+	elseif ($type == 3) { return $locale['func008']; }
+	elseif ($type == 4) { return $locale['func009']; }
+	elseif ($type == 5) { return $locale['func010']; }
+	else { return $locale['func020']; }
 }
 
 function get_addon_status_mail($status_id) {
-	if ($status_id == 0) { return "Activated"; }
-	elseif ($status_id == 1) { return "Pending Approval"; }
-	elseif ($status_id == 2) { return "Mark For Resubmition"; }
-	elseif ($status_id == 3) { return "Suspended"; }
-	elseif ($status_id == 4) { return "Rejected"; }
-	else { return "Unknown Status"; }
+include ADDON_LOCALE.LOCALESET."inc.functions.php";
+	if ($status_id == 0) { return $locale['func021']; }
+	elseif ($status_id == 1) { return $locale['func012']; }
+	elseif ($status_id == 2) { return $locale['func022']; }
+	elseif ($status_id == 3) { return $locale['func014']; }
+	elseif ($status_id == 4) { return $locale['func015']; }
+	else { return $locale['func019']; }
 }
 
 function get_addon_language($l_id) {
-	if ($l_id == 0) { return "29"; } // The Number Of Launguages
+	if ($l_id == 0) { return "29"; } // The Number Of Languages
 	elseif ($l_id == 1) { return "Arabic"; }
 	elseif ($l_id == 2) { return "Azerbaijani"; }
 	elseif ($l_id == 3) { return "Belarussian"; }
