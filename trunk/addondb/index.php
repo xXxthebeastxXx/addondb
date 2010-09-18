@@ -20,7 +20,6 @@ require_once THEMES."templates/header.php";
 
 require_once INFUSIONS."addondb/infusion_db.php";
 require_once INFUSIONS."addondb/inc/inc.functions.php";
-
 include INFUSIONS."addondb/locale/".LOCALESET."addons.php";
 
 $settings['addons_per_page'] = 30;
