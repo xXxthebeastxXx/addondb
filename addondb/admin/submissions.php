@@ -22,14 +22,14 @@ include LOCALE.LOCALESET."admin/submissions.php";
 
 if (!checkrights("ADNX") || !defined("iAUTH") || $_GET['aid'] != iAUTH) { redirect("../index.php"); }
 
-require_once INFUSIONS."addondb/infusion_db.php";
 require_once INFUSIONS."addondb/inc/inc.functions.php";
-require_once INFUSIONS."addondb/inc/inc.nav.php";
+require_once ADDON."infusion_db.php";
+require_once ADDON_INC."inc.nav.php";
 
-if (file_exists(INFUSIONS."addondb/locale/".LOCALESET."admin/admin.php")) {
-	include INFUSIONS."addondb/locale/".LOCALESET."admin/admin.php";
+if (file_exists(ADDON_LOCALE.LOCALESET."admin/admin.php")) {
+	include ADDON_LOCALE.LOCALESET."admin/admin.php";
 } else {
-	include INFUSIONS."addondb/locale/English/admin/admin.php";
+	include ADDON_LOCALE."English/admin/admin.php";
 }
 
 $addons = "";
@@ -53,7 +53,7 @@ if (!isset($_GET['action']) || $_GET['action'] == "1") {
 		}
 				opentable($locale['410']);
 		echo "<table cellpadding='0' cellspacing='1' width='400' class='tbl-border center'>\n<tr>\n";
-		echo "<td colspan='2' class='tbl2'><a id='link_submissions' name='link_submissions'></a>\nAddons</td>\n";
+		echo "<td colspan='2' class='tbl2'><a id='link_submissions' name='link_submissions'></a>\nMods</td>\n";
 		echo "</tr>\n".$addons."</table>\n";
 		closetable();
 		$result1 = dbquery("SELECT * FROM ".DB_ADDON_TRANS." WHERE trans_active='1' ORDER BY trans_datestamp DESC");  
@@ -178,7 +178,9 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
 			echo "</div></form>\n";
 			closetable();
 			}
+   
    }
+
 
 }elseif ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && $_GET['t'] == "m")) {
 	if (isset($_POST['add']) && (isset($_GET['submit_id']) && isnum($_GET['submit_id']))) {

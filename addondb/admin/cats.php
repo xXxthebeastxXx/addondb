@@ -86,7 +86,7 @@ if (isset($_GET['action']) && isset($_GET['addon_cat_id']) && isnum($_GET['addon
 				$addon_cat_access = stripinput($_POST['addon_cat_access']);
 				if (empty($addon_cat_name)) {
 					redirect(FUSION_SELF.$aidlink."&amp;error=1");
-				} elseif (dbcount("(*)", DB_ADDON_CATS, "addon_cat_name='$addon_cat_name' AND addon_cat_id!='$addon_cat_id'") != 0) { 
+				} elseif (dbcount("(*)", DB_ADDON_CATS, "addon_cat_name='$addon_cat_name' AND addon_cat_type='$addon_cat_type'") != 0) { 
 				redirect(FUSION_SELF.$aidlink."&amp;error=2");
 				} else {
 					$result = dbquery(
@@ -119,7 +119,7 @@ if (isset($_GET['action']) && isset($_GET['addon_cat_id']) && isnum($_GET['addon
 	$addon_cat_access = stripinput($_POST['addon_cat_access']);
 	if (empty($addon_cat_name)) {
 		redirect(FUSION_SELF.$aidlink."&amp;error=1");
-	} elseif (dbcount("(*)", DB_ADDON_CATS, "addon_cat_name='$addon_cat_name'") != 0) {
+	} elseif (dbcount("(*)", DB_ADDON_CATS, "addon_cat_name='$addon_cat_name' AND addon_cat_type='$addon_cat_type'") != 0) {
 		redirect(FUSION_SELF.$aidlink."&amp;error=2");
 	} else {
 		$addon_cat_order = dbresult(dbquery("SELECT MAX(addon_cat_order) FROM ".DB_ADDON_CATS." WHERE addon_cat_type='$addon_cat_type'"),0) + 1;
