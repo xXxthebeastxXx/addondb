@@ -135,42 +135,26 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
 			echo "<form name='publish' method='post' action='".FUSION_SELF.$aidlink."&amp;action=2&amp;t=t&amp;trans_id=".$_GET['trans_id']."' enctype='multipart/form-data'>\n";
 			echo "<table cellpadding='0' cellspacing='0' class='center'>\n<tr>\n";
 			echo "<td class='tbl1' nowrap>".$locale['addondb402'].":</td>
-			
 			<td class='tbl1'><input type='text' class='textbox' name='addon_name' value='".$data['trans_modname']."' style='width:300px;' READONLY></td>
-			</tr>
-			<tr>
+			</tr><tr>
 			<td class='tbl1' nowrap>".$locale['addondb456'].":</td>
-		
 			<td class='tbl1'><select class='textbox' name='lang' style='width:300px;'>".$lang."</select></td>
-			</tr>
-			<tr>
+			</tr><tr>
 			<td class='tbl1' nowrap>".$locale['addondb412'].":</td>
-			
 			<td class='tbl1'><span class='small'><a href='".$trans_upload_dir.$data['trans_file']."' target='_BLANK'>".substr($trans_upload_dir.$data['trans_file'],6)."</a></span></td>
-			</tr>
-			
-			
-			<tr>
+			</tr><tr>
 			<td class='tbl1' nowrap>".$locale['addondb413'].":</td>
 			<td class='tbl1'><span class='small'>
 			<input type='hidden' class='textbox' name='trans_name' value='".$data['trans_user']."'>
 			<a href='".BASEDIR."profile.php?lookup=".$data['trans_user']."' target='_BLANK'>".$data['trans_user']."</a></span></td>
-			</tr>
-			
-			
-			<tr>
+			</tr><tr>
 			<td class='tbl1' nowrap>".$locale['addondb442'].":</td>
-			
 			<td class='tbl1'><select class='textbox' name='trans_status' style='width:300px;'>".$trans_status_list."</select></td>
-			</tr>
-			<tr>
+			</tr><tr>
 			<td class='tbl1' nowrap>".$locale['addondb417'].":</td>
-
 			<td class='tbl1'><select class='textbox' name='trans_approved_user' style='width:300px;'>".$trans_approved_user_list."</select></td>
-			</tr>
-			<tr>
+			</tr><tr>
 			<td class='tbl1' nowrap valign='top'>".$locale['addondb419'].":</td>
-
 			<td class='tbl1'><textarea class='textbox' name='trans_approved_comment' style='width:300px; height:48px;'></textarea></td>";
 			echo "</tr>\n</table>\n";
 			echo "<div style='text-align:center'><br />\n";
@@ -214,7 +198,7 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
         // Addon info
         $submit_info['addon_name'] = stripinput($_POST['addon_name']);
         $submit_info['addon_cat_id'] = stripinput($_POST['addon_cat_id']);
-        $submit_info['addon_modtype'] = stripinput($_POST['addon_modtype']);
+        $submit_info['addon_type'] = stripinput($_POST['addon_type']);
         $submit_info['addon_description'] = stripinput($_POST['addon_description']);
         $submit_info['addon_copyright'] = stripinput($_POST['addon_copyright']);
         $submit_info['addon_version'] = stripinput($_POST['addon_version']);
@@ -315,7 +299,7 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
           $result = dbquery("INSERT INTO ".DB_ADDONS." VALUES(
             '',
             '".$submit_info['addon_cat_id']."',
-            '".$submit_info['addon_modtype']."',
+            '".$submit_info['addon_type']."',
             '".$submit_info['addon_status']."',
             '".$submit_info['addon_name']."',
             '".$submit_info['addon_description']."',
@@ -371,7 +355,7 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
 			// VARIABLES START
 			$addon_name = $submit_criteria['addon_name'];
 			$addon_cat_id = $submit_criteria['addon_cat_id'];
-			$addon_modtype = $submit_criteria['addon_type'];
+			$addon_type = $submit_criteria['addon_type'];
 			$addon_status_value = $submit_criteria['addon_status'];
 			$addon_description = $submit_criteria['addon_description'];
 			$addon_copyright = $submit_criteria['addon_copyright'];
@@ -408,10 +392,6 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
 				if (!isset($addon_approved_rating_list)) { $addon_approved_rating_list = ""; }
 				$addon_approved_rating_list .= "<option value='".$k."'".($addon_approved_rating == $k ? " selected" : "").">".$addon_rating."</option>\n";
 			}
-			$addon_type_list = "";
-			foreach ($addon_types as $k=>$addon_type) {
-				$addon_type_list .= "<option value='".$k."'".($addon_modtype == $k ? " selected" : "").">".$addon_type."</option>\n";
-			}
 			$months = explode("|",$locale['months']);
 			$month_list = "";
 			for ($i=1; $i<count($months); $i++) $month_list .= "<option value='".$i."'".($i == $addon_date_m ? " selected" : "").">".$months[$i]."</option>\n";
@@ -435,12 +415,8 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
 			<tr>
 			<td class='tbl1' nowrap>".$locale['addondb403'].":</td>
 			<td class='tbl1' nowrap>&nbsp;</td>
-			<td class='tbl1'><select class='textbox' name='addon_cat_id' style='width:300px;'>".$cat_list."</select></td>
-			</tr>
-			<tr>
-			<td class='tbl1' nowrap>".$locale['addondb416'].":</td>
-			<td class='tbl1' nowrap>&nbsp;</td>
-			<td class='tbl1'><select class='textbox' name='addon_modtype' style='width:300px;'>".$addon_type_list."</select></td>
+			<td class='tbl1'><select class='textbox' name='addon_cat_id' style='width:300px;'>".$cat_list."</select>
+			<input type='hidden' class='textbox' name='addon_type' value='".$addon_type."'></td>
 			</tr>
 			<tr>
 			<td class='tbl1' nowrap valign='top'>".$locale['addondb404'].":</td>

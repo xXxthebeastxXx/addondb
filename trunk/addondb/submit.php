@@ -86,7 +86,7 @@ if (!iMEMBER) {
                   $addon_ext_img = ".".$addon_ext_img;
                 } else {
                   $error = sprintf($locale['addondb610'],implode(", ",array_keys($addon_upload_exts_img)));
-                }
+                  }
                 }
 			
              if ($error == "") {
@@ -163,7 +163,16 @@ $get_type = array(
 	  $locale['func010'] => 5
 );
 
-	$q_addon_cats = dbquery("SELECT addon_cat_id,addon_cat_type,addon_cat_name FROM ".DB_ADDON_CATS." WHERE addon_cat_type = ".$get_type[$addon_sub_type]." ORDER BY addon_cat_type,addon_cat_order");
+	$q_addon_cats = dbquery("SELECT 
+	                               addon_cat_id, 
+	                               addon_cat_type, 
+	                               addon_cat_name 
+	                               FROM ".DB_ADDON_CATS." 
+	                               WHERE addon_cat_type = 
+	                               ".$get_type[$addon_sub_type]." 
+	                               ORDER BY addon_cat_type,
+	                               addon_cat_order
+	                               ");
 	if (dbrows($q_addon_cats) != 0) {
 		while ($d_addon_cats = dbarray($q_addon_cats)) {
 			if (get_addon_type($d_addon_cats['addon_cat_type']) != $opt) {
@@ -185,7 +194,9 @@ $get_type = array(
 <tr>
 <td class='tbl1' nowrap>".$locale['addondb403'].":</td>
 <td class='tbl1' nowrap>&nbsp;</td>
-<td class='tbl1'><select class='textbox' name='addon_cat_id' style='width:300px;'>".$cat_list."</select></td>
+<td class='tbl1'><select class='textbox' name='addon_cat_id' style='width:300px;'>".$cat_list."</select>
+<input type='hidden' class='textbox' name='addon_type' value='".$get_type[$opt]."'>
+</td>
 </tr>
 <tr>
 <td class='tbl1' nowrap valign='top'>".$locale['addondb404'].":</td>
