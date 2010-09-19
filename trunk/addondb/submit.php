@@ -256,7 +256,7 @@ echo "</td>
 			<a target='_blank' title='W3C Markup Validation' href='http://validator.w3.org/'><img src='".INFUSIONS."addondb/img/valid_xhtml.png' alt='W3C Markup Validation' /></a>
 			<a target='_blank' title='W3C CSS Validation' href='http://jigsaw.w3.org/css-validator/'><img src='".INFUSIONS."addondb/img/valid_css.png' alt='W3C CSS Validation' /></a>
 			<div id='showvalid'>
-			".$locale['addondb421'].": <label><input type='checkbox' name='addon_valid_xhtml' value='1' style='vertical-align:middle;'  /></label>
+			".$locale['addondb407'].": <label><input type='checkbox' name='addon_valid_xhtml' value='1' style='vertical-align:middle;'  /></label>
 			<br />
 			".$locale['addondb422'].": <label><input type='checkbox' name='addon_valid_css' value='1' style='vertical-align:middle;'  /></label><br /><br />
 			</div></td>
