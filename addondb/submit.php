@@ -37,7 +37,7 @@ if (!iMEMBER) {
 	$upload_id = "";
 	$submit_info['addon_name'] = stripinput($_POST['addon_name']);
 	$submit_info['addon_cat_id'] = stripinput($_POST['addon_cat_id']);
-	$submit_info['addon_type'] = stripinput($_POST['addon_type']);
+	$submit_info['addon_cat_type'] = stripinput($_POST['addon_cat_type']);
 	$submit_info['addon_status'] = 1;
 	$submit_info['addon_description'] = stripinput($_POST['addon_description']);
 	$submit_info['addon_copyright'] = stripinput($_POST['addon_copyright']);
@@ -195,7 +195,7 @@ $get_type = array(
 <td class='tbl1' nowrap>".$locale['addondb403'].":</td>
 <td class='tbl1' nowrap>&nbsp;</td>
 <td class='tbl1'><select class='textbox' name='addon_cat_id' style='width:300px;'>".$cat_list."</select>
-<input type='hidden' class='textbox' name='addon_type' value='".$get_type[$opt]."'>
+<input type='hidden' class='textbox' name='addon_cat_type' value='".$get_type[$opt]."'>
 </td>
 </tr>
 <tr>
