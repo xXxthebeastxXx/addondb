@@ -198,7 +198,7 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
         // Addon info
         $submit_info['addon_name'] = stripinput($_POST['addon_name']);
         $submit_info['addon_cat_id'] = stripinput($_POST['addon_cat_id']);
-        $submit_info['addon_type'] = stripinput($_POST['addon_type']);
+        $submit_info['addon_cat_type'] = stripinput($_POST['addon_cat_type']);
         $submit_info['addon_description'] = stripinput($_POST['addon_description']);
         $submit_info['addon_copyright'] = stripinput($_POST['addon_copyright']);
         $submit_info['addon_version'] = stripinput($_POST['addon_version']);
@@ -299,7 +299,7 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
           $result = dbquery("INSERT INTO ".DB_ADDONS." VALUES(
             '',
             '".$submit_info['addon_cat_id']."',
-            '".$submit_info['addon_type']."',
+            '".$submit_info['addon_cat_type']."',
             '".$submit_info['addon_status']."',
             '".$submit_info['addon_name']."',
             '".$submit_info['addon_description']."',
@@ -355,7 +355,7 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
 			// VARIABLES START
 			$addon_name = $submit_criteria['addon_name'];
 			$addon_cat_id = $submit_criteria['addon_cat_id'];
-			$addon_type = $submit_criteria['addon_type'];
+			$addon_cat_type = $submit_criteria['addon_cat_type'];
 			$addon_status_value = $submit_criteria['addon_status'];
 			$addon_description = $submit_criteria['addon_description'];
 			$addon_copyright = $submit_criteria['addon_copyright'];
@@ -416,7 +416,7 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
 			<td class='tbl1' nowrap>".$locale['addondb403'].":</td>
 			<td class='tbl1' nowrap>&nbsp;</td>
 			<td class='tbl1'><select class='textbox' name='addon_cat_id' style='width:300px;'>".$cat_list."</select>
-			<input type='hidden' class='textbox' name='addon_type' value='".$addon_type."'></td>
+			<input type='hidden' class='textbox' name='addon_cat_type' value='".$addon_cat_type."'></td>
 			</tr>
 			<tr>
 			<td class='tbl1' nowrap valign='top'>".$locale['addondb404'].":</td>
