@@ -22,32 +22,37 @@ $locale['addondb416'] = "Submitted by";
 $locale['addondb417'] = "Create forum support thread?";
 $locale['addondb418'] = "Yes";
 $locale['addondb419'] = "No";
-$locale['addondb419a'] = "";
-$locale['addondb419b'] = "Valid for XHTML";
-$locale['addondb419c'] = "Valid for CSS";
-$locale['addondb419v'] = "If Validated";
-
+$locale['addondb420'] = " to the AddonDB";
+$locale['addondb421'] = "Valid for XHTML";
+$locale['addondb422'] = "Valid for CSS";
+$locale['addondb423'] = "If Validated";
+$locale['addondb424'] = " | ";
+$locale['addondb425'] = "Theme";
+$locale['addondb426'] = "Choose Submission Type: ";
+$locale['addondb427'] = "--Select--";
 
 // Submit Addon Success
-$locale['addondb420'] = "Thank you for you for submitting your Addon";
-$locale['addondb421'] = "An Administrator will review your submission shortly";
-$locale['addondb422'] = "Submit another Addon";
-$locale['addondb423'] = "Return to Main Site";
-$locale['addondb424'] = "Go to Submissions Admin Panel";
+$locale['addondb500'] = "Thank you for you for submitting your Addon";
+$locale['addondb501'] = "An Administrator will review your submission shortly";
+$locale['addondb502'] = "Submit another Addon";
+$locale['addondb503'] = "Return to Main Site";
+$locale['addondb504'] = "Go to Submissions Admin Panel";
+$locale['addondb505'] = "Go Addon DB";
 
 // Submit Addon Fail
-$locale['addondb430'] = "Error";
-$locale['addondb431'] = "Your Addon could not be submitted";
-$locale['addondb432'] = "Return";
-$locale['addondb440'] = "Please ensure that you complete all the required form fields";
-$locale['addondb441'] = "Addon file must be less than %u bytes.";
-$locale['addondb442'] = "Addon file must be a %s file.";
-$locale['addondb443'] = "You must supply a Addon file.";
-$locale['addondb444'] = "The Email Address does not appear to be valid";
-$locale['addondb445'] = "Members Only";
-$locale['addondb446'] = "Screenshot file must be less than %u bytes.";
-$locale['addondb447'] = "Screenshot file must be a %s file.";
-$locale['addondb450'] = "The Addon submission system has not been setup yet.";
-$locale['addondb451'] = "Please try again later";
-$locale['addondb452'] = "If Co-Author";
+$locale['addondb600'] = "Error";
+$locale['addondb601'] = "Your Addon could not be submitted";
+$locale['addondb602'] = "Return";
+$locale['addondb603'] = "Please ensure that you complete all the required form fields";
+$locale['addondb604'] = "Addon file must be less than %u bytes.";
+$locale['addondb605'] = "Addon file must be a %s file.";
+$locale['addondb606'] = "You must supply a Addon file.";
+$locale['addondb607'] = "The Email Address does not appear to be valid";
+$locale['addondb608'] = "Members Only";
+$locale['addondb609'] = "Screenshot file must be less than %u bytes.";
+$locale['addondb610'] = "Screenshot file must be a %s file.";
+$locale['addondb611'] = "The Addon submission system has not been setup yet.";
+$locale['addondb612'] = "Please try again later";
+$locale['addondb613'] = "If Co-Author";
+$locale['addondb614'] = "You must supply a Theme Screenshot";
 ?>

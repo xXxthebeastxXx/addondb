@@ -65,6 +65,16 @@ $addon_upload_maxsize = 2000000;
 ///////////////
 
 include ADDON_LOCALE.LOCALESET."inc.functions.php";
+$get_type = array(
+	  $locale['func006'] => 1, 
+	  $locale['func007'] => 2, 
+	  $locale['func008'] => 3,
+	  $locale['func009'] => 4,
+	  $locale['func010'] => 5
+);
+////////////////
+
+include ADDON_LOCALE.LOCALESET."inc.functions.php";
 $addon_ratings = array(1 => $locale['func001'], $locale['func002'], $locale['func003'], $locale['func004'], $locale['func005']);
   $addon_types = array(1 => $locale['func006'], $locale['func007'], $locale['func008'], $locale['func009'], $locale['func010']);
  $addon_status = array($locale['func011'], $locale['func012'], $locale['func013'], $locale['func014'], $locale['func015']);
