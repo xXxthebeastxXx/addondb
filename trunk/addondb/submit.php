@@ -154,15 +154,6 @@ add_to_title($locale['addondb424'].$locale['addondb400'].$addon_sub_type.$locale
 	foreach ($addon_types as $k=>$addon_type) $addon_type_list .= "<option value='".$k."'>".$addon_type."</option>\n";
 //	foreach ($addon_types as $k=>$addon_type) $addon_type_list .= $k;
 
-include ADDON_LOCALE.LOCALESET."inc.functions.php";
-$get_type = array(
-	  $locale['func006'] => 1, 
-	  $locale['func007'] => 2, 
-	  $locale['func008'] => 3,
-	  $locale['func009'] => 4,
-	  $locale['func010'] => 5
-);
-
 	$q_addon_cats = dbquery("SELECT 
 	                               addon_cat_id, 
 	                               addon_cat_type, 
