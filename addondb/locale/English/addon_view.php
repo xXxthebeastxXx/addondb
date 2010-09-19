@@ -21,7 +21,7 @@ $locale['addondb417'] = "Vote";
 $locale['addondb418'] = "Votes";
 $locale['addondb419'] = "Email";
 $locale['addondb420'] = "Visit";
-$locale['addondb421'] = "Download";
+$locale['addondb421'] = "Download ";
 $locale['addondb422'] = "Downloads";
 $locale['addondb423'] = "Options";
 $locate['addondb424'] = "Edit";
@@ -30,7 +30,6 @@ $locate['addondb426'] = "This mod is currently suspended!";
 $locale['addondb427'] = "Translations:";
 $locale['addondb428'] = "Submit :";
 $locale['addondb429'] = "Support Thread: ";
-
 
 // Error Messages
 $locale['addondb430'] = "Error";
@@ -42,6 +41,7 @@ $locale['addondb435'] = "Go Back";
 $locale['addondb436'] = "You need to register to use this function";
 $locale['addondb437'] = "Are you sure you want to report this link as broken ?";
 $locale['addondb438'] = "Available to Members Only";
+$locale['addondb439'] = "None";
 
 // Tooltips
 $locale['addondb500'] = "Click to email the Author";

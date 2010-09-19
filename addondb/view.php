@@ -75,7 +75,7 @@ if (!isnum($addon_id) || dbrows($q_addons) == 0 || ($d_addons['addon_status'] !=
 	if ($d_addons['addon_download_count'] == 0) {
 		$download_count = "[0 ".$locale['addondb422']."]";
 	} elseif ($d_addons['addon_download_count'] == 1) {
-		$download_count = "[1 ".$locale['addondb421']."]";
+		$download_count = "[1 ".$locale['addondb407']."]";
 	} else {
 		$download_count = "[".$d_addons['addon_download_count']." ".$locale['addondb422']."]";
 	}
@@ -88,25 +88,24 @@ if (!isnum($addon_id) || dbrows($q_addons) == 0 || ($d_addons['addon_status'] !=
 	<tr>
 	<td width='155'>
 	";
-	if($d_addons['addon_img'] == ""){
-    echo"<img src='".ADDON_SCRN."nos.png'>";
+	if($d_addons['addon_img'] == "" || !file_exists(ADDON_SCRN."t_".$d_addons['addon_img'])) {
+    echo "<img src='".ADDON_SCRN."nos.png'>";
 	} else {
-	echo'
-	<script type="text/javascript" src="lightbox/prototype.js"></script>
-    <script type="text/javascript" src="lightbox/scriptaculous.js?load=effects,builder"></script>
-    <script type="text/javascript" src="lightbox/lightbox.js"></script>
-    <link rel="stylesheet" href="lightbox/lightbox.css" type="text/css" media="screen" />
-	';
+	add_to_head("<script type='text/javascript' src='lightbox/prototype.js'></script>
+    <script type='text/javascript' src='lightbox/scriptaculous.js?load=effects,builder'></script>
+    <script type='text/javascript' src='lightbox/lightbox.js'></script>
+    <link rel='stylesheet' href='lightbox/lightbox.css' type='text/css' media='screen' />");
     echo"<div align='center'><a href='img/screenshots/".$d_addons['addon_img']."' rel='lightbox' style='outline: none;border:none;'>
-    <img src='".ADDON_SCRN."t_".$d_addons['addon_img']."' style='outline: none;border:none;'></a></div>";
-  }
-	echo"
-	</td>
+    <img src='".ADDON_SCRN."t_".$d_addons['addon_img']."' style='outline: none;border:none;'></a></div>\n";
+    }
+	echo"</td>
 	<td>
 	<table width='100%' border='0' cellpadding='0' cellspacing='1' class='tbl-border'>
 	<tr>
 	<td class='tbl2' width='80' nowrap><b>".$locale['addondb401'].":</b></td>
 	<td class='tbl1' nowrap>".$d_addons['addon_name']."&nbsp;".$new."</td>
+	<td class='tbl1' nowrap rowspan='9' align='center'><b>".$locale['addondb421'].$d_addons['addon_name']."</b><br />
+	<a href='".FUSION_SELF."?download=".$d_addons['addon_id']."' title='".$locale['addondb502']."'><img border='0' src='".ADDON_IMG."download.png' alt='' /></a><br />".$download_count."</td>
 	</tr>
 	<tr>
 	<td class='tbl2' nowrap><b>".$locale['addondb402'].":</b></td>
@@ -125,14 +124,15 @@ if (!isnum($addon_id) || dbrows($q_addons) == 0 || ($d_addons['addon_status'] !=
 	
 	$user_auth = dbarray(dbquery("SELECT 
 	                                     user_id, 
-	                                     user_name, 
+	                                     user_name,
+	                                     user_hide_email,  
 	                                     user_status 
 	                                     FROM ".DB_USERS." 
 	                                     WHERE 
 	                                     user_name = '".$d_addons['addon_author_name']."'
 	                                     "));
 	                                     
-		if (!iGUEST) {
+		if ($user_auth['user_hide_email'] != "1" || iADMIN) {
 		if ($d_addons['addon_author_email'] != "") { $author_email = "[<a href='mailto:".$d_addons['addon_author_email']."' title='".$locale['addondb500']."'>".$locale['addondb419']."</a>]"; }
 		} else { $author_email = ""; }
 		if ($d_addons['addon_author_www'] != "")  { $author_www = " [<a href='".$urlprefix.$d_addons['addon_author_www']."' target='_blank' title='".$locale['addondb501']."'>".$locale['addondb420']."</a>]";
@@ -152,10 +152,6 @@ if (!isnum($addon_id) || dbrows($q_addons) == 0 || ($d_addons['addon_status'] !=
 	<tr>
 	<td class='tbl2' nowrap><b>".$locale['addondb408'].":</b></td>
 	<td class='tbl1' nowrap>".$rating."</td>
-	</tr>
-	<tr>
-	<td class='tbl2' nowrap><b>".$locale['addondb407'].":</b></td>
-	<td class='tbl1' nowrap><a href='".FUSION_SELF."?download=".$d_addons['addon_id']."' title='".$locale['addondb502']."'>".$locale['addondb415']."</a> ".$download_count."</td>
 	</tr>
 	</table>
 	</td>
@@ -195,11 +191,13 @@ if (!isnum($addon_id) || dbrows($q_addons) == 0 || ($d_addons['addon_status'] !=
 		
 		if (($d_addons['addon_valid_xhtml'] == 1) || ($d_addons['addon_valid_css'] == 1)) 
 		{ $tdo = "<td class='tbl1' valign='top'><b>".$locale['addondb516'].":</b></td><td align='center' class='tbl1'>"; $tdc = "</td>"; $colspan = "0"; } else { $tdo = ""; $tdc = ""; $colspan = "3"; }
-		if ($d_addons['addon_valid_xhtml'] == 1) { $xhtml = "<img src='".INFUSIONS."addondb/img/valid_xhtml.png' alt='".$locale['addondb514']."' />"; } elseif ($d_addons['addon_valid_xhtml'] == 0) { $xhtml = ""; }
-		if ($d_addons['addon_valid_css'] == 1) { $css = "<img src='".INFUSIONS."addondb/img/valid_css.png' alt='".$locale['addondb515']."' />"; } elseif ($d_addons['addon_valid_css'] == 0) { $css = ""; }
+		if ($d_addons['addon_valid_xhtml'] == 1) { $xhtml = "<img src='".ADDON_IMG."valid_xhtml.png' alt='".$locale['addondb514']."' />"; } elseif ($d_addons['addon_valid_xhtml'] == 0) { $xhtml = ""; }
+		if ($d_addons['addon_valid_css'] == 1) { $css = "<img src='".ADDON_IMG."valid_css.png' alt='".$locale['addondb515']."' />"; } elseif ($d_addons['addon_valid_css'] == 0) { $css = ""; }
 		
 		echo "<td class='tbl2' valign='top' nowrap><b>".$locale['addondb413'].":</b></td>
-		<td class='tbl1' colspan='".$colspan."'>".nl2br(parsesmileys(parseubb($d_addons['addon_approved_comment'])))."</td>";
+		<td class='tbl1' colspan='".$colspan."'>";
+		if ($d_addons['addon_approved_comment']) { echo nl2br(parsesmileys(parseubb($d_addons['addon_approved_comment']))); } else { echo $locale['addondb439']; }
+		echo "</td>";
 		
 		echo $tdo;
 		echo $xhtml;
