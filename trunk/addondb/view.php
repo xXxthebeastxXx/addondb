@@ -189,21 +189,10 @@ if (!isnum($addon_id) || dbrows($q_addons) == 0 || ($d_addons['addon_status'] !=
 		</tr>
 		<tr>\n";
 		
-		if (($d_addons['addon_valid_xhtml'] == 1) || ($d_addons['addon_valid_css'] == 1)) 
-		{ $tdo = "<td class='tbl1' valign='top'><b>".$locale['addondb516'].":</b></td><td align='center' class='tbl1'>"; $tdc = "</td>"; $colspan = "0"; } else { $tdo = ""; $tdc = ""; $colspan = "3"; }
-		if ($d_addons['addon_valid_xhtml'] == 1) { $xhtml = "<img src='".ADDON_IMG."valid_xhtml.png' alt='".$locale['addondb514']."' />"; } elseif ($d_addons['addon_valid_xhtml'] == 0) { $xhtml = ""; }
-		if ($d_addons['addon_valid_css'] == 1) { $css = "<img src='".ADDON_IMG."valid_css.png' alt='".$locale['addondb515']."' />"; } elseif ($d_addons['addon_valid_css'] == 0) { $css = ""; }
-		
 		echo "<td class='tbl2' valign='top' nowrap><b>".$locale['addondb413'].":</b></td>
-		<td class='tbl1' colspan='".$colspan."'>";
+		<td class='tbl1' colspan='3'>";
 		if ($d_addons['addon_approved_comment']) { echo nl2br(parsesmileys(parseubb($d_addons['addon_approved_comment']))); } else { echo $locale['addondb439']; }
 		echo "</td>";
-		
-		echo $tdo;
-		echo $xhtml;
-		echo $css;
-		echo $tdc;
-		
 		echo "</tr>";
 		
         $result = dbquery("SELECT thread_id, thread_subject FROM ".DB_THREADS." WHERE thread_subject = '".$d_addons['addon_name']."'");

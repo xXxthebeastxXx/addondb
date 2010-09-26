@@ -21,7 +21,7 @@ require_once THEMES."templates/header.php";
 require_once INFUSIONS."addondb/inc/inc.functions.php";
 require_once ADDON."infusion_db.php";
 include ADDON_LOCALE.LOCALESET."submit_addon.php";
-include ADDON_INC."check.js";
+//include ADDON_INC."check.js";
 //add_to_head("<Body style='overflow:hidden'>");
 
 $addon_sub_type = ($_REQUEST['addon_type']);
@@ -46,8 +46,6 @@ if (!iMEMBER) {
 	$submit_info['addon_submitter_name'] = stripinput($_POST['addon_submitter_name']);
 	$submit_info['addon_submitter_id'] = stripinput($_POST['addon_submitter_id']);
 	$submit_info['addon_forum_status'] = stripinput($_POST['addon_forum_status']);	
-	$submit_info['addon_valid_css'] = isset($_POST['addon_valid_css']) ? "1" : "0";
-	$submit_info['addon_valid_xhtml'] = isset($_POST['addon_valid_xhtml']) ? "1" : "0";
 	$submit_info['addon_author_name'] = stripinput($_POST['addon_author_name']);
 	$submit_info['addon_co_author_name'] = stripinput($_POST['addon_co_author_name']);
 	$submit_info['addon_author_email'] = stripinput($_POST['addon_author_email']);
@@ -240,17 +238,6 @@ echo "</td>
 <td class='tbl1' nowrap>".$locale['addondb410'].":</td>
 <td class='tbl1' nowrap>&nbsp;</td>
 <td class='tbl1'><input type='text' class='textbox' name='' style='width:42px;' value='http://' READONLY><input type='text' class='textbox' name='addon_author_www' style='width:250px;' value='".$userdata['user_web']."'></td>
-</tr><tr>
-<td class='tbl1' valign='top' height='80' nowrap><label for='valid'>".$locale['addondb423'].":</label><label for='checkbox'></label>&nbsp;<input id='checkvalid' type='checkbox' /></td>
-<td class='tbl1' height='80' nowrap>&nbsp;</td>
-<td class='tbl1' height='80' valign='top'><img src='".INFUSIONS."addondb/img/huh.png' alt='' />
-			<a target='_blank' title='W3C Markup Validation' href='http://validator.w3.org/'><img src='".INFUSIONS."addondb/img/valid_xhtml.png' alt='W3C Markup Validation' /></a>
-			<a target='_blank' title='W3C CSS Validation' href='http://jigsaw.w3.org/css-validator/'><img src='".INFUSIONS."addondb/img/valid_css.png' alt='W3C CSS Validation' /></a>
-			<div id='showvalid'>
-			".$locale['addondb407'].": <label><input type='checkbox' name='addon_valid_xhtml' value='1' style='vertical-align:middle;'  /></label>
-			<br />
-			".$locale['addondb422'].": <label><input type='checkbox' name='addon_valid_css' value='1' style='vertical-align:middle;'  /></label><br /><br />
-			</div></td>
 </tr><tr>
 <td class='tbl1' nowrap>".$locale['addondb417'].":</td>
 <td class='tbl1' nowrap>&nbsp;</td>

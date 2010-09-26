@@ -58,9 +58,9 @@ $locale['addondb510'] = "Translations";
 $locale['addondb511'] = "No Extra Translations";
 $locale['addondb512'] = "Other Addons by ";
 $locale['addondb513'] = "Other Addons Co-Authored by ";
-$locale['addondb514'] = "XHTML Valid";
-$locale['addondb515'] = "CSS Valid";
-$locale['addondb516'] = "Validation(s)";
-$locale['addon_valid_xhtml'] = "XHTML Valid";
-$locale['addon_valid_css'] = "CSS Valid";
+$locale['addondb514'] = "";
+$locale['addondb515'] = "";
+$locale['addondb516'] = "";
+$locale['addon_valid_xhtml'] = "";
+$locale['addon_valid_css'] = ";
 ?>
