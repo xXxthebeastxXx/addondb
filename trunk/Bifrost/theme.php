@@ -16,6 +16,12 @@ set_image("folder", THEME."images/forum/folder.png");
 set_image("foldernew", THEME."images/forum/foldernew.png");
 set_image("folderlock", THEME."images/forum/folderlock.png");
 set_image("stickythread", THEME."images/forum/stickythread.png");
+set_image("reply", "reply");
+set_image("newthread", "newthread");
+set_image("web", "web");
+set_image("pm", "pm");
+set_image("quote", "quote");
+set_image("forum_edit", "forum_edit");
 
 function render_page() {
 	global $aidlink, $locale, $settings; add_handler("theme_head_output"); ?>
