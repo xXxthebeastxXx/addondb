@@ -10,7 +10,6 @@ require_once THEME."header.php";
 require_once THEME."functions.php";
 require_once THEME."footer.php";
 
-redirect_img_dir(THEME."forum", THEME."images/forum");
 set_image("pollbar", THEME."images/navbg.jpg");
 set_image("folder", THEME."images/forum/folder.png");
 set_image("foldernew", THEME."images/forum/foldernew.png");
@@ -25,23 +24,21 @@ set_image("forum_edit", "forum_edit");
 
 function render_page() {
 	global $aidlink, $locale, $settings; add_handler("theme_head_output"); ?>
+<div id="content" class="container_24">
 <div id="header">
-<div class="container_24">
 	<div id="logo" class="grid_6">
 		<?php echo showbanners(); ?>
 	</div><!-- /logo -->
 	<div id="nav" class="grid_15">
 		<?php preg_replace("^(li)( class='(first-link)')*(><a href='(/)*".preg_quote(START_PAGE)."')^i", "\\1 class='active \\3'\\4", navigation()); ?>
 	</div><!-- /nav -->
-	</div>
 </div><!-- /header -->
-<div id="content" class="container_24">
-	<div id="main" class="<?php echo in_forum() || in_addon() ? 'grid_24' : 'grid_15'; ?>">
+	<div id="main" class="<?php echo in_forum() || in_addon() ? 'grid_24' : 'grid_16'; ?>">
 		<?php echo U_CENTER; ?>
 		<?php echo CONTENT; ?>
 		<?php echo L_CENTER."\n"; ?>
 	</div><!-- /main -->
-	<?php echo in_forum() || in_addon() ? "" : (LEFT || RIGHT ? '<div id="aside" class="grid_9"><!-- aside -->' : ''); ?>
+	<?php echo in_forum() || in_addon() ? "" : (LEFT || RIGHT ? '<div id="aside" class="grid_6 push_1"><!-- aside -->' : ''); ?>
 		<?php echo in_forum() || in_addon() ? "" : (LEFT ? LEFT : '').(RIGHT ? RIGHT : ''); ?>
 	<?php echo in_forum() || in_addon() ? "" : (LEFT || RIGHT ? '</div><!-- /aside -->' : ''); ?>
 	<div class="clearfix"></div>

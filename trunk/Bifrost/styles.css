@@ -1,6 +1,6 @@
 @import url(css/reset.css);
 @import url(css/960.css);
-body { background:#F2F6F7; color:#656565; font:13px Arial, Helvetica, Sans-serif; position:relative; }
+body { background:#F2F6F7; color:#656565; font:13px Arial, Helvetica, Sans-serif; }
 #header { height:220px; clear:both; }
 #content { min-height:400px; padding-bottom:240px; clear:both; }
 #footer { background:url("images/footer_bg.png") repeat-x scroll center top #0A0E11; clear:both; min-height:220px; position: absolute; bottom:0; width:100%; }
