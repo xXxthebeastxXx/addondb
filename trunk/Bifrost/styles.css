@@ -3,8 +3,8 @@
 body { background:#F2F6F7; color:#656565; font:13px Arial, Helvetica, Sans-serif; position:relative; }
 #header { height:220px; clear:both; }
 #content { min-height:400px; padding-bottom:240px; clear:both; }
-#footer { background:url("images/footer_bg.png") repeat-x scroll center top #0A0E11; clear:both; height:220px; position: absolute; bottom:0; width:100%; }
-#footer .container_24 { background:url("images/footer_bg_center.png") no-repeat scroll center top transparent; height:180px; padding-top:40px; }
+#footer { background:url("images/footer_bg.png") repeat-x scroll center top #0A0E11; clear:both; min-height:220px; position: absolute; bottom:0; width:100%; }
+#footer .container_24 { background:url("images/footer_bg_center.png") no-repeat scroll center top transparent; min-height:180px; padding-top:40px; }
 #footer h3 { border-bottom:1px solid #363A3B; color:#FFFFFF; font-family:"MergeRegular-1", "MergeRegular-2", Arial, sans-serif; font-size:20px; margin-bottom:10px; padding-bottom:10px; }
 #footer ul { list-style:none; margin:0; }
 #footer li { margin-bottom: 10px; }
