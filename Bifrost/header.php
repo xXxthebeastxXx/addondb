@@ -19,11 +19,11 @@ function theme_head_output($output) {
 		'<!DOCTYPE html>',
 		'<html lang="en">',
 		'<meta charset="utf-8" />',
-		'<!--[if lt IE 7 ]> <body class="container_24 ie6"> <![endif]-->
-<!--[if IE 7 ]>    <body class="container_24 ie7"> <![endif]-->
-<!--[if IE 8 ]>    <body class="container_24 ie8"> <![endif]-->
-<!--[if IE 9 ]>    <body class="container_24 ie9"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <body class="container_24"> <!--<![endif]-->',
+		'<!--[if lt IE 7 ]> <body class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <body class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <body class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <body class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <body> <!--<![endif]-->',
 		'',
 		'',
 		'',

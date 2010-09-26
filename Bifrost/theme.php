@@ -14,48 +14,37 @@ redirect_img_dir(THEME."forum", THEME."images/forum");
 set_image("pollbar", THEME."images/navbg.jpg");
 
 function render_page() {
-	global $aidlink, $locale, $settings;
-	add_handler("theme_head_output"); ?>
+	global $aidlink, $locale, $settings; add_handler("theme_head_output"); ?>
 <div id="header">
-	<div id="logo" class="grid_6 push_1">
+<div class="container_24">
+	<div id="logo" class="grid_6">
 		<?php echo showbanners(); ?>
 	</div><!-- /logo -->
-	<div id="nav" class="grid_15 push_2">
-		<?php echo preg_replace("^(li)( class='(first-link)')*(><a href='(/)*".preg_quote(START_PAGE)."')^i", "\\1 class='active \\3'\\4", navigation()); ?>
+	<div id="nav" class="grid_15">
+		<?php preg_replace("^(li)( class='(first-link)')*(><a href='(/)*".preg_quote(START_PAGE)."')^i", "\\1 class='active \\3'\\4", navigation()); ?>
 	</div><!-- /nav -->
+	</div>
 </div><!-- /header -->
-<div id="content">
-	<div id="main" class="<?php echo in_forum() || in_addon() ? 'grid_22' : 'grid_15'; ?> push_1">
+<div id="content" class="container_24">
+	<div id="main" class="<?php echo in_forum() || in_addon() ? 'grid_24' : 'grid_15'; ?>">
 		<?php echo U_CENTER; ?>
 		<?php echo CONTENT; ?>
 		<?php echo L_CENTER."\n"; ?>
 	</div><!-- /main -->
-	<?php echo in_forum() || in_addon() ? "" : (LEFT || RIGHT ? '<div id="aside" class="grid_6 push_2"><!-- aside -->' : ''); ?>
+	<?php echo in_forum() || in_addon() ? "" : (LEFT || RIGHT ? '<div id="aside" class="grid_9"><!-- aside -->' : ''); ?>
 		<?php echo in_forum() || in_addon() ? "" : (LEFT ? LEFT : '').(RIGHT ? RIGHT : ''); ?>
 	<?php echo in_forum() || in_addon() ? "" : (LEFT || RIGHT ? '</div><!-- /aside -->' : ''); ?>
+	<div class="clearfix"></div>
 </div><!-- /content -->
 <div id="footer">
-	<?php echo navigation(false); ?>
-	<div class="grid_9 push_2">
-		<h4>Lorem Ipsum</h4>
-		<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when a unknown printer took galley of type and make.</p>
-	</div>
-	<div class="grid_7 push_3">
-		<h4>Connect with the community</h4>
-		<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when a unknown printer took galley of type and make.</p>
-		<h5>Follow us</h5>
-		<ul class="footer_connect">
-			<li class="twitter"><a href="">Follow us on Twitter</a></li>
-			<li class="facebook"><a href="">Be a fan on Facebook</a></li>
-			<li class="rss"><a href="">RSS Feed</a></li>
-			<li class="contact"><a href="">Contact us</a></li>
-		</ul>
-	</div>
+<div class="container_24">
+	<?php navigation(false); ?>
 	<div class="clearfix"></div>
-</div><!-- /footer -->
-<div id="subfooter">
+	<div id="subfooter">
 	<?php echo "<small>".showcopyright()."\t</small>\n"; ?>
 </div><!-- /subfooter -->
+</div>
+</div><!-- /footer -->
 <?php get_footer_tags(); ?>
 <?php echo (DEBUG ? "<div id='debug'><strong>Debug is on </strong>" : "<!-- ").showrendertime().(DEBUG ? "</div><!-- /debug -->": " -->")."\n";
 }

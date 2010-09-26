@@ -16,21 +16,20 @@ function navigation($main_menu=true){
 			endwhile;
 			Cache::write('navigation', $link);
 		endif;
-		$i = 0; $res = "<ul>\n";
+		$i = 0; echo "<ul>\n";
 		foreach($link as $data) :
 			if ($data['link_url'] != "---" && checkgroup($data['link_visibility'])) :
 				$link_target = $data['link_window'] == "1" ? " target='_blank'" : "";
 				$li_class = ($i == 0 ? " class='first-link'" : "");
 				if (strstr($data['link_url'], "http://") || strstr($data['link_url'], "https://")) {
-					$res .= "\t\t\t<li".$li_class."><a href='".$data['link_url']."'$link_target><span>".parseubb($data['link_name'], "b|i|u|color")."</span></a></li>\n";
+					echo "\t\t\t<li".$li_class."><a href='".$data['link_url']."'$link_target><span>".parseubb($data['link_name'], "b|i|u|color")."</span></a></li>\n";
 				} else {
-						$res .= "\t\t\t<li".$li_class."><a href='/".$data['link_url']."'$link_target><span>".parseubb($data['link_name'], "b|i|u|color")."</span></a></li>\n";
+					echo "\t\t\t<li".$li_class."><a href='/".$data['link_url']."'$link_target><span>".parseubb($data['link_name'], "b|i|u|color")."</span></a></li>\n";
 				}
 				$i++;
 			endif;
 		endforeach;
-		$res .= "\t\t</ul>\n";
-		return $res;
+		echo "\t\t</ul>\n";
 	} else {
 		$link = Cache::read('footer');
 		$list_open = false;
@@ -49,7 +48,7 @@ function navigation($main_menu=true){
 			if (checkgroup($data['link_visibility'])) :
 				if ($data['link_name'] != "---" && $data['link_url'] == "---") :
 					if ($list_open) { echo "\t\t</ul>\n\t</div>\n"; $list_open = false; }
-					echo "\n\t<div class='footer grid_4 push_1'>\n\t\t<h4>".parseubb($data['link_name'], "b|i|u|color")."</h4>\n";
+					echo "\n\t<div class='footer grid_4'>\n\t\t<h3>".parseubb($data['link_name'], "b|i|u|color")."</h3>\n";
 				elseif ($data['link_name'] == "---" && $data['link_url'] == "---") :
 					echo "\t\t\t<li>Method does not exist anymore</li>\n";
 				else :
@@ -102,7 +101,7 @@ class Cache {
 			fclose($handle);
 			return unserialize($variable);
 		} else {
-			return null;
+			return NULL;
 		}
 	}
 
