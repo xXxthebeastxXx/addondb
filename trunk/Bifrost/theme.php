@@ -44,13 +44,13 @@ function render_page() {
 	<div class="clearfix"></div>
 </div><!-- /content -->
 <div id="footer">
-<div class="container_24">
-	<?php navigation(false); ?>
-	<div class="clearfix"></div>
-	<div id="subfooter">
-	<?php echo "<small>".showcopyright()."\t</small>\n"; ?>
-</div><!-- /subfooter -->
-</div>
+	<div class="container_24">
+		<?php navigation(false); ?>
+		<div class="clearfix"></div>
+		<div id="subfooter">
+			<small>Copyright © 2002 - 2010 by Nick Jones.</small>
+		</div><!-- /subfooter -->
+	</div>
 </div><!-- /footer -->
 <?php get_footer_tags(); ?>
 <?php echo (DEBUG ? "<div id='debug'><strong>Debug is on </strong>" : "<!-- ").showrendertime().(DEBUG ? "</div><!-- /debug -->": " -->")."\n";
@@ -59,17 +59,14 @@ $ni=0;
 function render_news($subject, $news, $info) {
 	static $ni;
 	global $locale,$data,$settings; 
-		echo $ni == 0 ? "\n" : "\t\t<hr />\n"; ?>
-		<p class="posttime">
-			<strong class="month-year"><?php echo substr(strtolower(showdate("%B", $info['news_date'])), 0, 3); ?><br /><?php echo showdate("%Y", $info['news_date']); ?></strong>
-			<strong class="day"><?php echo showdate("%d", $info['news_date']); ?></strong>
-		</p>	
+		echo $ni == 0 ? "\n" : "\t\t<hr />\n"; ?>	
 		<?php echo !isset($_GET['readmore']) && $info['news_ext'] == "y" ? "<h2 class='posttitle'><a href='/news.php?readmore=".$info['news_id']."'>".strip_tags($subject)."</a></h2>\n" : opentable($subject); ?>
-		<p class="postmetadata">
-			<span class="i-cat"><?php echo substr(newscat($info), 18); ?></span>
-			<span class="i-tag"><?php echo profile_link($info['user_id'], $info['user_name'], $info['user_status']); ?></span>
-			<span class="i-com"><?php echo $info['news_allow_comments'] && $settings['comments_enabled'] == "1" ? "<a href='news.php?readmore=".$info['news_id']."#comments'>".($info['news_comments'] != 0 ? $info['news_comments'] : "").($info['news_comments'] == 1 || $info['news_comments'] == 0  ? $locale['global_073b'] : $locale['global_073'])."</a>": ""; ?></span>
-		</p>
+		<div class="postmeta">
+			<span><?php echo showdate("%B %d, %Y", $info['news_date']); ?></span>
+			<span class="i-cat">in <?php echo substr(newscat($info), 18); ?> </span>
+			<span class="i-aur">by <?php echo profile_link($info['user_id'], $info['user_name'], $info['user_status']); ?></span>
+			<span class="i-com"> <?php echo $info['news_allow_comments'] && $settings['comments_enabled'] == "1" ? "<a href='news.php?readmore=".$info['news_id']."#comments'>".($info['news_comments'] != 0 ? $info['news_comments'] : "").($info['news_comments'] == 1 || $info['news_comments'] == 0  ? $locale['global_073b'] : $locale['global_073'])."</a>": ""; ?></span>
+		</div>
 		<div class="post">
 			<?php echo "$news\n"; ?>
 		</div>
@@ -98,7 +95,7 @@ function closetable() {
 }
 
 function openside($title="", $collapse = false, $state = "on") {
-	echo !empty($title) ? "<h4>$title</h4>\n" : "";
+	echo !empty($title) ? "<h3>$title</h3>\n" : "";
 }
 
 function closeside() {
