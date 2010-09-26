@@ -1,10 +1,11 @@
 @import url(css/reset.css);
 @import url(css/960.css);
+html, body { height: 100%; }
 body { background:#F2F6F7; color:#656565; font:13px Arial, Helvetica, Sans-serif; }
 #header { height:220px; clear:both; }
-#content { min-height:400px; padding-bottom:240px; clear:both; }
-#footer { background:url("images/footer_bg.png") repeat-x scroll center top #0A0E11; clear:both; min-height:220px; position: absolute; bottom:0; width:100%; }
-#footer .container_24 { background:url("images/footer_bg_center.png") no-repeat scroll center top transparent; min-height:180px; padding-top:40px; }
+#content { min-height:400px; clear:both; min-height: 100%; height: auto !important; height: 100%; margin: 0 auto -260px; }
+#footer { background:url("images/footer_bg.png") repeat-x scroll center top #0A0E11; clear:both; height:220px; margin-top:40px; }
+#footer .container_24 { background:url("images/footer_bg_center.png") no-repeat scroll center top transparent; padding-top:40px; }
 #footer h3 { border-bottom:1px solid #363A3B; color:#FFFFFF; font-family:"MergeRegular-1", "MergeRegular-2", Arial, sans-serif; font-size:20px; margin-bottom:10px; padding-bottom:10px; }
 #footer ul { list-style:none; margin:0; }
 #footer li { margin-bottom: 10px; }
@@ -19,8 +20,8 @@ body { background:#F2F6F7; color:#656565; font:13px Arial, Helvetica, Sans-serif
 .forum-caption:last-child, .forum_table tr:first-child td:last-child, .forum_thread_table tr:first-child td:last-child { -moz-border-radius-topright: 10px; -moz-border-radius-bottomright: 10px; -webkit-border-top-right-radius: 10px; -webkit-border-bottom-right-radius:10px; border-top-right-radius: 10px; border-bottom-right-radius:10px; }
 .forum_cat_name, .forum_thread_title { font-size:16px; }
 .forum_thread_post_space { border-bottom: 1px solid #ddd }
-.forum_thread_post_date a { display:none}
-.textbox { background-color:#fff;  border:1px solid #e4e8e9; color:#666666; font:13px 'Lucida Sans', Arial, sans-serif; padding:10px; margin:0 2px 5px 2px; -moz-border-radius: 10px; -webkit-border-radius: 10px; border-radius: 10px; }
+.forum_thread_post_date a { display:none }
+.textbox { background-color:#fff; border:1px solid #e4e8e9; color:#666666; font:13px 'Lucida Sans', Arial, sans-serif; padding:10px; margin:0 2px 5px 2px; -moz-border-radius: 10px; -webkit-border-radius: 10px; border-radius: 10px; }
 .textbox:focus { -moz-box-shadow:0px 0px 4px #b5e9f6; -webkit-box-shadow:0px 0px 4px #b5e9f6; box-shadow:0px 0px 4px #b5e9f6; }
 #debug { position:fixed; bottom:0; left:0; padding:5px; font-size:10px; background:#FF9; }
 /* forum button */
