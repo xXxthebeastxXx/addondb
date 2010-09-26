@@ -216,8 +216,6 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
         $submit_info['addon_submitter_name'] = stripinput($_POST['addon_submitter_name']);
         $submit_info['addon_submitter_id'] = stripinput($_POST['addon_submitter_id']);
         $submit_info['addon_forum_status'] = stripinput($_POST['addon_forum_status']);
-        $submit_info['addon_valid_xhtml'] = stripinput($_POST['addon_valid_xhtml']);
-        $submit_info['addon_valid_css'] = stripinput($_POST['addon_valid_css']);
         $submit_info['addon_date'] = time();
     
         // Approve
@@ -309,8 +307,6 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
             '".$submit_info['addon_submitter_name']."',
             '".$submit_info['addon_submitter_id']."',
             '".$submit_info['addon_forum_status']."',
-            '".$submit_info['addon_valid_xhtml']."',
-            '".$submit_info['addon_valid_css']."',
             '".$submit_info['addon_author_name']."',
             '".$submit_info['addon_co_author_name']."',
             '".$submit_info['addon_author_email']."',
@@ -364,8 +360,6 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
 			$addon_submitter_name = $submit_criteria['addon_submitter_name'];
 			$addon_submitter_id = $submit_criteria['addon_submitter_id'];
 			$addon_forum_status = $submit_criteria['addon_forum_status'];
-			$addon_valid_css = $submit_criteria['addon_valid_css'];
-			$addon_valid_xhtml = $submit_criteria['addon_valid_xhtml'];
 			$addon_author_name = $submit_criteria['addon_author_name'];
 			$addon_co_author_name = $submit_criteria['addon_co_author_name'];
 			$addon_author_email = $submit_criteria['addon_author_email'];
@@ -518,20 +512,7 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
 			
 			echo "<td class='tbl1' nowrap>".$locale['addondb459']."</td>
 			<td class='tbl1' nowrap>&nbsp;</td><td class='tbl1'><input type='hidden' class='textbox' name='addon_forum_status' value='".$addon_forum_status."'>".$thread_create."</td>
-			</tr>";
-
-			echo "<tr>
-			<td class='tbl1' nowrap>".$locale['addondb459v'].":</td>
-			<td class='tbl1' nowrap>&nbsp;</td><td class='tbl1'><input type='hidden' class='textbox' name='addon_valid_xhtml' value='".$addon_valid_xhtml."'>";
-			if ($addon_valid_xhtml) { echo $locale['addondb459y']; } else { echo $locale['addondb459n']; }
-			echo "</td>
-			</tr><tr>
-			<td class='tbl1' nowrap>".$locale['addondb459c'].":</td>
-			<td class='tbl1' nowrap>&nbsp;</td><td class='tbl1'><input type='hidden' class='textbox' name='addon_valid_css' value='".$addon_valid_css."'>";
-			if ($addon_valid_css) { echo $locale['addondb459y']; } else { echo $locale['addondb459n']; }
-			echo "</td>
 			</tr>
-			
 			<tr>
 			<td class='tbl1' nowrap colspan='3'><hr></td>
 			</tr>

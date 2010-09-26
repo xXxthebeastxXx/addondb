@@ -91,8 +91,6 @@ if (dbrows($q_addon_cats) == 0) {
 		$addon_submitter_name = stripinput($_POST['addon_submitter_name']);
 		$addon_submitter_id = stripinput($_POST['addon_submitter_id']);
 		$addon_forum_status = stripinput($_POST['addon_forum_status']);
-		$addon_valid_xhtml = stripinput($_POST['addon_valid_xhtml']);
-		$addon_valid_css = stripinput($_POST['addon_valid_css']);
 		$addon_author_name = stripinput($_POST['addon_author_name']);
 		$addon_co_author_name = stripinput($_POST['addon_co_author_name']);
 		$addon_author_email = stripinput($_POST['addon_author_email']);
@@ -128,8 +126,6 @@ if (dbrows($q_addon_cats) == 0) {
 						addon_copyright='".$addon_copyright."',
 						addon_version='".$addon_version."',
 						version_id='".$version_id."',
-						addon_valid_xhtml='".$addon_valid_xhtml."',
-						addon_valid_css='".$addon_valid_css."',
 						addon_author_name='".$addon_author_name."',
 						addon_co_author_name='".$addon_co_author_name."',
 						addon_author_email='".$addon_author_email."',
@@ -162,8 +158,6 @@ if (dbrows($q_addon_cats) == 0) {
 						'".$addon_submitter_name."',
 						'".$addon_submitter_id."',
 						'".$addon_forum_status."',
-						'".$addon_valid_xhtml."',
-						'".$addon_valid_css."',
 						'".$addon_author_name."',
 						'".$addon_co_author_name."',
 						'".$addon_author_email."',
@@ -272,8 +266,6 @@ if (dbrows($q_addon_cats) == 0) {
 		$addon_submitter_name = $data['addon_submitter_name'];
 		$addon_submitter_id = $data['addon_submitter_id'];
 		$addon_forum_status = $data['addon_forum_status'];
-		$addon_valid_xhtml = $data['addon_valid_xhtml'];
-		$addon_valid_css = $data['addon_valid_css'];
 		$addon_author_name = $data['addon_author_name'];
 		$addon_co_author_name = $data['addon_co_author_name'];
 		$addon_author_email = $data['addon_author_email'];
@@ -313,8 +305,6 @@ if (dbrows($q_addon_cats) == 0) {
 		$addon_submitter_name = "";
 		$addon_submitter_id = "";
 		$addon_forum_status = "";
-		$addon_valid_xhtml = "";
-		$addon_valid_css = "";
 		$addon_author_name = $userdata['user_name'];
 		$addon_co_author_name = "";
 		$addon_author_email = $userdata['user_email'];
@@ -487,18 +477,6 @@ if (dbrows($q_addon_cats) == 0) {
 				if ($addon_forum_status == 0) { $thread_create = "".$locale['addondb459y'].""; } elseif ($addon_forum_status == 1) { $thread_create = "".$locale['addondb459n'].""; } elseif ($addon_forum_status == 2) { $thread_create = "".$locale['addondb459x'].""; }
     echo "<td class='tbl1' nowrap>".$locale['addondb459']."</td>";
 	echo "<td class='tbl1' nowrap>&nbsp;</td><td class='tbl1'><input type='hidden' class='textbox' name='addon_forum_status' value='".$addon_forum_status."'>".$thread_create."</td>\n";
-	echo "</tr>\n<tr>\n";
-	
-	echo "<td class='tbl1' nowrap>".$locale['addondb459v'].":</td>";
-	echo "<td class='tbl1' nowrap>&nbsp;</td><td class='tbl1'><select name='addon_valid_xhtml' class='textbox'>\n";
-	echo "<option value='0'".($addon_valid_xhtml == "0" ? " selected='selected'" : "").">".$locale['addondb459n']."</option>\n";
-	echo "<option value='1'".($addon_valid_xhtml == "1" ? " selected='selected'" : "").">".$locale['addondb459y']."</option></select></td>";
-	echo "</tr>\n<tr>\n";
-	echo "<td class='tbl1' nowrap>".$locale['addondb459c'].":</td>";
-	echo "<td class='tbl1' nowrap>&nbsp;</td><td class='tbl1'><select name='addon_valid_css' class='textbox'>\n";
-	echo "<option value='0'".($addon_valid_css == "0" ? " selected='selected'" : "").">".$locale['addondb459n']."</option>\n";
-	echo "<option value='1'".($addon_valid_css == "1" ? " selected='selected'" : "").">".$locale['addondb459y']."</option></select></td>";
-	
 	echo "</tr>\n<tr>\n";
 	echo "<td class='tbl1' nowrap colspan='3'><hr></td>\n";
 	echo "</tr>\n<tr>\n";

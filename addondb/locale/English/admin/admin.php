@@ -63,9 +63,6 @@ $locale['addondb458'] = "Submitted by";
 $locale['addondb459'] = "Create Support Thread:";
 $locale['addondb459y'] = "Yes";
 $locale['addondb459n'] = "No";
-$locale['addondb459x'] = "Already Exists";
-$locale['addondb459v'] = "XHTML Valid";
-$locale['addondb459c'] = "CSS Valid";
 
 //Notifications
 $locale['addondb460'] = " has been ";
