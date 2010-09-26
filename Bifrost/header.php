@@ -16,7 +16,7 @@ function theme_head_output($output) {
 		"@<!--news_prepost_(.*?)-->\n@si",
 		"@><img src='reply' alt='(.*?)' style='border:0px' />@si",
 		"@><img src='newthread' alt='(.*?)' style='border:0px' />@si",
-		"@><img src='web' alt='http://phpfusion.sytes.net/' style='border:0;vertical-align:middle' />@si",
+		"@><img src='web' alt='(.*?)' style='border:0;vertical-align:middle' />@si",
 		"@><img src='pm' alt='Send Private Message' style='border:0;vertical-align:middle' />@si",
 		"@><img src='quote' alt='(.*?)' style='border:0px;vertical-align:middle' />@si",
 		"@><img src='forum_edit' alt='(.*?)' style='border:0px;vertical-align:middle' />@si"
