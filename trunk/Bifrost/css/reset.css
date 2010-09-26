@@ -30,11 +30,37 @@ select, input, textarea { font:99% sans-serif; }
 pre, code, kbd, samp { font-family: monospace, sans-serif; }
  
 body, select, input, textarea { color:#444; }
-h1,h2,h3,h4,h5,h6 { font-weight: bold; text-rendering: optimizeLegibility; }
+@font-face {
+  font-family: 'MergeRegular-1';
+  src: url('../fonts/merge.eot');
+  src: local('☺'), url('../fonts/merge_font1.ttf') format('opentype');
+}
+@font-face {
+  font-family: 'MergeRegular-2';
+  src: local('☺'), url('../fonts/merge_font2.ttf') format('opentype');
+}
+h1,h2,h3,h4,h5,h6 {color:#495062;
+	font-weight:normal; text-rendering: optimizeLegibility; }
 html { -webkit-font-smoothing: antialiased; }
-a:hover, a:active { outline: none; }
-a, a:active, a:visited { color:#00A0E1; text-decoration:none; }
-a:hover { text-decoration:underline; }
+a:hover, a:active {color:#89b229; outline: none; }
+a, a:active, a:visited { color:#25A0CC; text-decoration:none; }
+a:hover { color:#89b229;text-decoration:underline; }
+
+h1 {
+	font-size:36px;
+	font-family: "MergeRegular-1", "MergeRegular-2", Arial, sans-serif;}
+
+h2 {
+	font-size:26px;
+	font-family: "MergeRegular-1", "MergeRegular-2", Arial, sans-serif;}
+
+h3 {
+	font-size:20px;
+	font-family: "MergeRegular-1", "MergeRegular-2", Arial, sans-serif;}
+
+h4 {
+	font-size:18px;
+	font-family: "MergeRegular-1", "MergeRegular-2", Arial, sans-serif;}
 ul { margin-left:30px; }
 ol { margin-left:30px; list-style-type: decimal; }
 small { font-size:85%; }
@@ -50,8 +76,8 @@ input[type="checkbox"] { vertical-align: bottom; *vertical-align: baseline; }
 .ie6 input { vertical-align: text-bottom; }
 label, input[type=button], input[type=submit], button { cursor: pointer; }
 
-::-moz-selection{ background: #FF5E99; color:#fff; text-shadow: none; }
-::selection { background:#FF5E99; color:#fff; text-shadow: none; } 
+::-moz-selection{ background: #89b229; color:#fff; text-shadow: none; }
+::selection { background:#89b229; color:#fff; text-shadow: none; } 
 
 a:link { -webkit-tap-highlight-color: #FF5E99; } 
 
@@ -68,3 +94,6 @@ button {  width: auto; overflow: visible; }
 .clearfix { display: inline-block; }
 * html .clearfix { height: 1%; }
 .clearfix { display: block; }
+.center, *[align="center"] { margin-left: auto; margin-right: auto; }
+#debug { position:fixed; bottom:0; left:0; padding:5px; font-size:10px; background:#FF9; }
+
