@@ -48,7 +48,7 @@ function navigation($main_menu=true){
 			if (checkgroup($data['link_visibility'])) :
 				if ($data['link_name'] != "---" && $data['link_url'] == "---") :
 					if ($list_open) { echo "\t\t</ul>\n\t</div>\n"; $list_open = false; }
-					echo "\n\t<div class='footer grid_4'>\n\t\t<h3>".parseubb($data['link_name'], "b|i|u|color")."</h3>\n";
+					echo "\n\t<div class='footer grid_3'>\n\t\t<h3>".parseubb($data['link_name'], "b|i|u|color")."</h3>\n";
 				elseif ($data['link_name'] == "---" && $data['link_url'] == "---") :
 					echo "\t\t\t<li>Method does not exist anymore</li>\n";
 				else :
