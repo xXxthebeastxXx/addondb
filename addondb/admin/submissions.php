@@ -71,7 +71,7 @@ if (!isset($_GET['action']) || $_GET['action'] == "1") {
 		
 		opentable($locale['addondb449']);
 		echo "<table cellpadding='0' cellspacing='1' width='400' class='tbl-border center'>\n<tr>\n";
-		echo "<td colspan='2' class='tbl2'>\nTranslations</td>\n";
+		echo "<td colspan='2' class='tbl2'>".$locale['addondb449']."</td>\n";
 		echo "</tr>\n".$trans."</table>\n";
 		closetable();
 	
@@ -130,6 +130,14 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
 			foreach ($addon_status as $k=>$trans_status_name) {
 				$trans_status_list .= "<option value='".$k."'".($data['trans_active'] == $k ? " selected" : "").">".$trans_status_name."</option>\n";
 			}
+			
+			$trans_user = dbarray(dbquery("SELECT 
+			                                      user_id, 
+			                                      user_name, 
+			                                      user_status 
+			                                      FROM ".DB_USERS." 
+			                                      WHERE user_id='".$data['trans_user']."'
+			                                      "));
       
    		opentable($locale['addondb449']);
 			echo "<form name='publish' method='post' action='".FUSION_SELF.$aidlink."&amp;action=2&amp;t=t&amp;trans_id=".$_GET['trans_id']."' enctype='multipart/form-data'>\n";
@@ -143,16 +151,15 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
 			<td class='tbl1' nowrap>".$locale['addondb412'].":</td>
 			<td class='tbl1'><span class='small'><a href='".$trans_upload_dir.$data['trans_file']."' target='_BLANK'>".substr($trans_upload_dir.$data['trans_file'],6)."</a></span></td>
 			</tr><tr>
-			<td class='tbl1' nowrap>".$locale['addondb413'].":</td>
+			<td class='tbl1' nowrap>".$locale['addondb458'].":</td>
 			<td class='tbl1'><span class='small'>
-			<input type='hidden' class='textbox' name='trans_name' value='".$data['trans_user']."'>
-			<a href='".BASEDIR."profile.php?lookup=".$data['trans_user']."' target='_BLANK'>".$data['trans_user']."</a></span></td>
+			<input type='hidden' class='textbox' name='trans_name' value='".$data['trans_user']."'>".profile_link($data['trans_user'], $trans_user['user_name'], $trans_user['user_status'])."</td>
 			</tr><tr>
 			<td class='tbl1' nowrap>".$locale['addondb442'].":</td>
 			<td class='tbl1'><select class='textbox' name='trans_status' style='width:300px;'>".$trans_status_list."</select></td>
 			</tr><tr>
 			<td class='tbl1' nowrap>".$locale['addondb417'].":</td>
-			<td class='tbl1'><select class='textbox' name='trans_approved_user' style='width:300px;'>".$trans_approved_user_list."</select></td>
+			<td class='tbl1'><input type='hidden' class='textbox' name='".$userdata['user_id']."' style='width:300px;'>".$userdata['user_name']."</td>
 			</tr><tr>
 			<td class='tbl1' nowrap valign='top'>".$locale['addondb419'].":</td>
 			<td class='tbl1'><textarea class='textbox' name='trans_approved_comment' style='width:300px; height:48px;'></textarea></td>";
@@ -507,8 +514,7 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
 			<tr>";
 			
 			if ($addon_forum_status == 0) { $thread_create = "".$locale['addondb459y'].""; } 
-			elseif ($addon_forum_status == 1) { $thread_create = "".$locale['addondb459n'].""; } 
-			elseif ($addon_forum_status == 2) { $thread_create = "".$locale['addondb459x'].""; }
+			elseif ($addon_forum_status == 1) { $thread_create = "".$locale['addondb459n'].""; }
 			
 			echo "<td class='tbl1' nowrap>".$locale['addondb459']."</td>
 			<td class='tbl1' nowrap>&nbsp;</td><td class='tbl1'><input type='hidden' class='textbox' name='addon_forum_status' value='".$addon_forum_status."'>".$thread_create."</td>
