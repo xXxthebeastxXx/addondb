@@ -28,7 +28,7 @@ $locale['msg022'] = "Please ensure the folder structure complies with the images
 $locale['msg023'] = "Infusion/Panel Structure.";
 $locale['msg024'] = "User Field Structure.";
 $locale['msg025'] = "Addon Security";
-$locale['msg026'] = "Please ensure all addons are free from security flaws, such as unsanitized variables. Use <u>stripinput</u> on all form fields.<br />Use the built-in security functions like <i>checkrights</i> and <i>groupaccess</i> functions.<br />These and all the other PHP-Fusion fuctions are explained in the <a href='http://code.starefossen.com/infusions/fusion_functions/functions.php'>Fusion Functions</a> database.";
+$locale['msg026'] = "Please ensure all addons are free from security flaws, such as unsanitized variables. Use <u>stripinput</u> on all form fields.<br />Use the built-in security functions like <i>checkrights</i> and <i>groupaccess</i> functions.<br />These and all the other PHP-Fusion fuctions are explained in the <a target='_blank' href='http://code.starefossen.com/infusions/fusion_functions/functions.php'>Fusion Functions</a> database.";
 $locale['msg027'] = "Test your mod before submission! If you're not sure, post your query in either the Alpha or Beta forums.";
 $locale['msg028'] = "In all addons [where applicable], text must be stored in a separate language file (eg; locale/English.php).";
 $locale['msg029'] = "Submitted Screenshots: ";
@@ -36,14 +36,18 @@ $locale['msg029a'] = "Max. filesize: %s / Max. size: %ux%u pixels";
 
 $locale['msg030'] = "If you have any questions or problems submitting a mod, please <a href='".INFUSIONS."sf_staff_list/index.php'>PM a staff member</a>.";
 $locale['msg031'] = "Addon Translation Guidelines";
-$locale['msg032'] = "I have read and agree to follow these guidlelines -> ";
+$locale['msg032'] = "I have read, understood and agree to follow these guidelines:";
+$locale['msg033'] = "Agreement";
+$locale['msg034'] = "All submissions where applicable must contain validated HTML and CSS.";
+$locale['msg035'] = "Any Addons containing or parsing an RSS Feed must be fully validated before submission.";
+$locale['msg036'] = "Any submitted Addons not fully validated will be rejected.";
 
 $locale['msg100'] = "Go to the Submission Form";
 $locale['msg101'] = "You must be logged in to access the Addon Submission Form";
 $locale['msg102'] = "Members Only";
 $locale['msg103'] = "Choose Submission Type: ";
 $locale['msg104'] = "--Select--";
-$locale['msg200'] = "Submission Guidelines v1.5";
+$locale['msg200'] = "Submission Guidelines v1.6";
 
 // Translation Guidelines
 $locale['tsg001'] = "Addon Translation Submission Guidelines";
@@ -75,9 +79,9 @@ $locale['tsg028'] = "Where relevant, please ensure all submissions are free from
 $locale['tsg029'] = "To submit a translation, go to the mod you've translated and click the Translation submit button.";
 $locale['tsg030'] = "Addon Submission Guidelines";
 
-$locale['tsg032'] = "If you have any questions or problems regarding a submission, please <a href='".INFUSIONS."sf_staff_list/index.php'>PM a staff member</a>.";
+$locale['tsg032'] = "";
 $locale['tsg033'] = "You must be logged in to submit translations";
 
-$locale['tsg200'] = "Translation Submission Guidelines v1.1";
+$locale['tsg200'] = "Translation Submission Guidelines v1.2";
 
 ?>

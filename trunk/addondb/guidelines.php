@@ -90,7 +90,8 @@ echo "<ul>";
 	echo "<br />\n";
     echo "".$locale['tsg029']." <img src='".ADDON_IMG."translate.png' width='37' alt ='' />\n";
     if (iMEMBER) {
-         echo "<br />".$locale['tsg032']."<br />"; 
+    if (file_exists(INFUSIONS."sf_staff_list/index.php")) {
+         echo "<br />".$locale['msg030']."<br />"; }
        } else { 
          echo "<br />".$locale['tsg033']."<br />";
        }
@@ -133,6 +134,12 @@ echo "</ul>";
 echo "<b>".$locale['msg014']."</b>";
 echo "<br />";
 echo "<ul>";
+    echo "<li>".$locale['msg034']."<br/>";
+    echo "<a target='_blank' title='W3C Markup Validation' href='http://validator.w3.org/'><img src='".ADDON_IMG."valid_xhtml.png' alt='W3C Markup Validation' /></a>\n";
+    echo "<a target='_blank' title='W3C CSS Validation' href='http://jigsaw.w3.org/css-validator/'><img src='".ADDON_IMG."valid_css.png' alt='W3C CSS Validation' /></a></li>\n";
+    echo "<li>".$locale['msg035']."<br/>";
+    echo "<a target='_blank' title='RSS Feed Validator' href='http://feedvalidator.org/'><img src='".ADDON_IMG."valid-rss.png' alt='RSS Feed Validator' /></a></li>\n";
+    echo "<li>".$locale['msg036']."</li>";
 	echo "<li>".$locale['msg015']."</li>";
 	echo "<li>".$locale['msg015a']."</li>";
 	echo "<li>".$locale['msg015b']."</li>";
