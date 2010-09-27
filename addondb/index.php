@@ -90,14 +90,14 @@ $addon_orderby_dir_value = "ASC";
 
 opentable($locale['addondb400']);
 $q_addon_cats = dbquery("SELECT * FROM ".DB_ADDON_CATS." ORDER BY addon_cat_order");
-$cat_list = "<option value='0'>View All</option>";
+$cat_list = "<option value='0'>".$locale['addondb429']."</option>";
 while ($d_addon_cats = dbarray($q_addon_cats)) {
 	if (checkgroup($d_addon_cats['addon_cat_access'])) {
 		$cat_list .= "<option value='".$d_addon_cats['addon_cat_id']."' ".((isset($addon_cat_id) ? $addon_cat_id : 0) == $d_addon_cats['addon_cat_id'] ? "selected" : "").">".$d_addon_cats['addon_cat_name']."</option>\n";
 	}
 }
-$ver_list = "<option value='0'>View All</option>".buildversionoptionlist($addon_ver_id);
-$addon_type_list = "<option value='0'>View All</option>";
+$ver_list = "<option value='0'>".$locale['addondb429']."</option>".buildversionoptionlist($addon_ver_id);
+$addon_type_list = "<option value='0'>".$locale['addondb429']."</option>";
 foreach ($addon_types as $k=>$addon_type) {
 	$addon_type_list .= "<option value='".$k."'".($addon_addon_cat_type == $k ? " selected" : "").">".$addon_type."</option>\n";
 }
@@ -124,20 +124,16 @@ if ($rows != 0) {
 echo "<form name='filterform' method='get' action='".FUSION_SELF."'>
 <table width='100%' cellpadding='0' cellspacing='0' border='0'>
 <tr>
-<td class='tbl1' width='*' valign='top' rowspan='4'>".$locale['addondb430']."</td>
-<td class='tbl1' nowrap width='1%' valign='top' align='right'>".$locale['addondb431']."</td>
-<td class='tbl1' nowrap width='1%'><select name='addon_cat_id' class='textbox' style='width:200px' onchange=\"submit();\">".$cat_list."</select></td>
-<tr>
 <td class='tbl1' width='1%' style='white-space:nowrap' valign='top' align='right'>".$locale['addondb432']."</td>
 <td class='tbl1' width='1%' style='white-space:nowrap'><select name='addon_addon_cat_type' class='textbox' style='width:200px' onchange=\"submit();\">".$addon_type_list."</select></td>
-</tr>
-<tr>
 <td class='tbl1' width='1%' style='white-space:nowrap' valign='top' align='right'>".$locale['addondb433']."</td>
 <td class='tbl1' width='1%' style='white-space:nowrap'><select name='addon_ver_id' class='textbox' style='width:200px' onchange=\"submit();\">".$ver_list."</select></td>
 </tr>
 <tr>
+<td class='tbl1' width='1%' colspan='2'>&nbsp;</td>
 <td class='tbl1' width='1%' style='white-space:nowrap' valign='top' align='right'>".$locale['addondb434']."</td>
-<td class='tbl1' width='1%' style='white-space:nowrap'><select name='addon_orderby_value' class='textbox' style='width:100px' onchange=\"submit();\">".$addon_orderby_list."</select><select name='addon_orderby_dir_value' class='textbox' style='width:100px' onchange=\"submit();\">".$addon_orderby_dir_list."</select></td>
+<td class='tbl1' width='1%' style='white-space:nowrap'><select name='addon_orderby_value' class='textbox' style='width:100px' onchange=\"submit();\">".$addon_orderby_list."</select>
+<select name='addon_orderby_dir_value' class='textbox' style='width:100px' onchange=\"submit();\">".$addon_orderby_dir_list."</select></td>
 </tr>
 </table>
 </form>\n";

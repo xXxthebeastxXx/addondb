@@ -19,6 +19,7 @@ $locale['addondb425'] = "You must be a";
 $locale['addondb426'] = "registered member";
 $locale['addondb427'] = "to view the Addons in this database.";
 $locale['addondb428'] = "Register for access to the Addon Database.";
+$locale['addondb429'] = "View All";
 
 
 $locale['addondb430'] = "Welcome to the Addon database.<br />
