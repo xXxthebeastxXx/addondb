@@ -1,8 +1,46 @@
 @import url(css/reset.css);
 @import url(css/960.css);
 html, body { height: 100%; }
-body { background:#F2F6F7; color:#656565; font:13px Arial, Helvetica, Sans-serif; font-size:90%; }
-#header { height:220px; clear:both; }
+body { background:#e4e8e9; color:#656565; font:13px Arial, Helvetica, Sans-serif; font-size:90%; }
+#header { height:220px; clear:both; margin-top:40px; }
+#nav ul {
+float:left;
+list-style-type:none;
+margin:33px 0 0;
+padding:0;
+width:650px;
+z-index:999;
+}
+#nav li {
+float:left;
+display:inline;
+margin:0 15px;
+}
+#nav a {
+display:block;
+text-decoration:none;
+font-family:"MergeRegular-2", Arial, sans-serif;
+font-weight:bold;
+font-size:18px;
+}
+#nav li ul {
+background:#FFF;
+list-style-type:none;
+margin:0;
+padding:0 0 30px;
+position:absolute;
+visibility:hidden;
+width:220px;
+z-index:99999;
+}
+#nav li:hover ul {
+list-style-image:none;
+visibility:visible;
+}
+#nav li.submenu:hover {
+	background:#FFF;
+	moz-border-radius: 10px;
+}
 #content { min-height:400px; clear:both; min-height: 100%; height: auto !important; height: 100%; margin: 0 auto -240px; }
 #main, #aside { margin-bottom:40px; }
 #aside h3, h1, h2 { margin:10px 0; }

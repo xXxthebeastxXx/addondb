@@ -8,7 +8,7 @@ function navigation($main_menu=true){
 		if(!$link) :
 			$result = dbquery(
 				"SELECT link_name, link_url, link_window, link_visibility FROM ".DB_SITE_LINKS."
-				 WHERE link_position='2' OR link_position='3' ORDER BY link_order"
+				 WHERE link_position='3' ORDER BY link_order"
 			 );
 			$link = array();
 			while ($data = dbarray($result)) :
@@ -18,10 +18,14 @@ function navigation($main_menu=true){
 		endif;
 		$i = 0; echo "<ul>\n";
 		foreach($link as $data) :
-			if ($data['link_url'] != "---" && checkgroup($data['link_visibility'])) :
+			if (checkgroup($data['link_visibility'])) :
 				$link_target = $data['link_window'] == "1" ? " target='_blank'" : "";
-				$li_class = ($i == 0 ? " class='first-link'" : "");
-				if (strstr($data['link_url'], "http://") || strstr($data['link_url'], "https://")) {
+				$li_class = ($i == 0 ? " class='first-link'" : strstr($data['link_name'], "%submenu% ") ? " class='submenu'" : "");
+				if (strstr($data['link_name'], "%submenu% ")) {
+					echo "\t\t\t<li".$li_class."><a href='".$data['link_url']."'$link_target><span>".parseubb(str_replace("%submenu% ", "",$data['link_name']), "b|i|u|color")."</span></a><ul>\n";
+				} elseif (strstr($data['link_name'], "%endmenu% ")) {
+					echo "\t\t\t</ul></li>\n";
+				} elseif (strstr($data['link_url'], "http://") || strstr($data['link_url'], "https://")) {
 					echo "\t\t\t<li".$li_class."><a href='".$data['link_url']."'$link_target><span>".parseubb($data['link_name'], "b|i|u|color")."</span></a></li>\n";
 				} else {
 					echo "\t\t\t<li".$li_class."><a href='/".$data['link_url']."'$link_target><span>".parseubb($data['link_name'], "b|i|u|color")."</span></a></li>\n";
@@ -36,7 +40,7 @@ function navigation($main_menu=true){
 		if(!$link) :
 			$result = dbquery(
 				"SELECT link_name, link_url, link_window, link_visibility FROM ".DB_SITE_LINKS."
-				 WHERE link_position='1' OR link_position='2' ORDER BY link_order"
+				 WHERE link_position='1' ORDER BY link_order"
 			);
 			$link = array();
 			while ($data = dbarray($result)) :
@@ -88,11 +92,6 @@ function in_addon(){
 
 class Cache {
 
-    /**
-    * @desc Function read retrieves value from cache
-    * @param $fileName - name of the cache file
-    * Usage: Cache::read('fileName.extension')
-    */
 	public static function read($fileName) {
 		$fileName = THEME.'tmp/'.sha1($fileName).'.tmp';
 		if (file_exists($fileName)) {
@@ -105,12 +104,6 @@ class Cache {
 		}
 	}
 
-    /**
-    * @desc Function for writing key => value to cache
-    * @param $fileName - name of the cache file (key)
-    * @param $variable - value
-    * Usage: Cache::write('fileName.extension', value)
-    */
 	public static function write($fileName,$variable) {
 		$fileName = THEME.'tmp/'.sha1($fileName).'.tmp';
 		$handle = fopen($fileName, 'a');
@@ -118,11 +111,6 @@ class Cache {
 		fclose($handle);
 	}
 
-    /**
-    * @desc Function for deleteing cache file
-    * @param $fileName - name of the cache file (key)
-    * Usage: Cache::delete('fileName.extension')
-    */
     public static function delete($fileName) {
         $fileName = THEME.'tmp/'.sha1($fileName).'.tmp';
         @unlink($fileName);
