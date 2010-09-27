@@ -69,14 +69,13 @@ $get_type = array(
 	  $locale['func006'] => 1, 
 	  $locale['func007'] => 2, 
 	  $locale['func008'] => 3,
-	  $locale['func009'] => 4,
-	  $locale['func010'] => 5
+	  $locale['func010'] => 4
 );
 ////////////////
 
 include ADDON_LOCALE.LOCALESET."inc.functions.php";
 $addon_ratings = array(1 => $locale['func001'], $locale['func002'], $locale['func003'], $locale['func004'], $locale['func005']);
-  $addon_types = array(1 => $locale['func006'], $locale['func007'], $locale['func008'], $locale['func009'], $locale['func010']);
+  $addon_types = array(1 => $locale['func006'], $locale['func007'], $locale['func008'], $locale['func010']);
  $addon_status = array($locale['func011'], $locale['func012'], $locale['func013'], $locale['func014'], $locale['func015']);
 $addon_orderby = array(
 	"addon_name" => $locale['func016'],
@@ -103,8 +102,7 @@ include ADDON_LOCALE.LOCALESET."inc.functions.php";
 	    if ($type == 1) { return $locale['func006']; }
 	elseif ($type == 2) { return $locale['func007']; }
 	elseif ($type == 3) { return $locale['func008']; }
-	elseif ($type == 4) { return $locale['func009']; }
-	elseif ($type == 5) { return $locale['func010']; }
+	elseif ($type == 4) { return $locale['func010']; }
 	else { return $locale['func020']; }
 }
 
