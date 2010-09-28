@@ -30,30 +30,19 @@ function render_page() {
 		<?php echo showbanners(); ?>
 	</div><!-- /logo -->
 	<div id="nav" class="grid_16 push_1">
-		<?php preg_replace("^(li)( class='(first-link)')*(><a href='(/)*".preg_quote(START_PAGE)."')^i", "\\1 class='current \\3'\\4", navigation()); ?>
+		<?php navigation(); ?>
 	</div><!-- /nav -->
 	<div class="grid_9 hinfo">
 	1</div>
 	<div class="grid_6 push_1 hinfo">
 	<h4>Search the site</h4>
 	<form name="search" method="get" action="/search.php">
-	<input type="text" />
+	<input type="stext" class="textboxs" />
+	<button type="submit" class="forumbutton"><span>go</span></button>
 	</form>
 	</div>
 	<div class="grid_6 push_2 userinfo hinfo">
-	<?php if (iMEMBER) : ?>
-	<h4>Logged in as <a href="profile.php?lookup=<?php echo $userdata['user_id']; ?>"><?php echo $userdata['user_name']; ?></a></h4>
-	<ul>
-	<li><a href="/messages.php" class="messages">Messages</a></li>
-	<li><a href="/edit_profile.php" class="settings">Settings</a></li>
-	<li></li>
-	<li><a href="/setuser.php?logout=yes" class="logout">Logout</a></li>
-	</ul>
-	<?php else : ?>
-	<h4>Membership</h4>
-	<a href="/login.php" class="button">Login</a> 
-	<a href="/register.php" class="button">Become a member</a>
-	<?php endif; ?>
+	<?php userinfo(); ?>
 	</div>
 </div><!-- /header -->
 	<div id="main" class="<?php echo in_forum() || in_addon() ? 'grid_24' : 'grid_16'; ?>">
