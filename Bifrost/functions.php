@@ -75,12 +75,14 @@ function userinfo() {
 	$msg_count = dbcount("(message_id)", DB_MESSAGES, "message_to='".$userdata['user_id']."' AND message_read='0' AND message_folder='0'"); ?>
 	<h4>Logged in as <a href="profile.php?lookup=<?php echo $userdata['user_id']; ?>"><?php echo $userdata['user_name']; ?></a></h4>
 	<ul>
-		<li><a href="/messages.php"<?php echo $msg_count ? " title='".sprintf($locale['global_125'], $msg_count).($msg_count == 1 ? $locale['global_126'] : $locale['global_127'])."'" : ""; ?> class="<?php echo $msg_count ? "newmessage" : "messages"; ?>">Messages</a></li>
-		<li><a href="/edit_profile.php" class="settings">Settings</a></li>
-		<li><a href="/setuser.php?logout=yes" class="logout">Logout</a></li>
-		<?php if (iMEMBER) : ?>
+		<?php if (iADMIN) : ?>
 		<li><a href="/administration/index.php<?php echo $aidlink; ?>" class="admin">Admin</a></li>
-		<?php endif; ?>
+		<?php else : ?>
+		<li>Welcome</li>
+		<?php endif; ?>		
+		<li><a href="/edit_profile.php" class="settings">Settings</a></li>
+		<li><a href="/messages.php"<?php echo $msg_count ? " title='".sprintf($locale['global_125'], $msg_count).($msg_count == 1 ? $locale['global_126'] : $locale['global_127'])."'" : ""; ?> class="<?php echo $msg_count ? "newmessage" : "messages"; ?>">Messages</a></li>
+		<li><a href="/setuser.php?logout=yes" class="logout">Logout</a></li>
 	</ul>
 	<?php else : ?>
 	<h4>Membership</h4>

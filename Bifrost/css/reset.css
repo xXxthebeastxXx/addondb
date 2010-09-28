@@ -40,7 +40,7 @@ body, select, input, textarea { color:#444; }
   src: local('☺'), url('../fonts/merge_font2.ttf') format('opentype');
 }
 h1,h2,h3,h4,h5,h6 {color:#495062;
-	font-weight:normal; text-rendering: optimizeLegibility; }
+	font-weight:normal; }
 html { -webkit-font-smoothing: antialiased; }
 a:hover, a:active {color:#89b229; outline: none; }
 a, a:active, a:visited { color:#25A0CC; text-decoration:none; }
