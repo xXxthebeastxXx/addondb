@@ -23,15 +23,38 @@ set_image("quote", "quote");
 set_image("forum_edit", "forum_edit");
 
 function render_page() {
-	global $aidlink, $locale, $settings; add_handler("theme_head_output"); ?>
+	global $aidlink, $locale, $settings, $userdata; add_handler("theme_head_output"); ?>
 <div id="content" class="container_24">
 <div id="header">
 	<div id="logo" class="grid_6">
 		<?php echo showbanners(); ?>
 	</div><!-- /logo -->
-	<div id="nav" class="grid_15">
-		<?php preg_replace("^(li)( class='(first-link)')*(><a href='(/)*".preg_quote(START_PAGE)."')^i", "\\1 class='active \\3'\\4", navigation()); ?>
+	<div id="nav" class="grid_16 push_1">
+		<?php preg_replace("^(li)( class='(first-link)')*(><a href='(/)*".preg_quote(START_PAGE)."')^i", "\\1 class='current \\3'\\4", navigation()); ?>
 	</div><!-- /nav -->
+	<div class="grid_9 hinfo">
+	1</div>
+	<div class="grid_6 push_1 hinfo">
+	<h4>Search the site</h4>
+	<form name="search" method="get" action="/search.php">
+	<input type="text" />
+	</form>
+	</div>
+	<div class="grid_6 push_2 userinfo hinfo">
+	<?php if (iMEMBER) : ?>
+	<h4>Logged in as <a href="profile.php?lookup=<?php echo $userdata['user_id']; ?>"><?php echo $userdata['user_name']; ?></a></h4>
+	<ul>
+	<li><a href="/messages.php" class="messages">Messages</a></li>
+	<li><a href="/edit_profile.php" class="settings">Settings</a></li>
+	<li></li>
+	<li><a href="/setuser.php?logout=yes" class="logout">Logout</a></li>
+	</ul>
+	<?php else : ?>
+	<h4>Membership</h4>
+	<a href="/login.php" class="button">Login</a> 
+	<a href="/register.php" class="button">Become a member</a>
+	<?php endif; ?>
+	</div>
 </div><!-- /header -->
 	<div id="main" class="<?php echo in_forum() || in_addon() ? 'grid_24' : 'grid_16'; ?>">
 		<?php echo U_CENTER; ?>
@@ -46,6 +69,9 @@ function render_page() {
 <div id="footer">
 	<div class="container_24">
 		<?php navigation(false); ?>
+		<div class="grid_6 push_1">
+		<h3>some pretty content</h3>
+		</div>
 		<div class="clearfix"></div>
 		<div id="subfooter">
 			<small>Copyright © 2002 - 2010 by Nick Jones.</small>

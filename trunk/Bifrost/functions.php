@@ -20,11 +20,11 @@ function navigation($main_menu=true){
 		foreach($link as $data) :
 			if (checkgroup($data['link_visibility'])) :
 				$link_target = $data['link_window'] == "1" ? " target='_blank'" : "";
-				$li_class = ($i == 0 ? " class='first-link'" : strstr($data['link_name'], "%submenu% ") ? " class='submenu'" : "");
+				$li_class = ($i == 0 ? " class='first-link'" : "");
 				if (strstr($data['link_name'], "%submenu% ")) {
-					echo "\t\t\t<li".$li_class."><a href='".$data['link_url']."'$link_target><span>".parseubb(str_replace("%submenu% ", "",$data['link_name']), "b|i|u|color")."</span></a><ul>\n";
+					echo "\t\t\t<li".$li_class."><a href='".$data['link_url']."'$link_target><span>".parseubb(str_replace("%submenu% ", "",$data['link_name']), "b|i|u|color")."</span></a><ul class='children'>\n";
 				} elseif (strstr($data['link_name'], "%endmenu% ")) {
-					echo "\t\t\t</ul></li>\n";
+					echo "\t\t\t<li".$li_class."><a href='/".$data['link_url']."'$link_target><span>".parseubb(str_replace("%endmenu% ", "",$data['link_name']), "b|i|u|color")."</span></a></li>\n</ul></li>\n";
 				} elseif (strstr($data['link_url'], "http://") || strstr($data['link_url'], "https://")) {
 					echo "\t\t\t<li".$li_class."><a href='".$data['link_url']."'$link_target><span>".parseubb($data['link_name'], "b|i|u|color")."</span></a></li>\n";
 				} else {
@@ -69,6 +69,8 @@ function navigation($main_menu=true){
 		if ($list_open) { echo "\t\t</ul>\n\t</div>\n"; }
 	}
 }
+
+
 
 function static_content(){
 	STATIC_HOST ? $path=STATIC_DOMAIN : $path=THEME;
