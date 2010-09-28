@@ -16,21 +16,20 @@ function navigation($main_menu=true){
 			endwhile;
 			Cache::write('navigation', $link);
 		endif;
-		$i = 0; echo "<ul>\n";
+		echo "<ul>\n";
 		foreach($link as $data) :
 			if (checkgroup($data['link_visibility'])) :
 				$link_target = $data['link_window'] == "1" ? " target='_blank'" : "";
-				$li_class = ($i == 0 ? " class='first-link'" : "");
+				$li_class = preg_match("^".preg_quote(START_PAGE)."^i", $data['link_url']) ? " class='current'" : "";
 				if (strstr($data['link_name'], "%submenu% ")) {
-					echo "\t\t\t<li".$li_class."><a href='".$data['link_url']."'$link_target><span>".parseubb(str_replace("%submenu% ", "",$data['link_name']), "b|i|u|color")."</span></a><ul class='children'>\n";
+					echo"\t\t\t<li$li_class><a href='".$data['link_url']."'$link_target><span>".parseubb(str_replace("%submenu% ", "",$data['link_name']), "b|i|u|color")."</span></a><ul class='children'>\n";
 				} elseif (strstr($data['link_name'], "%endmenu% ")) {
-					echo "\t\t\t<li".$li_class."><a href='/".$data['link_url']."'$link_target><span>".parseubb(str_replace("%endmenu% ", "",$data['link_name']), "b|i|u|color")."</span></a></li>\n</ul></li>\n";
+					echo "\t\t\t<li$li_class><a href='/".$data['link_url']."'$link_target><span>".parseubb(str_replace("%endmenu% ", "",$data['link_name']), "b|i|u|color")."</span></a></li>\n</ul></li>\n";
 				} elseif (strstr($data['link_url'], "http://") || strstr($data['link_url'], "https://")) {
-					echo "\t\t\t<li".$li_class."><a href='".$data['link_url']."'$link_target><span>".parseubb($data['link_name'], "b|i|u|color")."</span></a></li>\n";
+					echo "\t\t\t<li$li_class><a href='".$data['link_url']."'$link_target><span>".parseubb($data['link_name'], "b|i|u|color")."</span></a></li>\n";
 				} else {
-					echo "\t\t\t<li".$li_class."><a href='/".$data['link_url']."'$link_target><span>".parseubb($data['link_name'], "b|i|u|color")."</span></a></li>\n";
+					echo "\t\t\t<li$li_class><a href='/".$data['link_url']."'$link_target><span>".parseubb($data['link_name'], "b|i|u|color")."</span></a></li>\n";
 				}
-				$i++;
 			endif;
 		endforeach;
 		echo "\t\t</ul>\n";
@@ -59,9 +58,9 @@ function navigation($main_menu=true){
 					if (!$list_open) { echo "\t\t<ul>\n"; $list_open = true; }
 					$link_target = ($data['link_window'] == "1" ? " target='_blank'" : "");
 					if (strstr($data['link_url'], "http://") || strstr($data['link_url'], "https://")) {
-						echo "\t\t\t<li><a href='".$data['link_url']."'".$link_target.">".THEME_BULLET." <span>".parseubb($data['link_name'], "b|i|u|color")."</span></a></li>\n";
+						echo "\t\t\t<li><a href='".$data['link_url']."'".$link_target."><span>".parseubb($data['link_name'], "b|i|u|color")."</span></a></li>\n";
 					} else {
-						echo "\t\t\t<li><a href='/".$data['link_url']."'".$link_target.">".THEME_BULLET." <span>".parseubb($data['link_name'], "b|i|u|color")."</span></a></li>\n";
+						echo "\t\t\t<li><a href='/".$data['link_url']."'".$link_target."><span>".parseubb($data['link_name'], "b|i|u|color")."</span></a></li>\n";
 					}
 				endif;
 			endif;
@@ -70,7 +69,25 @@ function navigation($main_menu=true){
 	}
 }
 
-
+function userinfo() {
+	global $userdata, $locale, $aidlink;
+	if (iMEMBER) : 
+	$msg_count = dbcount("(message_id)", DB_MESSAGES, "message_to='".$userdata['user_id']."' AND message_read='0' AND message_folder='0'"); ?>
+	<h4>Logged in as <a href="profile.php?lookup=<?php echo $userdata['user_id']; ?>"><?php echo $userdata['user_name']; ?></a></h4>
+	<ul>
+		<li><a href="/messages.php"<?php echo $msg_count ? " title='".sprintf($locale['global_125'], $msg_count).($msg_count == 1 ? $locale['global_126'] : $locale['global_127'])."'" : ""; ?> class="<?php echo $msg_count ? "newmessage" : "messages"; ?>">Messages</a></li>
+		<li><a href="/edit_profile.php" class="settings">Settings</a></li>
+		<li><a href="/setuser.php?logout=yes" class="logout">Logout</a></li>
+		<?php if (iMEMBER) : ?>
+		<li><a href="/administration/index.php<?php echo $aidlink; ?>" class="admin">Admin</a></li>
+		<?php endif; ?>
+	</ul>
+	<?php else : ?>
+	<h4>Membership</h4>
+	<a href="/login.php" class="button">Login</a> 
+	<a href="/register.php" class="button">Become a member</a>
+	<?php endif;
+}
 
 function static_content(){
 	STATIC_HOST ? $path=STATIC_DOMAIN : $path=THEME;
