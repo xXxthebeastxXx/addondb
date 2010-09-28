@@ -2,25 +2,11 @@
 
 if (!defined("IN_FUSION")) { die("Access Denied"); }
 
-define("THEME_BULLET", "");
-
 require_once INCLUDES."theme_functions_include.php";
 require_once THEME."config.php";
 require_once THEME."header.php";
 require_once THEME."functions.php";
 require_once THEME."footer.php";
-
-set_image("pollbar", THEME."images/navbg.jpg");
-set_image("folder", THEME."images/forum/folder.png");
-set_image("foldernew", THEME."images/forum/foldernew.png");
-set_image("folderlock", THEME."images/forum/folderlock.png");
-set_image("stickythread", THEME."images/forum/stickythread.png");
-set_image("reply", "reply");
-set_image("newthread", "newthread");
-set_image("web", "web");
-set_image("pm", "pm");
-set_image("quote", "quote");
-set_image("forum_edit", "forum_edit");
 
 function render_page() {
 	global $aidlink, $locale, $settings, $userdata; add_handler("theme_head_output"); ?>
@@ -70,12 +56,10 @@ function render_page() {
 <?php get_footer_tags(); ?>
 <?php echo (DEBUG ? "<div id='debug'><strong>Debug is on </strong>" : "<!-- ").showrendertime().(DEBUG ? "</div><!-- /debug -->": " -->")."\n";
 }
-$ni=0;
+
 function render_news($subject, $news, $info) {
-	static $ni;
 	global $locale,$data,$settings; 
-		echo $ni == 0 ? "\n" : "\t\t<hr />\n"; ?>	
-		<?php echo !isset($_GET['readmore']) && $info['news_ext'] == "y" ? "<h2 class='posttitle'><a href='/news.php?readmore=".$info['news_id']."'>".strip_tags($subject)."</a></h2>\n" : opentable($subject); ?>
+		echo !isset($_GET['readmore']) && $info['news_ext'] == "y" ? "<h2 class='posttitle'><a href='/news.php?readmore=".$info['news_id']."'>".strip_tags($subject)."</a></h2>\n" : opentable($subject); ?>
 		<div class="postmeta">
 			<span><?php echo showdate("%B %d, %Y", $info['news_date']); ?></span>
 			<span class="i-cat">in <?php echo substr(newscat($info), 18); ?> </span>
@@ -85,7 +69,7 @@ function render_news($subject, $news, $info) {
 		<div class="post">
 			<?php echo "$news\n"; ?>
 		</div>
-<?php	closetable().$ni++;
+<?php	closetable();
 }
 
 function render_article($subject, $article, $info) {
