@@ -33,83 +33,37 @@ if (isset($_GET['error']) && isset($_GET['addon_id']) && isnum($_GET['addon_id']
 	
     If($_GET['error'] == 1){
       
-      if (!isset($_POST['post_gen'])){
+      if (!isset($_POST['post_gen']) || !isset($_POST['error_link'])){
       
         opentable($locale['addondb420']);
-        echo "<div align='center'><form name='error' method='post' action='".FUSION_SELF."?error=1&addon_id=".$_GET['addon_id']."' >
-        <table cellpadding='0' cellspacing='0' class='center'>
-        <tr>
-        <td class='tbl1' valign='top' nowrap>".$locale['addondb421'].":</td>
+        echo "<div align='center'><form name='error' method='post' action='".FUSION_SELF."?error=1&addon_id=".$_GET['addon_id']."' >\n";
+        echo "<table cellpadding='0' cellspacing='0' class='center'>\n<tr>\n";
+        echo "<td class='tbl1' valign='top' nowrap>".$locale['addondb421'].":</td>
         <td class='tbl1'><textarea class='textbox' name='post_gen' style='width:300px; height:100px;'></textarea></td>
-        </tr>
-        <tr>
-        <td></td>
-        <td>
-        <input type='submit' name='vonra' value='".$locale['addondb413']."' class='button' />
-        <td>
+        </tr><tr>
+        <td class='tbl1' colspan='2' align='right'>".$locale['addondb400'].":&nbsp;
+        <label><input type='radio' name='error_link' value='1' />".$locale['addondb401']."</label>
+		<label><input type='radio' name='error_link' value='0' checked='checked' />".$locale['addondb402']."</label></td>
+        </tr><tr>
+        <td colspan='2' align='center'><input type='submit' name='vonra' value='".$locale['addondb413']."' class='button' /><td>
         </tr>
         </table>
         </form></div>
         ";
         closetable(); 
       
-      }else{
-        $e_inst = dbquery("INSERT INTO ".DB_ADDON_ERRORS." VALUES('', '".$_GET['addon_id']."', '1', '1', '".$userdata['user_id']."', '".stripinput($_POST['post_gen'])."', '".time()."','')");
+      } else {
+        $e_inst = dbquery("INSERT INTO ".DB_ADDON_ERRORS." VALUES('', '".$_GET['addon_id']."', '1', '".$_POST['error_link']."', '1', '".$userdata['user_id']."', '".stripinput($_POST['post_gen'])."', '".time()."','')");
         opentable($locale['addondb420']);
         echo "<center><br />".$locale['addondb422']."<br /><br /></center>\n";
         echo "<center><br><br><a href='index.php'>".$locale['addondb455']."</a><br><br></center>";
         closetable();      
       
-      }
-    
-    }elseif($_GET['error'] == 2){
-      if (!isset($_POST['post_vun'])){
+       }
       
-        opentable($locale['addondb410']);
-        echo "<div align='center'><form name='error' method='post' action='".FUSION_SELF."?error=2&addon_id=".$_GET['addon_id']."' >
-        <table cellpadding='0' cellspacing='0' class='center'>
-        <tr>
-        <td class='tbl1' valign='top' nowrap>".$locale['addondb411'].":</td>
-        <td class='tbl1'><textarea class='textbox' name='post_vun' style='width:300px; height:100px;'></textarea></td>
-        </tr>
-        <tr>
-        <td></td>
-        <td>
-        <input type='submit' name='vonra' value='".$locale['addondb413']."' class='button' />
-        <td>
-        </tr>
-        </table>
-        </form></div>
-        ";
-        closetable(); 
+    } elseif($_GET['error'] == 4) {
       
-      }else{
-        $e_inst = dbquery("INSERT INTO ".DB_ADDON_ERRORS." VALUES('', '".$_GET['addon_id']."', '2', '1', '".$userdata['user_id']."', '".stripinput($_POST['post_vun'])."', '".time()."','')");
-        opentable($locale['addondb410']);
-        echo "<center><br />".$locale['addondb412']."<br /><br /></center>\n";
-        echo "<center><br><br><a href='index.php'>".$locale['addondb455']."</a><br><br></center>";
-        closetable();      
-      
-      }
-    
-    }elseif($_GET['error'] == 3){
-      $e_mod = dbquery("SELECT * FROM ".DB_ADDON_ERRORS." WHERE error_mod='".$_GET['addon_id']."' AND error_type ='3' AND error_active ='1' ");
-      if (dbrows($e_mod)) {
-        opentable($locale['addondb400']);
-        echo "<center><br />".$locale['addondb401']."<br /><br /></center>\n";
-        echo "<center><br><br><a href='index.php'>".$locale['addondb455']."</a><br><br></center>";
-        closetable();
-      }else{
-        $e_inst = dbquery("INSERT INTO ".DB_ADDON_ERRORS." VALUES('', '".$_GET['addon_id']."', '3', '1', '".$userdata['user_id']."', '', '".time()."','')");
-        opentable($locale['addondb400']);
-        echo "<center><br />".$locale['addondb402']."<br /><br /></center>\n";
-        echo "<center><br><br><a href='index.php'>".$locale['addondb455']."</a><br><br></center>";
-        closetable();
-      }
-
-    }elseif($_GET['error'] == 4){
-      
-        if (!isset($_POST['vonra'])){
+        if (!isset($_POST['vonra'])) {
           opentable($locale['addondb470']);
           $lang = "";
           for ($i=1;$i <= get_addon_language(0);$i++) {
@@ -133,10 +87,10 @@ if (isset($_GET['error']) && isset($_GET['addon_id']) && isnum($_GET['addon_id']
           </tr>
           </table>
           </form></div>
-          <br /><div align='center'><img src='".INFUSIONS."addondb/img/translate.png' width='37' alt ='' /> <a href='".INFUSIONS."addondb/translation_guidelines.php' title=''>".$locale['addondb478']."</a></a></div>
+          <br /><div align='center'><img src='".INFUSIONS."addondb/img/translate.png' width='37' alt ='' /> <a href='".INFUSIONS."addondb/guidelines.php?trans' title=''>".$locale['addondb478']."</a></a></div>
           ";
           closetable();
-        }elseif(isnum($_POST['lang'])){
+        } elseif(isnum($_POST['lang'])) {
           $addon_ext = "";
           $error = "";
           $upload_name = $_GET['addon_id']."_".time();
@@ -173,13 +127,9 @@ if (isset($_GET['error']) && isset($_GET['addon_id']) && isnum($_GET['addon_id']
               closetable();
            
             }   
-              
-    
+          }
         }
-      }
-  
-      
-    }else{
+      } else {
     	opentable($locale['addondb450']);
       echo "<center><br />".$locale['addondb452']."<br /><br /></center>\n";
       echo "<center><br><br><a href='index.php'>".$locale['addondb455']."</a><br><br></center>";

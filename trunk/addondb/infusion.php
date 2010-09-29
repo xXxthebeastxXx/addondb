@@ -96,8 +96,9 @@ PRIMARY KEY (file_id)
 
 $inf_newtable[5] = DB_ADDON_ERRORS." (
 error_id smallint(5) unsigned NOT NULL auto_increment,
-error_mod smallint(5) unsigned NOT NULL default '0',
+error_addon smallint(5) unsigned NOT NULL default '0',
 error_type tinyint(1) unsigned NOT NULL default '0',
+error_link tinyint(1) unsigned NOT NULL default '0',
 error_active tinyint(1) unsigned NOT NULL default '0',
 error_user smallint(5) unsigned NOT NULL default '0',
 error_report varchar(200) NOT NULL default '',

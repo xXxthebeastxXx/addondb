@@ -1,19 +1,19 @@
 <?php
 //link
 $locale['addondb400'] = "Broken Link";
-$locale['addondb401'] = "This broken link has already been reported and our admin staff have already been notified. Thank you for reporting this.";
-$locale['addondb402'] = "Broken Link Reported! Our admin staff will look it as soon as posible!<br>Thank you for reporting this!";
+$locale['addondb401'] = "Yes";
+$locale['addondb402'] = "No";
 
-//Vulnerability
-$locale['addondb410'] = "Vulnerability";
-$locale['addondb411'] = "Vulnerability Description:";
-$locale['addondb412'] = "Vulnerability Reported! Our admin staff will look it as soon as posible!<br>Thank you for reporting this!";
+
+$locale['addondb410'] = "Addon";
+$locale['addondb411'] = "Unassigned";
+$locale['addondb412'] = "";
 $locale['addondb413'] = "Report";
 
 //General
-$locale['addondb420'] = "General Error";
-$locale['addondb421'] = "General Error Description:";
-$locale['addondb422'] = "General Error Reported! Our admin staff will look it as soon as posible!<br>Thank you for reporting this!";
+$locale['addondb420'] = "Report Fault";
+$locale['addondb421'] = "Fault Description:";
+$locale['addondb422'] = "Fault Reported! Our admin staff will look it as soon as posible!<br>Thank you for reporting this!";
 
 //Errors
 $locale['addondb450'] = "Error";
@@ -33,7 +33,7 @@ $locale['addondb464'] = "Addon Id";
 $locale['addondb465'] = "Error Type";
 $locale['addondb466'] = "Error Report";
 $locale['addondb467'] = "Action";
-$locale['addondb468'] = "Reporter By";
+$locale['addondb468'] = "Reported By";
 $locale['addondb469'] = "Assigned To";
 
 //Translation
