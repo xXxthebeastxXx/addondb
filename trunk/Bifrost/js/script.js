@@ -14,38 +14,14 @@ function getposOffset(a,d){var c=(d=="left")?a.offsetLeft:a.offsetTop;var b=a.of
  */
 function closeDiv(){$("#close-message").fadeTo("slow",0.01,function(){$(this).slideUp("slow",function(){$(this).hide()})})}window.setTimeout("closeDiv();",2500);
 
-jQuery('.forumbutton').bind({
+$('.forumbutton').bind({
 	mousedown: function() {
-		jQuery(this).addClass('mousedown');
+		$(this).addClass('mousedown');
 	},
 	blur: function() {
-		jQuery(this).removeClass('mousedown');
+		$(this).removeClass('mousedown');
 	},
 	mouseup: function() {
-		jQuery(this).removeClass('mousedown');
+		$(this).removeClass('mousedown');
 	}
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
