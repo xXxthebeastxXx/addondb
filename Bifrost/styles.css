@@ -72,6 +72,9 @@ input[type=text]+.forumbutton{margin-left:5px}
 .forumbutton input:hover{border:none}
 #main,#aside,.post{margin-bottom:40px}
 .news-category,.forum_thread_post_date a{display:none}
+.pagination { margin:20px;}
+.pagination a,.pagination span  { margin:0 5px; padding:2px;}
+.pagination .current { font-weight:bold ;}
 /* 
  * print styles
  */
