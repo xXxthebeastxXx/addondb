@@ -218,15 +218,15 @@ if (!isnum($addon_id) || dbrows($q_addons) == 0 || ($d_addons['addon_status'] !=
 				
 		echo"$trans</td>
 		<td class='tbl2' width='12%' nowrap><b>".$locale['addondb428']."</b></td>
-		<td class='tbl1' width='20%' nowrap>
-		<a href ='".INFUSIONS."addondb/error.php?error=1&addon_id=".$d_addons['addon_id']."' title='".$locale['addondb503']."' style='outline: none;border:none;'><img src='".INFUSIONS."addondb/img/error.png' alt='".$locale['addondb503']."' style='outline: none;border:none;'></a>
-		<a href ='".INFUSIONS."addondb/error.php?error=2&addon_id=".$d_addons['addon_id']."' title='".$locale['addondb504']."' style='outline: none;border:none;'><img src='".INFUSIONS."addondb/img/hack.png' alt='".$locale['addondb504']."' style='outline: none;border:none;'></a>
-		<a href ='".INFUSIONS."addondb/error.php?error=3&addon_id=".$d_addons['addon_id']."' title='".$locale['addondb505']."' onClick=\"return confirm('".$locale['addondb437']."')\" style='outline: none;border:none;'><img src='".INFUSIONS."addondb/img/link.png' alt='".$locale['addondb505']."' style='outline: none;border:none;'></a>
-		<a href ='".INFUSIONS."addondb/error.php?error=4&addon_id=".$d_addons['addon_id']."' title='".$locale['addondb506']."' style='outline: none;border:none;'><img src='".INFUSIONS."addondb/img/translate.png' alt='".$locale['addondb506']."' style='outline: none;border:none;'></a>
+		<td class='tbl1' width='20%'>
+		<span class='small'><img src='".ADDON_IMG."error.png' border='0' alt='".$locale['addondb503']."' />&nbsp;
+		<a href ='".INFUSIONS."addondb/error.php?error=1&addon_id=".$d_addons['addon_id']."' title='".$locale['addondb503']."'>".$locale['addondb503']."</a></span><br /><br />
+		<span class='small'><img src='".ADDON_IMG."translate.png' border='0' alt='".$locale['addondb506']."' />&nbsp;
+		<a href ='".INFUSIONS."addondb/error.php?error=4&addon_id=".$d_addons['addon_id']."' title='".$locale['addondb506']."'>".$locale['addondb506']."</a></span>
 		</td>
 		</tr>	
 		";
-		if (checkrights("AddonS")) {
+		if (checkrights("ADNX")) {
 			if ($d_addons['addon_status'] != 3) {
 				$suspended =  " | <a href='admin/index.php".$aidlink."&amp;action=suspend&amp;addon_id=".$d_addons['addon_id']."'>".$locate['addondb425']."</a>";
 			} else {
