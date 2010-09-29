@@ -88,8 +88,9 @@ $result = dbquery("SELECT e.error_id, e.error_addon, e.error_link, e.error_user,
       <td class='".$rowcolor."'><a href='".ADDON."view.php?addon_id=".$data['error_addon']."' target='_blank'>".$locale['addondb410'].": ".$data['error_addon']."</a></td>
       <td class='".$rowcolor."'>".profile_link($data['error_user'], $data['user_name'], $data['user_status'])."</td>
       <td class='".$rowcolor."' width='400'>".$data['error_report']."</td>
-      <td class='".$rowcolor."' align='center'>".($data['error_link'] == 1 ? $locale['addondb401'] : $locale['addondb402'])."</td>
-      <td class='".$rowcolor."'>".($data['error_assign_user'] == '' ? $locale['addondb411'] : $data['error_assign_user'])."</td>
+      <td class='".$rowcolor."' align='center'>".($data['error_link'] == 1 ? $locale['addondb401'] : $locale['addondb402'])."</td>";
+      $approver = profile_link($data['user_id'], $data['error_assign_user'], $data['user_status']);
+      echo "<td class='".$rowcolor."'>".($data['error_assign_user'] == '' ? $locale['addondb411'] : $approver)."</td>
       <td class='".$rowcolor."'><a href='".FUSION_SELF.$aidlink."&action=3&error_id=".$data['error_id']."'>".$locale['addondb459']."</a> | <a href='".FUSION_SELF.$aidlink."&action=1&error_id=".$data['error_id']."'>".$locale['addondb460']."</a></td>
       </tr>";
       $i++;
@@ -122,8 +123,9 @@ $result = dbquery("SELECT e.error_id, e.error_addon, e.error_link, e.error_user,
       <td class='".$rowcolor."'><a href='".ADDON."view.php?addon_id=".$data['error_addon']."' target='_blank'>".$locale['addondb410'].":: ".$data['error_addon']."</a></td>
       <td class='".$rowcolor."'>".profile_link($data['error_user'], $data['user_name'], $data['user_status'])."</td>
       <td class='".$rowcolor."' width='400'>".$data['error_report']."</td>
-      <td class='".$rowcolor."' align='center'>".($data['error_link'] == 1 ? $locale['addondb401'] : $locale['addondb402'])."</td>
-      <td class='".$rowcolor."'>".($data['error_assign_user'] == '' ? $locale['addondb411'] : $data['error_assign_user'])."</td>
+      <td class='".$rowcolor."' align='center'>".($data['error_link'] == 1 ? $locale['addondb401'] : $locale['addondb402'])."</td>\n";
+      $approver = profile_link($data['user_id'], $data['error_assign_user'], $data['user_status']);
+      echo "<td class='".$rowcolor."'>".($data['error_assign_user'] == '' ? $locale['addondb411'] : $approver)."</td>
       <td class='".$rowcolor."'><a href='".FUSION_SELF.$aidlink."&action=2&error_id=".$data['error_id']."'>".$locale['addondb462']."</a></td>
       </tr>";
       $i++;
