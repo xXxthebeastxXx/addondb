@@ -170,7 +170,7 @@ echo "<form name='add_cat' method='post' action='$cat_formaction'>
 		<td class='tbl1' nowrap colspan='2' align='center'>".$locale['addondb437']."</td>
 		</tr>
 		<tr>
-			<td class='tbl1' nowrap colspan='2' align='center'><input type='submit' class='button' name='btn_save' value='".$locale['addondb438']."'>".(isset($_GET['action']) && $_GET['action'] == "edit" || isset($error) ? "&nbsp;<input type='submit' class='button' name='btn_cancel' value='".$locale['addondb428']."'>" : "")."</td>
+			<td class='tbl1' nowrap colspan='2' align='center'><input type='submit' class='button' name='btn_save' value='".$locale['addondb438']."' />".(isset($_GET['action']) && $_GET['action'] == "edit" || isset($error) ? "&nbsp;<input type='submit' class='button' name='btn_cancel' value='".$locale['addondb428']."' />" : "")."</td>
 		</tr>
 	</table>
 </form>";
