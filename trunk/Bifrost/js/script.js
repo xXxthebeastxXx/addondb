@@ -14,7 +14,7 @@ function getposOffset(a,d){var c=(d=="left")?a.offsetLeft:a.offsetTop;var b=a.of
  */
 function closeDiv(){$("#close-message").fadeTo("slow",0.01,function(){$(this).slideUp("slow",function(){$(this).hide()})})}window.setTimeout("closeDiv();",2500);
 
-$('.forumbutton').bind({
+$('.forumbutton,.button').bind({
 	mousedown: function() {
 		$(this).addClass('mousedown');
 	},
