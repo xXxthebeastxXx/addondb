@@ -51,13 +51,16 @@ body { background:#e4e8e9 url(images/header_bg.png) 0 0 repeat-x; color:#656565;
 .forum_thread_post_space { border-bottom:1px solid #ddd }
 input, textarea, select { color:#A0A0A0; font:1em Helvetica, Arial, sans-serif; }
 input[type="text"] { margin:3px 0 0; width:auto; }
-input[type="text"], textarea, select { border:2px solid #D7E9F2; display:block; margin:0; padding:6px 5px; width:595px; -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px;  }
+input[type="text"], textarea, select { border:2px solid #D7E9F2; margin:0; padding:6px 5px; -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px;  }
+.textsearch { background:none; bborder-color:#363A3B;
+border-style:none none solid;
+border-width:medium medium 1px;}
 textarea { min-height:50px; }
 select { min-width:150px; width:auto; }
 input:focus, textarea:focus, select:focus { border-color:#FFC954; outline:0 none; }
 #debug { background:#FF9; bottom:0; font-size:10px; left:0; padding:5px; position:fixed }
 #debug:hover { opacity:0 }
-a.forumbutton, .forumbutton, .button { background:url(images/forum/forumbutton.png) 0 0 no-repeat; border:none; width:auto !important; color:#555960; cursor:pointer; display:inline-block; font-size:11px; font-weight:700; height:23px; overflow:visible; padding:0 0 0 3px; text-decoration:none; text-shadow:1px 1px 0 #fff; white-space:nowrap }
+a.forumbutton, .forumbutton,.button,a.button { background:url(images/forum/forumbutton.png) 0 0 no-repeat; border:none; width:auto !important; color:#555960; cursor:pointer; display:inline-block; font-size:11px; font-weight:700; height:23px; overflow:visible; padding:0 0 0 3px; text-decoration:none; text-shadow:1px 1px 0 #fff; white-space:nowrap }
 .forumbutton::-moz-focus-inner, .button::-moz-focus-inner {margin:-1px -3px}
 .forumbutton:focus, .forumbutton:active, .button:focus, .button:active { outline:none !important; }
 .forumbutton>span, .forumbutton>input, .button>span, .button>input { background:url(images/forum/forumbutton.png) 100% 0 no-repeat; display:block; height:23px; line-height:23px; padding:0 10px 0 8px }
