@@ -19,7 +19,8 @@ function theme_head_output($output) {
 		"@><img src='web' alt='(.*?)' style='border:0;vertical-align:middle' />@si",
 		"@><img src='pm' alt='Send Private Message' style='border:0;vertical-align:middle' />@si",
 		"@><img src='quote' alt='(.*?)' style='border:0px;vertical-align:middle' />@si",
-		"@><img src='forum_edit' alt='(.*?)' style='border:0px;vertical-align:middle' />@si"
+		"@><img src='forum_edit' alt='(.*?)' style='border:0px;vertical-align:middle' />@si",
+		"@<input type='(submit|button)'(.*?)value='(.*?)'(.*?)/>@si",
 	);
 	$replace = array(
 		'<!DOCTYPE html>',
@@ -41,7 +42,8 @@ function theme_head_output($output) {
 		'class="forumbutton" rel="nofollow"><span>Web</span>',
 		'class="forumbutton"><span>PM</span>',
 		'class="forumbutton"><span>$1</span>',
-		'class="forumbutton"><span>$1</span>'
+		'class="forumbutton"><span>$1</span>',
+		'<button type="$1"$2$4><span>$3</span></button>'
 	);
 	$output = preg_replace($search, $replace, $output);
 	return $output;

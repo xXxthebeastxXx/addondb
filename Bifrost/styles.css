@@ -54,22 +54,17 @@ body{background:#e4e8e9 url(images/header_bg.png) 0 0 repeat-x;color:#656565;fon
 select.textbox{margin:1px;padding:3px}
 #debug{background:#FF9;bottom:0;font-size:10px;left:0;padding:5px;position:fixed}
 #debug:hover{opacity:0}
-a.forumbutton,.forumbutton {background:url(images/forum/forumbutton.png) 0 0 no-repeat;border:none;color:#333;cursor:pointer;display:inline-block;font-size:11px;font-weight:700;height:23px;overflow:visible;padding:0 0 0 3px;text-decoration:none;text-shadow:1px 1px 0 #fff;white-space:nowrap}
-input[type=text]+.forumbutton{margin-left:5px}
-.forumbutton::-moz-focus-inner{margin:-1px -3px}
-.forumbutton.danger{color:#900;float:right}
-.forumbutton>span,.forumbutton>input{background:url(images/forum/forumbutton.png) 100% 0 no-repeat;display:block;height:23px;line-height:23px;padding:0 10px 0 8px}
-.forumbutton:hover,.forumbutton.active{background-position:0 -30px;color:#fff;text-decoration:none;text-shadow:-1px -1px 0 rgba(0,0,0,0.3)}
-.forumbutton.danger:hover{background-position:0 -90px}
-.forumbutton:hover>span,.forumbutton:hover>input,.forumbutton.active span{background-position:100% -30px}
-.forumbutton:hover>input{color:#fff;text-shadow:-1px -1px 0 rgba(0,0,0,0.3)}
-.forumbutton.danger:hover>span{background-position:100% -90px}
-.forumbutton.mousedown{background-position:0 -60px}
-.forumbutton.danger.mousedown{background-position:0 -120px}
-.forumbutton.mousedown>span{background-position:100% -60px}
-.forumbutton.danger.mousedown>span{background-position:100% -120px}
-.forumbutton input{border:none;color:#333;font-size:11px;font-weight:700;margin:0;text-shadow:1px 1px 0 #fff}
-.forumbutton input:hover{border:none}
+a.forumbutton,.forumbutton,.button {background:url(images/forum/forumbutton.png) 0 0 no-repeat;border:none; width:auto !important;color:#555960;cursor:pointer;display:inline-block;font-size:11px;font-weight:700;height:23px;overflow:visible;padding:0 0 0 3px;text-decoration:none;text-shadow:1px 1px 0 #fff;white-space:nowrap}
+.forumbutton::-moz-focus-inner,.button::-moz-focus-inner{margin:-1px -3px}
+.forumbutton:focus,.forumbutton:active,.button:focus,.button:active { outline:none !important;}
+.forumbutton>span,.forumbutton>input,.button>span,.button>input{background:url(images/forum/forumbutton.png) 100% 0 no-repeat;display:block;height:23px;line-height:23px;padding:0 10px 0 8px}
+.forumbutton:hover,.forumbutton.active,.button:hover,.button.active{background-position:0 -30px;color:#264964;text-decoration:none;text-shadow: 0 1px 0 #b0d7f6;}
+.forumbutton:hover>span,.forumbutton:hover>input,.forumbutton.active span,.button:hover>span,.button:hover>input,.button.active span{background-position:100% -30px}
+.forumbutton:hover>input,.button:hover>input{color:#fff;text-shadow:-1px -1px 0 rgba(0,0,0,0.3)}
+.forumbutton.mousedown,.button.mousedown{background-position:0 -60px}
+.forumbutton.mousedown>span,.button.mousedown>span{background-position:100% -60px}
+.forumbutton input,.button input{border:none;color:#333;font-size:11px;font-weight:700;margin:0;text-shadow:1px 1px 0 #fff}
+.forumbutton input:hover,.button input:hover{border:none}
 #main,#aside,.post{margin-bottom:40px}
 .news-category,.forum_thread_post_date a{display:none}
 .pagination { margin:20px;}
