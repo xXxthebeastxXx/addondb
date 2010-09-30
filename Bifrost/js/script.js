@@ -45,3 +45,4 @@ $('.forum_table input[type="checkbox"]').bind('click',function(e) {
 		$this.parents('tr:first').removeClass('checked');
 	}
 });
+$('.dropselect').styleddropdown();
