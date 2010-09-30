@@ -25,3 +25,23 @@ $('.forumbutton,.button').bind({
 		$(this).removeClass('mousedown');
 	}
 });
+$('.forum_thread_user_post input[type="checkbox"]').bind('click',function(e) {
+	var $this = $(this);
+	if($this.is(':checked')) {
+		$this.parents('tr:first').addClass('checked');
+		$this.parents('tr:first').next('tr').addClass('checked');
+		$this.parents('tr:first').prev('tr').addClass('checked');
+	} else {
+		$this.parents('tr:first').removeClass('checked');
+		$this.parents('tr:first').next('tr').removeClass('checked');
+		$this.parents('tr:first').prev('tr').removeClass('checked');
+	}
+});
+$('.forum_table input[type="checkbox"]').bind('click',function(e) {
+	var $this = $(this);
+	if($this.is(':checked')) {
+		$this.parents('tr:first').addClass('checked');
+	} else {
+		$this.parents('tr:first').removeClass('checked');
+	}
+});
