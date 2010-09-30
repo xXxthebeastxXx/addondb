@@ -17,14 +17,21 @@
 +--------------------------------------------------------*/ 
 
 if (!defined("IN_FUSION")) { die("Access Denied"); }
-opentable("Mod DB Navigation");
+
+if (file_exists(ADDON_LOCALE.LOCALESET."admin/inc.nav.php")) {
+	include ADDON_LOCALE.LOCALESET."admin/inc.nav.php";
+} else {
+	include ADDON_LOCALE."English/admin/inc.nav.php";
+}
+
+opentable($locale['incnav_001']);
 echo "<center>
-<a href='".INFUSIONS."addondb/admin/index.php".$aidlink."'>Add/Edit Mod</a> | 
-<a href='".INFUSIONS."addondb/admin/submissions.php".$aidlink."'>Submissions</a> |
-<a href='".INFUSIONS."addondb/admin/thread_create.php".$aidlink."'>Addon Support Threads</a> | 
-<a href='".INFUSIONS."addondb/admin/error.php".$aidlink."'>Errors</a> | 
-<a href='".INFUSIONS."addondb/admin/cats.php".$aidlink."'>Addon Categories</a> | 
-<a href='".INFUSIONS."addondb/admin/versions.php".$aidlink."'>PHP-Fusion Versions</a>
+<a href='".ADDON_ADMIN."index.php".$aidlink."'>".$locale['incnav_002']."</a> | 
+<a href='".ADDON_ADMIN."submissions.php".$aidlink."'>".$locale['incnav_003']."</a> |
+<a href='".ADDON_ADMIN."support_thread.php".$aidlink."'>".$locale['incnav_004']."</a> | 
+<a href='".ADDON_ADMIN."error.php".$aidlink."'>".$locale['incnav_005']."</a> | 
+<a href='".ADDON_ADMIN."cats.php".$aidlink."'>".$locale['incnav_006']."</a> | 
+<a href='".ADDON_ADMIN."versions.php".$aidlink."'>".$locale['incnav_007']."</a>
 </center>\n";
 
 closetable();
