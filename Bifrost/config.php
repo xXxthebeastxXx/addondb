@@ -26,6 +26,10 @@ define("ANALYTICS_DOMAIN", ".php-fusion.co.uk");
  * Set custom images
  */
 define("THEME_BULLET", "");
+set_image("up", THEME."images/up.png");
+set_image("down", THEME."images/down.png");
+set_image("left", THEME."images/left.png");
+set_image("right", THEME."images/right.png");
 set_image("pollbar", THEME."images/navbg.jpg");
 set_image("folder", THEME."images/forum/folder.png");
 set_image("foldernew", THEME."images/forum/foldernew.png");
