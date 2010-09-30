@@ -49,9 +49,10 @@ body { background:#e4e8e9 url(images/header_bg.png) 0 0 repeat-x; color:#656565;
 .forum-caption:last-child, .forum_table tr:first-child td:last-child, .forum_thread_table tr:first-child td:last-child { -moz-border-radius-bottomright:10px; -moz-border-radius-topright:10px; -webkit-border-bottom-right-radius:10px; -webkit-border-top-right-radius:10px; border-bottom-right-radius:10px; border-top-right-radius:10px }
 .forum_cat_name, .forum_thread_title { font-size:16px }
 .forum_thread_post_space { border-bottom:1px solid #ddd }
+.checked .tbl2,.checked .tbl1  { background:#FFC; opacity:.7}
 input, textarea, select { color:#A0A0A0; font:1em Helvetica, Arial, sans-serif; }
 input[type="text"] { margin:3px 0 0; width:auto; }
-input[type="text"], textarea, select { border:2px solid #D7E9F2; margin:0; padding:6px 5px; -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px;  }
+input[type="text"], textarea, select { border:2px solid #D7E9F2; margin:0; padding:6px 5px; -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; overflow-x: hidden }
 .textsearch { background:none; bborder-color:#363A3B;
 border-style:none none solid;
 border-width:medium medium 1px;}
@@ -77,11 +78,13 @@ overflow:hidden;
 padding:30px 34px;
 margin-left:40px;}
 .quote strong:first-child { color:#6692B8;}
+.bbcode-popup { padding:2px; width:auto !important; border:2px solid #D7E9F2 !important; -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; background:#FFF;}
+.bbcode-popup img { cursor:pointer; opacity:.5}
+.bbcode-popup img:hover { opacity:1}
 #main, #aside, .post { margin-bottom:40px }
 .news-category, .forum_thread_post_date a { display:none }
-.pagination { margin:20px; }
-.pagination a, .pagination span { margin:0 5px; padding:2px; }
-.pagination .current { font-weight:bold; }
+.pagenav a, .pagenav span { margin:0 5px; padding:2px; }
+.pagenav .current { font-weight:bold; }
 /* 
  * print styles
  */
