@@ -33,12 +33,25 @@ if (isset($_GET['error']) && isset($_GET['addon_id']) && isnum($_GET['addon_id']
 	
     If($_GET['error'] == 1){
       
-      if (!isset($_POST['post_gen']) || !isset($_POST['error_link'])){
+      if (!isset($_POST['post_gen'])){
+      
+      $addon_query = dbarray(dbquery("SELECT 
+                                       addon_id, 
+                                       addon_name, 
+                                       addon_status 
+                                       FROM ".DB_ADDONS." 
+                                       WHERE 
+                                       addon_id = '".$_GET['addon_id']."' 
+                                       AND addon_status = '0'
+                                       "));
       
         opentable($locale['addondb420']);
         echo "<div align='center'><form name='error' method='post' action='".FUSION_SELF."?error=1&addon_id=".$_GET['addon_id']."' >\n";
         echo "<table cellpadding='0' cellspacing='0' class='center'>\n<tr>\n";
-        echo "<td class='tbl1' valign='top' nowrap>".$locale['addondb421'].":</td>
+        $query_link = "<a href='".ADDON."view.php?addon_id=".$_GET['addon_id']."' title=''>".$addon_query['addon_name']."</a>";
+        echo "<td class='tbl1' colspan='2' valign='top' nowrap>".sprintf($locale['addondb412'], $query_link)."</td>\n";
+        echo "</tr>\n<tr>\n";
+        echo "<td class='tbl1' valign='top' nowrap><img src='".ADDON_IMG."error.png' width='24' alt ='' />&nbsp;<b>".$locale['addondb421']."</b></td>
         <td class='tbl1'><textarea class='textbox' name='post_gen' style='width:300px; height:100px;'></textarea></td>
         </tr><tr>
         <td class='tbl1' colspan='2' align='right'>".$locale['addondb400'].":&nbsp;
@@ -56,7 +69,7 @@ if (isset($_GET['error']) && isset($_GET['addon_id']) && isnum($_GET['addon_id']
         $e_inst = dbquery("INSERT INTO ".DB_ADDON_ERRORS." VALUES('', '".$_GET['addon_id']."', '1', '".$_POST['error_link']."', '1', '".$userdata['user_id']."', '".stripinput($_POST['post_gen'])."', '".time()."','')");
         opentable($locale['addondb420']);
         echo "<center><br />".$locale['addondb422']."<br /><br /></center>\n";
-        echo "<center><br><br><a href='index.php'>".$locale['addondb455']."</a><br><br></center>";
+        echo "<center><br><br><a href='index.php'>".$locale['addondb455']."</a><br /><br /></center>";
         closetable();      
       
        }
@@ -87,7 +100,7 @@ if (isset($_GET['error']) && isset($_GET['addon_id']) && isnum($_GET['addon_id']
           </tr>
           </table>
           </form></div>
-          <br /><div align='center'><img src='".INFUSIONS."addondb/img/translate.png' width='37' alt ='' /> <a href='".INFUSIONS."addondb/guidelines.php?trans' title=''>".$locale['addondb478']."</a></a></div>
+          <br /><div align='center'><img src='".ADDON_IMG."translate.png' width='22' alt ='' /> <a href='".ADDON."guidelines.php?trans' title=''>".$locale['addondb478']."</a></a></div>
           ";
           closetable();
         } elseif(isnum($_POST['lang'])) {
