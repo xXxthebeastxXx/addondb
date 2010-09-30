@@ -40,10 +40,7 @@ body { background:#e4e8e9 url(images/header_bg.png) 0 0 repeat-x; color:#656565;
 .posttitle a:hover { color:#7BA121 }
 .postmeta { color:#AFB2B5; font-size:12px; font-weight:700; margin-bottom:10px }
 .i-com { float:right }
-.center, [align=center] {
-margin-left:auto;
-margin-right:auto
-}
+.center, [align=center] {margin-left:auto;margin-right:auto}
 .tbl, .tbl1, .tbl2 { padding:10px }
 .tbl-border { -moz-border-radius:10px; -webkit-border-radius:10px; background:#FFF; border:1px solid #e4e8e9; border-collapse:separate; border-radius:10px; margin-bottom:10px; padding:9px }
 .forum_thread_table tr:first-child td a { color:#FFF }
@@ -54,16 +51,14 @@ margin-right:auto
 .forum_thread_post_space { border-bottom:1px solid #ddd }
 input, textarea, select { color:#A0A0A0; font:1em Helvetica, Arial, sans-serif; }
 input[type="text"] { margin:3px 0 0; width:auto; }
-input[type="text"], textarea, select { border:2px solid #D7E9F2; display:block; margin:0; padding:6px 5px; width:595px; }
+input[type="text"], textarea, select { border:2px solid #D7E9F2; display:block; margin:0; padding:6px 5px; width:595px; -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px;  }
 textarea { min-height:50px; }
 select { min-width:150px; width:auto; }
 input:focus, textarea:focus, select:focus { border-color:#FFC954; outline:0 none; }
 #debug { background:#FF9; bottom:0; font-size:10px; left:0; padding:5px; position:fixed }
 #debug:hover { opacity:0 }
 a.forumbutton, .forumbutton, .button { background:url(images/forum/forumbutton.png) 0 0 no-repeat; border:none; width:auto !important; color:#555960; cursor:pointer; display:inline-block; font-size:11px; font-weight:700; height:23px; overflow:visible; padding:0 0 0 3px; text-decoration:none; text-shadow:1px 1px 0 #fff; white-space:nowrap }
-.forumbutton::-moz-focus-inner, .button::-moz-focus-inner {
-margin:-1px -3px
-}
+.forumbutton::-moz-focus-inner, .button::-moz-focus-inner {margin:-1px -3px}
 .forumbutton:focus, .forumbutton:active, .button:focus, .button:active { outline:none !important; }
 .forumbutton>span, .forumbutton>input, .button>span, .button>input { background:url(images/forum/forumbutton.png) 100% 0 no-repeat; display:block; height:23px; line-height:23px; padding:0 10px 0 8px }
 .forumbutton:hover, .forumbutton.active, .button:hover, .button.active { background-position:0 -30px; color:#264964; text-decoration:none; text-shadow: 0 1px 0 #b0d7f6; }
@@ -73,6 +68,12 @@ margin:-1px -3px
 .forumbutton.mousedown>span, .button.mousedown>span { background-position:100% -60px }
 .forumbutton input, .button input { border:none; color:#333; font-size:11px; font-weight:700; margin:0; text-shadow:1px 1px 0 #fff }
 .forumbutton input:hover, .button input:hover { border:none }
+.quote {background:#F2F9FD;
+border:1px solid #D7E9F2;
+overflow:hidden;
+padding:30px 34px;
+margin-left:40px;}
+.quote strong:first-child { color:#6692B8;}
 #main, #aside, .post { margin-bottom:40px }
 .news-category, .forum_thread_post_date a { display:none }
 .pagination { margin:20px; }
