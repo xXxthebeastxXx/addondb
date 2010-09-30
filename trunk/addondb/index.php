@@ -163,20 +163,17 @@ if ($rows != 0) {
 	echo "<table border='0' cellpadding='0' cellspacing='0' width='100%' class='tbl-border'>
 	<tr>
 	<td>
-	<table border='0' cellpadding='0' cellspacing='1' width='100%'>
-	<tr>
-	<td class='tbl2' colspan='2' style='white-space:nowrap'>".$locale['addondb401']."</td>
-	<td class='tbl2' width='1%' style='white-space:nowrap'>".$locale['addondb405']."</td>
-	<td class='tbl2' width='1%' style='white-space:nowrap'>".$locale['addondb402']."</td>
-	<td class='tbl2' width='1%' style='white-space:nowrap'>".$locale['addondb403']."</td>
-	<td class='tbl2' width='1%' style='white-space:nowrap'>".$locale['addondb404']."</td>
-	<td class='tbl2' width='1%' style='white-space:nowrap'>".$locale['addondb406']."</td>
-	</tr>\n";
+	<table border='0' cellpadding='0' cellspacing='1' width='100%'>\n";
 	$addon_cat_old = -1;
 	while ($data = dbarray($result)) {
 		if ($data['addon_cat_id'] <> $addon_cat_old) {
 			echo "<tr>
-			<td class='forum-caption' colspan='7' nowrap>".stripslashes($data['addon_cat_name'])." [".get_addon_type($data['addon_cat_type'])."]</td>
+			<td class='forum-caption' colspan='2'>".stripslashes($data['addon_cat_name'])." [".get_addon_type($data['addon_cat_type'])."]</td>
+			<td class='forum-caption' width='1%' style='white-space:nowrap'>".$locale['addondb405']."</td>
+	<td class='forum-caption' width='1%' style='white-space:nowrap'>".$locale['addondb402']."</td>
+	<td class='forum-caption' width='1%' style='white-space:nowrap'>".$locale['addondb403']."</td>
+	<td class='forum-caption' width='1%' style='white-space:nowrap'>".$locale['addondb404']."</td>
+	<td class='forum-caption' width='1%' style='white-space:nowrap'>".$locale['addondb406']."</td>
 			</tr>\n";
 		}
 		if ($data['addon_id']) {
