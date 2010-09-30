@@ -80,7 +80,6 @@ if (isset($_GET['addon_orderby_value']) && in_array($_GET['addon_orderby_value']
 }else{
 $addon_orderby_value = "addon_name";
 }
-
 if (isset($_GET['addon_orderby_dir_value']) && in_array($_GET['addon_orderby_dir_value'], $check_order_dir)) {
 	$addon_orderby_dir_value = stripinput($_GET['addon_orderby_dir_value']);
 	$get_vars .= (empty($get_vars) ? "?" : "&amp;")."addon_orderby_dir_value=".$addon_orderby_dir_value;
@@ -89,23 +88,24 @@ $addon_orderby_dir_value = "ASC";
 }
 
 opentable($locale['addondb400']);
-$q_addon_cats = dbquery("SELECT * FROM ".DB_ADDON_CATS." ORDER BY addon_cat_order");
-$cat_list = "<option value='0'>".$locale['addondb429']."</option>";
-while ($d_addon_cats = dbarray($q_addon_cats)) {
-	if (checkgroup($d_addon_cats['addon_cat_access'])) {
-		$cat_list .= "<option value='".$d_addon_cats['addon_cat_id']."' ".((isset($addon_cat_id) ? $addon_cat_id : 0) == $d_addon_cats['addon_cat_id'] ? "selected" : "").">".$d_addon_cats['addon_cat_name']."</option>\n";
-	}
-}
-$ver_list = "<option value='0'>".$locale['addondb429']."</option>".buildversionoptionlist($addon_ver_id);
-$addon_type_list = "<option value='0'>".$locale['addondb429']."</option>";
+
+$versel = $locale['addondb429'];
+$ver_list = "<li rel='0'>".$locale['addondb429']."</li>".buildversionoptionlist($addon_ver_id);
+$addon_type_list = "<li rel='0'>".$locale['addondb429']."</li>";
+$add = $locale['addondb429'];
 foreach ($addon_types as $k=>$addon_type) {
-	$addon_type_list .= "<option value='".$k."'".($addon_addon_cat_type == $k ? " selected" : "").">".$addon_type."</option>\n";
+	$addon_type_list .= "<li rel='".$k."'>".$addon_type."</li>\n";
+	$addon_addon_cat_type == $k ? $add = $addon_type : "";
 }
+$aob = $locale['func016'];
 foreach ($addon_orderby as $k=>$addon_orderby) {
-	$addon_orderby_list .= "<option value='".$k."'".($addon_orderby_value == $k ? " selected" : "").">".$addon_orderby."</option>\n";
+	$addon_orderby_list .= "<li rel='".$k."'>".$addon_orderby."</li>\n";
+	$addon_orderby_value == $k ? $aob = $addon_orderby : "";
 }
+$aobl = $locale['func023'];
 foreach ($addon_orderby_dir as $k=>$addon_orderby_dir) {
-	$addon_orderby_dir_list .= "<option value='".$k."'".($addon_orderby_dir_value == $k ? " selected" : "").">".$addon_orderby_dir."</option>\n";
+	$addon_orderby_dir_list .= "<li rel='".$k."'>".$addon_orderby_dir."</li>\n";
+	$addon_orderby_dir_value == $k ? $aobl = $addon_orderby_dir  : "";
 }
 $rows = dbresult(dbquery("SELECT COUNT(*) FROM ".DB_ADDON_CATS." tc LEFT JOIN ".DB_ADDONS." tm USING(addon_cat_id) LEFT JOIN ".DB_ADDON_VERSIONS." tv USING(version_id) WHERE ".groupaccess('tc.addon_cat_access')." AND ".$db_opts." AND addon_status='0'"),0);
 if ($rows != 0) {
@@ -122,20 +122,41 @@ if ($rows != 0) {
 	);
 }
 echo "<form name='filterform' method='get' action='".FUSION_SELF."'>
-<table width='100%' cellpadding='0' cellspacing='0' border='0'>
-<tr>
-<td class='tbl1' width='1%' style='white-space:nowrap' valign='top' align='right'>".$locale['addondb432']."</td>
-<td class='tbl1' width='1%' style='white-space:nowrap'><select name='addon_addon_cat_type' class='textbox' style='width:200px' onchange=\"submit();\">".$addon_type_list."</select></td>
-<td class='tbl1' width='1%' style='white-space:nowrap' valign='top' align='right'>".$locale['addondb433']."</td>
-<td class='tbl1' width='1%' style='white-space:nowrap'><select name='addon_ver_id' class='textbox' style='width:200px' onchange=\"submit();\">".$ver_list."</select></td>
-</tr>
-<tr>
-<td class='tbl1' width='1%' colspan='2'>&nbsp;</td>
-<td class='tbl1' width='1%' style='white-space:nowrap' valign='top' align='right'>".$locale['addondb434']."</td>
-<td class='tbl1' width='1%' style='white-space:nowrap'><select name='addon_orderby_value' class='textbox' style='width:100px' onchange=\"submit();\">".$addon_orderby_list."</select>
-<select name='addon_orderby_dir_value' class='textbox' style='width:100px' onchange=\"submit();\">".$addon_orderby_dir_list."</select></td>
-</tr>
-</table>
+<div class='dropselect grid_5'>
+	".$locale['addondb432']."
+	<p class='field'>".$add."</p>
+	<input type='hidden' name='addon_addon_cat_type' value='0' class='field-h' readonly='readonly' />
+	<ul class='list'>
+		".$addon_type_list."
+	</ul>
+</div>
+<div class='dropselect grid_5'>
+	".$locale['addondb433']."
+	<p class='field'>".$versel."</p>
+	<input type='hidden' name='addon_ver_id' value='0' class='field-h' readonly='readonly' />
+	<ul class='list'>
+		".$ver_list."
+	</ul>
+</div>
+<div class='dropselect grid_5'>
+	".$locale['addondb434']."
+	<p class='field'>".$aob."</p>
+	<input type='hidden' name='addon_orderby_value' value='addon_name' class='field-h' readonly='readonly' />
+	<ul class='list'>
+		".$addon_orderby_list."
+	</ul>
+</div>
+<div class='dropselect grid_5'>
+	Sort	
+	<p class='field'>".$aobl."</p>
+	<input type='hidden' name='addon_orderby_dir_value' value='ASC' class='field-h' readonly='readonly' />
+	<ul class='list'>
+		".$addon_orderby_dir_list."
+	</ul>
+</div>
+<div class='dropselect grid_4'><br />
+	<button type='submit' class='button'><span>Apply changes</span></button>
+</div>
 </form>\n";
 
 if ($rows != 0) {
