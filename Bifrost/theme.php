@@ -23,8 +23,8 @@ function render_page() {
 	<div class="grid_6 push_1 hinfo">
 	<h4>Search the site</h4>
 	<form name="search" method="get" action="/search.php">
-	<input type="stext" class="textboxs" />
-	<button type="submit" class="forumbutton"><span>go</span></button>
+	<input type="search" name="stext" class="textsearch" />
+	<button type="submit" class="forumbutton"><span>Search</span></button>
 	</form>
 	</div>
 	<div class="grid_6 push_2 userinfo hinfo">

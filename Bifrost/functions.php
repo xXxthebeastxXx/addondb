@@ -86,8 +86,8 @@ function userinfo() {
 	</ul>
 	<?php else : ?>
 	<h4>Membership</h4>
-	<a href="/login.php" class="button">Login</a> 
-	<a href="/register.php" class="button">Become a member</a>
+	<a href="/login.php" class="button"><span>Login</span></a> 
+	<a href="/register.php" class="button"><span>Become a member</span></a>
 	<?php endif;
 }
 
