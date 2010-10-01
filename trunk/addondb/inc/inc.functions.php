@@ -186,6 +186,19 @@ function buildversionoptionlist($sel_ver_id = 0) {
 	if (dbrows($result) > 0) {
 		while ($data = dbarray($result)) {
 			$ver = "v".$data['version_h'].".".$data['version_l'].($data['version_s'] != "" ? " ".$data['version_s'] : "");
+			$res .= "<option value='".$data['version_id']."'".($data['version_id'] == $sel_ver_id ? " selected='selected'" : "").">".$ver."</option>";
+		}
+	}
+	return $res;
+}
+
+function buildversionlilist($sel_ver_id = 0) {
+	global $versel;
+	$res = "";
+	$result = dbquery("SELECT * FROM ".DB_ADDON_VERSIONS." ORDER BY version_order DESC");
+	if (dbrows($result) > 0) {
+		while ($data = dbarray($result)) {
+			$ver = "v".$data['version_h'].".".$data['version_l'].($data['version_s'] != "" ? " ".$data['version_s'] : "");
 			$res .= "<li rel='".$data['version_id']."'>".$ver."</li>";
 			$data['version_id'] == $sel_ver_id ? $versel = $ver : "";
 		}
