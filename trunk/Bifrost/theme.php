@@ -21,29 +21,29 @@ function render_page() {
 	<div class="grid_9 hinfo">
 	<h4>National Support Network</h4>
 	<div class="dropselect">
-	<p class='field'>Select</p>
-	<ul class="list nsn">
-		<li><a href='http://www.phpfusion-ar.com' target='_blank' class='side'>Arabia</a></li>
-		<li><a href='http://www.phpfusion-nederlands.info' target='_blank' class='side'>Belgium</a></li>
-		<li><a href='http://www.phpfusion-br.com/' target='_blank' class='side'>Brazil</a></li>
-		<li><a href='http://www.php-fusion.dk' target='_blank' class='side'>Denmark</a></li>
-		<li><a href='http://www.phpfusion.cz' target='_blank' class='side'>Czech Republic</a></li>
-		<li><a href='http://www.phpfusion-fr.com/' target='_blank' class='side'>France</a></li>
-		<li><a href='http://www.phpfusion-support.de' target='_blank' class='side'>Germany</a></li>
-		<li><a href='http://www.php-fusion.co.hu'  target='_blank' class='side'>Hungary</a></li>
-		<li><a href='http://www.fusion.alaviweb.com' target='_blank' class='side'>Iran</a></li>
-		<li><a href='http://www.php-fusion.it' target='_blank' class='side'>Italy</a></li>
-		<li><a href='http://www.phpfusion-nederlands.info' target='_blank' class='side'>Netherlands</a></li>
-		<li><a href='http://www.phpfusion-no.com/' target='_blank' class='side'>Norway</a></li>
-		<li><a href='http://www.php-fusion.pl' target='_blank' class='side'>Poland</a></li>
-		<li><a href='http://www.phpfusion.ro/' target='_blank' class='side'>Romania</a></li>
-		<li><a href='http://netck.ru' target='_blank' class='side'>Russia</a></li>
-		<li><a href='http://www.yu-fusion.org/' target='_blank' class='side'>Serbia</a></li>
-		<li><a href='http://php-fusion.uni.cc/' target='_blank' class='side'>Spain</a></li>
-		<li><a href='http://www.php-fusion.se' target='_blank' class='side'>Sweden</a></li>
-		<li><a href='http://www.phpfusionturkiye.com' target='_blank' class='side'>Turkey</a></li>
-	</ul>
-</div>
+		<p class="field">Select</p>
+		<ul class="list nsn">
+			<li><a href="http://www.phpfusion-ar.com" target="_blank" rel="nofollow">Arabia</a></li>
+			<li><a href="http://www.phpfusion-nederlands.info" target="_blank" rel="nofollow">Belgium</a></li>
+			<li><a href="http://www.phpfusion-br.com/" target="_blank" rel="nofollow">Brazil</a></li>
+			<li><a href="http://www.php-fusion.dk" target="_blank" rel="nofollow">Denmark</a></li>
+			<li><a href="http://www.phpfusion.cz" target="_blank" rel="nofollow">Czech Republic</a></li>
+			<li><a href="http://www.phpfusion-fr.com/" target="_blank" rel="nofollow">France</a></li>
+			<li><a href="http://www.phpfusion-support.de" target="_blank" rel="nofollow">Germany</a></li>
+			<li><a href="http://www.php-fusion.co.hu"  target="_blank" rel="nofollow">Hungary</a></li>
+			<li><a href="http://www.fusion.alaviweb.com" target="_blank" rel="nofollow">Iran</a></li>
+			<li><a href="http://www.php-fusion.it" target="_blank" rel="nofollow">Italy</a></li>
+			<li><a href="http://www.phpfusion-nederlands.info" target="_blank" rel="nofollow">Netherlands</a></li>
+			<li><a href="http://www.phpfusion-no.com/" target="_blank" rel="nofollow">Norway</a></li>
+			<li><a href="http://www.php-fusion.pl" target="_blank" rel="nofollow">Poland</a></li>
+			<li><a href="http://www.phpfusion.ro/" target="_blank" rel="nofollow">Romania</a></li>
+			<li><a href="http://netck.ru" target="_blank" rel="nofollow">Russia</a></li>
+			<li><a href="http://www.yu-fusion.org/" target="_blank" rel="nofollow">Serbia</a></li>
+			<li><a href="http://php-fusion.uni.cc/" target="_blank" rel="nofollow">Spain</a></li>
+			<li><a href="http://www.php-fusion.se" target="_blank" rel="nofollow">Sweden</a></li>
+			<li><a href="http://www.phpfusionturkiye.com" target="_blank" rel="nofollow">Turkey</a></li>
+		</ul>
+	</div>
 	</div>
 	<div class="grid_6 push_1 hinfo">
 	<h4>Search the site</h4>
