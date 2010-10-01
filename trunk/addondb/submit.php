@@ -21,8 +21,6 @@ require_once THEMES."templates/header.php";
 require_once INFUSIONS."addondb/inc/inc.functions.php";
 require_once ADDON."infusion_db.php";
 include ADDON_LOCALE.LOCALESET."submit_addon.php";
-//include ADDON_INC."check.js";
-//add_to_head("<Body style='overflow:hidden'>");
 
 $addon_sub_type = ($_REQUEST['addon_type']);
 
@@ -172,95 +170,45 @@ add_to_title($locale['addondb424'].$locale['addondb400'].$addon_sub_type.$locale
 			$cat_list .= "<option value='".$d_addon_cats['addon_cat_id']."'>".$d_addon_cats['addon_cat_name']."</option>\n";		
 		}
 		$cat_list .= "</optgroup>\n";
-		echo $locale['addondb401']."<br /><br />
+echo "
 <form name='add_addon' method='post' action='".FUSION_SELF."' enctype='multipart/form-data'>
-<table align='center' cellpadding='0' cellspacing='0' class='tbl-border'>
+<table align='center' cellpadding='0' cellspacing='0' class='tbl-border addonsubmitform' width='100%'>
 <tr>
-<td class='tbl1' nowrap>".$addon_sub_type.$locale['addondb402'].":</td>
-<td class='tbl1' nowrap><span class='error'>*</span></td>
-<td class='tbl1' nowrap><input type='text' class='textbox' name='addon_name' style='width:300px;'></td>
+<td class='tbl1' colspan='2'><p>".$locale['addondb401']."</p></td>
 </tr>
 <tr>
-<td class='tbl1' nowrap>".$locale['addondb403'].":</td>
-<td class='tbl1' nowrap>&nbsp;</td>
-<td class='tbl1'><select class='textbox' name='addon_cat_id' style='width:300px;'>".$cat_list."</select>
-<input type='hidden' class='textbox' name='addon_cat_type' value='".$get_type[$opt]."'>
-</td>
+<td class='tbl1'><label for='addon_name'>".$addon_sub_type.$locale['addondb402']."</label><input type='text' class='textbox' id='addon_name' name='addon_name' /></td>
+<td class='tbl1'><label for='addon_cat_id'>".$locale['addondb403']."</label><select class='textbox' id='addon_cat_id' name='addon_cat_id'>".$cat_list."</select>
+<input type='hidden' class='textbox' name='addon_cat_type' value='".$get_type[$opt]."'></td>
 </tr>
 <tr>
-<td class='tbl1' nowrap valign='top'>".$locale['addondb404'].":</td>
-<td class='tbl1' nowrap valign='top'><span class='error'>*</span></td>
-<td class='tbl1'><textarea id='addon_description' class='textbox' name='addon_description' style='width:300px; height:200px;'></textarea>
+<td class='tbl1'><label for='addon_description'>".$locale['addondb404']."</label><textarea cols='63' rows='10' id='addon_description' class='textbox' id='addon_description' name='addon_description'></textarea></td>
+<td class='tbl1'><label for='addon_copyright'>".$locale['addondb405']."</label><textarea cols='63' rows='5' class='textbox' id='addon_copyright' name='addon_copyright'></textarea><label for='addon_forum_status' style='margin-top:16px'>".$locale['addondb417']."</label><select id='addon_forum_status' name='addon_forum_status' class='textbox'><option value='0'>".$locale['addondb418']."</option><option value='1'>".$locale['addondb419']."</option></select></td>
 </tr>
 <tr>
-<td class='tbl1' nowrap valign='top'>".$locale['addondb405'].":</td>
-<td class='tbl1' nowrap>&nbsp;</td>
-<td class='tbl1'><textarea class='textbox' name='addon_copyright' style='width:300px; height:80px;'></textarea></td>
+<td class='tbl1'><label for='addon_version'>".$locale['addondb406']."</label><input type='text' class='textbox' id='addon_version' name='addon_version' /></td>
+<td class='tbl1'><label for='addon_version_id'>".$locale['addondb407']."</label><select class='textbox' id='addon_version_id' name='addon_version_id'>".buildversionoptionlist(-1)."</select></td>
 </tr>
 <tr>
-<td class='tbl1' nowrap>".$locale['addondb406'].":</td>
-<td class='tbl1' nowrap><span class='error'>*</span></td>
-<td class='tbl1'><input type='text' class='textbox' name='addon_version' style='width:150px;'></td>
+<td class='tbl1'><label for='addon_download'>".$locale['addondb411']."</label><input type='file' class='textbox' id='addon_download' name='addon_download' /></td>
+<td class='tbl1'><label for='addon_screen'>".$locale['addondb415']."</label><input type='file' class='textbox' id='addon_screen' name='addon_screen' /></td>
 </tr>
 <tr>
-<td class='tbl1' nowrap>".$locale['addondb407'].":</td>
-<td class='tbl1' nowrap>&nbsp;</td>
-<td class='tbl1'><select class='textbox' name='addon_version_id' style='width:150px;'>".buildversionoptionlist(-1)."</td>
+<td class='tbl1'><label for='addon_author_name'>".$locale['addondb408']."</label><input type='text' class='textbox' id='addon_author_name' name='addon_author_name' value='".$userdata['user_name']."' /></td>
+<td class='tbl1'><label for='addon_co_author_name'>".$locale['addondb613']."</label><input type='text' class='textbox' id='addon_co_author_name' name='addon_co_author_name' /></td>
 </tr>
 <tr>
-<td class='tbl1' nowrap>".$locale['addondb411'].":</td>
-<td class='tbl1' nowrap><span class='error'>*</span></td>
-<td class='tbl1'><input type='file' class='textbox' name='addon_download' size='43' style='width:300px;'></td>
+<td class='tbl1'><label for='addon_author_email'>".$locale['addondb409']."</label><input type='text' class='textbox' id='addon_author_email' name='addon_author_email' value='".$userdata['user_email']."' /></td>
+<td class='tbl1'><label for='addon_author_www'>".$locale['addondb410']."</label><input type='text' class='textbox' name='' style='width:42px;' value='http://' readonly='readonly' /><input type='text' class='textbox' id='addon_author_www' name='addon_author_www' style='width:372px;' value='".$userdata['user_web']."' /></td>
 </tr>
 <tr>
-<td class='tbl1' nowrap>".$locale['addondb415'].":</td>
-<td class='tbl1' nowrap>";
-if ($addon_sub_type == $locale['addondb425']) { echo "<span class='error'>*</span>"; } else { echo "&nbsp;"; }
-echo "</td>
-<td class='tbl1'><input type='file' class='textbox' name='addon_screen' size='43' style='width:300px;'></td>
-</tr>
-<tr>
-<td class='tbl1' nowrap>".$locale['addondb408'].":</td>
-<td class='tbl1' nowrap><span class='error'>*</span></td>
-<td class='tbl1'><input type='text' class='textbox' name='addon_author_name' style='width:300px;' value='".$userdata['user_name']."'></td>
-</tr>
-<tr>
-<td class='tbl1' nowrap><label for='coauthor'>".$locale['addondb613'].":</label><label for='checkbox'></label>&nbsp;<input id='checkcoauth' type='checkbox' /></td>
-<td class='tbl1' nowrap><span class='error'>&nbsp;</span></td>
-<td class='tbl1'><div id='showcoauth'><label><input type='text' class='textbox' name='addon_co_author_name' style='width:300px;'></label></div></td>
-</tr>
-<tr>
-<td class='tbl1' nowrap>".$locale['addondb409'].":</td>
-<td class='tbl1' nowrap>&nbsp;</td>
-<td class='tbl1'><input type='text' class='textbox' name='addon_author_email' style='width:300px;' value='".$userdata['user_email']."'></td>
-</tr>
-<tr>
-<td class='tbl1' nowrap>".$locale['addondb410'].":</td>
-<td class='tbl1' nowrap>&nbsp;</td>
-<td class='tbl1'><input type='text' class='textbox' name='' style='width:42px;' value='http://' READONLY><input type='text' class='textbox' name='addon_author_www' style='width:250px;' value='".$userdata['user_web']."'></td>
-</tr><tr>
-<td class='tbl1' nowrap>".$locale['addondb417'].":</td>
-<td class='tbl1' nowrap>&nbsp;</td>
-<td class='tbl1'><select name='addon_forum_status' class='textbox'>
-<option value='0'>".$locale['addondb418']."</option>
-<option value='1'>".$locale['addondb419']."</option>
-</select>
-</td>
-</tr>
-<tr>
-<td class='tbl1' nowrap>".$locale['addondb416'].":</td>
-<td class='tbl1' nowrap>&nbsp;</td>
-<td class='tbl1'><input type='hidden' class='textbox' name='addon_submitter_name' value='".$userdata['user_name']."'><b>".$userdata['user_name']."</b>
-<input type='hidden' class='textbox' name='addon_submitter_id' value='".$userdata['user_id']."'>
-<input type='hidden' class='textbox' name='addon_type' value='0'></td>
-</tr>
-<tr>
-<td class='tbl1' nowrap colspan='3' align='center'><hr>".$locale['addondb414']."</td>
-</tr>
-<tr>
-<td class='tbl1' nowrap colspan='3' align='center'><input type='submit' class='button' name='btn_submit' value='".$locale['addondb412']."'></td>
+<td class='tbl1' colspan='2' align='center'><hr />
+<input type='submit' class='button' name='btn_submit' value='".$locale['addondb412']."' /></td>
 </tr>
 </table>
+<input type='hidden' class='textbox' name='addon_submitter_name' value='".$userdata['user_name']."' />
+<input type='hidden' class='textbox' name='addon_submitter_id' value='".$userdata['user_id']."' />
+<input type='hidden' class='textbox' name='addon_type' value='0' />
 </form>\n";
 	} else {
 		echo "<center><br />".$locale['addondb611']."<br /><br />".$locale['addondb612']."<br /><br /></center>\n";
