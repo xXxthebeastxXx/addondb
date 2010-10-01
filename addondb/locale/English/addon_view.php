@@ -26,7 +26,7 @@ $locale['addondb422'] = "Downloads";
 $locale['addondb423'] = "Options";
 $locate['addondb424'] = "Edit";
 $locate['addondb425'] = "Suspend";
-$locate['addondb426'] = "This mod is currently suspended!";
+$locate['addondb426'] = "This Addon is currently suspended!";
 $locale['addondb427'] = "Translations:";
 $locale['addondb428'] = "Submit :";
 $locale['addondb429'] = "Support Thread: ";
@@ -58,8 +58,20 @@ $locale['addondb510'] = "Translations";
 $locale['addondb511'] = "No Extra Translations";
 $locale['addondb512'] = "Other Addons by ";
 $locale['addondb513'] = "Other Addons Co-Authored by ";
-$locale['addondb514'] = "";
-$locale['addondb515'] = "";
+$locale['addondb514'] = "View Addon DB";
+$locale['addondb515'] = "Submit an Addon";
 $locale['addondb516'] = "";
+
+// My Addons
+$locale['addondb_600'] = "My Addons";
+$locale['addondb_601'] = "Download Count";
+$locale['addondb_602'] = "Addon Name";
+$locale['addondb_603'] = "Addon Version";
+$locale['addondb_604'] = "Addon Rating";
+$locale['addondb_605'] = "You have";
+$locale['addondb_606'] = "Addons downloaded ";
+$locale['addondb_607'] = "times";
+
+$locale['addondb_700'] = "You have not submitted any Addons to the DB";
 
 ?>

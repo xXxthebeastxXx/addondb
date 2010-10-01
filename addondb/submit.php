@@ -123,7 +123,11 @@ if (!iMEMBER) {
 		<a href='javascript:history.back(-1);'>".$locale['addondb602']."</a><br /><br /></center>\n";
 		closetable();
 	} else {
+	
+	if ($addon_sub_type !='') {
 		opentable($locale['addondb400'].$addon_sub_type);
+		} else {
+		opentable($locale['addondb421']); }
 		echo "<center><br />
 		".$locale['addondb500']."<br /><br />
 		".$locale['addondb501']."<br /><br />
