@@ -194,8 +194,14 @@ if (!isnum($addon_id) || dbrows($q_addons) == 0 || ($d_addons['addon_status'] !=
 		if ($d_addons['addon_approved_comment']) { echo nl2br(parsesmileys(parseubb($d_addons['addon_approved_comment']))); } else { echo $locale['addondb439']; }
 		echo "</td>";
 		echo "</tr>";
-		
-        $result = dbquery("SELECT thread_id, thread_subject FROM ".DB_THREADS." WHERE thread_subject = '".$d_addons['addon_name']."'");
+        
+        $result = dbquery("SELECT t.thread_id, t.thread_author, t.thread_subject, a.addon_name, a.addon_submitter_name   
+                          FROM ".DB_THREADS." t 
+                          LEFT JOIN ".DB_ADDONS." a 
+                          ON t.thread_author=a.addon_submitter_name
+                          WHERE t.thread_subject ='".$d_addons['addon_name']."'
+                          ");
+
         if (dbrows($result) != 0) { 
 	    echo "<tr><td class='tbl2' width='12%' nowrap><b>".$locale['addondb429']."</b></td>";
 	    echo "<td class='tbl2' colspan='3'>";

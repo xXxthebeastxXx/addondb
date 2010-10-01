@@ -61,6 +61,5 @@ $locale['addondb513'] = "Other Addons Co-Authored by ";
 $locale['addondb514'] = "";
 $locale['addondb515'] = "";
 $locale['addondb516'] = "";
-$locale['addon_valid_xhtml'] = "";
-$locale['addon_valid_css'] = ";
+
 ?>
