@@ -92,7 +92,7 @@ $addon_orderby_dir_value = "ASC";
 opentable($locale['addondb400']);
 
 $versel = $locale['addondb429'];
-$ver_list = "<li rel='0'>".$locale['addondb429']."</li>".buildversionlilist($addon_ver_id);
+$ver_list = "<li rel='0'>".$locale['addondb429']."</li>".buildversionoptionlist($addon_ver_id);
 $addon_type_list = "<li rel='0'>".$locale['addondb429']."</li>";
 $add = $locale['addondb429'];
 foreach ($addon_types as $k=>$addon_type) {
@@ -216,11 +216,69 @@ if ($rows != 0) {
 	if (iMEMBER) {
 		echo "<center><br />".(isset($addon_cat_id) || isset($addon_ver_id) || isset($addon_addon_cat_type) ? $locale['addondb424'] : $locale['addondb421'])."<br /><br /></center>\n";
 	} else {
-		echo "<div style='text-align:center;margin-top:2em;margin-bottom:2em;'>".$locale['addondb425']." <a href='".BASEDIR."register.php' title='".$locale['addondb428']."'>".$locale['addondb426']."</a> ".$locale['addondb427']."</div>";
+		echo "<br /><br /><div style='text-align:center;margin-top:2em;margin-bottom:2em;'>".$locale['addondb425']." <a href='".BASEDIR."register.php' title='".$locale['addondb428']."'>".$locale['addondb426']."</a> ".$locale['addondb427']."</div>";
 	}
 }
 if ($rows > $settings['addons_per_page']) echo "<div align='center' style='margin-top:5px;'>\n".makePageNav($_GET['rowstart'], $settings['addons_per_page'], $rows, 3, ($get_vars ? FUSION_SELF."".$get_vars."&amp;" : ""))."\n</div>\n";
 closetable();
+
+echo "<br />\n";
+opentable($locale['addondb500']);
+
+   $total_addon = dbcount("(addon_id)", DB_ADDONS, "addon_status = '0'");
+   $total_infus = dbcount("(addon_id)", DB_ADDONS, "addon_status = '0' && addon_type = '1'");
+   $total_panel = dbcount("(addon_id)", DB_ADDONS, "addon_status = '0' && addon_type = '3'");
+   $total_theme = dbcount("(addon_id)", DB_ADDONS, "addon_status = '0' && addon_type = '2'");
+   $total_other = dbcount("(addon_id)", DB_ADDONS, "addon_status = '0' && addon_type = '4'");
+   $total_trans = dbcount("(trans_id)", DB_ADDON_TRANS, "trans_active = '0'");
+   $total = dbarray(dbquery("SELECT SUM(addon_download_count) download_count, COUNT(addon_id) FROM ".DB_ADDONS." WHERE addon_status = '0'"));
+   $total_count = $total['download_count'];
+
+echo "<table class='tbl-border' align='center' width='100%'><tr>\n
+        <th class='forum-caption' width='20%'><b>".$locale['addondb501']."</b></th>
+        <th class='forum-caption' width='20%'>".$locale['addondb502']."</th>
+        <th class='forum-caption' width='20%'>".$locale['addondb503']."</th>
+        <th class='forum-caption' width='20%'>".$locale['addondb504']."</th>
+        <th class='forum-caption' width='20%'>".$locale['addondb505']."</th>
+        <tr></tr>\n
+        <td class='tbl2' align='center'>".$total_addon."</td>
+        <td class='tbl2' align='center'>".$total_infus."</td>
+        <td class='tbl2' align='center'>".$total_panel."</td>
+        <td class='tbl2' align='center'>".$total_theme."</td>
+        <td class='tbl2' align='center'>".$total_other."</td>\n
+        </tr>\n<tr>
+        <td class='tbl2' colspan='2'>".sprintf($locale['addondb508'], $total_trans)."</td>\n
+        <td class='tbl2' colspan='3' align='right'>".sprintf($locale['addondb506'], $total_addon).sprintf($locale['addondb507'], $total_count)."</td>
+        </tr>\n</table>\n";
+        
+closetable();
+echo "<br />\n";
+
+if (iADMIN && checkrights("ADNX")) {
+opentable($locale['addondb600']);
+
+$addonsq = dbquery("SELECT * FROM ".DB_SUBMISSIONS." WHERE submit_type='m' ORDER BY submit_id DESC");
+$errosq = dbquery("SELECT * FROM ".DB_ADDON_ERRORS." WHERE error_active ='1'");
+$transq = dbquery("SELECT * FROM ".DB_ADDON_TRANS." WHERE trans_active='1'");
+
+$addons = dbrows($addonsq);
+$errors = dbrows($errosq);
+$trans = dbrows($transq);
+
+echo "<table class='tbl-border' align='center' width='100%'><tr>\n
+        <th class='forum-caption' width='25%'>".$locale['addondb601']."</th>
+        <th class='forum-caption' width='25%'>".$locale['addondb602']."</th>
+        <th class='forum-caption' width='25%'>".$locale['addondb603']."</th>
+        <th class='forum-caption' width='25%'>".$locale['addondb604']."</th>
+        <tr></tr>\n
+        <td class='tbl2' align='center'><a href='".ADDON_ADMIN."submissions.php".$aidlink."'>".$addons."</a></td>
+        <td class='tbl2' align='center'><a href='".ADDON_ADMIN."submissions.php".$aidlink."'>".$trans."</a></td>
+        <td class='tbl2' align='center'><a href='".ADDON_ADMIN."error.php".$aidlink."'>".$errors."</a></td>
+        <td class='tbl2' align='center'><a href='".ADDON_ADMIN."index.php".$aidlink."'>".$locale['addondb604']."</a></td>
+        </tr>\n</table>\n";
+
+closetable();
+  }
 
 echo "<script type='text/javascript'>function filterMods(criteria) {\n";
 echo "document.location.href='".INFUSIONS."addondb/addons.php?show='+criteria;\n}\n";
