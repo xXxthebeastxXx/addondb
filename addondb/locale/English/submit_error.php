@@ -39,7 +39,7 @@ $locale['addondb469'] = "Assigned To";
 //Translation
 $locale['addondb470'] = "Translations";
 $locale['addondb471'] = "Translations File";
-$locale['addondb472'] = "Translations Submited!";
+$locale['addondb472'] = "Translation File Submitted!";
 $locale['addondb473'] = "Error Uploading file!";
 $locale['addondb474'] = "Translation file must be less than %u bytes.";
 $locale['addondb475'] = "Translation file must be a %s file.";
