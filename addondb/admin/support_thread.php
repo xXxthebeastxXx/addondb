@@ -67,7 +67,7 @@ if (file_exists(ADDON_LOCALE.LOCALESET."admin/support_thread.php")) {
     
     
             $acat_list = ""; $sel = ""; $data_acat = "";
-			$result = dbquery("SELECT * FROM ".DB_ADDONS." WHERE addon_status = '0' AND addon_forum_status = '1' ORDER BY addon_date DESC");
+			$result = dbquery("SELECT * FROM ".DB_ADDONS." WHERE addon_status = '0' AND addon_forum_status = '0' ORDER BY addon_date DESC");
 			if (dbrows($result) != 0) {
 		    while ($datam = dbarray($result)) {
 		    $sel = ($data_acat == $datam['addon_name'] ? " selected='selected'" : "");
@@ -84,7 +84,7 @@ if (file_exists(ADDON_LOCALE.LOCALESET."admin/support_thread.php")) {
 	
 	
 	       $fcat_list = ""; $sel = ""; $data_fcat = "";
-			$result = dbquery("SELECT * FROM ".DB_FORUMS." WHERE forum_cat != '0' AND forum_post = '101' ORDER BY forum_order ASC");
+			$result = dbquery("SELECT * FROM ".DB_FORUMS." WHERE forum_cat != '0' AND forum_post = '101' ORDER BY forum_name ASC");
 			if (dbrows($result) != 0) {
 		    while ($datam = dbarray($result)) {
 		    $sel = ($data_fcat == $datam['forum_name'] ? " selected='selected'" : "");

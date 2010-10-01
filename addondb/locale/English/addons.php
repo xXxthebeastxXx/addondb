@@ -30,4 +30,23 @@ $locale['addondb432'] = "Type";
 $locale['addondb433'] = "Fusion Version";
 $locale['addondb434'] = "Order By";
 $locale['addondb435'] = " | ";
+
+// Stats
+$locale['addondb500'] = "DB Stats";
+$locale['addondb501'] = "Total Addons";
+$locale['addondb502'] = "Infusions";
+$locale['addondb503'] = "Panels";
+$locale['addondb504'] = "Themes";
+$locale['addondb505'] = "Other";
+$locale['addondb506'] = "%u Addons";
+$locale['addondb507'] = " downloaded a total of %u times";
+$locale['addondb508'] = "%u translations in DB";
+
+// Admin Panel
+$locale['addondb600'] = "Admin Info";
+$locale['addondb601'] = "Submitted Addons";
+$locale['addondb602'] = "Submitted Translations";
+$locale['addondb603'] = "Submitted Error Reports";
+$locale['addondb604'] = "Addon Management";
+
 ?>
