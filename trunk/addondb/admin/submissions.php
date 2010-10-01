@@ -159,7 +159,7 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
 			<td class='tbl1'><select class='textbox' name='trans_status' style='width:300px;'>".$trans_status_list."</select></td>
 			</tr><tr>
 			<td class='tbl1' nowrap>".$locale['addondb417'].":</td>
-			<td class='tbl1'><input type='hidden' class='textbox' name='".$userdata['user_id']."' style='width:300px;'>".$userdata['user_name']."</td>
+			<td class='tbl1'><input type='hidden' class='textbox' name='trans_approved_user' value='".$userdata['user_id']."' style='width:300px;'>".$userdata['user_name']."</td>
 			</tr><tr>
 			<td class='tbl1' nowrap valign='top'>".$locale['addondb419'].":</td>
 			<td class='tbl1'><textarea class='textbox' name='trans_approved_comment' style='width:300px; height:48px;'></textarea></td>";
