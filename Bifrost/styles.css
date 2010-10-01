@@ -122,7 +122,8 @@ margin:-1px -3px
 	background:#fff; color:#A0A0A0;
 }
 .dropselect>ul.list li:last-child { border:none } 
-
+.addonsubmitform label { display:block; line-height: 20px; margin:0 0 10px 0;}
+.addonsubmitform .textbox {width:428px}
 /* 
  * print styles
  */
