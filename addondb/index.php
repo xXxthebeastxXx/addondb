@@ -57,6 +57,8 @@ if (isset($_GET['addon_addon_cat_type']) && isnum($_GET['addon_addon_cat_type'])
 		$addon_addon_cat_type = $_GET['addon_addon_cat_type'];
 		$db_opts .= " AND tm.addon_type='".$_GET['addon_addon_cat_type']."'";
 		$db_count .= " AND tm.addon_type='".$_GET['addon_addon_cat_type']."'";
+	} else {
+		$addon_addon_cat_type = 0;
 	}
 }
 //This should work now
@@ -125,7 +127,7 @@ echo "<form name='filterform' method='get' action='".FUSION_SELF."'>
 <div class='dropselect grid_5'>
 	".$locale['addondb432']."
 	<p class='field'>".$add."</p>
-	<input type='hidden' name='addon_addon_cat_type' value='0' class='field-h' readonly='readonly' />
+	<input type='hidden' name='addon_addon_cat_type' value='".$addon_addon_cat_type."' class='field-h' readonly='readonly' />
 	<ul class='list'>
 		".$addon_type_list."
 	</ul>
@@ -133,7 +135,7 @@ echo "<form name='filterform' method='get' action='".FUSION_SELF."'>
 <div class='dropselect grid_5'>
 	".$locale['addondb433']."
 	<p class='field'>".$versel."</p>
-	<input type='hidden' name='addon_ver_id' value='0' class='field-h' readonly='readonly' />
+	<input type='hidden' name='addon_ver_id' value='".$addon_ver_id."' class='field-h' readonly='readonly' />
 	<ul class='list'>
 		".$ver_list."
 	</ul>
@@ -141,7 +143,7 @@ echo "<form name='filterform' method='get' action='".FUSION_SELF."'>
 <div class='dropselect grid_5'>
 	".$locale['addondb434']."
 	<p class='field'>".$aob."</p>
-	<input type='hidden' name='addon_orderby_value' value='addon_name' class='field-h' readonly='readonly' />
+	<input type='hidden' name='addon_orderby_value' value='".$addon_orderby_value."' class='field-h' readonly='readonly' />
 	<ul class='list'>
 		".$addon_orderby_list."
 	</ul>
@@ -149,7 +151,7 @@ echo "<form name='filterform' method='get' action='".FUSION_SELF."'>
 <div class='dropselect grid_5'>
 	Sort	
 	<p class='field'>".$aobl."</p>
-	<input type='hidden' name='addon_orderby_dir_value' value='ASC' class='field-h' readonly='readonly' />
+	<input type='hidden' name='addon_orderby_dir_value' value='".$addon_orderby_dir_value."' class='field-h' readonly='readonly' />
 	<ul class='list'>
 		".$addon_orderby_dir_list."
 	</ul>
