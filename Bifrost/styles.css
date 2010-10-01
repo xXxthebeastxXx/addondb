@@ -15,8 +15,22 @@ table { font-size:inherit; font:100%; }
 select, input, textarea { font:99% sans-serif; }
 pre, code, kbd, samp { font-family: monospace, sans-serif; }
 body, select, input, textarea { color:#444; }
-@font-face { font-family: 'MergeRegular-1'; src: url('../fonts/merge.eot'); src: local('☺'), url('../fonts/merge_font1.ttf') format('opentype'); }
-@font-face { font-family: 'MergeRegular-2'; src: local('☺'), url('../fonts/merge_font2.ttf') format('opentype'); }
+@font-face {
+	font-family: 'MergeRegular-1';
+	src: url('../fonts/merge_font1-webfont.eot');
+	src: local('☺'), url('../fonts/merge_font1-webfont.woff') format('woff'), url('../fonts/merge_font1-webfont.ttf') format('truetype'), url('../fonts/merge_font1-webfont.svg#webfontEH3sxDuy') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'MergeRegular-2';
+	src: url('../fonts/merge_font2-webfont.eot');
+	src: local('☺'), url('../fonts/merge_font2-webfont.woff') format('woff'), url('../fonts/merge_font2-webfont.ttf') format('truetype'), url('../fonts/merge_font2-webfont.svg#webfontReAybvSe') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
 h1, h2, h3, h4, h5, h6 { color:#495062; font-weight:normal; }
 html { -webkit-font-smoothing: antialiased; }
 a:hover, a:active { color:#89b229; outline: none; }
