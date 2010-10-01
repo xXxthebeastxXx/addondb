@@ -179,7 +179,7 @@ function builduseroptionlist($sel_user_id = 1, $order = "user_name") {
 	return $res;
 }
 
-function buildversionoptionlist($sel_ver_id = false) {
+function buildversionoptionlist($sel_ver_id = 0) {
 	global $versel;
 	$res = "";
 	$result = dbquery("SELECT * FROM ".DB_ADDON_VERSIONS." ORDER BY version_order DESC");
