@@ -26,15 +26,15 @@ define("ANALYTICS_DOMAIN", ".php-fusion.co.uk");
  * Set custom images
  */
 define("THEME_BULLET", "");
-set_image("up", THEME."images/up.png");
-set_image("down", THEME."images/down.png");
-set_image("left", THEME."images/left.png");
-set_image("right", THEME."images/right.png");
-set_image("pollbar", THEME."images/navbg.jpg");
-set_image("folder", THEME."images/forum/folder.png");
-set_image("foldernew", THEME."images/forum/foldernew.png");
-set_image("folderlock", THEME."images/forum/folderlock.png");
-set_image("stickythread", THEME."images/forum/stickythread.png");
+set_image("up", STATIC_DOMAIN."cssimg/up.png");
+set_image("down", STATIC_DOMAIN."cssimg/down.png");
+set_image("left", STATIC_DOMAIN."cssimg/left.png");
+set_image("right", STATIC_DOMAIN."cssimg/right.png");
+set_image("pollbar", STATIC_DOMAIN."cssimg/navbg.jpg");
+set_image("folder", STATIC_DOMAIN."cssimg/forum/folder.png");
+set_image("foldernew", STATIC_DOMAIN."cssimg/forum/foldernew.png");
+set_image("folderlock", STATIC_DOMAIN."cssimg/forum/folderlock.png");
+set_image("stickythread", STATIC_DOMAIN."cssimg/forum/stickythread.png");
 set_image("reply", "reply");
 set_image("newthread", "newthread");
 set_image("web", "web");
