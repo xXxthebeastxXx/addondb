@@ -22,7 +22,7 @@ function navigation($main_menu=true){
 				$link_target = $data['link_window'] == "1" ? " target='_blank'" : "";
 				$li_class = preg_match("@^".preg_quote(START_PAGE)."$@i", $data['link_url']) ? " class='current'" : "";
 				if (strstr($data['link_name'], "%submenu% ")) {
-					echo"\t\t\t<li$li_class><a href='".$data['link_url']."'$link_target><span>".parseubb(str_replace("%submenu% ", "",$data['link_name']), "b|i|u|color")."</span></a><ul class='children'>\n";
+					echo"\t\t\t<li$li_class><a href='/".$data['link_url']."'$link_target><span>".parseubb(str_replace("%submenu% ", "",$data['link_name']), "b|i|u|color")."</span></a><ul class='children'>\n";
 				} elseif (strstr($data['link_name'], "%endmenu% ")) {
 					echo "\t\t\t<li$li_class><a href='/".$data['link_url']."'$link_target><span>".parseubb(str_replace("%endmenu% ", "",$data['link_name']), "b|i|u|color")."</span></a></li>\n</ul></li>\n";
 				} elseif (strstr($data['link_url'], "http://") || strstr($data['link_url'], "https://")) {

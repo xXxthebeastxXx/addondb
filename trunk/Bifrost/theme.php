@@ -19,12 +19,37 @@ function render_page() {
 		<?php navigation(); ?>
 	</div><!-- /nav -->
 	<div class="grid_9 hinfo">
-	1</div>
+	<h4>National Support Network</h4>
+	<div class="dropselect">
+	<p class='field'>Select</p>
+	<ul class="list nsn">
+		<li><a href='http://www.phpfusion-ar.com' target='_blank' class='side'>Arabia</a></li>
+		<li><a href='http://www.phpfusion-nederlands.info' target='_blank' class='side'>Belgium</a></li>
+		<li><a href='http://www.phpfusion-br.com/' target='_blank' class='side'>Brazil</a></li>
+		<li><a href='http://www.php-fusion.dk' target='_blank' class='side'>Denmark</a></li>
+		<li><a href='http://www.phpfusion.cz' target='_blank' class='side'>Czech Republic</a></li>
+		<li><a href='http://www.phpfusion-fr.com/' target='_blank' class='side'>France</a></li>
+		<li><a href='http://www.phpfusion-support.de' target='_blank' class='side'>Germany</a></li>
+		<li><a href='http://www.php-fusion.co.hu'  target='_blank' class='side'>Hungary</a></li>
+		<li><a href='http://www.fusion.alaviweb.com' target='_blank' class='side'>Iran</a></li>
+		<li><a href='http://www.php-fusion.it' target='_blank' class='side'>Italy</a></li>
+		<li><a href='http://www.phpfusion-nederlands.info' target='_blank' class='side'>Netherlands</a></li>
+		<li><a href='http://www.phpfusion-no.com/' target='_blank' class='side'>Norway</a></li>
+		<li><a href='http://www.php-fusion.pl' target='_blank' class='side'>Poland</a></li>
+		<li><a href='http://www.phpfusion.ro/' target='_blank' class='side'>Romania</a></li>
+		<li><a href='http://netck.ru' target='_blank' class='side'>Russia</a></li>
+		<li><a href='http://www.yu-fusion.org/' target='_blank' class='side'>Serbia</a></li>
+		<li><a href='http://php-fusion.uni.cc/' target='_blank' class='side'>Spain</a></li>
+		<li><a href='http://www.php-fusion.se' target='_blank' class='side'>Sweden</a></li>
+		<li><a href='http://www.phpfusionturkiye.com' target='_blank' class='side'>Turkey</a></li>
+	</ul>
+</div>
+	</div>
 	<div class="grid_6 push_1 hinfo">
 	<h4>Search the site</h4>
 	<form name="search" method="get" action="/search.php">
 	<input type="search" name="stext" class="textsearch" />
-	<button type="submit" class="forumbutton"><span>Search</span></button>
+	<button type="submit" class="button"><span>Search</span></button>
 	</form>
 	</div>
 	<div class="grid_6 push_2 userinfo hinfo">

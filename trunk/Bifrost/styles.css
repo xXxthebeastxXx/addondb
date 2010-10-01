@@ -88,6 +88,7 @@ body { background:#F2F6F7 url(../cssimg/header_footer_bg.png) 0 -270px repeat-x;
 .userinfo ul { height:40px; list-style:none; margin:0 }
 .userinfo li { float:left; margin:0 0 10px 10px; width:105px }
 .userinfo li a { display:block; padding-left:5px }
+.userinfo  .button, .hinfo .button, .hinfo input { margin-top: 15px}
 #footer ul { list-style:none; margin:0 }
 #footer li { margin-bottom:10px }
 #footer a { color:#737373; text-decoration:none }
@@ -114,9 +115,8 @@ margin-right:auto
 .forum_thread_user_info { }
 .forum_thread_user_name { font-size:120% }
 input, textarea, select { color:#A0A0A0; font:1em Helvetica, Arial, sans-serif; }
-input[type="text"] { margin:3px 0 0; width:auto; }
-input[type="text"], textarea, select { border:2px solid #D7E9F2; margin:0; padding:6px 5px; -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; overflow-x: hidden }
-.textsearch { background:none; border-color:#363A3B; border-style:none none solid; border-width:medium medium 1px; }
+input[type="text"],input[type="password"] { margin:3px 0 0; width:auto; }
+input[type="text"],input[type="password"], textarea, select { border:2px solid #D7E9F2; margin:0; padding:6px 5px; -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; overflow-x: hidden }
 textarea { min-height:50px; }
 select { width:auto; }
 input:focus, textarea:focus, select:focus { border-color:#FFC954; outline:0 none; }
@@ -155,6 +155,7 @@ margin:-1px -3px
 .dropselect>ul.list li { padding:10px; border-bottom: solid 1px #ccc; cursor:pointer; }
 .dropselect>ul.list li:hover { background:#fff; color:#A0A0A0; }
 .dropselect>ul.list li:last-child { border:none }
+.dropselect .nsn li, .dropselect .nsn { padding:5px !important;}
 .addonsubmitform label { display:block; line-height: 20px; margin:0 0 10px 0; }
 .addonsubmitform .textbox { width:428px }
 /* 
