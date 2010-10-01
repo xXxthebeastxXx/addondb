@@ -14,6 +14,20 @@ function getposOffset(a,d){var c=(d=="left")?a.offsetLeft:a.offsetTop;var b=a.of
  */
 function closeDiv(){$("#close-message").fadeTo("slow",0.01,function(){$(this).slideUp("slow",function(){$(this).hide()})})}window.setTimeout("closeDiv();",2500);
 
+$('a[href*=#]').click(function() {
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
+    && location.hostname == this.hostname) {
+      var $target = $(this.hash);
+      $target = $target.length && $target
+      || $('[name=' + this.hash.slice(1) +']');
+      if ($target.length) {
+        var targetOffset = $target.offset().top;
+        $('html,body')
+        .animate({scrollTop: targetOffset}, 1000);
+       return false;
+      }
+    }
+  });
 $('.forumbutton,.button').bind({
 	mousedown: function() {
 		$(this).addClass('mousedown');

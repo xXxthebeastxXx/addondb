@@ -54,7 +54,7 @@ function get_head_tags(){ ?>
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;" />
-<link rel="stylesheet" href="/themes/Bifrost/styles.css?v=1" />
+<link rel="stylesheet" href="<?php echo static_content(); ?>css/styles.css?v=1" />
 <script defer src="<?php echo static_content(); ?>js/modernizr-1.5.min.js"></script>
 <?php
 }

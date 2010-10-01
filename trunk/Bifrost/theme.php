@@ -49,7 +49,7 @@ function render_page() {
 		</div>
 		<div class="clearfix"></div>
 		<div id="subfooter">
-			<small>Copyright © 2002 - 2010 by Nick Jones.</small>
+			<small>Copyright &copy; 2002 - 2010 by Nick Jones.</small>
 		</div><!-- /subfooter -->
 	</div>
 </div><!-- /footer -->
