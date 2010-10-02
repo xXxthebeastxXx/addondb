@@ -23,10 +23,14 @@ require_once INFUSIONS."addondb/infusion_db.php";
 if ($profile_method == "input") {
 	//Nothing here
 } elseif ($profile_method == "display") {
+
+$addoncount = number_format(dbcount("(addon_id)", DB_ADDONS, "addon_author_name='".$user_data['user_name']."'"));
+
+     if ($addoncount > 0) {
 	echo "<tr>\n";
 	echo "<td width='1%' class='tbl1' style='white-space:nowrap'>".$locale['uf_asubs_001']."</td>\n";
-	echo "<td align='right' class='tbl1'>".number_format(dbcount("(addon_id)", DB_ADDONS, "addon_author_name='".$user_data['user_name']."'"))."</td>\n";
-	echo "</tr>\n";
+	echo "<td align='right' class='tbl1'>".$addoncount."</td>\n";
+	echo "</tr>\n"; }
 
 	
 } elseif ($profile_method == "validate_insert") {
