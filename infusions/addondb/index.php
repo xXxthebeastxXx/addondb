@@ -239,16 +239,24 @@ echo "<table class='tbl-border' align='center' width='100%'><tr>\n
         <th class='forum-caption' width='20%'>".$locale['addondb502']."</th>
         <th class='forum-caption' width='20%'>".$locale['addondb503']."</th>
         <th class='forum-caption' width='20%'>".$locale['addondb504']."</th>
-        <th class='forum-caption' width='20%'>".$locale['addondb505']."</th>
-        <tr></tr>\n
+        <th class='forum-caption' width='20%'>".$locale['addondb505']."</th>\n";
+        echo "<tr></tr>\n
         <td class='tbl2' align='center'>".$total_addon."</td>
         <td class='tbl2' align='center'>".$total_infus."</td>
         <td class='tbl2' align='center'>".$total_panel."</td>
         <td class='tbl2' align='center'>".$total_theme."</td>
         <td class='tbl2' align='center'>".$total_other."</td>\n
-        </tr>\n<tr>
-        <td class='tbl2' colspan='2'>".sprintf($locale['addondb508'], $total_trans)."</td>\n
-        <td class='tbl2' colspan='3' align='right'>".sprintf($locale['addondb506'], $total_addon).sprintf($locale['addondb507'], $total_count)."</td>
+        </tr>\n<table>\n";
+        echo "<table class='tbl-border' align='center' width='100%'><tr>\n
+        <td class='tbl2'>".sprintf($locale['addondb508'], $total_trans)."</td>\n";
+        
+        if (iMEMBER) {
+        $addoncount = number_format(dbcount("(addon_id)", DB_ADDONS, "addon_author_name='".$userdata['user_name']."'"));
+        if ($addoncount > 0) {
+        
+        echo "<td class='tbl2' align='center'><a href='".ADDON."my_addons.php' title=''>".sprintf($locale['addondb509'], $addoncount)."</a></td>\n"; }
+        }
+        echo "<td class='tbl2' align='right'>".sprintf($locale['addondb506'], $total_addon).sprintf($locale['addondb507'], $total_count)."</td>
         </tr>\n</table>\n";
         
 closetable();
