@@ -1,7 +1,7 @@
 <?php
 /*-------------------------------------------------------+
 | PHP-Fusion Content Management System
-| Copyright (C) 2002 - 2008 Nick Jones
+| Copyright (C) 2002 - 2010 Nick Jones
 | http://www.php-fusion.co.uk/
 +--------------------------------------------------------+
 | Filename: submissions.php
@@ -53,7 +53,7 @@ if (!isset($_GET['action']) || $_GET['action'] == "1") {
 		}
 				opentable($locale['410']);
 		echo "<table cellpadding='0' cellspacing='1' width='400' class='tbl-border center'>\n<tr>\n";
-		echo "<td colspan='2' class='tbl2'><a id='link_submissions' name='link_submissions'></a>\nMods</td>\n";
+		echo "<td colspan='2' class='tbl2'><a id='link_submissions' name='link_submissions'></a>\n".$locale['addondb433']."</td>\n";
 		echo "</tr>\n".$addons."</table>\n";
 		closetable();
 		$result1 = dbquery("SELECT * FROM ".DB_ADDON_TRANS." WHERE trans_active='1' ORDER BY trans_datestamp DESC");  

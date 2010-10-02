@@ -24,15 +24,17 @@ if (file_exists(ADDON_LOCALE.LOCALESET."admin/inc.nav.php")) {
 	include ADDON_LOCALE."English/admin/inc.nav.php";
 }
 
+$dot = "<img src='".ADDON_IMG."grid_dot.png' alt='' />";
+
 opentable($locale['incnav_001']);
 echo "<center>
-<a href='".ADDON_ADMIN."index.php".$aidlink."'>".$locale['incnav_002']."</a> | 
-<a href='".ADDON_ADMIN."submissions.php".$aidlink."'>".$locale['incnav_003']."</a> |
-<a href='".ADDON_ADMIN."support_thread.php".$aidlink."'>".$locale['incnav_004']."</a> | 
-<a href='".ADDON_ADMIN."error.php".$aidlink."'>".$locale['incnav_005']."</a> | 
-<a href='".ADDON_ADMIN."cats.php".$aidlink."'>".$locale['incnav_006']."</a> | 
-<a href='".ADDON_ADMIN."versions.php".$aidlink."'>".$locale['incnav_007']."</a>
-</center>\n";
+".$dot." <a href='".ADDON_ADMIN."index.php".$aidlink."'>".$locale['incnav_002']."</a> 
+".$dot." <a href='".ADDON_ADMIN."submissions.php".$aidlink."'>".$locale['incnav_003']."</a> 
+".$dot." <a href='".ADDON_ADMIN."support_thread.php".$aidlink."'>".$locale['incnav_004']."</a> 
+".$dot." <a href='".ADDON_ADMIN."error.php".$aidlink."'>".$locale['incnav_005']."</a> 
+".$dot." <a href='".ADDON_ADMIN."cats.php".$aidlink."'>".$locale['incnav_006']."</a> 
+".$dot." <a href='".ADDON_ADMIN."versions.php".$aidlink."'>".$locale['incnav_007']."</a> 
+".$dot."</center>\n";
 
 closetable();
 

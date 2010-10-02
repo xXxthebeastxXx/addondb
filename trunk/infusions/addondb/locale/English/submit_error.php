@@ -13,7 +13,7 @@ $locale['addondb413'] = "Report";
 //General
 $locale['addondb420'] = "Report Fault";
 $locale['addondb421'] = "Fault Description:";
-$locale['addondb422'] = "Fault Reported! Our admin staff will look it as soon as posible!<br />Thank you for reporting this!";
+$locale['addondb422'] = "Fault Reported! Our admin staff will look into it as soon as posible!<br />Thank you for reporting this!";
 
 //Errors
 $locale['addondb450'] = "Error";
