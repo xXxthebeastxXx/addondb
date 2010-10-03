@@ -22,8 +22,6 @@ require_once INFUSIONS."addondb/infusion_db.php";
 require_once INFUSIONS."addondb/inc/inc.functions.php";
 include INFUSIONS."addondb/locale/".LOCALESET."addons.php";
 
-$settings['addons_per_page'] = 30;
-
 if (!isset($_GET['rowstart']) || !isnum($_GET['rowstart'])) { $_GET['rowstart'] = 0; }
 
 $db_opts = "addon_status='0'";
@@ -91,6 +89,7 @@ $addon_orderby_dir_value = "ASC";
 
 if ($settings_global['set_addondb_onf'] == '1' && iADMIN) { echo "<div class ='admin-message'><center><b>".$locale['addondb605']."</b></div>\n"; }
 if ($settings_global['set_addondb_sub'] == '1' && iADMIN) { echo "<div class ='admin-message'><center><b>".$locale['addondb608']."</b></div>\n"; }
+if ($settings_global['set_addondb_sub'] == '1' && iMEMBER) { echo "<div class ='admin-message'><center><b>".$locale['addondb609']." ".$locale['addondb607']."</b></div>\n"; }
 
 opentable($locale['addondb400']);
 
@@ -123,7 +122,7 @@ if ($rows != 0) {
 		WHERE ".$db_opts." AND ".groupaccess('tc.addon_cat_access')."
 		GROUP BY addon_id, tc.addon_cat_id
 		ORDER BY addon_cat_order, ".$addon_orderby_value." ".$addon_orderby_dir_value."
-		LIMIT ".$_GET['rowstart'].",".$settings['addons_per_page']
+		LIMIT ".$_GET['rowstart'].",".$settings_global['addons_per_page']
 	);
 }
 echo "<form name='filterform' method='get' action='".FUSION_SELF."'>
@@ -222,7 +221,7 @@ if ($rows != 0) {
 		echo "<br /><br /><div style='text-align:center;margin-top:2em;margin-bottom:2em;'>".$locale['addondb425']." <a href='".BASEDIR."register.php' title='".$locale['addondb428']."'>".$locale['addondb426']."</a> ".$locale['addondb427']."</div>";
 	}
 }
-if ($rows > $settings['addons_per_page']) echo "<div align='center' style='margin-top:5px;'>\n".makePageNav($_GET['rowstart'], $settings['addons_per_page'], $rows, 3, ($get_vars ? FUSION_SELF."".$get_vars."&amp;" : ""))."\n</div>\n";
+if ($rows > $settings_global['addons_per_page']) echo "<div align='center' style='margin-top:5px;'>\n".makePageNav($_GET['rowstart'], $settings_global['addons_per_page'], $rows, 3, ($get_vars ? FUSION_SELF."".$get_vars."&amp;" : ""))."\n</div>\n";
 closetable();
 
 echo "<br />\n";

@@ -30,11 +30,18 @@ if (file_exists(ADDON_LOCALE.LOCALESET."addons.php")) {
 }
 
 opentable($locale['addondb606']);
-echo "<br/>";
-echo $settings_global['set_addon_maintmsg'];
-echo "<br /><br />";
-echo "<p><center><img src='".ADDON_IMG."addon_logo.png' alt='' /></center></p>";
-echo "<center>".$locale['addondb607']."</center>\n";
+   echo "<br/>";
+            echo "<table border='0' width='100%' align='center' cellspacing='0' cellpadding='0'><tr>\n";
+              echo "<thead>\n";
+                echo "<th class='forum-caption' colspan='2'>".$locale['addondb606']."</th>\n";
+                  echo "</tr>\n</thead>\n<tbody>\n<tr>\n";
+                     echo "<td class='tbl2'><img src='".ADDON_IMG."addon_logo.png' alt='' />\n";
+                     echo "<td class='tbl2'>".$settings_global['set_addon_maintmsg']."</td>\n";
+                     echo "</tr>\n<tr>\n";
+                     echo "<td class='tbl2' align='center' colspan='2'>".$locale['addondb607']."</td>\n";
+              echo "</tr>\n</tbody>\n";
+            echo "</table>\n";
+
 closetable();
 
 require_once THEMES."templates/footer.php";

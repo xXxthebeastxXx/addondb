@@ -33,7 +33,7 @@ define("ADDON_SUBMISSIONS", true);
 }
 
 if (ADDON_MAINTENANCE == true && !iADMIN && FUSION_SELF != "maintenance.php") { redirect(INFUSIONS."addondb/maintenance.php"); }
-if (ADDON_SUBMISSIONS == true && !iADMIN && FUSION_SELF == "submit.php") { redirect(INFUSIONS."addondb/index.php"); }
+if (ADDON_SUBMISSIONS == true && !iADMIN && FUSION_SELF != "index.php") { redirect(INFUSIONS."addondb/index.php"); }
 
 define("ADDON", INFUSIONS."addondb/");
 define("ADDON_IMG", INFUSIONS."addondb/img/");

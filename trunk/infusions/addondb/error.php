@@ -100,7 +100,7 @@ if (isset($_GET['error']) && isset($_GET['addon_id']) && isnum($_GET['addon_id']
           </tr>
           </table>
           </form></div>
-          <br /><div align='center'><img src='".ADDON_IMG."translate.png' width='22' alt ='' /> <a href='".ADDON."guidelines.php?trans' title=''>".$locale['addondb478']."</a></a></div>
+          <br /><div align='center'><img src='".ADDON_IMG."translate.png' width='22' alt ='' /> <a href='".ADDON."translation_guidelines.php' title=''>".$locale['addondb478']."</a></a></div>
           ";
           closetable();
         } elseif(isnum($_POST['lang'])) {
