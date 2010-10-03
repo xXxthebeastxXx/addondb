@@ -34,7 +34,7 @@ add_to_title($locale['global_200'].$locale['tsg001']);
 
 opentable($locale['tsg001']);
 
-echo "<div align='left'><img src='".ADDON_IMG."logo.png' width='200' align='left' alt ='' />\n";
+echo "<div align='left'><a href='".ADDON."index.php' title=''><img src='".ADDON_IMG."addon_logo.png' width='200' align='left' alt ='' /></a>\n";
 echo "<br />";
 echo $locale['tsg002'];
 echo "<br /><br />";
@@ -106,7 +106,7 @@ add_to_title($locale['global_200'].$locale['msg001']);
 
 opentable($locale['msg001']);
 
-echo "<div align='left'><img src='".ADDON_IMG."logo.png' width='200' align='left' alt ='' />\n";
+echo "<div align='left'><a href='".ADDON."index.php' title=''><img src='".ADDON_IMG."addon_logo.png' width='200' align='left' alt ='' /></a>\n";
 echo "<br />";
 echo $locale['msg002'];
 echo "<br /><br />";
