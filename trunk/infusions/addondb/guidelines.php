@@ -101,7 +101,7 @@ echo THEME_BULLET.$locale['msg025']."<br />";
 	echo "".$locale['msg030']."<br />\n<br />\n";
 	
 	echo $guideline_footer;
-	echo "<center><b>".$locale['msg036']."<a href='".ADDON."submit.php?addon_type=".$addon_type."' title=''>".$locale['msg043'].$addon_type."</a></b></center><br />\n";
+	echo "<center><b>".$locale['msg036']."</b><a class='button' href='".ADDON."submit.php?addon_type=".$addon_type."' title=''><span>".$locale['msg043'].$addon_type."</span></a></center><br />\n";
 
 closetable();
 
@@ -166,7 +166,7 @@ echo THEME_BULLET.$locale['msg025']."<br />";
 	echo "".$locale['msg030']."<br />\n<br />\n";
 	
 	echo $guideline_footer;
-	echo "<center><b>".$locale['msg036']."<a href='".ADDON."submit.php?addon_type=".$addon_type."' title=''>".$locale['msg043'].$addon_type."</a></b></center><br />\n";
+	echo "<center><b>".$locale['msg036']."</b><a class='button' href='".ADDON."submit.php?addon_type=".$addon_type."' title=''><span>".$locale['msg043'].$addon_type."</span></a></center><br />\n";
 
 closetable();
 
@@ -230,7 +230,7 @@ echo THEME_BULLET.$locale['msg025']."<br />";
 	echo "".$locale['msg030']."<br />\n<br />\n";
 	
 	echo $guideline_footer;
-	echo "<center><b>".$locale['msg036']."<a href='".ADDON."submit.php?addon_type=".$addon_type."' title=''>".$locale['msg043'].$addon_type."</a></b></center><br />\n";
+	echo "<center><b>".$locale['msg036']."</b><a class='button' href='".ADDON."submit.php?addon_type=".$addon_type."' title=''><span>".$locale['msg043'].$addon_type."</span></a></center><br />\n";
 
 closetable();
 
@@ -294,7 +294,7 @@ echo THEME_BULLET.$locale['msg025']."<br />";
 	echo "".$locale['msg030']."<br />\n<br />\n";
 	
 	echo $guideline_footer;
-	echo "<center><b>".$locale['msg036']."<a href='".ADDON."submit.php?addon_type=".$addon_type."' title=''>".$locale['msg043'].$addon_type."</a></b></center><br />\n";
+	echo "<center><b>".$locale['msg036']."</b><a class='button' href='".ADDON."submit.php?addon_type=".$addon_type."' title=''><span>".$locale['msg043'].$addon_type."</span></a></center><br />\n";
 
 closetable();
 
