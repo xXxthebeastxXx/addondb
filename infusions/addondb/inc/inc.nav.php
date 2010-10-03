@@ -34,6 +34,7 @@ echo "<center>
 ".$dot." <a href='".ADDON_ADMIN."error.php".$aidlink."'>".$locale['incnav_005']."</a> 
 ".$dot." <a href='".ADDON_ADMIN."cats.php".$aidlink."'>".$locale['incnav_006']."</a> 
 ".$dot." <a href='".ADDON_ADMIN."versions.php".$aidlink."'>".$locale['incnav_007']."</a> 
+".$dot." <a href='".ADDON_ADMIN."settings.php".$aidlink."'>".$locale['incnav_008']."</a> 
 ".$dot."</center>\n";
 
 closetable();

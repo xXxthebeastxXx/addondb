@@ -7,5 +7,6 @@ $locale['incnav_004'] = "Support Threads";
 $locale['incnav_005'] = "Error Reports";
 $locale['incnav_006'] = "Addon Categories";
 $locale['incnav_007'] = "PHP-Fusion Versions";
+$locale['incnav_008'] = "DB Settings";
 
 ?>

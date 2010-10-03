@@ -49,5 +49,9 @@ $locale['addondb601'] = "Submitted Addons";
 $locale['addondb602'] = "Submitted Translations";
 $locale['addondb603'] = "Submitted Error Reports";
 $locale['addondb604'] = "Addon Management";
+$locale['addondb605'] = "Warning! Maintenance mode has been activated!";
+$locale['addondb606'] = "AddonDB is offline";
+$locale['addondb607'] = "Please try again later.";
+$locale['addondb608'] = "Warning! Submissions have been deactivated!!";
 
 ?>

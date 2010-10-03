@@ -180,10 +180,21 @@ if (!isnum($addon_id) || dbrows($q_addons) == 0 || ($d_addons['addon_status'] !=
 		}
 
 	if ($d_addons['addon_approved_user'] != 0) {
+	
+	
+	$user_approve = dbarray(dbquery("SELECT 
+	                                     user_id, 
+	                                     user_name,  
+	                                     user_status 
+	                                     FROM ".DB_USERS." 
+	                                     WHERE 
+	                                     user_name = '".$d_addons['user_name']."'
+	                                     "));
+	
 		echo "<table width='100%' border='0' cellpadding='0' cellspacing='1' class='tbl-border'>
 		<tr>
 		<td class='tbl2' width='12%' nowrap><b>".$locale['addondb411'].":</b></td>
-		<td class='tbl1' width='*'>".$d_addons['user_name']."</td>
+		<td class='tbl1' width='*'>".profile_link($user_approve['user_id'], $d_addons['user_name'], $user_approve['user_status'])."</td>
 		<td class='tbl2' width='12%' nowrap><b>".$locale['addondb412'].":</b></td>
 		<td class='tbl1' width='20%'>".str_repeat("<img src='".INFUSIONS."addondb/img/star.png' alt='".$locale['addondb414']."'>",$d_addons['addon_approved_rating'])."</td>
 		</tr>
@@ -285,7 +296,8 @@ if (!isnum($addon_id) || dbrows($q_addons) == 0 || ($d_addons['addon_status'] !=
 	       }
 	
 	showratings("M", $addon_id, FUSION_SELF."?addon_id=".$d_addons['addon_id']);
-	showcomments("M", DB_ADDONS, "addon_id", $d_addons['addon_id'], FUSION_SELF."?addon_id=".$d_addons['addon_id']);
+	if ($settings_global['set_addondb_comm'] == '0') {
+	showcomments("M", DB_ADDONS, "addon_id", $d_addons['addon_id'], FUSION_SELF."?addon_id=".$d_addons['addon_id']);}
 	
 }
 }

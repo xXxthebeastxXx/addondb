@@ -17,11 +17,23 @@
 +--------------------------------------------------------*/
 if (!defined("IN_FUSION")) { die("Access Denied"); }
 
-define("ADDON_MAINTENANCE", false);
-
 require_once INFUSIONS."addondb/infusion_db.php";
+$settings_global = dbarray(dbquery("SELECT * FROM ".DB_ADDON_STGS));
+
+if ($settings_global['set_addondb_onf'] == '0') {
+define("ADDON_MAINTENANCE", false);
+} elseif ($settings_global['set_addondb_onf'] == '1') {
+define("ADDON_MAINTENANCE", true);
+}
+
+if ($settings_global['set_addondb_sub'] == '0') {
+define("ADDON_SUBMISSIONS", false);
+} elseif ($settings_global['set_addondb_sub'] == '1') {
+define("ADDON_SUBMISSIONS", true);
+}
 
 if (ADDON_MAINTENANCE == true && !iADMIN && FUSION_SELF != "maintenance.php") { redirect(INFUSIONS."addondb/maintenance.php"); }
+if (ADDON_SUBMISSIONS == true && !iADMIN && FUSION_SELF == "submit.php") { redirect(INFUSIONS."addondb/index.php"); }
 
 define("ADDON", INFUSIONS."addondb/");
 define("ADDON_IMG", INFUSIONS."addondb/img/");

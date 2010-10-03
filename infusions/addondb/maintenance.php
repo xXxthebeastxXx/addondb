@@ -23,9 +23,18 @@ require_once INFUSIONS."addondb/inc/inc.functions.php";
 
 if (ADDON_MAINTENANCE == false) { redirect("index.php"); }
 
-opentable("AddonDB maintenance");
-echo "<p>The Addon Database is currently closed due to technical errors, we apologize for the inconvenience.</p>";
-echo "<p><center><img src='".INFUSIONS."addondb/img/addondb_add_3.gif' alt='' /></center></p>";
+if (file_exists(ADDON_LOCALE.LOCALESET."addons.php")) {
+	include ADDON_LOCALE.LOCALESET."addons.php";
+} else {
+	include ADDON_LOCALE."English/addons.php";
+}
+
+opentable($locale['addondb606']);
+echo "<br/>";
+echo $settings_global['set_addon_maintmsg'];
+echo "<br /><br />";
+echo "<p><center><img src='".ADDON_IMG."addon_logo.png' alt='' /></center></p>";
+echo "<center>".$locale['addondb607']."</center>\n";
 closetable();
 
 require_once THEMES."templates/footer.php";
