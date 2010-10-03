@@ -98,7 +98,7 @@ if (!isnum($addon_id) || dbrows($q_addons) == 0 || ($d_addons['addon_status'] !=
     echo"<div align='center'><a href='img/screenshots/".$d_addons['addon_img']."' rel='lightbox' style='outline: none;border:none;'>
     <img src='".ADDON_SCRN."t_".$d_addons['addon_img']."' style='outline: none;border:none;'></a></div>\n";
     }
-	echo"</td>
+	echo"<br /><br /><br />\n<center><img src='".ADDON_IMG."back.png' title='' alt='' border='0' />&nbsp;<a href='".ADDON."index.php' title =''>".$locale['addondb516']."</a></center></td>
 	<td>
 	<table width='100%' border='0' cellpadding='0' cellspacing='1' class='tbl-border'>
 	<tr>
