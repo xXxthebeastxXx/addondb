@@ -24,7 +24,7 @@ if ($profile_method == "input") {
 	//Nothing here
 } elseif ($profile_method == "display") {
 
-$addoncount = number_format(dbcount("(addon_id)", DB_ADDONS, "addon_author_name='".$user_data['user_name']."'"));
+$addoncount = number_format(dbcount("(addon_id)", DB_ADDONS, "addon_author_name='".$userdata['user_name']."' && addon_status = '0'"));
 
      if ($addoncount > 0) {
 	echo "<tr>\n";

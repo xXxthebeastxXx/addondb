@@ -253,7 +253,7 @@ echo "<table class='tbl-border' align='center' width='100%'><tr>\n
         <td class='tbl2'>".sprintf($locale['addondb508'], $total_trans)."</td>\n";
         
         if (iMEMBER) {
-        $addoncount = number_format(dbcount("(addon_id)", DB_ADDONS, "addon_author_name='".$userdata['user_name']."'"));
+        $addoncount = number_format(dbcount("(addon_id)", DB_ADDONS, "addon_author_name='".$userdata['user_name']."' && addon_status = '0'"));
         if ($addoncount > 0) {
         
         echo "<td class='tbl2' align='center'><a href='".ADDON."my_addons.php' title=''>".sprintf($locale['addondb509'], $addoncount)."</a></td>\n"; }
