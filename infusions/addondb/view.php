@@ -89,7 +89,7 @@ if (!isnum($addon_id) || dbrows($q_addons) == 0 || ($d_addons['addon_status'] !=
 	<td width='155'>
 	";
 	if($d_addons['addon_img'] == "" || !file_exists(ADDON_SCRN."t_".$d_addons['addon_img'])) {
-    echo "<img src='".ADDON_SCRN."nos.png'>";
+    echo "<img src='".ADDON_IMG."addon_logo.png'>";
 	} else {
 	add_to_head("<script type='text/javascript' src='lightbox/prototype.js'></script>
     <script type='text/javascript' src='lightbox/scriptaculous.js?load=effects,builder'></script>

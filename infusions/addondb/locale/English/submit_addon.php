@@ -24,12 +24,18 @@ $locale['addondb418'] = "Yes";
 $locale['addondb419'] = "No";
 $locale['addondb420'] = " to the AddonDB";
 $locale['addondb421'] = "Submitted Files Received";
-$locale['addondb422'] = "";
-$locale['addondb423'] = "";
-$locale['addondb424'] = " | ";
+$locale['addondb422'] = "Addon Type Description";
+$locale['addondb423'] = "
+<b>Infusions:</b> Any Addon that utilises infusion.php to create db tables or site links.<br/>
+<b>Themes:</b> Complete themes only, use other for submitting images or other graphics.";
+$locale['addondb424'] = "
+<b>Panels:</b> Any Addon that creates either a center or side panel.<br/>
+<b>Other:</b> All other submissions including BBCodes and User Fields.";
 $locale['addondb425'] = "Theme";
 $locale['addondb426'] = "Choose Submission Type: ";
 $locale['addondb427'] = "--Select--";
+$locale['addondb428'] = "Submissions to the AddonDB are currently disabled.<br />Please try again later.";
+$locale['addondb429'] = "You must be logged in to access the Addon Submission Form";
 
 // Submit Addon Success
 $locale['addondb500'] = "Thank you for you for submitting your Addon";
@@ -37,7 +43,7 @@ $locale['addondb501'] = "An Administrator will review your submission shortly";
 $locale['addondb502'] = "Submit another Addon";
 $locale['addondb503'] = "Return to Main Site";
 $locale['addondb504'] = "Go to Submissions Admin Panel";
-$locale['addondb505'] = "Go Addon DB";
+$locale['addondb505'] = "Go to Addon DB";
 
 // Submit Addon Fail
 $locale['addondb600'] = "Error";

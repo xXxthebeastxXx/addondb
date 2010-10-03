@@ -28,158 +28,277 @@ if (file_exists(ADDON_LOCALE.$settings['locale']."/guidelines.php")) {
 	include ADDON_LOCALE."English/guidelines.php";
 }
 
-if (isset($_REQUEST['trans'])) {
+if (!isset($_REQUEST['addon_type'])) { redirect("index.php"); }
 
-add_to_title($locale['global_200'].$locale['tsg001']);
+$guideline_footer = "<table border='0' width='100%' align='center' cellspacing='0' cellpadding='0'><tr>\n
+                     <thead>\n
+                     <th class='forum-caption' colspan='4'>".$locale['msg044']."</th>\n
+                     </tr>\n</thead>\n<tbody>\n<tr>\n
+                     <td class='tbl2' colspan='4'>".THEME_BULLET.$locale['msg038']."<br />".THEME_BULLET.$locale['msg039']."</td>\n
+                     </tr>\n<tr>\n
+                     <td class='tbl2' align='center'><a target='_blank' title='".$locale['msg045']."' href='http://validator.w3.org/'><img src='".ADDON_IMG."html_valid.png' alt='".$locale['msg045']."' /></a></td>
+                     <td class='tbl2' align='center'><a target='_blank' title='".$locale['msg046']."' href='http://validator.w3.org/'><img src='".ADDON_IMG."xhtml_valid.png' alt='".$locale['msg046']."' /></a></td>
+                     <td class='tbl2' align='center'><a target='_blank' title='".$locale['msg047']."' href='http://jigsaw.w3.org/css-validator/'><img src='".ADDON_IMG."css_valid.png' alt='".$locale['msg047']."' /></a></td>
+                     <td class='tbl2' align='center'><a target='_blank' title='".$locale['msg048']."' href='http://feedvalidator.org/'><img src='".ADDON_IMG."rss_valid.png' alt='".$locale['msg048']."' /></a></td>\n
+                     </tr>\n</tbody>\n</table>\n<br />\n";
 
-opentable($locale['tsg001']);
+if ($_REQUEST['addon_type'] == 'Infusion') {
+$addon_type = $_REQUEST['addon_type'];
+add_to_title($locale['global_200'].$locale['msg001'].$locale['msg106'].$addon_type);
 
-echo "<div align='left'><a href='".ADDON."index.php' title=''><img src='".ADDON_IMG."addon_logo.png' width='200' align='left' alt ='' /></a>\n";
-echo "<br />";
-echo $locale['tsg002'];
-echo "<br /><br />";
-echo "<div class='small'>".$locale['tsg003']."</div>";
-echo "<br /><br />";
-echo "<div align='right'><a href='".FUSION_SELF."?sub' title=''>".$locale['tsg030']."</a></div><br /><br /><hr /></div>";
-echo "<b>".$locale['tsg004']."</b>";
-echo "<br />";
-echo "<ul>";
-	  echo "<li>".$locale['tsg005']."</li>";
-	  echo "<li>".$locale['tsg006']."</li>";
-	  echo "<li>".$locale['tsg007']."</li>";
-echo "</ul>\n";
-echo "<b>".$locale['tsg009']."</b>";
-echo "<br />";
-echo "<ul>";
-    echo "<li>".$locale['tsg010']."</li>";	      
-    echo "<li>".$locale['tsg011']."</li><br />";
-    echo "<img src='".ADDON_IMG."header_info_trans.jpg' width='462' alt ='' /><br /><br />\n";
-	echo "<li>".$locale['tsg012']."</li>";
-	echo "<li>".$locale['tsg013']."</li>";
-echo "</ul>";
-echo "<b>".$locale['tsg014']."</b>";
-echo "<br />";
-echo "<ul>";
+opentable($locale['msg001'].$locale['msg106'].$addon_type);
 
-	echo "<li>".$locale['tsg016']."</li>";
-	  echo "<ul type='circle'>";
-	  echo "<li>".$locale['tsg017']."</li>";
-	  echo "<li>".$locale['tsg018']."</li>";
-	  echo "<li>".$locale['tsg019']."</li>";
-	  echo "<li>".$locale['tsg020']."</li>";
-	  echo "</ul>";
-	echo "<li>".$locale['tsg021']."</li>";
-	echo "<li>".$locale['tsg022']."</li><br />";
-	echo "</ul>\n";
-	
-    echo "<table border='0' width='80%' align='center' cellspacing='0' cellpadding='0'><tr>\n";
-	echo "<td class='tbl1' align='center'><b>".$locale['tsg023']."</b></td><td class='tbl1' align='center'><b>".$locale['tsg024']."</b></td>";
-	echo "</tr><tr>";
-	echo "<td align='center'><img src='".ADDON_IMG."folder_tree1.jpg' width=216' alt ='' /></td><td align='center'><img src='".ADDON_IMG."folder_tree2.jpg' width=207' alt ='' /></td>";
-	echo "</tr><tr>";
-	echo "<td class='tbl1' align='center'><b>".$locale['tsg025']."</b></td><td class='tbl1' align='center'><b>".$locale['tsg026']."</b></td>";
-	echo "</tr><tr>";
-	echo "<td align='center'><img src='".ADDON_IMG."t_user_field_tree.jpg' width=238' alt ='' /></td><td align='center'><img src='".ADDON_IMG."t_bbcode_tree.jpg' width=245' alt ='' /></td>";
-	echo "</tr>\n</table>\n";
-	
-	echo "<br /><br />\n";
-	
-	echo "<div class='tbl2'><b>".$locale['tsg027']."</b><br />";
-	echo "".$locale['tsg028']."<br />\n";
-	echo "".$locale['tsg029']."</div>\n";
-	echo "<br />\n";
-    echo "".$locale['tsg029']." <img src='".ADDON_IMG."translate.png' width='37' alt ='' />\n";
-    if (iMEMBER) {
-    if (file_exists(INFUSIONS."sf_staff_list/index.php")) {
-         echo "<br />".$locale['msg030']."<br />"; }
-       } else { 
-         echo "<br />".$locale['tsg033']."<br />";
-       }
-    echo "<br /><div align='right' class='small'>".$locale['tsg200']."</div>\n";
-
-closetable();
-
-
-} else {
-
-add_to_title($locale['global_200'].$locale['msg001']);
-
-opentable($locale['msg001']);
-
-echo "<div align='left'><a href='".ADDON."index.php' title=''><img src='".ADDON_IMG."addon_logo.png' width='200' align='left' alt ='' /></a>\n";
-echo "<br />";
+echo "<a href='".ADDON."index.php' title=''><img src='".ADDON_IMG."addon_logo.png' width='200' align='left' alt ='' /></a>\n";
 echo $locale['msg002'];
 echo "<br /><br />";
 echo "<div class='small'>".$locale['msg003']."</div>";
 echo "<br /><br />";
-echo "<div align='right'><a href='".FUSION_SELF."?trans' title=''>".$locale['msg031']."</a></div><br /><br /><hr /></div>";
 echo "<b>".$locale['msg004']."</b>";
 echo "<br />";
-echo "<ul>
-	      <li>".$locale['msg005']."</li>
-	      <li>".$locale['msg006']."</li>
-	      <li>".$locale['msg007']."</li>
-	      <li>".$locale['msg008']."</li>
-	      <li>".$locale['msg008a']."</li>";
-echo "</ul>\n";
-echo "<b>".$locale['msg009']."</b>";
+echo THEME_BULLET.$locale['msg005']."<br />";
+echo THEME_BULLET.$locale['msg006']."<br />";
+echo THEME_BULLET.$locale['msg007']."<br />";
+echo THEME_BULLET.$locale['msg008']."<br />";
+echo THEME_BULLET.$locale['msg009']."<br />";
+echo "<b>".$locale['msg010']."</b>";
 echo "<br />";
-echo "<ul>";
-    echo "<li>".$locale['msg010']."</li>";	      
-    echo "<li>".$locale['msg011']."</li><br />";
-    echo "<img src='".ADDON_IMG."header_info.jpg' width='416' alt ='' /><br /><br />\n";
-	echo "<li>".$locale['msg012']."</li>";
-	echo "<li>".$locale['msg013']."</li>";
-echo "</ul>";
-echo "<b>".$locale['msg014']."</b>";
+echo THEME_BULLET.$locale['msg011']."<br />";	      
+echo THEME_BULLET.$locale['msg012']."</li><br />";
+echo "<img src='".ADDON_IMG."header_info.jpg' width='416' alt ='' /><br /><br />\n";
+echo THEME_BULLET.$locale['msg013']."<br />";
+echo THEME_BULLET.$locale['msg014']."<br />";
+echo "<b>".$locale['msg015']."</b>";
 echo "<br />";
-echo "<ul>";
-    echo "<li>".$locale['msg034']."<br/>";
-    echo "<a target='_blank' title='W3C Markup Validation' href='http://validator.w3.org/'><img src='".ADDON_IMG."valid_xhtml.png' alt='W3C Markup Validation' /></a>\n";
-    echo "<a target='_blank' title='W3C CSS Validation' href='http://jigsaw.w3.org/css-validator/'><img src='".ADDON_IMG."valid_css.png' alt='W3C CSS Validation' /></a></li>\n";
-    echo "<li>".$locale['msg035']."<br/>";
-    echo "<a target='_blank' title='RSS Feed Validator' href='http://feedvalidator.org/'><img src='".ADDON_IMG."valid-rss.png' alt='RSS Feed Validator' /></a></li>\n";
-    echo "<li>".$locale['msg036']."</li>";
-	echo "<li>".$locale['msg015']."</li>";
-	echo "<li>".$locale['msg015a']."</li>";
-	echo "<li>".$locale['msg015b']."</li>";
-	echo "<li>".$locale['msg028']."</li>";
-	echo "<li>".$locale['msg016']."</li>";
-	  echo "<ul type='circle'>";
-	  echo "<li>".$locale['msg017']."</li>";
-	  echo "<li>".$locale['msg018']."</li>";
-	  echo "<li>".$locale['msg019']."</li>";
-	  echo "<li>".$locale['msg020']."</li>";
-	  echo "</ul>";
-	echo "<li>".$locale['msg021']."</li>";
-	echo "<li>".$locale['msg022']."</li><br />";
-	echo "</ul>\n";
+echo THEME_BULLET.$locale['msg040']."<br />";
+echo THEME_BULLET.$locale['msg016']."<br />";
+echo THEME_BULLET.$locale['msg017']."<br />";
+echo THEME_BULLET.$locale['msg018']."<br />";
+echo THEME_BULLET.$locale['msg031']."<br />";
+echo THEME_BULLET.$locale['msg019']."<br />";
+echo THEME_BULLET.$locale['msg020']."<br />";
+echo THEME_BULLET.$locale['msg021']."<br />";
+echo THEME_BULLET.$locale['msg022']."<br />";
+echo THEME_BULLET.$locale['msg023']."<br />";
+echo THEME_BULLET.$locale['msg041']."<br />";
+echo THEME_BULLET.$locale['msg042']."<br />";
+echo THEME_BULLET.$locale['msg024']."<br />";
+echo THEME_BULLET.$locale['msg025']."<br />";
 	
     echo "<table border='0' width='80%' align='center' cellspacing='0' cellpadding='0'><tr>\n";
-	echo "<td class='tbl1' align='center'><b>".$locale['msg023']."</b></td><td class='tbl1' align='center'><b>".$locale['msg024']."</b></td>";
-	echo "</tr><tr>";
-	echo "<td align='center'><img src='".ADDON_IMG."folder_tree.jpg' width='230' alt ='' /></td><td align='center'><img src='".ADDON_IMG."user_field_tree.jpg' width='266' alt ='' /></td>";
-	echo "</tr>\n</table>\n";
+    echo "<thead>\n";
+	echo "<th class='tbl1'><b>".$locale['msg026']."</b></th><th class='tbl1'><b>".$locale['msg027']."</b></th>";
+	echo "</tr>\n</thead>\n<tbody>\n<tr>\n";
+	echo "<td align='center'><img src='".ADDON_IMG."infusions.png' width='250' alt ='".$locale['msg026']."' /></td><td align='center'><img src='".ADDON_IMG."userfields.png' width='250' alt ='".$locale['msg027']."' /></td>";
+	echo "</tr>\n</tbody>\n</table>\n";
 	
 	echo "<br /><br />\n";
-	echo "<ul><li>";
-	echo "<b>".$locale['msg029']."</b>";
-	echo sprintf($locale['msg029a'], parsebytesize($settings['photo_max_b']), $settings['photo_max_w'], $settings['photo_max_h']);
-	echo "</li><ul>\n";
+	echo "<b>".$locale['msg032']."</b>";
+	echo sprintf($locale['msg033'], parsebytesize($settings['photo_max_b']), $settings['photo_max_w'], $settings['photo_max_h']);
 	echo "<br /><br />\n";
 	
-	echo "<div class='tbl2'><b>".$locale['msg025']."</b><br />";
-	echo "".$locale['msg026']."<br />\n";
-	echo "".$locale['msg027']."</div>\n";
-	echo "<br />\n";
-
-include ADDON_INC."addon_select.php";
-    
-    echo "<br /><div align='right' class='small'>".$locale['msg200']."</div>\n";
+	echo "<b>".$locale['msg028']."</b><br />";
+	echo "".$locale['msg029']."<br />\n";
+	echo "".$locale['msg030']."<br />\n<br />\n";
+	
+	echo $guideline_footer;
+	echo "<center><b>".$locale['msg036']."<a href='".ADDON."submit.php?addon_type=".$addon_type."' title=''>".$locale['msg043'].$addon_type."</a></b></center><br />\n";
 
 closetable();
 
-}
+
+} elseif ($_REQUEST['addon_type'] == 'Theme') {
+$addon_type = $_REQUEST['addon_type'];
+
+add_to_title($locale['global_200'].$locale['msg001'].$locale['msg106'].$addon_type);
+
+opentable($locale['msg001'].$locale['msg106'].$addon_type);
+
+echo "<a href='".ADDON."index.php' title=''><img src='".ADDON_IMG."addon_logo.png' width='200' align='left' alt ='' /></a>\n";
+echo $locale['msg002'];
+echo "<br /><br />";
+echo "<div class='small'>".$locale['msg003']."</div>";
+echo "<br /><br />";
+echo "<b>".$locale['msg004']."</b>";
+echo "<br />";
+echo THEME_BULLET.$locale['msg005']."<br />";
+echo THEME_BULLET.$locale['msg006']."<br />";
+echo THEME_BULLET.$locale['msg007']."<br />";
+echo THEME_BULLET.$locale['msg008']."<br />";
+echo THEME_BULLET.$locale['msg009']."<br />";
+echo "<b>".$locale['msg010']."</b>";
+echo "<br />";
+echo THEME_BULLET.$locale['msg011']."<br />";	      
+echo THEME_BULLET.$locale['msg012']."</li><br />";
+echo "<img src='".ADDON_IMG."header_info.jpg' width='416' alt ='' /><br /><br />\n";
+echo THEME_BULLET.$locale['msg013']."<br />";
+echo THEME_BULLET.$locale['msg014']."<br />";
+echo "<b>".$locale['msg015']."</b>";
+echo "<br />";
+echo THEME_BULLET.$locale['msg040']."<br />";
+echo THEME_BULLET.$locale['msg016']."<br />";
+echo THEME_BULLET.$locale['msg017']."<br />";
+echo THEME_BULLET.$locale['msg018']."<br />";
+echo THEME_BULLET.$locale['msg031']."<br />";
+echo THEME_BULLET.$locale['msg019']."<br />";
+echo THEME_BULLET.$locale['msg020']."<br />";
+echo THEME_BULLET.$locale['msg021']."<br />";
+echo THEME_BULLET.$locale['msg022']."<br />";
+echo THEME_BULLET.$locale['msg023']."<br />";
+echo THEME_BULLET.$locale['msg041']."<br />";
+echo THEME_BULLET.$locale['msg042']."<br />";
+echo THEME_BULLET.$locale['msg024']."<br />";
+echo THEME_BULLET.$locale['msg025']."<br />";
+	
+    echo "<table border='0' width='80%' align='center' cellspacing='0' cellpadding='0'><tr>\n";
+    echo "<thead>\n";
+	echo "<th class='tbl1'><b>".$locale['msg049']."</b></th>\n";
+	echo "</tr>\n</thead>\n<tbody>\n<tr>\n";
+	echo "<td align='center'><img src='".ADDON_IMG."themes.png' width='250' alt ='".$locale['msg049']."' /></td>\n";
+	echo "</tr>\n</tbody>\n</table>\n";
+	
+	echo "<br /><br />\n";
+	echo "<b>".$locale['msg032']."</b>";
+	echo sprintf($locale['msg033'], parsebytesize($settings['photo_max_b']), $settings['photo_max_w'], $settings['photo_max_h']);
+	echo "<br /><br />\n";
+	
+	echo "<b>".$locale['msg028']."</b><br />";
+	echo "".$locale['msg029']."<br />\n";
+	echo "".$locale['msg030']."<br />\n<br />\n";
+	
+	echo $guideline_footer;
+	echo "<center><b>".$locale['msg036']."<a href='".ADDON."submit.php?addon_type=".$addon_type."' title=''>".$locale['msg043'].$addon_type."</a></b></center><br />\n";
+
+closetable();
+
+} elseif ($_REQUEST['addon_type'] == 'Panel') {
+$addon_type = $_REQUEST['addon_type'];
+add_to_title($locale['global_200'].$locale['msg001'].$locale['msg106'].$addon_type);
+
+
+opentable($locale['msg001'].$locale['msg106'].$addon_type);
+
+echo "<a href='".ADDON."index.php' title=''><img src='".ADDON_IMG."addon_logo.png' width='200' align='left' alt ='' /></a>\n";
+echo $locale['msg002'];
+echo "<br /><br />";
+echo "<div class='small'>".$locale['msg003']."</div>";
+echo "<br /><br />";
+echo "<b>".$locale['msg004']."</b>";
+echo "<br />";
+echo THEME_BULLET.$locale['msg005']."<br />";
+echo THEME_BULLET.$locale['msg006']."<br />";
+echo THEME_BULLET.$locale['msg007']."<br />";
+echo THEME_BULLET.$locale['msg008']."<br />";
+echo THEME_BULLET.$locale['msg009']."<br />";
+echo "<b>".$locale['msg010']."</b>";
+echo "<br />";
+echo THEME_BULLET.$locale['msg011']."<br />";	      
+echo THEME_BULLET.$locale['msg012']."</li><br />";
+echo "<img src='".ADDON_IMG."header_info.jpg' width='416' alt ='' /><br /><br />\n";
+echo THEME_BULLET.$locale['msg013']."<br />";
+echo THEME_BULLET.$locale['msg014']."<br />";
+echo "<b>".$locale['msg015']."</b>";
+echo "<br />";
+echo THEME_BULLET.$locale['msg040']."<br />";
+echo THEME_BULLET.$locale['msg016']."<br />";
+echo THEME_BULLET.$locale['msg017']."<br />";
+echo THEME_BULLET.$locale['msg018']."<br />";
+echo THEME_BULLET.$locale['msg031']."<br />";
+echo THEME_BULLET.$locale['msg019']."<br />";
+echo THEME_BULLET.$locale['msg020']."<br />";
+echo THEME_BULLET.$locale['msg021']."<br />";
+echo THEME_BULLET.$locale['msg022']."<br />";
+echo THEME_BULLET.$locale['msg023']."<br />";
+echo THEME_BULLET.$locale['msg041']."<br />";
+echo THEME_BULLET.$locale['msg042']."<br />";
+echo THEME_BULLET.$locale['msg024']."<br />";
+echo THEME_BULLET.$locale['msg025']."<br />";
+	
+    echo "<table border='0' width='80%' align='center' cellspacing='0' cellpadding='0'><tr>\n";
+    echo "<thead>\n";
+	echo "<th class='tbl1'><b>".$locale['msg050']."</b></th>\n";
+	echo "</tr>\n</thead>\n<tbody>\n<tr>\n";
+	echo "<td align='center'><img src='".ADDON_IMG."panel.png' width='250' alt ='".$locale['msg050']."' /></td>\n";
+	echo "</tr>\n</tbody>\n</table>\n";
+	
+	echo "<br /><br />\n";
+	echo "<b>".$locale['msg032']."</b>";
+	echo sprintf($locale['msg033'], parsebytesize($settings['photo_max_b']), $settings['photo_max_w'], $settings['photo_max_h']);
+	echo "<br /><br />\n";
+	
+	echo "<b>".$locale['msg028']."</b><br />";
+	echo "".$locale['msg029']."<br />\n";
+	echo "".$locale['msg030']."<br />\n<br />\n";
+	
+	echo $guideline_footer;
+	echo "<center><b>".$locale['msg036']."<a href='".ADDON."submit.php?addon_type=".$addon_type."' title=''>".$locale['msg043'].$addon_type."</a></b></center><br />\n";
+
+closetable();
+
+} elseif ($_REQUEST['addon_type'] == 'Other') {
+$addon_type = $_REQUEST['addon_type'];
+add_to_title($locale['global_200'].$locale['msg001'].$locale['msg106'].$addon_type);
+
+opentable($locale['msg001'].$locale['msg106'].$addon_type);
+
+echo "<a href='".ADDON."index.php' title=''><img src='".ADDON_IMG."addon_logo.png' width='200' align='left' alt ='' /></a>\n";
+echo $locale['msg002'];
+echo "<br /><br />";
+echo "<div class='small'>".$locale['msg003']."</div>";
+echo "<br /><br />";
+echo "<b>".$locale['msg004']."</b>";
+echo "<br />";
+echo THEME_BULLET.$locale['msg005']."<br />";
+echo THEME_BULLET.$locale['msg006']."<br />";
+echo THEME_BULLET.$locale['msg007']."<br />";
+echo THEME_BULLET.$locale['msg008']."<br />";
+echo THEME_BULLET.$locale['msg009']."<br />";
+echo "<b>".$locale['msg010']."</b>";
+echo "<br />";
+echo THEME_BULLET.$locale['msg011']."<br />";	      
+echo THEME_BULLET.$locale['msg012']."</li><br />";
+echo "<img src='".ADDON_IMG."header_info.jpg' width='416' alt ='' /><br /><br />\n";
+echo THEME_BULLET.$locale['msg013']."<br />";
+echo THEME_BULLET.$locale['msg014']."<br />";
+echo "<b>".$locale['msg015']."</b>";
+echo "<br />";
+echo THEME_BULLET.$locale['msg040']."<br />";
+echo THEME_BULLET.$locale['msg016']."<br />";
+echo THEME_BULLET.$locale['msg017']."<br />";
+echo THEME_BULLET.$locale['msg018']."<br />";
+echo THEME_BULLET.$locale['msg031']."<br />";
+echo THEME_BULLET.$locale['msg019']."<br />";
+echo THEME_BULLET.$locale['msg020']."<br />";
+echo THEME_BULLET.$locale['msg021']."<br />";
+echo THEME_BULLET.$locale['msg022']."<br />";
+echo THEME_BULLET.$locale['msg023']."<br />";
+echo THEME_BULLET.$locale['msg041']."<br />";
+echo THEME_BULLET.$locale['msg042']."<br />";
+echo THEME_BULLET.$locale['msg024']."<br />";
+echo THEME_BULLET.$locale['msg025']."<br />";
+	
+    echo "<table border='0' width='80%' align='center' cellspacing='0' cellpadding='0'><tr>\n";
+    echo "<thead>\n";
+	echo "<th class='tbl1'><b>".$locale['tsg025']."</b></th><th class='tbl1'><b>".$locale['tsg026']."</b></th>\n";
+	echo "</tr>\n</thead>\n<tbody>\n<tr>\n";
+	echo "<td align='center'><img src='".ADDON_IMG."userfields.png' width='250' alt ='' /></td>\n";
+	echo "<td align='center'><img src='".ADDON_IMG."bbcodes.png' width='250' alt ='' /></td>\n";
+	echo "</tr>\n</tbody>\n</table>\n";
+	
+	echo "<br /><br />\n";
+	echo "<b>".$locale['msg032']."</b>";
+	echo sprintf($locale['msg033'], parsebytesize($settings['photo_max_b']), $settings['photo_max_w'], $settings['photo_max_h']);
+	echo "<br /><br />\n";
+	
+	echo "<b>".$locale['msg028']."</b><br />";
+	echo "".$locale['msg029']."<br />\n";
+	echo "".$locale['msg030']."<br />\n<br />\n";
+	
+	echo $guideline_footer;
+	echo "<center><b>".$locale['msg036']."<a href='".ADDON."submit.php?addon_type=".$addon_type."' title=''>".$locale['msg043'].$addon_type."</a></b></center><br />\n";
+
+closetable();
+
+} else { echo "Error"; }
             
 require_once THEMES."templates/footer.php";
 ?>
