@@ -28,7 +28,7 @@ $locale['msg022'] = "Please ensure the folder structure complies with the images
 $locale['msg023'] = "Infusion/Panel Structure.";
 $locale['msg024'] = "User Field Structure.";
 $locale['msg025'] = "Addon Security";
-$locale['msg026'] = "Please ensure all addons are free from security flaws, such as unsanitized variables. Use <u>stripinput</u> on all form fields.<br />Use the built-in security functions like <i>checkrights</i> and <i>groupaccess</i> functions.<br />These and all the other PHP-Fusion fuctions are explained in the <a target='_blank' href='http://code.starefossen.com/infusions/fusion_functions/functions.php'>Fusion Functions</a> database.";
+$locale['msg026'] = "Please ensure all addons are free from security flaws, such as unsanitized variables. Use <u>stripinput</u> on all form fields.<br />Use the built-in security functions like <i>checkrights</i> and <i>groupaccess</i> functions.<br />These and all the other PHP-Fusion fuctions are explained in the <a target='_blank' href='http://code.starefossen.com/infusions/fusion_functions/functions.php'>PHP-Fusion Functions Codex</a> database.";
 $locale['msg027'] = "Test your mod before submission! If you're not sure, post your query in either the Alpha or Beta forums.";
 $locale['msg028'] = "In all addons [where applicable], text must be stored in a separate language file (eg; locale/English.php).";
 $locale['msg029'] = "Submitted Screenshots: ";
@@ -75,7 +75,7 @@ $locale['tsg024'] = "Folder Structure - [type 2]";
 $locale['tsg025'] = "Folder Structure - User Fields";
 $locale['tsg026'] = "Folder Structure - bbcodes";
 $locale['tsg027'] = "Addon Security";
-$locale['tsg028'] = "Where relevant, please ensure all submissions are free from security flaws, such as unsanitized variables. No code or characters are to be used that could cause a security breach or the mod to malfunction.<br />Use the built-in security functions like <i>checkrights</i> and <i>groupaccess</i> functions.<br />These and all the other PHP-Fusion fuctions are explained in the <a href='".INFUSIONS."fusion_functions/functions.php'>Fusion Functions</a> database.<br />Test your files before submission! If you're not sure, post your query in the forums.";
+$locale['tsg028'] = "Where relevant, please ensure all submissions are free from security flaws, such as unsanitized variables. No code or characters are to be used that could cause a security breach or the mod to malfunction.<br />Use the built-in security functions like <i>checkrights</i> and <i>groupaccess</i> functions.<br />These and all the other PHP-Fusion fuctions are explained in the <a target='_blank' title='' href='http://code.starefossen.com/infusions/fusion_functions/functions.php'>PHP-Fusion Functions Codex</a> database.<br />Test your files before submission! If you're not sure, post your query in the forums.";
 $locale['tsg029'] = "To submit a translation, go to the mod you've translated and click the Translation submit button.";
 $locale['tsg030'] = "Addon Submission Guidelines";
 
