@@ -36,4 +36,8 @@ if (!defined("DB_ADDON_TRANS")) {
 	define("DB_ADDON_TRANS", DB_PREFIX."addondb_translations");
 }
 
+if (!defined("DB_ADDON_STGS")) {
+	define("DB_ADDON_STGS", DB_PREFIX."addondb_settings");
+}
+
 ?>

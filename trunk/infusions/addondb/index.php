@@ -89,6 +89,9 @@ if (isset($_GET['addon_orderby_dir_value']) && in_array($_GET['addon_orderby_dir
 $addon_orderby_dir_value = "ASC";
 }
 
+if ($settings_global['set_addondb_onf'] == '1' && iADMIN) { echo "<div class ='admin-message'><center><b>".$locale['addondb605']."</b></div>\n"; }
+if ($settings_global['set_addondb_sub'] == '1' && iADMIN) { echo "<div class ='admin-message'><center><b>".$locale['addondb608']."</b></div>\n"; }
+
 opentable($locale['addondb400']);
 
 $versel = $locale['addondb429'];

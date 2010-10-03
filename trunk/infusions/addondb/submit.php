@@ -22,7 +22,7 @@ require_once INFUSIONS."addondb/inc/inc.functions.php";
 require_once ADDON."infusion_db.php";
 include ADDON_LOCALE.LOCALESET."submit_addon.php";
 
-$addon_sub_type = ($_REQUEST['addon_type']);
+if ($_REQUEST['addon_type'] != '') { $addon_sub_type = ($_REQUEST['addon_type']); } else { redirect("index.php"); }
 
 if (!iMEMBER) {
 	opentable($locale['addondb600']);

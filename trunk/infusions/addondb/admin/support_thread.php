@@ -50,7 +50,7 @@ if (file_exists(ADDON_LOCALE.LOCALESET."admin/support_thread.php")) {
 	$result = dbquery("INSERT INTO ".DB_THREADS." (forum_id, thread_subject, thread_author, thread_views, thread_lastpost, thread_lastpostid, thread_lastuser, thread_postcount) VALUES('".$forum_id."', '".$addon_name."', '".$addon_submitter."', '0', '".time()."', '0', '".$addon_submitter."', '1')");
 	$thread_id = mysql_insert_id();
 	
-	$result = dbquery("UPDATE ".DB_ADDONS." SET addon_forum_status='2' WHERE addon_id='".$_REQUEST['addon_id']."'");
+	$result = dbquery("UPDATE ".DB_ADDONS." SET addon_forum_status='0' WHERE addon_id='".$_REQUEST['addon_id']."'");
 	
 	$result = dbquery("INSERT INTO ".DB_POSTS." (forum_id, thread_id, post_message, post_showsig, post_author, post_datestamp, post_ip, post_edituser, post_edittime) VALUES ('".$forum_id."', '$thread_id', '".$addon_description."', '0', '".$addon_submitter."', '".time()."', '".$locale['addondb701']."', '0', '0')");
 	$post_id = mysql_insert_id();

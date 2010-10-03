@@ -121,12 +121,22 @@ trans_approved_comment text NOT NULL,
 PRIMARY KEY (trans_id)
 ) TYPE=MyISAM;";
 
+$inf_newtable[7] = DB_ADDON_STGS." (
+set_addondb_onf TINYINT(1) DEFAULT '0' NOT NULL,
+set_addondb_comm TINYINT(1) DEFAULT '0' NOT NULL,
+set_addondb_sub TINYINT(1) DEFAULT '0' NOT NULL,
+addons_per_page SMALLINT(5) DEFAULT '20' NOT NULL,
+set_addon_maintmsg text NOT NULL,
+PRIMARY KEY (addons_per_page)
+) TYPE=MyISAM;";
+
 $inf_droptable[1] = DB_ADDON_CATS;
 $inf_droptable[2] = DB_ADDONS;
 $inf_droptable[3] = DB_ADDON_VERSIONS;
 $inf_droptable[4] = DB_ADDON_LOCALES;
 $inf_droptable[5] = DB_ADDON_ERRORS;
 $inf_droptable[6] = DB_ADDON_TRANS;
+$inf_droptable[7] = DB_ADDON_STGS;
 
 $inf_deldbrow[1] = "DELETE FROM ".DB_COMMENTS." WHERE comment_type='M'";
 $inf_deldbrow[2] = "DELETE FROM ".DB_RATINGS." WHERE rating_type='M'";

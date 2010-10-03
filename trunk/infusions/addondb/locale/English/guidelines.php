@@ -47,6 +47,7 @@ $locale['msg101'] = "You must be logged in to access the Addon Submission Form";
 $locale['msg102'] = "Members Only";
 $locale['msg103'] = "Choose Submission Type: ";
 $locale['msg104'] = "--Select--";
+$locale['msg105'] = "Submissions to the AddonDB are currently disabled.<br />Please try again later.";
 $locale['msg200'] = "Submission Guidelines v1.6";
 
 // Translation Guidelines

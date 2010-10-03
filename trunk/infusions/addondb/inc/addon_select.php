@@ -1,6 +1,6 @@
 <?php
     
-    if (iMEMBER) {
+    if (iMEMBER && $settings_global['set_addondb_sub'] == '0') {
     if (file_exists(INFUSIONS."sf_staff_list/index.php")) {
     echo "<br />".$locale['msg030']."<br /><br />"; }
     echo "<form name='select' method='post' action='submit.php'>\n";
@@ -20,6 +20,10 @@
 	echo "</tr>\n</table>\n";
 	echo "</form>\n";
 	
+    } elseif (iMEMBER && $settings_global['set_addondb_sub'] == '1') {
+    
+    echo "<br /><span class='small'>".$locale['msg105']."</span>\n";
+    
     } else { 
     
     echo "<br /><span class='small'>".$locale['msg101']."</span>\n";
