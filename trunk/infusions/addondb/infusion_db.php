@@ -40,4 +40,8 @@ if (!defined("DB_ADDON_STGS")) {
 	define("DB_ADDON_STGS", DB_PREFIX."addondb_settings");
 }
 
+if (!defined("DB_ADDON_ASSIGN")) {
+	define("DB_ADDON_ASSIGN", DB_PREFIX."addondb_assign");
+}
+
 ?>

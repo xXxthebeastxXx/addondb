@@ -130,6 +130,15 @@ set_addon_maintmsg text NOT NULL,
 PRIMARY KEY (addons_per_page)
 ) TYPE=MyISAM;";
 
+$inf_newtable[8] = DB_ADDON_ASSIGN." (
+assign_id smallint(5) unsigned NOT NULL auto_increment,
+assign_addon smallint(5) unsigned NOT NULL default '0',
+assign_user smallint(5) unsigned NOT NULL default '0',
+PRIMARY KEY (assign_id)
+) TYPE=MyISAM;";
+
+$inf_insertdbrow[1] = DB_ADDON_STGS." (set_addondb_onf, set_addondb_comm, set_addondb_sub, addons_per_page) VALUES('0', '0', '0', '20')";
+
 $inf_droptable[1] = DB_ADDON_CATS;
 $inf_droptable[2] = DB_ADDONS;
 $inf_droptable[3] = DB_ADDON_VERSIONS;
@@ -137,6 +146,7 @@ $inf_droptable[4] = DB_ADDON_LOCALES;
 $inf_droptable[5] = DB_ADDON_ERRORS;
 $inf_droptable[6] = DB_ADDON_TRANS;
 $inf_droptable[7] = DB_ADDON_STGS;
+$inf_droptable[8] = DB_ADDON_ASSIGN;
 
 $inf_deldbrow[1] = "DELETE FROM ".DB_COMMENTS." WHERE comment_type='M'";
 $inf_deldbrow[2] = "DELETE FROM ".DB_RATINGS." WHERE rating_type='M'";
@@ -156,7 +166,7 @@ $inf_sitelink[1] = array(
 
 $inf_sitelink[2] = array(
 	"title" => $locale['addondb102'],
-	"url" => "guidelines.php",
+	"url" => "submit_addon.php",
 	"visibility" => "101"
 );
 
