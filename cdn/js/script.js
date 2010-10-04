@@ -60,3 +60,18 @@ $('.forum_table input[type="checkbox"]').bind('click',function(e) {
 	}
 });
 $('.dropselect').styleddropdown();
+$("#s")
+    .val("Search...")
+    .css("color", "#A0A0A0")
+    .focus(function(){
+        $(this).css("color", "black");
+        if ($(this).val() == "Search...") {
+            $(this).val("");
+        }
+    })
+    .blur(function(){
+        $(this).css("color", "#A0A0A0");
+        if ($(this).val() == "") {
+            $(this).val("Search...");
+        }
+    });

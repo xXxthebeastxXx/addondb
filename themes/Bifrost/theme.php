@@ -20,6 +20,7 @@ function render_page() {
 	</div><!-- /nav -->
 	<div class="grid_9 hinfo">
 	<h4>National Support Network</h4>
+	<!--
 	<div class="dropselect">
 		<p class="field">Select</p>
 		<ul class="list nsn">
@@ -44,12 +45,15 @@ function render_page() {
 			<li><a href="http://www.phpfusionturkiye.com" target="_blank" rel="nofollow">Turkey</a></li>
 		</ul>
 	</div>
+	-->
 	</div>
 	<div class="grid_6 push_1 hinfo">
 	<h4>Search the site</h4>
-	<form name="search" method="get" action="/search.php">
-	<input type="search" name="stext" class="textsearch" />
-	<button type="submit" class="button"><span>Search</span></button>
+	<form action="/search.php" id="search" method="get" role="search">
+	<div><label for="s" class="screen-reader-text">Search for:</label>
+	<input type="text" id="s" name="stext" value="">
+	<input type="submit" value="Search" id="searchsubmit">
+	</div>
 	</form>
 	</div>
 	<div class="grid_6 push_2 userinfo hinfo">
