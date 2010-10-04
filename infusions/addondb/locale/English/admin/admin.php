@@ -101,4 +101,11 @@ $locale['addondb505'] = "Click to delete this Addon";
 $locale['addondb506'] = "Click to view this Addon";
 $locale['addondb507'] = "Click to manage comments";
 $locale['addondb508'] = "Click to manage ratings";
+
+// Other
+
+$locale['addondb600'] = "Unassigned";
+$locale['addondb601'] = "Assigned to: ";
+$locale['addondb602'] = "Undo Assignment";
+
 ?>

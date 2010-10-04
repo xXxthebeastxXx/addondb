@@ -35,25 +35,58 @@ if (file_exists(ADDON_LOCALE.LOCALESET."admin/admin.php")) {
 $addons = "";
 $trans = "";
 
+if(isset($_GET['action']) == "assign") {
+      $result = dbquery("INSERT INTO ".DB_ADDON_ASSIGN." (assign_id, assign_addon, assign_user) VALUES ('', '".$_GET['assign_addon']."', '".$userdata['user_id']."')");
+}
+
+if(isset($_GET['action']) == "del") {
+     $result = dbquery("DELETE FROM ".DB_ADDON_ASSIGN." WHERE assign_id='".$_GET['assign_id']."'");
+  }
+
 if (!isset($_GET['action']) || $_GET['action'] == "1") {
-    
+
     if(isset($_GET['tran']) && isnum($_GET['tran'])){
     $result1 = dbquery("SELECT * FROM ".DB_ADDON_TRANS." WHERE trans_mod='".$_GET['tran']."' ORDER BY trans_datestamp DESC");
     }else{
     		$result = dbquery("SELECT * FROM ".DB_SUBMISSIONS." WHERE submit_type='m' ORDER BY submit_datestamp DESC");
 		if (dbrows($result)) {
 			while ($data = dbarray($result)) {
+	
 				$submit_criteria = unserialize($data['submit_criteria']);
 				$addons .= "<tr>\n<td class='tbl1'>".$submit_criteria['addon_name']."</td>\n";
-				$addons .= "<td align='right' width='1%' class='tbl1' style='white-space:nowrap'><span class='small'><a href='".FUSION_SELF.$aidlink."&amp;action=2&amp;t=m&amp;submit_id=".$data['submit_id']."'>".$locale['417']."</a></span>\n";
+				$addons .= "<td align='right' width='1%' class='tbl1' style='white-space:nowrap'>
+				<span class='small'><a href='".FUSION_SELF.$aidlink."&amp;action=2&amp;t=m&amp;submit_id=".$data['submit_id']."'>".$locale['417']."</a></span> | ";
+	
+				$assigned_user = dbarray(dbquery("SELECT 
+				                                         a.assign_id, 
+				                                         a.assign_addon, 
+				                                         a.assign_user, 
+				                                         u.user_id, 
+				                                         u.user_name, 
+				                                         u.user_status 
+				                                         FROM ".DB_ADDON_ASSIGN." a
+				                                         LEFT JOIN ".DB_USERS." u 
+				                                         ON a.assign_user=u.user_id 
+				                                         WHERE a.assign_addon = '".$data['submit_id']."'
+				                                         "));
+				
+				
+                if ($assigned_user['assign_addon'] == $data['submit_id']) {
+                $assign_del = dbarray(dbquery("SELECT assign_id FROM ".DB_ADDON_ASSIGN." WHERE assign_addon = '".$data['submit_id']."'"));
+                $addons .= "<span class='small'>".$locale['addondb601'].profile_link($assigned_user['assign_user'], $assigned_user['user_name'], $assigned_user['user_status'])."</span>&nbsp;
+                <span class='small'><a href='".FUSION_SELF.$aidlink."&action=del&assign_id=".$assign_del['assign_id']."' title='".$locale['addondb602']."'>
+                <img src='".ADDON_IMG."undo.png' alt='".$locale['addondb602']."' /></a>\n";
+                } else {
+				$addons .= "<span class='small'><a href='".FUSION_SELF.$aidlink."&action=assign&assign_addon=".$data['submit_id']."'>".$locale['addondb600']."</a></span>\n"; 
+				}
 				$addons .= "</td>\n</tr>\n";
 			}
 		} else {
 			$addons = "<tr>\n<td colspan='2' class='tbl1'>".$locale['414']."</td>\n</tr>\n";
 		}
-				opentable($locale['410']);
-		echo "<table cellpadding='0' cellspacing='1' width='400' class='tbl-border center'>\n<tr>\n";
-		echo "<td colspan='2' class='tbl2'><a id='link_submissions' name='link_submissions'></a>\n".$locale['addondb433']."</td>\n";
+		opentable($locale['410']);
+		echo "<table cellpadding='0' cellspacing='1' width='600' class='tbl-border center'>\n<tr>\n";
+		echo "<td colspan='2' class='forum-caption'><a id='link_submissions' name='link_submissions'></a>\n".$locale['addondb433']."</td>\n";
 		echo "</tr>\n".$addons."</table>\n";
 		closetable();
 		$result1 = dbquery("SELECT * FROM ".DB_ADDON_TRANS." WHERE trans_active='1' ORDER BY trans_datestamp DESC");  
@@ -70,8 +103,8 @@ if (!isset($_GET['action']) || $_GET['action'] == "1") {
 		}
 		
 		opentable($locale['addondb449']);
-		echo "<table cellpadding='0' cellspacing='1' width='400' class='tbl-border center'>\n<tr>\n";
-		echo "<td colspan='2' class='tbl2'>".$locale['addondb449']."</td>\n";
+		echo "<table cellpadding='0' cellspacing='1' width='600' class='tbl-border center'>\n<tr>\n";
+		echo "<td colspan='2' class='forum-caption'>".$locale['addondb449']."</td>\n";
 		echo "</tr>\n".$trans."</table>\n";
 		closetable();
 	
