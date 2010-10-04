@@ -20,6 +20,7 @@ function render_page() {
 	</div><!-- /nav -->
 	<div class="grid_9 hinfo">
 	<h4>National Support Network</h4>
+	<p id="profile"></p>
 	<!--
 	<div class="dropselect">
 		<p class="field">Select</p>

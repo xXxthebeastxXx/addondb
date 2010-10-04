@@ -75,3 +75,93 @@ $("#s")
             $(this).val("Search...");
         }
     });
+var lang = {
+	"SA":"Find support in <a href=\"http://www.phpfusion-ar.com\" target=\"_blank\" rel=\"nofollow\">PHP-Fusion Arabia</a>",
+	"BE":"Find support in <a href=\"http://www.phpfusion-nederlands.info\" target=\"_blank\" rel=\"nofollow\">PHP-Fusion Belgium</a>",
+	"BR":"Find support in <a href=\"http://www.phpfusion-br.com\" target=\"_blank\" rel=\"nofollow\">PHP-Fusion Brazil</a>",
+	"DK":"Find support in <a href=\"http://www.php-fusion.dk\" target=\"_blank\" rel=\"nofollow\">PHP-Fusion Denmark</a>",
+	"CZ":"Find support in <a href=\"http://www.phpfusion.cz\" target=\"_blank\" rel=\"nofollow\">PHP-Fusion Czech Republic</a>",
+	"FR":"Find support in <a href=\"http://www.phpfusion-fr.com\" target=\"_blank\" rel=\"nofollow\">PHP-Fusion France</a>",
+	"DE":"Find support in <a href=\"http://www.phpfusion-support.de\" target=\"_blank\" rel=\"nofollow\">PHP-Fusion Germany</a>",
+	"HU":"Find support in <a href=\"http://www.php-fusion.co.hu\" target=\"_blank\" rel=\"nofollow\">PHP-Fusion Hungary</a>",
+	"IR":"Find support in <a href=\"http://www.fusion.alaviweb.com\" target=\"_blank\" rel=\"nofollow\">PHP-Fusion Iran</a>",
+	"IT":"Find support in <a href=\"http://www.php-fusion.it\" target=\"_blank\" rel=\"nofollow\">PHP-Fusion Italy</a>",
+	"NL":"Find support in <a href=\"http://www.phpfusion-nederlands.info\" target=\"_blank\" rel=\"nofollow\">PHP-Fusion Netherlands</a>",
+	"NO":"Find support in <a href=\"http://www.phpfusion-no.com\" target=\"_blank\" rel=\"nofollow\">PHP-Fusion Norway</a>",
+	"PL":"Find support in <a href=\"http://www.php-fusion.pl\" target=\"_blank\" rel=\"nofollow\">PHP-Fusion Poland</a>",
+	"RO":"Find support in <a href=\"http://www.phpfusion.ro\" target=\"_blank\" rel=\"nofollow\">PHP-Fusion Romania</a>",
+	"RU":"Find support in <a href=\"http://netck.ru\" target=\"_blank\" rel=\"nofollow\">PHP-Fusion Russia</a>",
+	"RS":"Find support in <a href=\"http://www.yu-fusion.org\" target=\"_blank\" rel=\"nofollow\">PHP-Fusion Serbia</a>",
+	"ES":"Find support in <a href=\"http://php-fusion.uni.cc\" target=\"_blank\" rel=\"nofollow\">PHP-Fusion Spain</a>",
+	"SE":"Få hjälp på <a href=\"http://www.php-fusion.se\" target=\"_blank\" rel=\"nofollow\">PHP-Fusion Sverige</a>",
+	"TR":"Find support in <a href=\"http://www.phpfusionturkiye.com\" target=\"_blank\" rel=\"nofollow\">PHP-Fusion Turkey</a>",
+	"DF":"We couldn't find a support site in you language."
+}
+$.getJSON("http://api.wipmania.com/jsonp?callback=?", function(data){
+	var elem = $("#profile")
+	switch(data.address.country_code) {
+		case "SA":
+		elem.append(lang.SA);
+		break;
+		case "BE":
+		elem.append(lang.BE);
+		break;
+		case "BR":
+		elem.append(lang.BR);
+		break;
+		case "DK":
+		elem.append(lang.DK);
+		break;
+		case "CZ":
+		elem.append(lang.CZ);
+		break;
+		case "FR":
+		elem.append(lang.FR);
+		break;
+		case "DE":
+		elem.append(lang.DE);
+		break;
+		case "HU":
+		elem.append(lang.HU);
+		break;
+		case "IR":
+		elem.append(lang.IR);
+		break;
+		case "DE":
+		elem.append(lang.DE);
+		break;
+		case "IT":
+		elem.append(lang.IT);
+		break;
+		case "NL":
+		elem.append(lang.NL);
+		break;
+		case "NO":
+		elem.append(lang.NO);
+		break;
+		case "PL":
+		elem.append(lang.PL);
+		break;
+		case "RO":
+		elem.append(lang.RO);
+		break;
+		case "RU":
+		elem.append(lang.RU);
+		break;
+		case "RS":
+		elem.append(lang.RS);
+		break;
+		case "ES":
+		elem.append(lang.ES);
+		break;
+		case "SE":
+		elem.append(lang.SE);
+		break;
+		case "TR":
+		elem.append(lang.TR);
+		break;
+		default:
+		elem.append(lang.DF);
+		break;
+	}
+});
