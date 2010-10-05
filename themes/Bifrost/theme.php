@@ -61,7 +61,7 @@ function render_page() {
 	<?php userinfo(); ?>
 	</div>
 </div><!-- /header -->
-	<div id="main" class="<?php echo in_forum() || in_addon() ? 'grid_24' : 'grid_16'; ?>">
+	<div id="main" class="<?php echo (in_forum() || in_addon()) || !RIGHT ? 'grid_24' : 'grid_16'; ?>">
 		<?php echo U_CENTER; ?>
 		<?php echo CONTENT; ?>
 		<?php echo L_CENTER."\n"; ?>
