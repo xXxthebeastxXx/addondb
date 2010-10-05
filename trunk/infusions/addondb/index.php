@@ -249,15 +249,10 @@ echo "<table class='tbl-border' align='center' width='100%'><tr>\n
         <td class='tbl2' align='center'>".$total_theme."</td>
         <td class='tbl2' align='center'>".$total_other."</td>\n
         </tr>\n<table>\n";
-        echo "<table class='tbl-border' align='center' width='100%'><tr>\n
-        <td class='tbl2'>".sprintf($locale['addondb508'], $total_trans)."</td>\n";
-        
+        echo "<table class='tbl-border' align='center' width='100%'><tr>\n";
         if (iMEMBER) {
-        $addoncount = number_format(dbcount("(addon_id)", DB_ADDONS, "addon_author_name='".$userdata['user_name']."' && addon_status = '0'"));
-        if ($addoncount > 0) {
-        
-        echo "<td class='tbl2' align='center'><a href='".ADDON."my_addons.php' title=''>".sprintf($locale['addondb509'], $addoncount)."</a></td>\n"; }
-        }
+        echo "<td class='tbl2' align='center'><a href='".ADDON."dashboard.php' title=''>".$locale['addondb509']."</a></td>\n"; }
+        echo "<td class='tbl2'>".sprintf($locale['addondb508'], $total_trans)."</td>\n";
         echo "<td class='tbl2' align='right'>".sprintf($locale['addondb506'], $total_addon).sprintf($locale['addondb507'], $total_count)."</td>
         </tr>\n</table>\n";
         

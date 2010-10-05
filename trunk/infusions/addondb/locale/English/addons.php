@@ -41,7 +41,7 @@ $locale['addondb505'] = "Other";
 $locale['addondb506'] = "%u Addons";
 $locale['addondb507'] = " downloaded a total of %u times";
 $locale['addondb508'] = "%u translations in DB";
-$locale['addondb509'] = "You have %u Addons in the database";
+$locale['addondb509'] = "Addons Dashboard";
 
 // Admin Panel
 $locale['addondb600'] = "Admin Info";

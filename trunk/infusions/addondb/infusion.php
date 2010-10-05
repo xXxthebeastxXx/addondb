@@ -134,6 +134,7 @@ $inf_newtable[8] = DB_ADDON_ASSIGN." (
 assign_id smallint(5) unsigned NOT NULL auto_increment,
 assign_addon smallint(5) unsigned NOT NULL default '0',
 assign_user smallint(5) unsigned NOT NULL default '0',
+assign_author smallint(5) unsigned NOT NULL default '0',
 PRIMARY KEY (assign_id)
 ) TYPE=MyISAM;";
 
