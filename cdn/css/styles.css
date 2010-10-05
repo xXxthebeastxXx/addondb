@@ -274,10 +274,35 @@ margin:-1px -3px
 #search #s { padding:7px 8px 5px; width:180px; height:16px; background:#FFF; border-radius:3px; -moz-border-radius:3px; -webkit-border-radius:3px; border:0; float:left; }
 #search #s:focus { outline:0; }
 #search #searchsubmit { margin:8px 7px 0 0; padding:0; width:14px; height:14px; background:url(../cssimg//search.png) no-repeat center center; border:0; text-indent:-9999em; font-size:0; line-height:0; float:right; }
+/**
+ * front page
+ */
+.easy-accordion{display:block;position:relative;overflow:hidden;padding:0;margin:0}
+.easy-accordion dt,.easy-accordion dd{margin:0;padding:0}
+.easy-accordion dt,.easy-accordion dd{position:absolute}
+.easy-accordion dt{margin-bottom:0;margin-left:0;z-index:5;/* Safari */ -webkit-transform: rotate(-90deg); /* Firefox */ -moz-transform: rotate(-90deg);-moz-transform-origin: 20px 0px;  /* Internet Explorer */ filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);cursor:pointer;}
+.easy-accordion dd{z-index:1;opacity:0;overflow:hidden}
+.easy-accordion dd.active{opacity:1;}
+.easy-accordion dd.no-more-active{z-index:2;opacity:1}
+.easy-accordion dd.active{z-index:3}
+.easy-accordion dd.plus{z-index:4}
+.easy-accordion .slide-number{position:absolute;bottom:0;left:10px;font-weight:normal;font-size:1.1em;/* Safari */ -webkit-transform: rotate(90deg); /* Firefox */ -moz-transform: rotate(90deg);  /* Internet Explorer */ filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);}	 
+#accordion{width:950px;height:245px;}
+#accordion dl{width:950px;height:245px}	
+#accordion dt{-moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px;height:46px;line-height:44px;text-align:right;padding:0 15px 0 0;font-size:1.1em;font-weight:bold;text-transform:uppercase;letter-spacing:1px;background:#F2F6F7 url(../cssimg/slide-title-inactive-1.jpg) 0 0 no-repeat;color:#26526c}
+#accordion dt.active{-moz-border-radius:5px 5px 0 0; -webkit-border-radius:5px 5px 0 0; border-radius:5px 5px 0 0;cursor:pointer;color:#fff;background:#F2F6F7 url(../cssimg/slide-title-active-1.png) 0 0 no-repeat;}
+#accordion dt.hover{color:#68889b;}
+#accordion dt.active.hover{color:#fff}
+#accordion dd{padding:25px;background:url(../cssimg/slide.jpg) bottom left repeat-x;border:1px solid #e4e8e9;border-left:0;margin-right:3px}
+#accordion .slide-number{color:#68889b;left:10px;font-weight:bold}
+#accordion .active .slide-number{color:#fff;}
+#accordion a{color:#68889b}
+#accordion dd img{float:right;margin:0 0 0 30px;}
+#accordion h2{font-size:2.5em;margin-top:10px}
+#accordion .more{padding-top:10px;display:block}
 /* 
  * addons
  */
-
 .dropselect { position:relative; margin:0 0 20px 0; }
 .dropselect .field { -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; width:150px; background:#fff; color:#A0A0A0; padding:5px; border:none; cursor:pointer; font-family:'lucida sans unicode', sans-serif; font-size:1em; border:solid 2px #D7E9F2; -webkit-transition: all .4s ease-in-out; transition: all .4s ease-in-out; }
 .dropselect .field:hover { border:solid 2px #fff; -moz-box-shadow:0 0 5px #999; -webkit-box-shadow:0 0 5px #999; box-shadow:0 0 5px #999 }

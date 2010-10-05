@@ -75,6 +75,10 @@ $("#s")
             $(this).val("Search...");
         }
     });
+$('#accordion').easyAccordion({ 
+			autoStart: false, 
+			slideInterval: 5000
+	});
 var lang = {
 	"SA":"Find support in <a href=\"http://www.phpfusion-ar.com\" target=\"_blank\" rel=\"nofollow\">PHP-Fusion Arabia</a>",
 	"BE":"Find support in <a href=\"http://www.phpfusion-nederlands.info\" target=\"_blank\" rel=\"nofollow\">PHP-Fusion Belgium</a>",
