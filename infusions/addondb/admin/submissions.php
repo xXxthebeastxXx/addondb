@@ -35,12 +35,14 @@ if (file_exists(ADDON_LOCALE.LOCALESET."admin/admin.php")) {
 $addons = "";
 $trans = "";
 
-if(isset($_GET['action']) == "assign") {
+if(isset($_GET['assign_addon']) && $_GET['action'] == "assign") {
       $result = dbquery("INSERT INTO ".DB_ADDON_ASSIGN." (assign_id, assign_addon, assign_user) VALUES ('', '".$_GET['assign_addon']."', '".$userdata['user_id']."')");
+{ redirect(FUSION_SELF.$aidlink); }
 }
 
-if(isset($_GET['action']) == "del") {
+if(isset($_GET['assign_id']) && $_GET['action'] == "del") {
      $result = dbquery("DELETE FROM ".DB_ADDON_ASSIGN." WHERE assign_id='".$_GET['assign_id']."'");
+{ redirect(FUSION_SELF.$aidlink); }
   }
 
 if (!isset($_GET['action']) || $_GET['action'] == "1") {
@@ -77,7 +79,9 @@ if (!isset($_GET['action']) || $_GET['action'] == "1") {
                 <span class='small'><a href='".FUSION_SELF.$aidlink."&action=del&assign_id=".$assign_del['assign_id']."' title='".$locale['addondb602']."'>
                 <img src='".ADDON_IMG."undo.png' alt='".$locale['addondb602']."' /></a>\n";
                 } else {
-				$addons .= "<span class='small'><a href='".FUSION_SELF.$aidlink."&action=assign&assign_addon=".$data['submit_id']."'>".$locale['addondb600']."</a></span>\n"; 
+                if ($userdata['user_id'] == $data['submit_user']) {
+                $addons .= $locale['addondb604']; } else { 
+				$addons .= "<span class='small'><a href='".FUSION_SELF.$aidlink."&action=assign&assign_addon=".$data['submit_id']."'>".$locale['addondb600']."</a></span>\n"; }
 				}
 				$addons .= "</td>\n</tr>\n";
 			}
@@ -89,7 +93,7 @@ if (!isset($_GET['action']) || $_GET['action'] == "1") {
 		echo "<td colspan='2' class='forum-caption'><a id='link_submissions' name='link_submissions'></a>\n".$locale['addondb433']."</td>\n";
 		echo "</tr>\n".$addons."</table>\n";
 		closetable();
-		$result1 = dbquery("SELECT * FROM ".DB_ADDON_TRANS." WHERE trans_active='1' ORDER BY trans_datestamp DESC");  
+		$result1 = dbquery("SELECT * FROM ".DB_ADDON_TRANS." WHERE trans_active='1' ORDER BY trans_datestamp DESC");
     }
     
     if (dbrows($result1)) {
@@ -555,15 +559,18 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
 			<tr>
 			<td class='tbl1' nowrap colspan='3'><hr></td>
 			</tr>
-			<tr>
-			<td class='tbl1' nowrap>".$locale['addondb442'].":</td>
+			<tr>\n";
+			
+			if($userdata['user_id'] == $addon_submitter_id) { $approver = $locale['addondb603']; } else { $approver = $userdata['user_name']; }
+			
+			echo "<td class='tbl1' nowrap>".$locale['addondb442'].":</td>
 			<td class='tbl1' nowrap>&nbsp;</td>
 			<td class='tbl1'><select class='textbox' name='addon_status' style='width:300px;'>".$addon_status_list."</select></td>
 			</tr>
 			<tr>
 			<td class='tbl1' nowrap>".$locale['addondb417'].":</td>
 			<td class='tbl1' nowrap>&nbsp;</td>
-			<td class='tbl1'><input type='hidden' class='textbox' value='".$userdata['user_id']."' name='addon_approved_user'>".$userdata['user_name']."</td>
+			<td class='tbl1'><input type='hidden' class='textbox' value='".$userdata['user_id']."' name='addon_approved_user'>".$approver."</td>
 			</tr>
 			<tr>
 			<td class='tbl1' nowrap>".$locale['addondb418'].":</td>
@@ -576,8 +583,10 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
 			<td class='tbl1'><textarea class='textbox' name='addon_approved_comment' style='width:300px; height:48px;'>".$addon_approved_comment."</textarea></td>";
 			echo "</tr>\n</table>\n";
 			echo "<div style='text-align:center'><br />\n";
-			echo "<input type='submit' name='add' onClick=\"return confirm('".$locale['addondb444']."')\" value='".$locale['addondb427']."' class='button' />\n";
-			echo "</div>\n</form>\n";
+			if($userdata['user_id'] == $addon_submitter_id) { $disable = "onchange='submit();' disabled"; } else { $disable = ""; }
+			echo "<input type='submit' name='add' onClick=\"return confirm('".$locale['addondb444']."')\" value='".$locale['addondb427']."' class='button' $disable />\n";
+			echo "</div>\n";
+			echo "</form>\n";
 			closetable();
 		} else {
 			redirect(FUSION_SELF.$aidlink);
