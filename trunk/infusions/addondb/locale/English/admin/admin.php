@@ -107,5 +107,7 @@ $locale['addondb508'] = "Click to manage ratings";
 $locale['addondb600'] = "Unassigned";
 $locale['addondb601'] = "Assigned to: ";
 $locale['addondb602'] = "Undo Assignment";
+$locale['addondb603'] = "Admins may not Approve their own Addons.";
+$locale['addondb604'] = "Not Allowed";
 
 ?>

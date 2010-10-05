@@ -472,8 +472,7 @@ if (dbrows($q_addon_cats) == 0) {
 	echo "<td class='tbl1'><input type='hidden' class='textbox' name='addon_submitter_name' value='".$addon_submitter_name."' style='width:300px;'><a href='".BASEDIR."profile.php?lookup=$addon_submitter_id'>".$addon_submitter_name."<input type='hidden' class='textbox' name='addon_submitter_id' value='".$addon_submitter_id."'></td>"; } else {
 	echo "<td class='tbl1'><input type='hidden' class='textbox' name='addon_submitter_name' value='".$userdata['user_name']."' style='width:300px;'><a href='".BASEDIR."profile.php?lookup=".$userdata['user_id']."'>".$userdata['user_name']."<input type='hidden' class='textbox' name='addon_submitter_id' value='".$userdata['user_id']."'></td>"; }
 	echo "</tr>\n<tr>\n";
-
-				if ($addon_forum_status == 0) { $thread_create = "".$locale['addondb459y'].""; } elseif ($addon_forum_status == 1) { $thread_create = "".$locale['addondb459n'].""; } elseif ($addon_forum_status == 2) { $thread_create = "".$locale['addondb459x'].""; }
+	if ($addon_forum_status == 0) { $thread_create = "".$locale['addondb459y'].""; } elseif ($addon_forum_status == 1) { $thread_create = "".$locale['addondb459n'].""; }
     echo "<td class='tbl1' nowrap>".$locale['addondb459']."</td>";
 	echo "<td class='tbl1' nowrap>&nbsp;</td><td class='tbl1'><input type='hidden' class='textbox' name='addon_forum_status' value='".$addon_forum_status."'>".$thread_create."</td>\n";
 	echo "</tr>\n<tr>\n";
