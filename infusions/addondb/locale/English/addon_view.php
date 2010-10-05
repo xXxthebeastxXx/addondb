@@ -71,7 +71,14 @@ $locale['addondb_604'] = "Addon Rating";
 $locale['addondb_605'] = "You have";
 $locale['addondb_606'] = "Addons downloaded ";
 $locale['addondb_607'] = "times";
+$locale['addondb_608'] = "Submission Dashboard";
+$locale['addondb_609'] = "My Submissions";
+$locale['addondb_610'] = "Submissions awaiting review: ";
+$locale['addondb_611'] = "Submissions currently being reviewed: ";
+$locale['addondb_612'] = "Your Addon is being tested by: ";
+$locale['addondb_613'] = "Submissions Rejected: ";
+$locale['addondb_614'] = "None";
 
-$locale['addondb_700'] = "You have not submitted any Addons to the DB";
+$locale['addondb_700'] = "You currently have no Addons in the DB";
 
 ?>
