@@ -25,13 +25,17 @@ if ($profile_method == "input") {
 } elseif ($profile_method == "display") {
 
 if (iMEMBER) {
-$addoncount = number_format(dbcount("(addon_id)", DB_ADDONS, "addon_author_name='".$userdata['user_name']."' && addon_status = '0'"));
+$addoncount = number_format(dbcount("(addon_id)", DB_ADDONS, "addon_author_name='".$user_data['user_name']."' && addon_status = '0'"));
 
      if ($addoncount > 0) {
 	echo "<tr>\n";
+	if (file_exists(INFUSIONS."addondb/img/stamp_dev_170.png")) {
+	echo "<td colspan='2' valign='top' align='right'><img src='".INFUSIONS."addondb/img/stamp_dev_170.png' alt='' border='0' /></td>\n";
+	echo "</tr>\n<tr>\n"; }
 	echo "<td width='1%' class='tbl1' style='white-space:nowrap'>".$locale['uf_asubs_001']."</td>\n";
 	echo "<td align='right' class='tbl1'>".$addoncount."</td>\n";
-	echo "</tr>\n"; }
+	echo "</tr>\n";
+	}
 }
 
 	

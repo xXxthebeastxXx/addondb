@@ -109,5 +109,6 @@ $locale['addondb601'] = "Assigned to: ";
 $locale['addondb602'] = "Undo Assignment";
 $locale['addondb603'] = "Admins may not Approve their own Addons.";
 $locale['addondb604'] = "Not Allowed <span style='color:#ff0000'>*</span>";
+$locale['addondb605'] = "Addon must be first be assigned to an Admin";
 
 ?>
