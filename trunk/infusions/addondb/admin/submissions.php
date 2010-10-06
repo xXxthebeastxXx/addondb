@@ -36,7 +36,7 @@ $addons = "";
 $trans = "";
 
 if(isset($_GET['assign_addon']) && $_GET['action'] == "assign") {
-      $result = dbquery("INSERT INTO ".DB_ADDON_ASSIGN." (assign_id, assign_addon, assign_user) VALUES ('', '".$_GET['assign_addon']."', '".$userdata['user_id']."')");
+      $result = dbquery("INSERT INTO ".DB_ADDON_ASSIGN." (assign_id, assign_addon, assign_user, assign_author) VALUES ('', '".$_GET['assign_addon']."', '".$userdata['user_id']."', '".$_GET['assign_author']."')");
 { redirect(FUSION_SELF.$aidlink); }
 }
 
@@ -80,8 +80,8 @@ if (!isset($_GET['action']) || $_GET['action'] == "1") {
                 <img src='".ADDON_IMG."undo.png' alt='".$locale['addondb602']."' /></a>\n";
                 } else {
                 if ($userdata['user_id'] == $data['submit_user']) {
-                $addons .= $locale['addondb604']; } else { 
-				$addons .= "<span class='small'><a href='".FUSION_SELF.$aidlink."&action=assign&assign_addon=".$data['submit_id']."'>".$locale['addondb600']."</a></span>\n"; }
+                $addons .= $locale['addondb604']; $warn = "<center><span style='color:#ff0000'>*</span> ".$locale['addondb603']."</center>"; } else { 
+				$addons .= "<a href='".FUSION_SELF.$aidlink."&action=assign&assign_addon=".$data['submit_id']."&assign_author=".$data['submit_user']."'>".$locale['addondb600']."</a>\n"; $warn = "";}
 				}
 				$addons .= "</td>\n</tr>\n";
 			}
@@ -92,6 +92,7 @@ if (!isset($_GET['action']) || $_GET['action'] == "1") {
 		echo "<table cellpadding='0' cellspacing='1' width='600' class='tbl-border center'>\n<tr>\n";
 		echo "<td colspan='2' class='forum-caption'><a id='link_submissions' name='link_submissions'></a>\n".$locale['addondb433']."</td>\n";
 		echo "</tr>\n".$addons."</table>\n";
+		echo $warn;
 		closetable();
 		$result1 = dbquery("SELECT * FROM ".DB_ADDON_TRANS." WHERE trans_active='1' ORDER BY trans_datestamp DESC");
     }
@@ -223,6 +224,10 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
 
 			notify($_POST['addon_submitter_name'], $_POST['addon_name'].$locale['addondb460'].get_addon_status_mail(4), $_POST['addon_name'].$locale['addondb460'].get_addon_status_mail(4).$locale['addondb461'].$_POST['addon_approved_comment']);
 			$result = dbquery("DELETE FROM ".DB_SUBMISSIONS." WHERE submit_id='".$_GET['submit_id']."'");
+			
+			// Delete Assigned Approver
+            $hunt = dbarray(dbquery("SELECT assign_id  FROM ".DB_ADDON_ASSIGN." WHERE assign_addon = '".$_GET['submit_id']."'"));
+          $result = dbquery("DELETE FROM ".DB_ADDON_ASSIGN." WHERE assign_id='".$hunt['assign_id']."' LIMIT 1");
 						
 			opentable($locale['400']);
 			echo "<br /><div style='text-align:center'>".$locale['401']."<br /><br />\n";
@@ -367,6 +372,9 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
 
           // Delete submission
           $desult = dbquery("DELETE FROM ".DB_SUBMISSIONS." WHERE submit_id='".$_GET['submit_id']."' LIMIT 1");
+          // Delete Assigned Approver
+            $hunt = dbarray(dbquery("SELECT assign_id  FROM ".DB_ADDON_ASSIGN." WHERE assign_addon = '".$_GET['submit_id']."'"));
+          $result = dbquery("DELETE FROM ".DB_ADDON_ASSIGN." WHERE assign_id='".$hunt['assign_id']."' LIMIT 1");
           
           notify($_POST['addon_submitter_name'], $_POST['addon_name'].$locale['addondb460'].get_addon_status_mail($_POST['addon_status']), $_POST['addon_name'].$locale['addondb460'].get_addon_status_mail($_POST['addon_status']).$locale['addondb461'].$_POST['addon_approved_comment']);
         } else {
@@ -583,8 +591,11 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
 			<td class='tbl1'><textarea class='textbox' name='addon_approved_comment' style='width:300px; height:48px;'>".$addon_approved_comment."</textarea></td>";
 			echo "</tr>\n</table>\n";
 			echo "<div style='text-align:center'><br />\n";
-			if($userdata['user_id'] == $addon_submitter_id) { $disable = "onchange='submit();' disabled"; } else { $disable = ""; }
-			echo "<input type='submit' name='add' onClick=\"return confirm('".$locale['addondb444']."')\" value='".$locale['addondb427']."' class='button' $disable />\n";
+			
+			 $assign_check = dbcount("(assign_id)", DB_ADDON_ASSIGN, "assign_addon = '".$data['submit_id']."'");
+			 if($userdata['user_id'] == $addon_submitter_id) { $disable = "onchange='submit();' disabled"; } else { $disable = ""; }
+			 if ($assign_check == '0') { $submit = "<a href='".FUSION_SELF.$aidlink."'>".$locale['addondb605']."</a>"; } else { $submit = "<input type='submit' name='add' onClick=\"return confirm('".$locale['addondb444']."')\" value='".$locale['addondb427']."' class='button' $disable />\n"; }
+			echo $submit;
 			echo "</div>\n";
 			echo "</form>\n";
 			closetable();

@@ -44,6 +44,7 @@ $locale['addondb502'] = "Submit another Addon";
 $locale['addondb503'] = "Return to Main Site";
 $locale['addondb504'] = "Go to Submissions Admin Panel";
 $locale['addondb505'] = "Go to Addon DB";
+$locale['addondb506'] = "Go to your Addon Dashboard";
 
 // Submit Addon Fail
 $locale['addondb600'] = "Error";

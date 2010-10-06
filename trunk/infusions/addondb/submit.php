@@ -139,9 +139,10 @@ if (!iMEMBER) {
 			}
 		echo "<select class='textbox' name='addon_type' style='width:300px;' onChange='submit()'><option value='0'>".$locale['addondb427']."</option>".$addon_type_list."</select>\n";
 		echo "</form>\n";
-		echo "<br /><br /><a href='".BASEDIR."index.php'>".$locale['addondb503']."</a><br />";
-		echo "<br /><a href='".ADDON."index.php'>".$locale['addondb505']."</a><br />
-		<br />".(iADMIN ? "<a href='".ADDON_ADMIN."submissions.php".$aidlink."'>".$locale['addondb504']."</a><br /><br />" : "")."
+		echo "<br /><br /><a href='".BASEDIR."index.php'>".$locale['addondb503']."</a><br />\n";
+		echo "<br /><a href='".ADDON."index.php'>".$locale['addondb505']."</a><br />\n";
+		echo "<br /><a href='".ADDON."dashboard.php'>".$locale['addondb506']."</a><br />\n";
+		echo "<br />".(iADMIN ? "<a href='".ADDON_ADMIN."submissions.php".$aidlink."'>".$locale['addondb504']."</a><br /><br />" : "")."
 		</center>\n";
 		closetable();
 	}
@@ -187,7 +188,11 @@ echo "
 </tr>
 <tr>
 <td class='tbl1'><label for='addon_description'>".$locale['addondb404']."</label><textarea cols='63' rows='10' id='addon_description' class='textbox' id='addon_description' name='addon_description'></textarea></td>
-<td class='tbl1'><label for='addon_copyright'>".$locale['addondb405']."</label><textarea cols='63' rows='5' class='textbox' id='addon_copyright' name='addon_copyright'></textarea><label for='addon_forum_status' style='margin-top:16px'>".$locale['addondb417']."</label><select id='addon_forum_status' name='addon_forum_status' class='textbox'><option value='0'>".$locale['addondb418']."</option><option value='1'>".$locale['addondb419']."</option></select></td>
+<td class='tbl1'><label for='addon_copyright'>".$locale['addondb405']."</label><textarea cols='63' rows='5' class='textbox' id='addon_copyright' name='addon_copyright'></textarea>
+<label for='addon_forum_status' style='margin-top:16px'>".$locale['addondb417']."</label>
+<select id='addon_forum_status' name='addon_forum_status' class='textbox'>
+<option value='0'>".$locale['addondb418']."</option>
+<option value='1'>".$locale['addondb419']."</option></select></td>
 </tr>
 <tr>
 <td class='tbl1'><label for='addon_version'>".$locale['addondb406']."</label><input type='text' class='textbox' id='addon_version' name='addon_version' /></td>
