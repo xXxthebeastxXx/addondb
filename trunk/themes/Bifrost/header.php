@@ -20,7 +20,7 @@ function theme_head_output($output) {
 		"@><img src='pm' alt='Send Private Message' style='border:0;vertical-align:middle' />@si",
 		"@><img src='quote' alt='(.*?)' style='border:0px;vertical-align:middle' />@si",
 		"@><img src='forum_edit' alt='(.*?)' style='border:0px;vertical-align:middle' />@si",
-		"@<input type='(submit|button)'(.*?)value='(.*?)'(.*?)/>@si",
+		"@<input type='(submit|button)'(.*?)value='(.*?)'(.*?)/?>@si",
 	);
 	$replace = array(
 		'<!DOCTYPE html>',
