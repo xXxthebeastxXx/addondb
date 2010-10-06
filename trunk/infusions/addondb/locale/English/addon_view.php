@@ -61,6 +61,7 @@ $locale['addondb513'] = "Other Addons Co-Authored by ";
 $locale['addondb514'] = "View Addon DB";
 $locale['addondb515'] = "Submit an Addon";
 $locale['addondb516'] = "Back to Index";
+$locale['addondb517'] = " | ";
 
 // My Addons
 $locale['addondb_600'] = "My Addons";
