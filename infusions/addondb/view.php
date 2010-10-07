@@ -98,8 +98,11 @@ if (!isnum($addon_id) || dbrows($q_addons) == 0 || ($d_addons['addon_status'] !=
     echo"<div align='center'><a href='img/screenshots/".$d_addons['addon_img']."' rel='lightbox' style='outline: none;border:none;'>
     <img src='".ADDON_SCRN."t_".$d_addons['addon_img']."' style='outline: none;border:none;'></a></div>\n";
     }
-	echo"<br /><br /><br />\n<center><img src='".ADDON_IMG."stamp_adb_170.png' alt='' border='0' /></center>
-	<br /><center><img src='".ADDON_IMG."back.png' title='' alt='' border='0' />&nbsp;<a href='".ADDON."index.php' title =''>".$locale['addondb516']."</a></center></td>
+	echo"<br />\n<center><img src='".ADDON_IMG."stamp_adb_170.png' alt='' border='0' /></center>
+	<br /><center><img src='".ADDON_IMG."back.png' title='' alt='' border='0' />&nbsp;<a href='".ADDON."index.php' title =''>".$locale['addondb516']."</a></center>\n";
+	if ($d_addons['addon_share_status']) {
+	echo "<br /><center><a href='#' title=''><img src='".ADDON_IMG."facebook.png' alt='' /></a>&nbsp;<a href='#' title=''><img src='".ADDON_IMG."twitter.png' alt='' /></a></center>\n"; }
+	echo "</td>
 	<td>
 	<table width='100%' border='0' cellpadding='0' cellspacing='1' class='tbl-border'>
 	<tr>

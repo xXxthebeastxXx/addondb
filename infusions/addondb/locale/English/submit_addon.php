@@ -36,6 +36,7 @@ $locale['addondb426'] = "Choose Submission Type: ";
 $locale['addondb427'] = "--Select--";
 $locale['addondb428'] = "Submissions to the AddonDB are currently disabled.<br />Please try again later.";
 $locale['addondb429'] = "You must be logged in to access the Addon Submission Form";
+$locale['addondb430'] = "Allow Social Sharing?";
 
 // Submit Addon Success
 $locale['addondb500'] = "Thank you for you for submitting your Addon";

@@ -92,7 +92,7 @@ if (!isset($_GET['action']) || $_GET['action'] == "1") {
 		echo "<table cellpadding='0' cellspacing='1' width='600' class='tbl-border center'>\n<tr>\n";
 		echo "<td colspan='2' class='forum-caption'><a id='link_submissions' name='link_submissions'></a>\n".$locale['addondb433']."</td>\n";
 		echo "</tr>\n".$addons."</table>\n";
-		echo $warn;
+		if (isset($warn)) { echo $warn; }
 		closetable();
 		$result1 = dbquery("SELECT * FROM ".DB_ADDON_TRANS." WHERE trans_active='1' ORDER BY trans_datestamp DESC");
     }
@@ -265,6 +265,7 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
         $submit_info['addon_submitter_name'] = stripinput($_POST['addon_submitter_name']);
         $submit_info['addon_submitter_id'] = stripinput($_POST['addon_submitter_id']);
         $submit_info['addon_forum_status'] = stripinput($_POST['addon_forum_status']);
+        $submit_info['addon_share_status'] = stripinput($_POST['addon_share_status']);
         $submit_info['addon_date'] = time();
     
         // Approve
@@ -356,6 +357,7 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
             '".$submit_info['addon_submitter_name']."',
             '".$submit_info['addon_submitter_id']."',
             '".$submit_info['addon_forum_status']."',
+            '".$submit_info['addon_share_status']."',
             '".$submit_info['addon_author_name']."',
             '".$submit_info['addon_co_author_name']."',
             '".$submit_info['addon_author_email']."',
@@ -412,6 +414,7 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
 			$addon_submitter_name = $submit_criteria['addon_submitter_name'];
 			$addon_submitter_id = $submit_criteria['addon_submitter_id'];
 			$addon_forum_status = $submit_criteria['addon_forum_status'];
+			$addon_share_status = $submit_criteria['addon_share_status'];
 			$addon_author_name = $submit_criteria['addon_author_name'];
 			$addon_co_author_name = $submit_criteria['addon_co_author_name'];
 			$addon_author_email = $submit_criteria['addon_author_email'];
@@ -556,13 +559,15 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
 			<td class='tbl1'><input type='hidden' class='textbox' name='addon_submitter_name' value='".$addon_submitter_name."' style='width:300px;'>
 			<a href='".BASEDIR."profile.php?lookup=$addon_submitter_id'>".$addon_submitter_name."<input type='hidden' class='textbox' name='addon_submitter_id' value='".$addon_submitter_id."'></td>
 			</tr>
-			<tr>";
-			
-			if ($addon_forum_status == 0) { $thread_create = "".$locale['addondb459y'].""; } 
-			elseif ($addon_forum_status == 1) { $thread_create = "".$locale['addondb459n'].""; }
-			
-			echo "<td class='tbl1' nowrap>".$locale['addondb459']."</td>
-			<td class='tbl1' nowrap>&nbsp;</td><td class='tbl1'><input type='hidden' class='textbox' name='addon_forum_status' value='".$addon_forum_status."'>".$thread_create."</td>
+			<tr>
+			<td class='tbl1' nowrap>".$locale['addondb459']."</td>
+			<td class='tbl1' nowrap>&nbsp;</td><td class='tbl1'>
+			<input type='hidden' class='textbox' name='addon_forum_status' value='".$addon_forum_status."'>".($addon_forum_status == 0 ? $locale['addondb459y'] : $locale['addondb459n'])."</td>
+			</tr>
+			<tr>
+			<td class='tbl1' nowrap>".$locale['addondb459x']."</td>
+			<td class='tbl1' nowrap>&nbsp;</td><td class='tbl1'>
+			<input type='hidden' class='textbox' name='addon_share_status' value='".$addon_share_status."'>".($addon_share_status == 0 ? $locale['addondb459y'] : $locale['addondb459n'])."</td>
 			</tr>
 			<tr>
 			<td class='tbl1' nowrap colspan='3'><hr></td>
