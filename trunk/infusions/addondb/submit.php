@@ -43,7 +43,8 @@ if (!iMEMBER) {
 	$submit_info['addon_version_id'] = stripinput($_POST['addon_version_id']);
 	$submit_info['addon_submitter_name'] = stripinput($_POST['addon_submitter_name']);
 	$submit_info['addon_submitter_id'] = stripinput($_POST['addon_submitter_id']);
-	$submit_info['addon_forum_status'] = stripinput($_POST['addon_forum_status']);	
+	$submit_info['addon_forum_status'] = stripinput($_POST['addon_forum_status']);
+	$submit_info['addon_share_status'] = stripinput($_POST['addon_share_status']);
 	$submit_info['addon_author_name'] = stripinput($_POST['addon_author_name']);
 	$submit_info['addon_co_author_name'] = stripinput($_POST['addon_co_author_name']);
 	$submit_info['addon_author_email'] = stripinput($_POST['addon_author_email']);
@@ -187,12 +188,17 @@ echo "
 <input type='hidden' class='textbox' name='addon_cat_type' value='".$get_type[$opt]."'></td>
 </tr>
 <tr>
-<td class='tbl1'><label for='addon_description'>".$locale['addondb404']."</label><textarea cols='63' rows='10' id='addon_description' class='textbox' id='addon_description' name='addon_description'></textarea></td>
-<td class='tbl1'><label for='addon_copyright'>".$locale['addondb405']."</label><textarea cols='63' rows='5' class='textbox' id='addon_copyright' name='addon_copyright'></textarea>
+<td class='tbl1'><label for='addon_description'>".$locale['addondb404']."</label><textarea cols='63' rows='13' id='addon_description' class='textbox' id='addon_description' name='addon_description'></textarea></td>
+<td class='tbl1'><label for='addon_copyright'>".$locale['addondb405']."</label><textarea cols='63' rows='3' class='textbox' id='addon_copyright' name='addon_copyright'></textarea>
 <label for='addon_forum_status' style='margin-top:16px'>".$locale['addondb417']."</label>
 <select id='addon_forum_status' name='addon_forum_status' class='textbox'>
 <option value='0'>".$locale['addondb418']."</option>
-<option value='1'>".$locale['addondb419']."</option></select></td>
+<option value='1'>".$locale['addondb419']."</option></select>
+<label for='addon_share_status' style='margin-top:16px'>".$locale['addondb430']."&nbsp;<img src='".ADDON_IMG."facebook.png' alt='' />&nbsp;<img src='".ADDON_IMG."twitter.png' alt='' /></label>
+<select id='addon_share_status' name='addon_share_status' class='textbox'>
+<option value='0'>".$locale['addondb418']."</option>
+<option value='1'>".$locale['addondb419']."</option></select>
+</td>
 </tr>
 <tr>
 <td class='tbl1'><label for='addon_version'>".$locale['addondb406']."</label><input type='text' class='textbox' id='addon_version' name='addon_version' /></td>
