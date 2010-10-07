@@ -149,7 +149,7 @@ if (!iMEMBER) {
 	}
 } else {
 
-add_to_title($locale['addondb424'].$locale['addondb400'].$addon_sub_type.$locale['addondb420']);
+add_to_title($locale['addondb412'].$locale['addondb400'].$addon_sub_type.$locale['addondb420']);
 	opentable($locale['addondb400'].$addon_sub_type.$locale['addondb420']);
 	$addon_type_list = ""; $cat_list = ""; $opt = "";
 	
