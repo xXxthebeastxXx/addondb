@@ -38,6 +38,7 @@ if (!iMEMBER) {
 	$submit_info['addon_cat_type'] = stripinput($_POST['addon_cat_type']);
 	$submit_info['addon_status'] = 1;
 	$submit_info['addon_description'] = stripinput($_POST['addon_description']);
+	$submit_info['addon_demo_url'] = stripinput($_POST['addon_demo_url']);
 	$submit_info['addon_copyright'] = stripinput($_POST['addon_copyright']);
 	$submit_info['addon_version'] = stripinput($_POST['addon_version']);
 	$submit_info['addon_version_id'] = stripinput($_POST['addon_version_id']);
@@ -188,10 +189,10 @@ echo "
 <input type='hidden' class='textbox' name='addon_cat_type' value='".$get_type[$opt]."'></td>
 </tr>
 <tr>
-<td class='tbl1'><label for='addon_description'>".$locale['addondb404']."</label><textarea cols='63' rows='13' id='addon_description' class='textbox' id='addon_description' name='addon_description'></textarea></td>
+<td class='tbl1'><label for='addon_description'>".$locale['addondb404']."</label><textarea cols='63' rows='9' id='addon_description' class='textbox' id='addon_description' name='addon_description'></textarea>
+<label for='addon_demo_url'>".$locale['addondb431']."</label><input type='text' class='textbox' id='addon_demo_url' name='addon_demo_url' /></td>
 <td class='tbl1'><label for='addon_copyright'>".$locale['addondb405']."</label><textarea cols='63' rows='3' class='textbox' id='addon_copyright' name='addon_copyright'></textarea>
-<label for='addon_forum_status' style='margin-top:16px'>".$locale['addondb417']."</label>
-<select id='addon_forum_status' name='addon_forum_status' class='textbox'>
+<label for='addon_forum_status' style='margin-top:16px'>".$locale['addondb417']."</label><select id='addon_forum_status' name='addon_forum_status' class='textbox'>
 <option value='0'>".$locale['addondb418']."</option>
 <option value='1'>".$locale['addondb419']."</option></select>
 <label for='addon_share_status' style='margin-top:16px'>".$locale['addondb430']."&nbsp;<img src='".ADDON_IMG."facebook.png' alt='' />&nbsp;<img src='".ADDON_IMG."twitter.png' alt='' /></label>
@@ -214,7 +215,7 @@ echo "
 </tr>
 <tr>
 <td class='tbl1'><label for='addon_author_email'>".$locale['addondb409']."</label><input type='text' class='textbox' id='addon_author_email' name='addon_author_email' value='".$userdata['user_email']."' /></td>
-<td class='tbl1'><label for='addon_author_www'>".$locale['addondb410']."</label><input type='text' class='textbox' name='' style='width:42px;' value='http://' readonly='readonly' /><input type='text' class='textbox' id='addon_author_www' name='addon_author_www' style='width:372px;' value='".$userdata['user_web']."' /></td>
+<td class='tbl1'><label for='addon_author_www'>".$locale['addondb410']."</label><input type='text' class='textbox' id='addon_author_www' name='addon_author_www' value='".$userdata['user_web']."' /></td>
 </tr>
 <tr>
 <td class='tbl1' colspan='2' align='center'><hr />

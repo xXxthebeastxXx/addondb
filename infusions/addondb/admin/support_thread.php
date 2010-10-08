@@ -41,7 +41,7 @@ if (file_exists(ADDON_LOCALE.LOCALESET."admin/support_thread.php")) {
 	} else {
 	$addon_description = ("[img]".$settings['siteurl']."infusions/addondb/img/addon_logo.png[/img]");
 	}
-	$addon_description .= ("[img]".$settings['siteurl']."infusions/addondb/img/stamp_adb_170.png[/img]");
+	$addon_description .= ("[img]".$settings['siteurl']."infusions/addondb/img/approved_addon.png[/img]");
 	$addon_description .= $addon_data['addon_description'];
 	$addon_description .= ("".$locale['addondb711']."[addon=".$addon_id."]".$locale['addondb605']."[/addon]");
 	$addon_submitter = $addon_data['addon_submitter_id'];

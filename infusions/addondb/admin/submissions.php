@@ -249,6 +249,7 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
         $submit_info['addon_cat_id'] = stripinput($_POST['addon_cat_id']);
         $submit_info['addon_cat_type'] = stripinput($_POST['addon_cat_type']);
         $submit_info['addon_description'] = stripinput($_POST['addon_description']);
+        $submit_info['addon_demo_url'] = stripinput($_POST['addon_demo_url']);
         $submit_info['addon_copyright'] = stripinput($_POST['addon_copyright']);
         $submit_info['addon_version'] = stripinput($_POST['addon_version']);
         $submit_info['version_id'] = stripinput($_POST['version_id']);
@@ -351,6 +352,7 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
             '".$submit_info['addon_status']."',
             '".$submit_info['addon_name']."',
             '".$submit_info['addon_description']."',
+            '".$submit_info['addon_demo_url']."',
             '".$submit_info['addon_copyright']."',
             '".$submit_info['addon_version']."',
             '".$submit_info['version_id']."',
@@ -408,6 +410,7 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
 			$addon_cat_type = $submit_criteria['addon_cat_type'];
 			$addon_status_value = $submit_criteria['addon_status'];
 			$addon_description = $submit_criteria['addon_description'];
+			$addon_demo_url = $submit_criteria['addon_demo_url'];
 			$addon_copyright = $submit_criteria['addon_copyright'];
 			$addon_version = $submit_criteria['addon_version'];
 			$version_id = $submit_criteria['addon_version_id'];
@@ -452,6 +455,7 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
 			foreach ($addon_status as $k=>$addon_status_name) {
 				$addon_status_list .= "<option value='".$k."'".($addon_status_value == $k ? " selected" : "").">".$addon_status_name."</option>\n";
 			}
+			$urlprefix = !strstr($addon_demo_url, "http://") ? "http://" : "";
 			// GET RIGHT CONTENT END
 
 			opentable($locale['440']);
@@ -570,12 +574,17 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
 			<input type='hidden' class='textbox' name='addon_share_status' value='".$addon_share_status."'>".($addon_share_status == 0 ? $locale['addondb459y'] : $locale['addondb459n'])."</td>
 			</tr>
 			<tr>
+			<td class='tbl1' nowrap>".$locale['addondb459z']."</td>
+			<td class='tbl1' nowrap>&nbsp;</td><td class='tbl1'>
+			<input type='hidden' class='textbox' name='addon_demo_url' value='".$addon_demo_url."'>";
+			if ($addon_demo_url) { echo "<a target='_blank' href='".$urlprefix.$addon_demo_url."'>".$addon_demo_url."</a>"; } else { echo "---"; }
+			echo "</td>
+			</tr>
+			<tr>
 			<td class='tbl1' nowrap colspan='3'><hr></td>
 			</tr>
 			<tr>\n";
-			
 			if($userdata['user_id'] == $addon_submitter_id) { $approver = $locale['addondb603']; } else { $approver = $userdata['user_name']; }
-			
 			echo "<td class='tbl1' nowrap>".$locale['addondb442'].":</td>
 			<td class='tbl1' nowrap>&nbsp;</td>
 			<td class='tbl1'><select class='textbox' name='addon_status' style='width:300px;'>".$addon_status_list."</select></td>
