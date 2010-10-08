@@ -94,7 +94,7 @@ if ($settings_global['set_addondb_sub'] == '1' && iMEMBER) { echo "<div class ='
 opentable($locale['addondb400']);
 
 $versel = $locale['addondb429'];
-$ver_list = "<li rel='0'>".$locale['addondb429']."</li>".buildversionoptionlist($addon_ver_id);
+$ver_list = "<li rel='0'>".$locale['addondb429']."</li>".buildversionlilist($addon_ver_id);
 $addon_type_list = "<li rel='0'>".$locale['addondb429']."</li>";
 $add = $locale['addondb429'];
 foreach ($addon_types as $k=>$addon_type) {

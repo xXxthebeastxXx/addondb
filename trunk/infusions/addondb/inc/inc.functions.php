@@ -204,6 +204,20 @@ function buildversionoptionlist($sel_ver_id = 1) {
 	return $res;
 }
 
+function buildversionlilist($sel_ver_id = 1) {
+	global $db_prefix, $versel;
+	$res = "";
+	$result = dbquery("SELECT * FROM ".DB_ADDON_VERSIONS." ORDER BY version_order DESC");
+	if (dbrows($result) > 0) {
+		while ($data = dbarray($result)) {
+			$ver = "v".$data['version_h'].".".$data['version_l'].($data['version_s'] != "" ? " ".$data['version_s'] : "");
+			$res .= "<li rel='".$data['version_id']."'>".$ver."</li>";
+			$data['version_id'] == $sel_ver_id ? $versel = $ver : "";
+		}
+	}
+	return $res;
+}
+
 function getaddonlevel($addonlevel) {
 	global $locale;
 	$levels = array($locale['user0'], $locale['user1'], $locale['user2'], $locale['user3']);
