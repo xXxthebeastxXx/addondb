@@ -30,7 +30,7 @@ $get_prefix = "";
 $db_count = "";
 $addon_type_list = "";
 $addon_cat_id = "";
-$addon_addon_cat_type = "";
+$addon_type = "";
 $addon_ver_id = "";
 $addon_orderby_list = "";
 $addon_orderby_dir_list = "";
@@ -49,14 +49,14 @@ if (isset($_GET['addon_cat_id']) && isnum($_GET['addon_cat_id'])) {
 	}
 }
 
-if (isset($_GET['addon_addon_cat_type']) && isnum($_GET['addon_addon_cat_type'])) {
-	$get_vars .= (empty($get_vars) ? "?" : "&amp;")."addon_addon_cat_type=".$_GET['addon_addon_cat_type'];
-	if ($_GET['addon_addon_cat_type'] != 0) {
-		$addon_addon_cat_type = $_GET['addon_addon_cat_type'];
-		$db_opts .= " AND tm.addon_type='".$_GET['addon_addon_cat_type']."'";
-		$db_count .= " AND tm.addon_type='".$_GET['addon_addon_cat_type']."'";
+if (isset($_GET['addon_type']) && isnum($_GET['addon_type'])) {
+	$get_vars .= (empty($get_vars) ? "?" : "&amp;")."addon_type=".$_GET['addon_type'];
+	if ($_GET['addon_type'] != 0) {
+		$addon_type = $_GET['addon_type'];
+		$db_opts .= " AND tm.addon_type='".$_GET['addon_type']."'";
+		$db_count .= " AND tm.addon_type='".$_GET['addon_type']."'";
 	} else {
-		$addon_addon_cat_type = 0;
+		$addon_type = 0;
 	}
 }
 //This should work now
@@ -97,9 +97,9 @@ $versel = $locale['addondb429'];
 $ver_list = "<li rel='0'>".$locale['addondb429']."</li>".buildversionlilist($addon_ver_id);
 $addon_type_list = "<li rel='0'>".$locale['addondb429']."</li>";
 $add = $locale['addondb429'];
-foreach ($addon_types as $k=>$addon_type) {
-	$addon_type_list .= "<li rel='".$k."'>".$addon_type."</li>\n";
-	$addon_addon_cat_type == $k ? $add = $addon_type : "";
+foreach ($addon_types as $k=>$addon_typ) {
+	$addon_type_list .= "<li rel='".$k."'>".$addon_typ."</li>\n";
+	$addon_type == $k ? $add = $addon_typ : "";
 }
 $aob = $locale['func016'];
 foreach ($addon_orderby as $k=>$addon_orderby) {
@@ -129,7 +129,7 @@ echo "<form name='filterform' method='get' action='".FUSION_SELF."'>
 <div class='dropselect grid_5'>
 	".$locale['addondb432']."
 	<p class='field'>".$add."</p>
-	<input type='hidden' name='addon_addon_cat_type' value='".$addon_addon_cat_type."' class='field-h' readonly='readonly' />
+	<input type='hidden' name='addon_type' value='".$addon_type."' class='field-h' readonly='readonly' />
 	<ul class='list'>
 		".$addon_type_list."
 	</ul>
@@ -196,7 +196,7 @@ if ($rows != 0) {
 			echo "<tr>
 			<td class='tbl2' width='3%' style='white-space:nowrap'>".$new."</td>
 			<td class='tbl1' style='white-space:nowrap'><a href='view.php?addon_id=".$data['addon_id']."'>".trimlink($data['addon_name'], 30)."</a></td>
-			<td class='tbl2' width='1%' style='white-space:nowrap'>".strftime("%d/%m/%Y",$data['addon_date']+($settings['timeoffset']*3600))."</td>
+			<td class='tbl2' width='1%' style='white-space:nowrap'>".showdate("%d %B",$data['addon_date'])."</td>
 			<td class='tbl2' width='1%' style='white-space:nowrap'><span title='".$addon_author."'>".trimlink($addon_author, 20)."</span></td>
 			<td class='tbl2' width='1%' style='white-space:nowrap'>".$data['addon_version']."</td>
 			<td class='tbl1' width='1%' style='white-space:nowrap'>".$ver."</td>
@@ -206,7 +206,7 @@ if ($rows != 0) {
 		} else {
 			echo "<tr>
 			<td class='tbl2' width='3%' align='center'>-</td>
-			<td class='tbl1' colspan='7'>".(isset($addon_cat_id) || isset($addon_ver_id) || isset($addon_addon_cat_type) ? $locale['addondb424'] : $locale['addondb422'])."</td>
+			<td class='tbl1' colspan='7'>".(isset($addon_cat_id) || isset($addon_ver_id) || isset($addon_type) ? $locale['addondb424'] : $locale['addondb422'])."</td>
 			</tr>\n";
 		}
 	}
@@ -216,7 +216,7 @@ if ($rows != 0) {
 	</table>\n";
 } else {
 	if (iMEMBER) {
-		echo "<center><br />".(isset($addon_cat_id) || isset($addon_ver_id) || isset($addon_addon_cat_type) ? $locale['addondb424'] : $locale['addondb421'])."<br /><br /></center>\n";
+		echo "<center><br />".(isset($addon_cat_id) || isset($addon_ver_id) || isset($addon_type) ? $locale['addondb424'] : $locale['addondb421'])."<br /><br /></center>\n";
 	} else {
 		echo "<br /><br /><div style='text-align:center;margin-top:2em;margin-bottom:2em;'>".$locale['addondb425']." <a href='".BASEDIR."register.php' title='".$locale['addondb428']."'>".$locale['addondb426']."</a> ".$locale['addondb427']."</div>";
 	}
@@ -285,9 +285,6 @@ echo "<table class='tbl-border' align='center' width='100%'><tr>\n
 closetable();
   }
 
-echo "<script type='text/javascript'>function filterMods(criteria) {\n";
-echo "document.location.href='".INFUSIONS."addondb/addons.php?show='+criteria;\n}\n";
-echo "</script>\n";
 add_to_title ($locale['addondb435'].$locale['addondb400']);
 require_once THEMES."templates/footer.php";
 ?>
