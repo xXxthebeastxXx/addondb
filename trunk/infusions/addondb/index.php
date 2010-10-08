@@ -68,10 +68,10 @@ if (isset($_GET['addon_ver_id']) && isnum($_GET['addon_ver_id'])) {
 		$db_count .= " AND tv.version_id='".$_GET['addon_ver_id']."'";
 	}
 } elseif (!isset($_GET['addon_ver_id']) && get_newest_version_id()) {
-	$addon_ver_id = get_newest_version_id();
-	$db_opts .= " AND tv.version_id='$addon_ver_id'";
-	$db_count .= " AND tv.version_id='$addon_ver_id'";
-	$get_vars .= (empty($get_vars) ? "?" : "&amp;")."addon_ver_id=$addon_ver_id";
+	$addon_ver_id = 0;
+	#$db_opts .= " AND tv.version_id='$addon_ver_id'";
+	#$db_count .= " AND tv.version_id='$addon_ver_id'";
+	#$get_vars .= (empty($get_vars) ? "?" : "&amp;")."addon_ver_id=$addon_ver_id";
 }
 
 if (isset($_GET['addon_orderby_value']) && in_array($_GET['addon_orderby_value'], $check_order_val)) {
