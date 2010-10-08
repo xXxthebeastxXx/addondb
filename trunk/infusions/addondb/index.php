@@ -124,45 +124,45 @@ if ($rows != 0) {
 		ORDER BY addon_cat_order, ".$addon_orderby_value." ".$addon_orderby_dir_value."
 		LIMIT ".$_GET['rowstart'].",".$settings_global['addons_per_page']
 	);
-}
-echo "<form name='filterform' method='get' action='".FUSION_SELF."'>
-<div class='dropselect grid_5'>
-	".$locale['addondb432']."
-	<p class='field'>".$add."</p>
-	<input type='hidden' name='addon_type' value='".$addon_type."' class='field-h' readonly='readonly' />
-	<ul class='list'>
-		".$addon_type_list."
+} ?>
+<form name="filterform" method="get" action="<?php echo FUSION_SELF; ?>">
+<div class="dropselect grid_5">
+	<?php echo $locale['addondb432']; ?>
+	<p class="field"><?php echo $add; ?></p>
+	<input type="hidden" name="addon_type" value="<?php echo $addon_type; ?>" class="field-h" readonly="readonly" />
+	<ul class="list">
+		<?php echo $addon_type_list; ?>
 	</ul>
 </div>
-<div class='dropselect grid_5'>
-	".$locale['addondb433']."
-	<p class='field'>".$versel."</p>
-	<input type='hidden' name='addon_ver_id' value='".$addon_ver_id."' class='field-h' readonly='readonly' />
-	<ul class='list'>
-		".$ver_list."
+<div class="dropselect grid_5">
+	<?php echo $locale['addondb433']; ?>
+	<p class="field"><?php echo $versel; ?></p>
+	<input type="hidden" name="addon_ver_id" value="<?php echo $addon_ver_id; ?>" class="field-h" readonly="readonly" />
+	<ul class="list">
+		<?php echo $ver_list; ?>
 	</ul>
 </div>
-<div class='dropselect grid_5'>
-	".$locale['addondb434']."
-	<p class='field'>".$aob."</p>
-	<input type='hidden' name='addon_orderby_value' value='".$addon_orderby_value."' class='field-h' readonly='readonly' />
-	<ul class='list'>
-		".$addon_orderby_list."
+<div class="dropselect grid_5">
+	<?php echo $locale['addondb434']; ?>
+	<p class="field"><?php echo $aob; ?></p>
+	<input type="hidden" name="addon_orderby_value" value="<?php echo $addon_orderby_value; ?>" class="field-h" readonly="readonly" />
+	<ul class="list">
+		<?php echo $addon_orderby_list; ?>
 	</ul>
 </div>
-<div class='dropselect grid_5'>
+<div class="dropselect grid_5">
 	Sort	
-	<p class='field'>".$aobl."</p>
-	<input type='hidden' name='addon_orderby_dir_value' value='".$addon_orderby_dir_value."' class='field-h' readonly='readonly' />
-	<ul class='list'>
-		".$addon_orderby_dir_list."
+	<p class="field"><?php echo $aobl; ?></p>
+	<input type="hidden" name="addon_orderby_dir_value" value="<?php echo $addon_orderby_dir_value; ?>" class="field-h" readonly="readonly" />
+	<ul class="list">
+		<?php echo $addon_orderby_dir_list; ?>
 	</ul>
 </div>
-<div class='dropselect grid_4'><br />
-	<button type='submit' class='button'><span>Apply changes</span></button>
+<div class="dropselect grid_4"><br />
+	<button type="submit" class="button"><span>Apply changes</span></button>
 </div>
-</form>\n";
-
+</form>
+<?php
 if ($rows != 0) {
 	echo "<table border='0' cellpadding='0' cellspacing='0' width='100%' class='tbl-border'>
 	<tr>
