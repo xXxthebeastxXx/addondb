@@ -71,6 +71,7 @@ if (!isnum($addon_id) || dbrows($q_addons) == 0 || ($d_addons['addon_status'] !=
 	$rating = ($num_votes > 0 ? str_repeat("<img src='".INFUSIONS."addondb/img/star.png' alt='".$locale['addondb414']."'>",ceil($d_rating['sum_rating']/$num_votes)).$votecount : $votecount);
 	$staff_rating = str_repeat("<img src='".INFUSIONS."addondb/img/star.png' alt='".$locale['addondb414']."' />",$d_addons['addon_approved_rating']);
 	$urlprefix = !strstr($d_addons['addon_author_www'], "http://") ? "http://" : "";
+	$urlprefix_demo = !strstr($d_addons['addon_demo_url'], "http://") ? "http://" : "";
 
 	if ($d_addons['addon_download_count'] == 0) {
 		$download_count = "[0 ".$locale['addondb422']."]";
@@ -98,7 +99,7 @@ if (!isnum($addon_id) || dbrows($q_addons) == 0 || ($d_addons['addon_status'] !=
     echo"<div align='center'><a href='img/screenshots/".$d_addons['addon_img']."' rel='lightbox' style='outline: none;border:none;'>
     <img src='".ADDON_SCRN."t_".$d_addons['addon_img']."' style='outline: none;border:none;'></a></div>\n";
     }
-	echo"<br />\n<center><img src='".ADDON_IMG."stamp_adb_170.png' alt='' border='0' /></center>
+	echo"<br />\n<center><img src='".ADDON_IMG."approved_addon.png' alt='' border='0' /></center>
 	<br /><center><img src='".ADDON_IMG."back.png' title='' alt='' border='0' />&nbsp;<a href='".ADDON."index.php' title =''>".$locale['addondb516']."</a></center>\n";
 	if ($d_addons['addon_share_status']) {
 	echo "<br /><center>
@@ -162,6 +163,12 @@ if (!isnum($addon_id) || dbrows($q_addons) == 0 || ($d_addons['addon_status'] !=
 	<tr>
 	<td class='tbl2' nowrap><b>".$locale['addondb408'].":</b></td>
 	<td class='tbl1' nowrap>".$rating."</td>
+	</tr>
+	<tr>
+	<td class='tbl2' nowrap><b>".$locale['addondb429a']."</b></td>
+	<td class='tbl1' nowrap>";
+	if ($d_addons['addon_demo_url']) { echo "<a target='_blank' href='".$urlprefix_demo.$d_addons['addon_demo_url']."'>".$d_addons['addon_demo_url']."</a>"; } else { echo "---"; }
+	echo "</td>
 	</tr>
 	</table>
 	</td>

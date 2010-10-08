@@ -30,6 +30,7 @@ $locate['addondb426'] = "This Addon is currently suspended!";
 $locale['addondb427'] = "Translations:";
 $locale['addondb428'] = "Submit :";
 $locale['addondb429'] = "Support Thread: ";
+$locale['addondb429a'] = "Live Demo: ";
 
 // Error Messages
 $locale['addondb430'] = "Error";

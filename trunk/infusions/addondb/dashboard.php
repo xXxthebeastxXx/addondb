@@ -103,7 +103,7 @@ closetable();
        echo "<td class='tbl1' align='right' width='50%'>".$locale['addondb_611']."</td><td class='tbl1'>".( $total_appr == '' ? $locale['addondb_614'] : $total_appr)."</td>\n";
        echo "</tr>\n<tr>\n";
        echo "<td class='tbl1' align='right' width='50%'>".$locale['addondb_612']."</td><td class='tbl1'>";
-       if (isset($db_check['assign_id'])) { echo profile_link($db_check['assign_user'], $db_check['user_name'], $db_check['user_status']); } else { echo $locale['addondb_614']; }
+       if (isset($db_check['assign_id'])) { echo profile_link($db_check['assign_user'], $db_check['user_name'], $db_check['user_status']); } else { echo "---"; }
        echo "</td>\n";
        echo "</tr>\n</table>\n";
 closetable();

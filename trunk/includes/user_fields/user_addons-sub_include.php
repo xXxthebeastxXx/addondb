@@ -29,8 +29,8 @@ $addoncount = number_format(dbcount("(addon_id)", DB_ADDONS, "addon_author_name=
 
      if ($addoncount > 0) {
 	echo "<tr>\n";
-	if (file_exists(INFUSIONS."addondb/img/stamp_dev_170.png")) {
-	echo "<td colspan='2' valign='top' align='right'><img src='".INFUSIONS."addondb/img/stamp_dev_170.png' alt='' border='0' /></td>\n";
+	if (file_exists(INFUSIONS."addondb/img/approved_dev.png")) {
+	echo "<td colspan='2' valign='top' align='right'><img src='".INFUSIONS."addondb/img/approved_dev.png' alt='' border='0' /></td>\n";
 	echo "</tr>\n<tr>\n"; }
 	echo "<td width='1%' class='tbl1' style='white-space:nowrap'>".$locale['uf_asubs_001']."</td>\n";
 	echo "<td align='right' class='tbl1'>".$addoncount."</td>\n";
