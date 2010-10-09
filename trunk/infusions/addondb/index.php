@@ -115,12 +115,11 @@ foreach ($addon_orderby_dir as $k=>$addon_orderby_dir) {
 }
 $rows = dbresult(dbquery("SELECT COUNT(*) FROM ".DB_ADDON_CATS." tc LEFT JOIN ".DB_ADDONS." tm USING(addon_cat_id) LEFT JOIN ".DB_ADDON_VERSIONS." tv USING(version_id) WHERE ".groupaccess('tc.addon_cat_access')." AND ".$db_opts." AND addon_status='0'"),0);
 if ($rows != 0) {
-	$result = dbquery(
-		"SELECT tc.*,tm.*,tv.*,SUM(tr.rating_vote) AS sum_rating, COUNT(tr.rating_item_id) AS count_votes
+	$result = dbquery("
+		SELECT tc.*,tm.*,tv.*
 		FROM ".DB_ADDON_CATS." tc
 		LEFT JOIN ".DB_ADDONS." tm USING(addon_cat_id)
 		LEFT JOIN ".DB_ADDON_VERSIONS." tv USING(version_id)
-		LEFT JOIN ".DB_RATINGS." tr ON tr.rating_item_id = tm.addon_id AND tr.rating_type='M'
 		WHERE ".$db_opts." AND ".groupaccess('tc.addon_cat_access')."
 		GROUP BY addon_id, tc.addon_cat_id
 		ORDER BY addon_cat_order, ".$orderby." ".$sort."
@@ -179,16 +178,10 @@ if ($rows != 0) {
 	<td class='forum-caption' width='1%' style='white-space:nowrap'>".$locale['addondb402']."</td>
 	<td class='forum-caption' width='1%' style='white-space:nowrap'>".$locale['addondb403']."</td>
 	<td class='forum-caption' width='1%' style='white-space:nowrap'>".$locale['addondb404']."</td>
-	<td class='forum-caption' width='1%' style='white-space:nowrap'>".$locale['addondb406']."</td>
 			</tr>\n";
 		}
 		if ($data['addon_id']) {
 			$ver = "v".$data['version_h'].".".$data['version_l'].($data['version_s'] != "" ? " ".$data['version_s'] : "");
-			if ($data['count_votes'] > 0) {
-				$rating = str_repeat("<img src='".INFUSIONS."addondb/img/star.png' alt='".$locale['addondb407']."' />", ceil($data['sum_rating'] / $data['count_votes']));
-			} else {
-				$rating = $locale['addondb408'];
-			}
 			$addon_author = ($data['addon_author_name'] == "" ? $locale['addondb409'] : $data['addon_author_name']);
 
 			if ($data['addon_date'] + 604800 > time() + ($settings['timeoffset'] * 3600)) { $new = "<img src='".INFUSIONS."addondb/img/new.gif' border='0' alt='' />";
@@ -202,7 +195,6 @@ if ($rows != 0) {
 			<td class='tbl2' width='1%' style='white-space:nowrap'><span title='".$addon_author."'>".trimlink($addon_author, 20)."</span></td>
 			<td class='tbl2' width='1%' style='white-space:nowrap'>".$data['addon_version']."</td>
 			<td class='tbl1' width='1%' style='white-space:nowrap'>".$ver."</td>
-			<td class='tbl1' width='1%' style='white-space:nowrap'>".$rating."</td>
 			</tr>\n";
 			$addon_cat_old = $data['addon_cat_id'];
 		} else {
