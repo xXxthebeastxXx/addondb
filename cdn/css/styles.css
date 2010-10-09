@@ -220,6 +220,7 @@ body { background:#F2F6F7 url(../cssimg/header_footer_bg.png) 0 -270px repeat-x;
 .posttitle a { color:#000 }
 .posttitle a:hover { color:#7BA121 }
 .postmeta { color:#AFB2B5; font-size:12px; font-weight:700; margin-bottom:10px }
+.post { text-align:justify}
 .i-com { float:right }
 .center, [align=center] {
 margin-left:auto;
