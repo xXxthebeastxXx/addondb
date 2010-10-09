@@ -30,12 +30,12 @@ $get_prefix = "";
 $db_count = "";
 $addon_type_list = "";
 $addon_cat_id = "";
-$addon_type = "";
-$addon_ver_id = "";
+$type = "";
+$version = "";
 $addon_orderby_list = "";
 $addon_orderby_dir_list = "";
-$addon_orderby_value = "";
-$addon_orderby_dir_value = "";
+$orderby = "";
+$sort = "";
 
 $check_order_val = array("addon_name", "addon_author_name", "addon_date");
 $check_order_dir = array("ASC", "DESC");
@@ -49,42 +49,44 @@ if (isset($_GET['addon_cat_id']) && isnum($_GET['addon_cat_id'])) {
 	}
 }
 
-if (isset($_GET['addon_type']) && isnum($_GET['addon_type'])) {
-	$get_vars .= (empty($get_vars) ? "?" : "&amp;")."addon_type=".$_GET['addon_type'];
-	if ($_GET['addon_type'] != 0) {
-		$addon_type = $_GET['addon_type'];
-		$db_opts .= " AND tm.addon_type='".$_GET['addon_type']."'";
-		$db_count .= " AND tm.addon_type='".$_GET['addon_type']."'";
+if (isset($_GET['type']) && isnum($_GET['type'])) {
+	$get_vars .= (empty($get_vars) ? "?" : "&amp;")."type=".$_GET['type'];
+	if ($_GET['type'] != 0) {
+		$type = $_GET['type'];
+		$db_opts .= " AND tm.addon_type='".$_GET['type']."'";
+		$db_count .= " AND tm.addon_type='".$_GET['type']."'";
 	} else {
-		$addon_type = 0;
+		$type = 0;
 	}
+} else {
+	$type = 0;
 }
 //This should work now
-if (isset($_GET['addon_ver_id']) && isnum($_GET['addon_ver_id'])) {
-	$get_vars .= (empty($get_vars) ? "?" : "&amp;")."addon_ver_id=".$_GET['addon_ver_id'];
-	if ($_GET['addon_ver_id'] != 0) {
-		$addon_ver_id = $_GET['addon_ver_id'];
-		$db_opts .= " AND tv.version_id='".$_GET['addon_ver_id']."'";
-		$db_count .= " AND tv.version_id='".$_GET['addon_ver_id']."'";
+if (isset($_GET['version']) && isnum($_GET['version'])) {
+	$get_vars .= (empty($get_vars) ? "?" : "&amp;")."version=".$_GET['version'];
+	if ($_GET['version'] != 0) {
+		$version = $_GET['version'];
+		$db_opts .= " AND tv.version_id='".$_GET['version']."'";
+		$db_count .= " AND tv.version_id='".$_GET['version']."'";
 	}
-} elseif (!isset($_GET['addon_ver_id']) && get_newest_version_id()) {
-	$addon_ver_id = 0;
-	#$db_opts .= " AND tv.version_id='$addon_ver_id'";
-	#$db_count .= " AND tv.version_id='$addon_ver_id'";
-	#$get_vars .= (empty($get_vars) ? "?" : "&amp;")."addon_ver_id=$addon_ver_id";
+} else {
+	$version = 0;
+	#$db_opts .= " AND tv.version_id='$version'";
+	#$db_count .= " AND tv.version_id='$version'";
+	#$get_vars .= (empty($get_vars) ? "?" : "&amp;")."version=$version";
 }
 
-if (isset($_GET['addon_orderby_value']) && in_array($_GET['addon_orderby_value'], $check_order_val)) {
-	$addon_orderby_value = stripinput($_GET['addon_orderby_value']);
-	$get_vars .= (empty($get_vars) ? "?" : "&amp;")."addon_orderby_value=".$addon_orderby_value;
+if (isset($_GET['orderby']) && in_array($_GET['orderby'], $check_order_val)) {
+	$orderby = stripinput($_GET['orderby']);
+	$get_vars .= (empty($get_vars) ? "?" : "&amp;")."orderby=".$orderby;
 }else{
-$addon_orderby_value = "addon_name";
+$orderby = "addon_name";
 }
-if (isset($_GET['addon_orderby_dir_value']) && in_array($_GET['addon_orderby_dir_value'], $check_order_dir)) {
-	$addon_orderby_dir_value = stripinput($_GET['addon_orderby_dir_value']);
-	$get_vars .= (empty($get_vars) ? "?" : "&amp;")."addon_orderby_dir_value=".$addon_orderby_dir_value;
+if (isset($_GET['sort']) && in_array($_GET['sort'], $check_order_dir)) {
+	$sort = stripinput($_GET['sort']);
+	$get_vars .= (empty($get_vars) ? "?" : "&amp;")."sort=".$sort;
 }else{
-$addon_orderby_dir_value = "ASC";
+$sort = "ASC";
 }
 
 if ($settings_global['set_addondb_onf'] == '1' && iADMIN) { echo "<div class ='admin-message'><center><b>".$locale['addondb605']."</b></div>\n"; }
@@ -94,22 +96,22 @@ if ($settings_global['set_addondb_sub'] == '1' && iMEMBER) { echo "<div class ='
 opentable($locale['addondb400']);
 
 $versel = $locale['addondb429'];
-$ver_list = "<li rel='0'>".$locale['addondb429']."</li>".buildversionlilist($addon_ver_id);
+$ver_list = "<li rel='0'>".$locale['addondb429']."</li>".buildversionlilist($version);
 $addon_type_list = "<li rel='0'>".$locale['addondb429']."</li>";
 $add = $locale['addondb429'];
 foreach ($addon_types as $k=>$addon_typ) {
 	$addon_type_list .= "<li rel='".$k."'>".$addon_typ."</li>\n";
-	$addon_type == $k ? $add = $addon_typ : "";
+	$type == $k ? $add = $addon_typ : "";
 }
 $aob = $locale['func016'];
 foreach ($addon_orderby as $k=>$addon_orderby) {
 	$addon_orderby_list .= "<li rel='".$k."'>".$addon_orderby."</li>\n";
-	$addon_orderby_value == $k ? $aob = $addon_orderby : "";
+	$orderby == $k ? $aob = $addon_orderby : "";
 }
 $aobl = $locale['func023'];
 foreach ($addon_orderby_dir as $k=>$addon_orderby_dir) {
 	$addon_orderby_dir_list .= "<li rel='".$k."'>".$addon_orderby_dir."</li>\n";
-	$addon_orderby_dir_value == $k ? $aobl = $addon_orderby_dir  : "";
+	$sort == $k ? $aobl = $addon_orderby_dir  : "";
 }
 $rows = dbresult(dbquery("SELECT COUNT(*) FROM ".DB_ADDON_CATS." tc LEFT JOIN ".DB_ADDONS." tm USING(addon_cat_id) LEFT JOIN ".DB_ADDON_VERSIONS." tv USING(version_id) WHERE ".groupaccess('tc.addon_cat_access')." AND ".$db_opts." AND addon_status='0'"),0);
 if ($rows != 0) {
@@ -121,7 +123,7 @@ if ($rows != 0) {
 		LEFT JOIN ".DB_RATINGS." tr ON tr.rating_item_id = tm.addon_id AND tr.rating_type='M'
 		WHERE ".$db_opts." AND ".groupaccess('tc.addon_cat_access')."
 		GROUP BY addon_id, tc.addon_cat_id
-		ORDER BY addon_cat_order, ".$addon_orderby_value." ".$addon_orderby_dir_value."
+		ORDER BY addon_cat_order, ".$orderby." ".$sort."
 		LIMIT ".$_GET['rowstart'].",".$settings_global['addons_per_page']
 	);
 } ?>
@@ -129,7 +131,7 @@ if ($rows != 0) {
 <div class="dropselect grid_5">
 	<?php echo $locale['addondb432']; ?>
 	<p class="field"><?php echo $add; ?></p>
-	<input type="hidden" name="addon_type" value="<?php echo $addon_type; ?>" class="field-h" readonly="readonly" />
+	<input type="hidden" name="type" value="<?php echo $type; ?>" class="field-h" readonly="readonly" />
 	<ul class="list">
 		<?php echo $addon_type_list; ?>
 	</ul>
@@ -137,7 +139,7 @@ if ($rows != 0) {
 <div class="dropselect grid_5">
 	<?php echo $locale['addondb433']; ?>
 	<p class="field"><?php echo $versel; ?></p>
-	<input type="hidden" name="addon_ver_id" value="<?php echo $addon_ver_id; ?>" class="field-h" readonly="readonly" />
+	<input type="hidden" name="version" value="<?php echo $version; ?>" class="field-h" readonly="readonly" />
 	<ul class="list">
 		<?php echo $ver_list; ?>
 	</ul>
@@ -145,7 +147,7 @@ if ($rows != 0) {
 <div class="dropselect grid_5">
 	<?php echo $locale['addondb434']; ?>
 	<p class="field"><?php echo $aob; ?></p>
-	<input type="hidden" name="addon_orderby_value" value="<?php echo $addon_orderby_value; ?>" class="field-h" readonly="readonly" />
+	<input type="hidden" name="orderby" value="<?php echo $orderby; ?>" class="field-h" readonly="readonly" />
 	<ul class="list">
 		<?php echo $addon_orderby_list; ?>
 	</ul>
@@ -153,7 +155,7 @@ if ($rows != 0) {
 <div class="dropselect grid_5">
 	Sort	
 	<p class="field"><?php echo $aobl; ?></p>
-	<input type="hidden" name="addon_orderby_dir_value" value="<?php echo $addon_orderby_dir_value; ?>" class="field-h" readonly="readonly" />
+	<input type="hidden" name="sort" value="<?php echo $sort; ?>" class="field-h" readonly="readonly" />
 	<ul class="list">
 		<?php echo $addon_orderby_dir_list; ?>
 	</ul>
@@ -206,7 +208,7 @@ if ($rows != 0) {
 		} else {
 			echo "<tr>
 			<td class='tbl2' width='3%' align='center'>-</td>
-			<td class='tbl1' colspan='7'>".(isset($addon_cat_id) || isset($addon_ver_id) || isset($addon_type) ? $locale['addondb424'] : $locale['addondb422'])."</td>
+			<td class='tbl1' colspan='7'>".(isset($addon_cat_id) || isset($version) || isset($type) ? $locale['addondb424'] : $locale['addondb422'])."</td>
 			</tr>\n";
 		}
 	}
@@ -216,7 +218,7 @@ if ($rows != 0) {
 	</table>\n";
 } else {
 	if (iMEMBER) {
-		echo "<center><br />".(isset($addon_cat_id) || isset($addon_ver_id) || isset($addon_type) ? $locale['addondb424'] : $locale['addondb421'])."<br /><br /></center>\n";
+		echo "<center><br />".(isset($addon_cat_id) || isset($version) || isset($type) ? $locale['addondb424'] : $locale['addondb421'])."<br /><br /></center>\n";
 	} else {
 		echo "<br /><br /><div style='text-align:center;margin-top:2em;margin-bottom:2em;'>".$locale['addondb425']." <a href='".BASEDIR."register.php' title='".$locale['addondb428']."'>".$locale['addondb426']."</a> ".$locale['addondb427']."</div>";
 	}
