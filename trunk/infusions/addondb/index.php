@@ -40,7 +40,7 @@ $sort = "";
 $check_order_val = array("addon_name", "addon_author_name", "addon_date");
 $check_order_dir = array("ASC", "DESC");
 
-if (isset($_GET['addon_cat_id']) && isnum($_GET['addon_cat_id'])) {
+if(isset($_GET['addon_cat_id']) && isnum($_GET['addon_cat_id'])) {
 	$get_vars .= (empty($get_vars) ? "?" : "&amp;")."addon_cat_id=".$_GET['addon_cat_id'];
 	if ($_GET['addon_cat_id'] != 0) {
 		$addon_cat_id = $_GET['addon_cat_id'];
@@ -49,7 +49,7 @@ if (isset($_GET['addon_cat_id']) && isnum($_GET['addon_cat_id'])) {
 	}
 }
 
-if (isset($_GET['type']) && isnum($_GET['type'])) {
+if(isset($_GET['type']) && isnum($_GET['type'])) {
 	$get_vars .= (empty($get_vars) ? "?" : "&amp;")."type=".$_GET['type'];
 	if ($_GET['type'] != 0) {
 		$type = $_GET['type'];
@@ -61,8 +61,7 @@ if (isset($_GET['type']) && isnum($_GET['type'])) {
 } else {
 	$type = 0;
 }
-//This should work now
-if (isset($_GET['version']) && isnum($_GET['version'])) {
+if(isset($_GET['version']) && isnum($_GET['version'])) {
 	$get_vars .= (empty($get_vars) ? "?" : "&amp;")."version=".$_GET['version'];
 	if ($_GET['version'] != 0) {
 		$version = $_GET['version'];
@@ -71,29 +70,24 @@ if (isset($_GET['version']) && isnum($_GET['version'])) {
 	}
 } else {
 	$version = 0;
-	#$db_opts .= " AND tv.version_id='$version'";
-	#$db_count .= " AND tv.version_id='$version'";
-	#$get_vars .= (empty($get_vars) ? "?" : "&amp;")."version=$version";
 }
 
-if (isset($_GET['orderby']) && in_array($_GET['orderby'], $check_order_val)) {
+if(isset($_GET['orderby']) && in_array($_GET['orderby'], $check_order_val)) {
 	$orderby = stripinput($_GET['orderby']);
 	$get_vars .= (empty($get_vars) ? "?" : "&amp;")."orderby=".$orderby;
-}else{
-$orderby = "addon_name";
+} else {
+	$orderby = "addon_name";
 }
-if (isset($_GET['sort']) && in_array($_GET['sort'], $check_order_dir)) {
+if(isset($_GET['sort']) && in_array($_GET['sort'], $check_order_dir)) {
 	$sort = stripinput($_GET['sort']);
 	$get_vars .= (empty($get_vars) ? "?" : "&amp;")."sort=".$sort;
-}else{
-$sort = "ASC";
+} else {
+	$sort = "ASC";
 }
 
 if ($settings_global['set_addondb_onf'] == '1' && iADMIN) { echo "<div class ='admin-message'><center><b>".$locale['addondb605']."</b></div>\n"; }
 if ($settings_global['set_addondb_sub'] == '1' && iADMIN) { echo "<div class ='admin-message'><center><b>".$locale['addondb608']."</b></div>\n"; }
 if ($settings_global['set_addondb_sub'] == '1' && iMEMBER) { echo "<div class ='admin-message'><center><b>".$locale['addondb609']." ".$locale['addondb607']."</b></div>\n"; }
-
-opentable($locale['addondb400']);
 
 $versel = $locale['addondb429'];
 $ver_list = "<li class='0'>".$locale['addondb429']."</li>".buildversionlilist($version);
@@ -114,18 +108,18 @@ foreach ($addon_orderby_dir as $k=>$addon_orderby_dir) {
 	$sort == $k ? $aobl = $addon_orderby_dir  : "";
 }
 $rows = dbresult(dbquery("SELECT COUNT(*) FROM ".DB_ADDON_CATS." tc LEFT JOIN ".DB_ADDONS." tm USING(addon_cat_id) LEFT JOIN ".DB_ADDON_VERSIONS." tv USING(version_id) WHERE ".groupaccess('tc.addon_cat_access')." AND ".$db_opts." AND addon_status='0'"),0);
-if ($rows != 0) {
-	$result = dbquery("
-		SELECT tc.*,tm.*,tv.*
-		FROM ".DB_ADDON_CATS." tc
-		LEFT JOIN ".DB_ADDONS." tm USING(addon_cat_id)
-		LEFT JOIN ".DB_ADDON_VERSIONS." tv USING(version_id)
-		WHERE ".$db_opts." AND ".groupaccess('tc.addon_cat_access')."
-		GROUP BY addon_id, tc.addon_cat_id
-		ORDER BY addon_cat_order, ".$orderby." ".$sort."
-		LIMIT ".$_GET['rowstart'].",".$settings_global['addons_per_page']
-	);
-} ?>
+$result = dbquery("
+	SELECT tc.*,tm.*,tv.*
+	FROM ".DB_ADDON_CATS." tc
+	LEFT JOIN ".DB_ADDONS." tm USING(addon_cat_id)
+	LEFT JOIN ".DB_ADDON_VERSIONS." tv USING(version_id)
+	WHERE ".$db_opts." AND ".groupaccess('tc.addon_cat_access')."
+	GROUP BY addon_id, tc.addon_cat_id
+	ORDER BY addon_cat_order, ".$orderby." ".$sort."
+	LIMIT ".$_GET['rowstart'].",".$settings_global['addons_per_page']
+);
+add_to_title($locale['addondb435'].$locale['addondb400']);
+opentable($locale['addondb400']); ?>
 <form name="filterform" method="get" action="<?php echo FUSION_SELF; ?>">
 	<div class="dropselect grid_5">
 		<?php echo $locale['addondb432']; ?>
@@ -163,57 +157,48 @@ if ($rows != 0) {
 		<button type="submit" class="button"><span>Apply changes</span></button>
 	</div>
 </form>
-<?php
-if ($rows != 0) {
-	echo "<table cellpadding='0' cellspacing='0' width='100%' class='tbl-border'>\n";
-	$addon_cat_old = -1;
-	while ($data = dbarray($result)) {
-		if ($data['addon_cat_id'] <> $addon_cat_old) {
-			echo "<tr>
-			<td class='forum-caption'>".stripslashes($data['addon_cat_name'])." [".get_addon_type($data['addon_cat_type'])."]</td>
-			<td class='forum-caption' width='1%' style='white-space:nowrap'>".$locale['addondb405']."</td>
-	<td class='forum-caption' width='1%' style='white-space:nowrap'>".$locale['addondb402']."</td>
-	<td class='forum-caption' width='1%' style='white-space:nowrap'>".$locale['addondb403']."</td>
-	<td class='forum-caption' width='1%' style='white-space:nowrap'>".$locale['addondb404']."</td>
-			</tr>\n";
-		}
-		if ($data['addon_id']) {
+<table cellpadding="0" cellspacing="0" width="100%" class="tbl-border">
+<?php $addon_cat_old = -1; ?>
+<?php while($data = dbarray($result)) : ?>
+	<?php if($data['addon_cat_id'] <> $addon_cat_old) : ?>
+	<tr>
+		<td class="forum-caption"><?php echo stripslashes($data['addon_cat_name'])." [".get_addon_type($data['addon_cat_type']); ?>]</td>
+		<td class="forum-caption" width="1%" style="white-space:nowrap"><?php echo $locale['addondb405']; ?></td>
+		<td class="forum-caption" width="1%" style="white-space:nowrap"><?php echo $locale['addondb402']; ?></td>
+		<td class="forum-caption" width="1%" style="white-space:nowrap"><?php echo $locale['addondb403']; ?></td>
+		<td class="forum-caption" width="1%" style="white-space:nowrap"><?php echo $locale['addondb404']; ?></td>
+	</tr>
+	<?php endif; ?>
+	<?php if($data['addon_id']) :
 			$ver = "v".$data['version_h'].".".$data['version_l'].($data['version_s'] != "" ? " ".$data['version_s'] : "");
 			$addon_author = ($data['addon_author_name'] == "" ? $locale['addondb409'] : $data['addon_author_name']);
-
-			if ($data['addon_date'] + 604800 > time() + ($settings['timeoffset'] * 3600)) {
-				$time = nicetime(showdate("%Y-%m-%d %H:%M:%S",$data['addon_date']));
-			} else {
-				$time = showdate("%d. %B",$data['addon_date']);
-			 }
-
-			echo "<tr>
-			<td class='tbl1' style='white-space:nowrap'><a href='view.php?addon_id=".$data['addon_id']."'>".trimlink($data['addon_name'], 30)."</a></td>
-			<td class='tbl2' width='1%' style='white-space:nowrap'>".$time."</td>
-			<td class='tbl2' width='1%' style='white-space:nowrap'><span title='".$addon_author."'>".trimlink($addon_author, 20)."</span></td>
-			<td class='tbl2' width='1%' style='white-space:nowrap'>".$data['addon_version']."</td>
-			<td class='tbl1' width='1%' style='white-space:nowrap'>".$ver."</td>
-			</tr>\n";
-			$addon_cat_old = $data['addon_cat_id'];
-		} else {
-			echo "<tr>
-			<td class='tbl2' width='3%' align='center'>-</td>
-			<td class='tbl1' colspan='7'>".(isset($addon_cat_id) || isset($version) || isset($type) ? $locale['addondb424'] : $locale['addondb422'])."</td>
-			</tr>\n";
-		}
-	}
-	echo "</table>\n";
-} else {
-	if (iMEMBER) {
-		echo "<center><br />".(isset($addon_cat_id) || isset($version) || isset($type) ? $locale['addondb424'] : $locale['addondb421'])."<br /><br /></center>\n";
-	} else {
-		echo "<br /><br /><div style='text-align:center;margin-top:2em;margin-bottom:2em;'>".$locale['addondb425']." <a href='".BASEDIR."register.php' title='".$locale['addondb428']."'>".$locale['addondb426']."</a> ".$locale['addondb427']."</div>";
-	}
-}
-if ($rows > $settings_global['addons_per_page']) echo "<div align='center' style='margin-top:5px;'>\n".makePageNav($_GET['rowstart'], $settings_global['addons_per_page'], $rows, 3, ($get_vars ? FUSION_SELF."".$get_vars."&amp;" : ""))."\n</div>\n";
+			$data['addon_date'] + 604800 > time() + ($settings['timeoffset'] * 3600) ? 
+			$time = nicetime(showdate("%Y-%m-%d %H:%M:%S",$data['addon_date'])) : 
+			$time = showdate("%d. %B",$data['addon_date']); ?>
+	<tr>
+		<td class="tbl1" style="white-space:nowrap"><a href="view.php?addon_id=<?php echo $data['addon_id']; ?>"><?php echo trimlink($data['addon_name'], 30); ?></a></td>
+		<td class="tbl2" width="1%" style="white-space:nowrap"><?php echo $time; ?></td>
+		<td class="tbl2" width="1%" style="white-space:nowrap"><span title="<?php echo $addon_author; ?>"><?php echo trimlink($addon_author, 20); ?></span></td>
+		<td class="tbl2" width="1%" style="white-space:nowrap"><?php echo $data['addon_version']; ?></td>
+		<td class="tbl1" width="1%" style="white-space:nowrap"><?php echo $ver; ?></td>
+	</tr>
+	<?php $addon_cat_old = $data['addon_cat_id']; ?>
+	<?php else : ?>
+	<tr>
+		<td class="tbl2" width="3%" align="center">-</td>
+		<td class="tbl1" colspan="7"><?php echo (isset($addon_cat_id) || isset($version) || isset($type) ? $locale['addondb424'] : $locale['addondb422']); ?></td>
+	</tr>
+	<?php endif; ?>
+<?php endwhile; ?>
+<?php if(!$rows) : ?>
+	<tr>
+		<td class="tbl1"><?php echo (isset($addon_cat_id) || isset($version) || isset($type) ? $locale['addondb424'] : $locale['addondb422']); ?></td>
+	</tr>
+<?php endif; ?>
+</table>
+<?php if ($rows > $settings_global['addons_per_page']) echo "<div align='center' style='margin-top:5px;'>\n".makePageNav($_GET['rowstart'], $settings_global['addons_per_page'], $rows, 3, ($get_vars ? FUSION_SELF."".$get_vars."&amp;" : ""))."\n</div>\n";
 closetable();
 
-echo "<br />\n";
 opentable($locale['addondb500']);
 
    $total_addon = dbcount("(addon_id)", DB_ADDONS, "addon_status = '0'");
@@ -272,8 +257,6 @@ echo "<table class='tbl-border' align='center' width='100%'><tr>\n
         </tr>\n</table>\n";
 
 closetable();
-  }
-
-add_to_title ($locale['addondb435'].$locale['addondb400']);
+}
 require_once THEMES."templates/footer.php";
 ?>
