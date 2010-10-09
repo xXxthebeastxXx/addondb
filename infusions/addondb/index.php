@@ -96,21 +96,21 @@ if ($settings_global['set_addondb_sub'] == '1' && iMEMBER) { echo "<div class ='
 opentable($locale['addondb400']);
 
 $versel = $locale['addondb429'];
-$ver_list = "<li rel='0'>".$locale['addondb429']."</li>".buildversionlilist($version);
-$addon_type_list = "<li rel='0'>".$locale['addondb429']."</li>";
+$ver_list = "<li class='0'>".$locale['addondb429']."</li>".buildversionlilist($version);
+$addon_type_list = "<li class='0'>".$locale['addondb429']."</li>";
 $add = $locale['addondb429'];
 foreach ($addon_types as $k=>$addon_typ) {
-	$addon_type_list .= "<li rel='".$k."'>".$addon_typ."</li>\n";
+	$addon_type_list .= "<li class='".$k."'>".$addon_typ."</li>\n";
 	$type == $k ? $add = $addon_typ : "";
 }
 $aob = $locale['func016'];
 foreach ($addon_orderby as $k=>$addon_orderby) {
-	$addon_orderby_list .= "<li rel='".$k."'>".$addon_orderby."</li>\n";
+	$addon_orderby_list .= "<li class='".$k."'>".$addon_orderby."</li>\n";
 	$orderby == $k ? $aob = $addon_orderby : "";
 }
 $aobl = $locale['func023'];
 foreach ($addon_orderby_dir as $k=>$addon_orderby_dir) {
-	$addon_orderby_dir_list .= "<li rel='".$k."'>".$addon_orderby_dir."</li>\n";
+	$addon_orderby_dir_list .= "<li class='".$k."'>".$addon_orderby_dir."</li>\n";
 	$sort == $k ? $aobl = $addon_orderby_dir  : "";
 }
 $rows = dbresult(dbquery("SELECT COUNT(*) FROM ".DB_ADDON_CATS." tc LEFT JOIN ".DB_ADDONS." tm USING(addon_cat_id) LEFT JOIN ".DB_ADDON_VERSIONS." tv USING(version_id) WHERE ".groupaccess('tc.addon_cat_access')." AND ".$db_opts." AND addon_status='0'"),0);
@@ -127,53 +127,50 @@ if ($rows != 0) {
 	);
 } ?>
 <form name="filterform" method="get" action="<?php echo FUSION_SELF; ?>">
-<div class="dropselect grid_5">
-	<?php echo $locale['addondb432']; ?>
-	<p class="field"><?php echo $add; ?></p>
-	<input type="hidden" name="type" value="<?php echo $type; ?>" class="field-h" readonly="readonly" />
-	<ul class="list">
-		<?php echo $addon_type_list; ?>
-	</ul>
-</div>
-<div class="dropselect grid_5">
-	<?php echo $locale['addondb433']; ?>
-	<p class="field"><?php echo $versel; ?></p>
-	<input type="hidden" name="version" value="<?php echo $version; ?>" class="field-h" readonly="readonly" />
-	<ul class="list">
-		<?php echo $ver_list; ?>
-	</ul>
-</div>
-<div class="dropselect grid_5">
-	<?php echo $locale['addondb434']; ?>
-	<p class="field"><?php echo $aob; ?></p>
-	<input type="hidden" name="orderby" value="<?php echo $orderby; ?>" class="field-h" readonly="readonly" />
-	<ul class="list">
-		<?php echo $addon_orderby_list; ?>
-	</ul>
-</div>
-<div class="dropselect grid_5">
-	Sort	
-	<p class="field"><?php echo $aobl; ?></p>
-	<input type="hidden" name="sort" value="<?php echo $sort; ?>" class="field-h" readonly="readonly" />
-	<ul class="list">
-		<?php echo $addon_orderby_dir_list; ?>
-	</ul>
-</div>
-<div class="dropselect grid_4"><br />
-	<button type="submit" class="button"><span>Apply changes</span></button>
-</div>
+	<div class="dropselect grid_5">
+		<?php echo $locale['addondb432']; ?>
+		<p class="field"><?php echo $add; ?></p>
+		<input type="hidden" name="type" value="<?php echo $type; ?>" class="field-h" />
+		<ul class="list">
+			<?php echo $addon_type_list; ?>
+		</ul>
+	</div>
+	<div class="dropselect grid_5">
+		<?php echo $locale['addondb433']; ?>
+		<p class="field"><?php echo $versel; ?></p>
+		<input type="hidden" name="version" value="<?php echo $version; ?>" class="field-h" />
+		<ul class="list">
+			<?php echo $ver_list; ?>
+		</ul>
+	</div>
+	<div class="dropselect grid_5">
+		<?php echo $locale['addondb434']; ?>
+		<p class="field"><?php echo $aob; ?></p>
+		<input type="hidden" name="orderby" value="<?php echo $orderby; ?>" class="field-h" />
+		<ul class="list">
+			<?php echo $addon_orderby_list; ?>
+		</ul>
+	</div>
+	<div class="dropselect grid_5">
+		Sort	
+		<p class="field"><?php echo $aobl; ?></p>
+		<input type="hidden" name="sort" value="<?php echo $sort; ?>" class="field-h" />
+		<ul class="list">
+			<?php echo $addon_orderby_dir_list; ?>
+		</ul>
+	</div>
+	<div class="dropselect grid_4"><br />
+		<button type="submit" class="button"><span>Apply changes</span></button>
+	</div>
 </form>
 <?php
 if ($rows != 0) {
-	echo "<table border='0' cellpadding='0' cellspacing='0' width='100%' class='tbl-border'>
-	<tr>
-	<td>
-	<table border='0' cellpadding='0' cellspacing='1' width='100%'>\n";
+	echo "<table cellpadding='0' cellspacing='0' width='100%' class='tbl-border'>\n";
 	$addon_cat_old = -1;
 	while ($data = dbarray($result)) {
 		if ($data['addon_cat_id'] <> $addon_cat_old) {
 			echo "<tr>
-			<td class='forum-caption' colspan='2'>".stripslashes($data['addon_cat_name'])." [".get_addon_type($data['addon_cat_type'])."]</td>
+			<td class='forum-caption'>".stripslashes($data['addon_cat_name'])." [".get_addon_type($data['addon_cat_type'])."]</td>
 			<td class='forum-caption' width='1%' style='white-space:nowrap'>".$locale['addondb405']."</td>
 	<td class='forum-caption' width='1%' style='white-space:nowrap'>".$locale['addondb402']."</td>
 	<td class='forum-caption' width='1%' style='white-space:nowrap'>".$locale['addondb403']."</td>
@@ -184,14 +181,15 @@ if ($rows != 0) {
 			$ver = "v".$data['version_h'].".".$data['version_l'].($data['version_s'] != "" ? " ".$data['version_s'] : "");
 			$addon_author = ($data['addon_author_name'] == "" ? $locale['addondb409'] : $data['addon_author_name']);
 
-			if ($data['addon_date'] + 604800 > time() + ($settings['timeoffset'] * 3600)) { $new = "<img src='".INFUSIONS."addondb/img/new.gif' border='0' alt='' />";
-                } else {
-              $new = "<img src='".THEME."images/blank.gif' width='20' height='1' border='0' alt='' />"; }
+			if ($data['addon_date'] + 604800 > time() + ($settings['timeoffset'] * 3600)) {
+				$time = nicetime(showdate("%Y-%m-%d %H:%M:%S",$data['addon_date']));
+			} else {
+				$time = showdate("%d. %B",$data['addon_date']);
+			 }
 
 			echo "<tr>
-			<td class='tbl2' width='3%' style='white-space:nowrap'>".$new."</td>
 			<td class='tbl1' style='white-space:nowrap'><a href='view.php?addon_id=".$data['addon_id']."'>".trimlink($data['addon_name'], 30)."</a></td>
-			<td class='tbl2' width='1%' style='white-space:nowrap'>".showdate("%d %B",$data['addon_date'])."</td>
+			<td class='tbl2' width='1%' style='white-space:nowrap'>".$time."</td>
 			<td class='tbl2' width='1%' style='white-space:nowrap'><span title='".$addon_author."'>".trimlink($addon_author, 20)."</span></td>
 			<td class='tbl2' width='1%' style='white-space:nowrap'>".$data['addon_version']."</td>
 			<td class='tbl1' width='1%' style='white-space:nowrap'>".$ver."</td>
@@ -204,10 +202,7 @@ if ($rows != 0) {
 			</tr>\n";
 		}
 	}
-	echo "</table>
-	</td>
-	</tr>
-	</table>\n";
+	echo "</table>\n";
 } else {
 	if (iMEMBER) {
 		echo "<center><br />".(isset($addon_cat_id) || isset($version) || isset($type) ? $locale['addondb424'] : $locale['addondb421'])."<br /><br /></center>\n";

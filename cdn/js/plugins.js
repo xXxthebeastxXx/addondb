@@ -24,7 +24,7 @@ $.fn.styleddropdown = function(){
 				'background':'#fff',
 				'color':'#333'
 			});
-		obj.find('.field-h').val($(this).attr('rel'));
+		obj.find('.field-h').val($(this).attr('class'));
 		obj.find('.list').fadeOut(400);
 		});
 	});

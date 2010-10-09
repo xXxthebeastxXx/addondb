@@ -211,7 +211,7 @@ function buildversionlilist($sel_ver_id = 1) {
 	if (dbrows($result) > 0) {
 		while ($data = dbarray($result)) {
 			$ver = "v".$data['version_h'].".".$data['version_l'].($data['version_s'] != "" ? " ".$data['version_s'] : "");
-			$res .= "<li rel='".$data['version_id']."'>".$ver."</li>";
+			$res .= "<li class='".$data['version_id']."'>".$ver."</li>";
 			$data['version_id'] == $sel_ver_id ? $versel = $ver : "";
 		}
 	}
@@ -228,6 +228,43 @@ function getaddonlevel($addonlevel) {
 function dbseek($query, $rownum) {
 	if (!$query = mysql_data_seek($query, $rownum)) echo mysql_error();
 	return $query;
+}
+
+function nicetime($date)
+{
+    if(empty($date)) {
+        return "No date provided";
+    }
+    
+    $periods         = array("second", "minute", "hour", "day", "week", "month", "year", "decade");
+    $lengths         = array("60","60","24","7","4.35","12","10");
+    
+    $now             = time();
+    $unix_date         = strtotime($date);
+   
+    if(empty($unix_date)) {    
+        return "Bad date";
+    }
+    if($now > $unix_date) {    
+        $difference     = $now - $unix_date;
+        $tense         = "ago";
+        
+    } else {
+        $difference     = $unix_date - $now;
+        $tense         = "from now";
+    }
+    
+    for($j = 0; $difference >= $lengths[$j] && $j < count($lengths)-1; $j++) {
+        $difference /= $lengths[$j];
+    }
+    
+    $difference = round($difference);
+    
+    if($difference != 1) {
+        $periods[$j].= "s";
+    }
+    
+    return "$difference $periods[$j] {$tense}";
 }
 
 function notify($to, $subject_g, $message_g){
