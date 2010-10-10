@@ -24,7 +24,9 @@ require_once INFUSIONS."addondb/inc/inc.functions.php";
 include ADDON_LOCALE.LOCALESET."addon_view.php";
 add_to_title ($locale['addondb517'].$locale['addondb_600'].$locale['addondb517'].$locale['addondb_608']);
 
-if (!iMEMBER) { redirect(BASEDIR."index.php"); }
+include ADDON_INC."view_nav.php";
+
+if (!iMEMBER) { redirect(ADDON."index.php"); }
 
       $result=dbquery("SELECT 
                               addon_id, 
@@ -106,9 +108,8 @@ closetable();
        if (isset($db_check['assign_id'])) { echo profile_link($db_check['assign_user'], $db_check['user_name'], $db_check['user_status']); } else { echo "---"; }
        echo "</td>\n";
        echo "</tr>\n</table>\n";
+
 closetable();
-		
-		
 
 require_once THEMES."templates/footer.php";
 ?>

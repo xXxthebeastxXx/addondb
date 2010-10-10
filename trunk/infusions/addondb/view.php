@@ -73,6 +73,7 @@ if (!isnum($addon_id) || dbrows($q_addons) == 0 || ($d_addons['addon_status'] !=
 	} else {
 		$download_count = "[".$d_addons['addon_download_count']." ".$locale['addondb422']."]";
 	}
+	include ADDON_INC."view_nav.php";
 	opentable($locale['addondb400'].$d_addons['addon_name']);
 	
 	if ($d_addons['addon_date'] + 604800 > time() + ($settings['timeoffset'] * 3600)) { $new = "<img src='".INFUSIONS."addondb/img/new.gif' border='0' alt='' />";
@@ -161,19 +162,9 @@ if (!isnum($addon_id) || dbrows($q_addons) == 0 || ($d_addons['addon_status'] !=
 	</table>
 	</td>
 	</tr>
-	</table>";
-	 $nav_bullet = "&nbsp;<img src='".ADDON_IMG."nav_bullet.png' alt='' />&nbsp;";
-		echo "<table width='100%' border='0' cellpadding='0' cellspacing='1' class='tbl-border'>\n<tr>\n
-	      <td class='tbl2' align='center'>".$nav_bullet."
-	      <a href='".ADDON."index.php' title =''>".$locale['addondb516']."</a>".$nav_bullet."
-	      <a href='".ADDON."index.php?type=1&version=0&orderby=addon_name&sort=ASC' title =''>".$locale['addondb518']."</a>".$nav_bullet."
-	      <a href='".ADDON."index.php?type=2&version=&orderby=addon_name&sort=ASC' title =''>".$locale['addondb519']."</a>".$nav_bullet."
-	      <a href='".ADDON."index.php?type=3&version=0&orderby=addon_name&sort=ASC' title =''>".$locale['addondb520']."</a>".$nav_bullet."
-	      <a href='".ADDON."index.php?type=4&version=&orderby=addon_name&sort=ASC' title =''>".$locale['addondb521']."</a>".$nav_bullet."
-	      <a href='".ADDON."dashboard.php' title =''>".$locale['addondb522']."</a>".$nav_bullet."</td>
-	      </tr>\n</table>\n";
-
-	echo "<table width='100%' border='0' cellpadding='0' cellspacing='1' class='tbl-border'>
+	</table>
+	
+	<table width='100%' border='0' cellpadding='0' cellspacing='1' class='tbl-border'>
 	<tr>
 	<td class='tbl2'><b>".$locale['addondb409']."</b></td>
 	</tr>
@@ -250,12 +241,13 @@ if (!isnum($addon_id) || dbrows($q_addons) == 0 || ($d_addons['addon_status'] !=
 				
 		echo"$trans</td>
 		<td class='tbl2' width='12%' nowrap><b>".$locale['addondb428']."</b></td>
-		<td class='tbl1' width='20%'>
-		<span class='small'><img src='".ADDON_IMG."error.png' border='0' alt='".$locale['addondb503']."' />&nbsp;
-		<a href ='".INFUSIONS."addondb/error.php?error=1&addon_id=".$d_addons['addon_id']."' title='".$locale['addondb503']."'>".$locale['addondb503']."</a></span><br /><br />
+		<td class='tbl1' width='20%'>";
+		if (iMEMBER) {
+		echo "<span class='small'><img src='".ADDON_IMG."error.png' border='0' alt='".$locale['addondb503']."' />&nbsp;
+		<a href ='".ADDON."error.php?error=1&addon_id=".$d_addons['addon_id']."' title='".$locale['addondb503']."'>".$locale['addondb503']."</a></span><br /><br />
 		<span class='small'><img src='".ADDON_IMG."translate.png' border='0' alt='".$locale['addondb506']."' />&nbsp;
-		<a href ='".INFUSIONS."addondb/error.php?error=4&addon_id=".$d_addons['addon_id']."' title='".$locale['addondb506']."'>".$locale['addondb506']."</a></span>
-		</td>
+		<a href ='".ADDON."error.php?error=4&addon_id=".$d_addons['addon_id']."' title='".$locale['addondb506']."'>".$locale['addondb506']."</a></span>\n"; } else { echo $locale['addondb438']; }
+		echo "</td>
 		</tr>	
 		";
 		if (checkrights("ADNX")) {
