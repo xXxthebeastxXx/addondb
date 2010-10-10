@@ -19,23 +19,17 @@ require_once "../../maincore.php";
 require_once THEMES."templates/header.php";
 require_once INCLUDES."comments_include.php";
 require_once INCLUDES."ratings_include.php";
-
 require_once INFUSIONS."addondb/infusion_db.php";
 require_once INFUSIONS."addondb/inc/inc.functions.php";
+include INFUSIONS."addondb/locale/".LOCALESET."addon_view.php";
 
-$db_locale = (isset($_COOKIE['addondb_locale']) && $_COOKIE['addondb_locale'] != "Default" ? $_COOKIE['addondb_locale'] : $settings['locale']);
-
-include INFUSIONS."addondb/locale/".$db_locale."/addon_view.php";
-$ex = 0;
 if (isset($_GET['download']) && isnum($_GET['download'])) {
-  
 	$data = dbarray(dbquery("SELECT * FROM ".DB_ADDON_CATS." JOIN ".DB_ADDONS." USING(addon_cat_id) WHERE addon_id='".$_GET['download']."'"));
 	if (checkgroup($data['addon_cat_access'])) {
 		$result = dbquery("UPDATE ".DB_ADDONS." SET addon_download_count=(addon_download_count+1) WHERE addon_id='".$_GET['download']."'");
 		require_once INCLUDES."class.httpdownload.php";
 		redirect($addon_upload_dir.$data['addon_download']);
 		ob_end_clean();
-		// $data = dbarray($result);
 		$object = new httpdownload;
 		$object->set_byfile($addon_upload_dir.$data['addon_download']);
 		$object->use_resume = true;
@@ -44,7 +38,6 @@ if (isset($_GET['download']) && isnum($_GET['download'])) {
 	}
 }
 
-If ($ex != 1){
 $addon_id = stripinput($_GET['addon_id']);
 $q_addons = dbquery("SELECT * FROM ".DB_ADDON_CATS." JOIN ".DB_ADDONS." tm USING(addon_cat_id) JOIN ".DB_ADDON_VERSIONS." USING(version_id) JOIN ".DB_USERS." tu ON tm.addon_approved_user=tu.user_id WHERE addon_id='".$addon_id."'");
 $d_addons = dbarray($q_addons);
@@ -99,8 +92,7 @@ if (!isnum($addon_id) || dbrows($q_addons) == 0 || ($d_addons['addon_status'] !=
     echo"<div align='center'><a href='img/screenshots/".$d_addons['addon_img']."' rel='lightbox' style='outline: none;border:none;'>
     <img src='".ADDON_SCRN."t_".$d_addons['addon_img']."' style='outline: none;border:none;'></a></div>\n";
     }
-	echo"<br />\n<center><img src='".ADDON_IMG."approved_addon.png' alt='' border='0' /></center>
-	<br /><center><img src='".ADDON_IMG."back.png' title='' alt='' border='0' />&nbsp;<a href='".ADDON."index.php' title =''>".$locale['addondb516']."</a></center>\n";
+	echo"<br />\n<center><img src='".ADDON_IMG."approved_addon.png' alt='' border='0' /></center>\n";
 	if ($d_addons['addon_share_status']) {include ADDON_INC."share_links_include.php";}
 	echo "</td>
 	<td>
@@ -109,7 +101,10 @@ if (!isnum($addon_id) || dbrows($q_addons) == 0 || ($d_addons['addon_status'] !=
 	<td class='tbl2' width='80' nowrap><b>".$locale['addondb401'].":</b></td>
 	<td class='tbl1' nowrap>".$d_addons['addon_name']."&nbsp;".$new."</td>
 	<td class='tbl1' nowrap rowspan='9' align='center'><b>".$locale['addondb421'].$d_addons['addon_name']."</b><br />
-	<a href='".FUSION_SELF."?download=".$d_addons['addon_id']."' title='".$locale['addondb502']."'><img border='0' src='".ADDON_IMG."download.png' alt='' /></a><br />".$download_count."</td>
+	<a href='".FUSION_SELF."?download=".$d_addons['addon_id']."' title='".$locale['addondb502']."'><img border='0' src='".ADDON_IMG."download.png' alt='' /></a><br />".$download_count."
+	<br /><br />";
+	echo $locale['addondb440']."[".parsebytesize(filesize(ADDON."files/".$d_addons['addon_download']))."]";
+	echo "</td>
 	</tr>
 	<tr>
 	<td class='tbl2' nowrap><b>".$locale['addondb402'].":</b></td>
@@ -167,6 +162,16 @@ if (!isnum($addon_id) || dbrows($q_addons) == 0 || ($d_addons['addon_status'] !=
 	</td>
 	</tr>
 	</table>";
+	 $nav_bullet = "&nbsp;<img src='".ADDON_IMG."nav_bullet.png' alt='' />&nbsp;";
+		echo "<table width='100%' border='0' cellpadding='0' cellspacing='1' class='tbl-border'>\n<tr>\n
+	      <td class='tbl2' align='center'>".$nav_bullet."
+	      <a href='".ADDON."index.php' title =''>".$locale['addondb516']."</a>".$nav_bullet."
+	      <a href='".ADDON."index.php?type=1&version=0&orderby=addon_name&sort=ASC' title =''>".$locale['addondb518']."</a>".$nav_bullet."
+	      <a href='".ADDON."index.php?type=2&version=&orderby=addon_name&sort=ASC' title =''>".$locale['addondb519']."</a>".$nav_bullet."
+	      <a href='".ADDON."index.php?type=3&version=0&orderby=addon_name&sort=ASC' title =''>".$locale['addondb520']."</a>".$nav_bullet."
+	      <a href='".ADDON."index.php?type=4&version=&orderby=addon_name&sort=ASC' title =''>".$locale['addondb521']."</a>".$nav_bullet."
+	      <a href='".ADDON."dashboard.php' title =''>".$locale['addondb522']."</a>".$nav_bullet."</td>
+	      </tr>\n</table>\n";
 
 	echo "<table width='100%' border='0' cellpadding='0' cellspacing='1' class='tbl-border'>
 	<tr>
@@ -268,40 +273,56 @@ if (!isnum($addon_id) || dbrows($q_addons) == 0 || ($d_addons['addon_status'] !=
 	}
 	closetable();
 	
+// Other Addons by...
+
 	$result = dbquery("SELECT * FROM ".DB_ADDONS." WHERE addon_author_name = '".$d_addons['addon_author_name']."' AND addon_id != '".$d_addons['addon_id']."' AND addon_status = '0' ORDER BY addon_download_count DESC");
 	if (dbrows($result) != 0) { 
 
 	opentable($locale['addondb512'].$d_addons['addon_author_name']);
 	
-	echo "<table width='100%' border='0' cellpadding='0' cellspacing='1' class='tbl-border'><tr>";
-	echo "<td class='tbl2'><b>".$locale['addondb403']."</b></td><td class='tbl2'><b>".$locale['addondb401']."</b></td><td class='tbl2'><b>".$locale['addondb422']."</b></td><td class='tbl2'><b>".$locale['addondb412']."</b></td></tr>";
+	echo "<table width='100%' border='0' cellpadding='0' cellspacing='1' class='tbl-border'><tr>\n";
+	echo "<th class='forum-caption'><b>".$locale['addondb403']."</b></th>\n
+	<th class='forum-caption'><b>".$locale['addondb401']."</b></th>\n
+	<th class='forum-caption'><b>".$locale['addondb422']."</b></th>\n
+	<th class='forum-caption' width='120'><b>".$locale['addondb412']."</b></th>\n</tr>\n";
 	
 	while ($data = dbarray($result)) {
 	
-	$sf_rating = str_repeat("<img src='".INFUSIONS."addondb/img/star.png' alt='".$locale['addondb414']."' />",$data['addon_approved_rating']);
+	$sf_rating = str_repeat("<img src='".ADDON_IMG."star.png' alt='".$locale['addondb414']."' />",$data['addon_approved_rating']);
 	$cat_data = dbarray(dbquery("SELECT addon_cat_name FROM ".DB_ADDON_CATS." WHERE addon_cat_id = '".$data['addon_cat_id']."'"));
-	echo "<tr><td class='tbl2'>".$cat_data['addon_cat_name']."</td><td class='tbl2'>&nbsp;<a href='".INFUSIONS."addondb/view.php?addon_id=".$data['addon_id']."'> ".$data['addon_name']."</a></td>";
-	echo "<td width='1%' align='center' class='tbl2'>".$data['addon_download_count']."</td><td width='80' align='center' class='tbl2'>".$sf_rating."</td>\n</tr>"; }
-	echo "</table>"; 
+	echo "<tr>\n<td class='tbl2'>".$cat_data['addon_cat_name']."</td>\n";
+	echo "<td class='tbl2'>&nbsp;<a href='".ADDON."view.php?addon_id=".$data['addon_id']."'> ".$data['addon_name']."</a></td>\n";
+	echo "<td align='center' class='tbl2'>".$data['addon_download_count']."</td>\n";
+	echo "<td align='center' class='tbl2'>".$sf_rating."</td>\n</tr>";
+	}
+	echo "</table>\n"; 
 	closetable();
 	
 	}
 	
+// Addons Co-Authored by...
+
 	$result = dbquery("SELECT * FROM ".DB_ADDONS." WHERE addon_co_author_name = '".$d_addons['addon_author_name']."' AND addon_id != '".$d_addons['addon_id']."' AND addon_status = '0' ORDER BY addon_download_count DESC");
 	if (dbrows($result) != 0) {
 	opentable($locale['addondb513'].$d_addons['addon_author_name']);
-	echo "<table width='100%' border='0' cellpadding='0' cellspacing='1' class='tbl-border'><tr>";
-	echo "<tr><td class='tbl2'><b>".$locale['addondb403']."</b></td><td class='tbl2'><b>".$locale['addondb401']."</b></td><td class='tbl2'><b>".$locale['addondb405']."</b></td>";
-	echo "<td class='tbl2'><b>".$locale['addondb422']."</b></td><td class='tbl2'><b>".$locale['addondb412']."</b></td></tr>";
+	echo "<table width='100%' border='0' cellpadding='0' cellspacing='1' class='tbl-border'><tr>\n";
+	echo "<th class='forum-caption'><b>".$locale['addondb403']."</b></th>\n
+	<th class='forum-caption'><b>".$locale['addondb401']."</b></th>\n
+	<th class='forum-caption'><b>".$locale['addondb405']."</b></th>\n
+	<th class='forum-caption'><b>".$locale['addondb422']."</b></td>\n
+	<th class='forum-caption' width='120'><b>".$locale['addondb412']."</b></td>\n</tr>\n";
 	
 	while ($data = dbarray($result)) {
 	
-	$sf_rating = str_repeat("<img src='".INFUSIONS."addondb/img/star.png' alt='".$locale['addondb414']."' />",$data['addon_approved_rating']);
+	$sf_rating = str_repeat("<img src='".ADDON_IMG."star.png' alt='".$locale['addondb414']."' />",$data['addon_approved_rating']);
 	$cat_data = dbarray(dbquery("SELECT addon_cat_name FROM ".DB_ADDON_CATS." WHERE addon_cat_id = '".$data['addon_cat_id']."'"));
-	echo "<tr><td class='tbl2'>".$cat_data['addon_cat_name']."</td><td class='tbl2'>&nbsp;<a href='".INFUSIONS."addondb/view.php?addon_id=".$data['addon_id']."'> ".$data['addon_name']."</a>";
-	echo "</td><td class='tbl2'>".$data['addon_author_name']."</td><td width='1%' align='center' class='tbl2'>".$data['addon_download_count']."</td><td width='80' align='center' class='tbl2'>".$sf_rating."</td>\n</tr>"; }
-
-	echo "</table>";
+	echo "<tr>\n<td class='tbl2'>".$cat_data['addon_cat_name']."</td>\n
+	<td class='tbl2'>&nbsp;<a href='".ADDON."view.php?addon_id=".$data['addon_id']."'> ".$data['addon_name']."</a></td>\n
+	<td class='tbl2'>".$data['addon_author_name']."</td>\n
+	<td align='center' class='tbl2'>".$data['addon_download_count']."</td>\n
+	<td align='center' class='tbl2'>".$sf_rating."</td>\n</tr>\n";
+	}
+	echo "</table>\n";
 	closetable();
 	       }
 	
@@ -309,7 +330,7 @@ if (!isnum($addon_id) || dbrows($q_addons) == 0 || ($d_addons['addon_status'] !=
 	if ($settings_global['set_addondb_comm'] == '0') {
 	showcomments("M", DB_ADDONS, "addon_id", $d_addons['addon_id'], FUSION_SELF."?addon_id=".$d_addons['addon_id']);}
 	
-}
+
 }
 if (!iGUEST) {
 	add_to_title ($locale['addondb507'].$locale['addondb508'].$locale['addondb507'].$d_addons['addon_name']);
