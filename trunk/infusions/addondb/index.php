@@ -154,7 +154,7 @@ opentable($locale['addondb400']); ?>
 		</ul>
 	</div>
 	<div class="dropselect grid_4"><br />
-		<button type="submit" class="button"><span>Apply changes</span></button>
+		<button type="submit" class="button"><span><?php echo $locale['addondb436']; ?></span></button>
 	</div>
 </form>
 <table cellpadding="0" cellspacing="0" width="100%" class="tbl-border">
@@ -172,8 +172,9 @@ opentable($locale['addondb400']); ?>
 <?php $ver = "v".$data['version_h'].".".$data['version_l'].($data['version_s'] != "" ? " ".$data['version_s'] : ""); ?>
 <?php $addon_author = ($data['addon_author_name'] == "" ? $locale['addondb409'] : $data['addon_author_name']); ?>
 <?php $data['addon_date'] + 604800 > time() + ($settings['timeoffset'] * 3600) ? $time = nicetime(showdate("%Y-%m-%d %H:%M:%S",$data['addon_date'])) : $time = showdate("%d. %B",$data['addon_date']); ?>
-	<tr>
-		<td class="tbl1" style="white-space:nowrap"><a href="view.php?addon_id=<?php echo $data['addon_id']; ?>"><?php echo trimlink($data['addon_name'], 30); ?></a></td>
+<?php if ($data['addon_date'] + $settings_global['set_new_time'] > time() + ($settings['timeoffset'] * 3600)) { $new = "<img src='".ADDON_IMG."new.png' border='0' alt='' />";} else {$new = "";} ?>
+    <tr>
+		<td class="tbl1" style="white-space:nowrap"><a href="view.php?addon_id=<?php echo $data['addon_id']; ?>"><?php echo $new.trimlink($data['addon_name'], 30); ?></a></td>
 		<td class="tbl2" width="1%" style="white-space:nowrap"><?php echo $time; ?></td>
 		<td class="tbl2" width="1%" style="white-space:nowrap"><span title="<?php echo $addon_author; ?>"><?php echo trimlink($addon_author, 20); ?></span></td>
 		<td class="tbl2" width="1%" style="white-space:nowrap"><?php echo $data['addon_version']; ?></td>

@@ -37,6 +37,7 @@ if (isset($_POST['savesettings'])) {
 	    set_addondb_comm='".(isnum($_POST['set_addondb_comm']) ? $_POST['set_addondb_comm'] : "0")."',
 	    set_addondb_sub='".(isnum($_POST['set_addondb_sub']) ? $_POST['set_addondb_sub'] : "0")."',
 	    addons_per_page='".(isnum($_POST['addons_per_page']) ? $_POST['addons_per_page'] : "20")."',
+	    set_new_time='".(isNum($_POST['set_new_time']) ? $_POST['set_new_time'] : "0")."',
 	    set_addon_maintmsg='".addslash(descript($_POST['set_addon_maintmsg']))."'
 	");
     if (!$result) { $error = 1; }
@@ -83,6 +84,29 @@ if (isset($_POST['savesettings'])) {
   echo "<td class='tbl2' align='right' valign='top'><b>".$locale['addondbs108'].":</b></td>\n";
   echo "<td class='tbl2' align='left' colspan='2'>";
   echo "<input type='text' name='addons_per_page' value='".$settings_global['addons_per_page']."' maxlength='10' class='textbox' style='width:40px;' />";
+  echo "</td>\n";
+  
+    echo "</tr>\n<tr>\n";
+  
+  // New Time
+  
+    $ntime = array(
+	1 => "86400",
+	2 => "172800",
+	3 => "604800",
+	4 => "1209600",
+	5 => "2592000"
+);
+
+  echo "<td class='tbl2' align='right' valign='top'><b>".$locale['addondbs111'].":<img src='".ADDON_IMG."new.png' border='0' alt='' /></b></td>\n";
+  echo "<td class='tbl2' align='left' colspan='2'>";
+  echo "<select name='set_new_time' class='textbox'>\n";
+  echo "<option value='".$ntime['1']."'".($settings_global['set_new_time'] == "".$ntime['1']."" ? " selected" : "").">".$locale['set_time01']."</option>";
+  echo "<option value='".$ntime['2']."'".($settings_global['set_new_time'] == "".$ntime['2']."" ? " selected" : "").">".$locale['set_time02']."</option>";
+  echo "<option value='".$ntime['3']."'".($settings_global['set_new_time'] == "".$ntime['3']."" ? " selected" : "").">".$locale['set_time03']."</option>";
+  echo "<option value='".$ntime['4']."'".($settings_global['set_new_time'] == "".$ntime['4']."" ? " selected" : "").">".$locale['set_time04']."</option>";
+  echo "<option value='".$ntime['5']."'".($settings_global['set_new_time'] == "".$ntime['5']."" ? " selected" : "").">".$locale['set_time05']."</option>";
+  echo "</select>\n";
   echo "</td>\n";
   
   echo "</tr>\n<tr>\n";
