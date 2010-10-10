@@ -81,6 +81,7 @@ $locale['addondb_611'] = "Submissions currently being reviewed: ";
 $locale['addondb_612'] = "Your Addon is being tested by: ";
 $locale['addondb_613'] = "Submissions Rejected: ";
 $locale['addondb_614'] = "None";
+$locale['addondb_615'] = "Posted";
 
 $locale['addondb_700'] = "You currently have no Addons in the DB";
 
