@@ -41,8 +41,9 @@ $locale['addondb434'] = "There was an error downloading the file";
 $locale['addondb435'] = "Go Back";
 $locale['addondb436'] = "You need to register to use this function";
 $locale['addondb437'] = "Are you sure you want to report this link as broken ?";
-$locale['addondb438'] = "Available to Members Only";
+$locale['addondb438'] = "Members Only";
 $locale['addondb439'] = "None";
+$locale['addondb440'] = "Filesize: ";
 
 // Tooltips
 $locale['addondb500'] = "Click to email the Author";
@@ -61,7 +62,7 @@ $locale['addondb512'] = "Other Addons by ";
 $locale['addondb513'] = "Other Addons Co-Authored by ";
 $locale['addondb514'] = "View Addon DB";
 $locale['addondb515'] = "Submit an Addon";
-$locale['addondb516'] = "Back to Index";
+$locale['addondb516'] = "Main Index";
 $locale['addondb517'] = " | ";
 
 // My Addons
