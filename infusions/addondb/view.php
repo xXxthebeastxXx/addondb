@@ -61,8 +61,8 @@ if (!isnum($addon_id) || dbrows($q_addons) == 0 || ($d_addons['addon_status'] !=
 	} else {
 		$votecount = " [".$num_votes." ".$locale['addondb418']."]";
 	}
-	$rating = ($num_votes > 0 ? str_repeat("<img src='".INFUSIONS."addondb/img/star.png' alt='".$locale['addondb414']."'>",ceil($d_rating['sum_rating']/$num_votes)).$votecount : $votecount);
-	$staff_rating = str_repeat("<img src='".INFUSIONS."addondb/img/star.png' alt='".$locale['addondb414']."' />",$d_addons['addon_approved_rating']);
+	$rating = ($num_votes > 0 ? str_repeat("<img src='".ADDON_IMG."star.png' alt='".$locale['addondb414']."'>",ceil($d_rating['sum_rating']/$num_votes)).$votecount : $votecount);
+	$staff_rating = str_repeat("<img src='".ADDON_IMG."star.png' alt='".$locale['addondb414']."' />",$d_addons['addon_approved_rating']);
 	$urlprefix = !strstr($d_addons['addon_author_www'], "http://") ? "http://" : "";
 	$urlprefix_demo = !strstr($d_addons['addon_demo_url'], "http://") ? "http://" : "";
 
@@ -76,8 +76,10 @@ if (!isnum($addon_id) || dbrows($q_addons) == 0 || ($d_addons['addon_status'] !=
 	include ADDON_INC."view_nav.php";
 	opentable($locale['addondb400'].$d_addons['addon_name']);
 	
-	if ($d_addons['addon_date'] + 604800 > time() + ($settings['timeoffset'] * 3600)) { $new = "<img src='".INFUSIONS."addondb/img/new.gif' border='0' alt='' />";
-    } else { $new = ""; }
+	if ($d_addons['addon_date'] + $settings_global['set_new_time'] > time() + ($settings['timeoffset'] * 3600)) { $new = "<img src='".ADDON_IMG."new.png' border='0' alt='' />";
+    } else { 
+    $new = ""; 
+   }
 
 	echo "<table width='100%' border='0' cellpadding='0' cellspacing='1' class='tbl-border'>
 	<tr>
@@ -100,7 +102,7 @@ if (!isnum($addon_id) || dbrows($q_addons) == 0 || ($d_addons['addon_status'] !=
 	<table width='100%' border='0' cellpadding='0' cellspacing='1' class='tbl-border'>
 	<tr>
 	<td class='tbl2' width='80' nowrap><b>".$locale['addondb401'].":</b></td>
-	<td class='tbl1' nowrap>".$d_addons['addon_name']."&nbsp;".$new."</td>
+	<td class='tbl1' nowrap>".$new." ".$d_addons['addon_name']."</td>
 	<td class='tbl1' nowrap rowspan='9' align='center'><b>".$locale['addondb421'].$d_addons['addon_name']."</b><br />
 	<a href='".FUSION_SELF."?download=".$d_addons['addon_id']."' title='".$locale['addondb502']."'><img border='0' src='".ADDON_IMG."download.png' alt='' /></a><br />".$download_count."
 	<br /><br />";

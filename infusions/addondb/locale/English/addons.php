@@ -30,6 +30,7 @@ $locale['addondb432'] = "Type";
 $locale['addondb433'] = "Fusion Version";
 $locale['addondb434'] = "Order By";
 $locale['addondb435'] = " | ";
+$locale['addondb436'] = "Apply Changes";
 
 // Stats
 $locale['addondb500'] = "DB Stats";

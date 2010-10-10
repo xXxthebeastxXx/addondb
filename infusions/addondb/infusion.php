@@ -128,6 +128,7 @@ set_addondb_onf TINYINT(1) DEFAULT '0' NOT NULL,
 set_addondb_comm TINYINT(1) DEFAULT '0' NOT NULL,
 set_addondb_sub TINYINT(1) DEFAULT '0' NOT NULL,
 addons_per_page SMALLINT(5) DEFAULT '20' NOT NULL,
+set_new_time INT(10) UNSIGNED DEFAULT '0' NOT NULL,
 set_addon_maintmsg text NOT NULL,
 PRIMARY KEY (addons_per_page)
 ) TYPE=MyISAM;";
@@ -140,7 +141,7 @@ assign_author smallint(5) unsigned NOT NULL default '0',
 PRIMARY KEY (assign_id)
 ) TYPE=MyISAM;";
 
-$inf_insertdbrow[1] = DB_ADDON_STGS." (set_addondb_onf, set_addondb_comm, set_addondb_sub, addons_per_page) VALUES('0', '0', '0', '20')";
+$inf_insertdbrow[1] = DB_ADDON_STGS." (set_addondb_onf, set_addondb_comm, set_addondb_sub, addons_per_page, set_new_time) VALUES('0', '0', '0', '20', '86400')";
 
 $inf_droptable[1] = DB_ADDON_CATS;
 $inf_droptable[2] = DB_ADDONS;
