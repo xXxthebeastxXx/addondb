@@ -160,7 +160,7 @@ opentable($locale['addondb400']); ?>
 <table cellpadding="0" cellspacing="0" width="100%" class="tbl-border">
 <?php $addon_cat_old = -1; ?>
 <?php while($data = dbarray($result)) : ?>
-	<?php if($data['addon_cat_id'] <> $addon_cat_old) : ?>
+<?php if($data['addon_cat_id'] <> $addon_cat_old) : ?>
 	<tr>
 		<td class="forum-caption"><?php echo stripslashes($data['addon_cat_name'])." [".get_addon_type($data['addon_cat_type']); ?>]</td>
 		<td class="forum-caption" width="1%" style="white-space:nowrap"><?php echo $locale['addondb405']; ?></td>
@@ -168,13 +168,10 @@ opentable($locale['addondb400']); ?>
 		<td class="forum-caption" width="1%" style="white-space:nowrap"><?php echo $locale['addondb403']; ?></td>
 		<td class="forum-caption" width="1%" style="white-space:nowrap"><?php echo $locale['addondb404']; ?></td>
 	</tr>
-	<?php endif; ?>
-	<?php if($data['addon_id']) :
-			$ver = "v".$data['version_h'].".".$data['version_l'].($data['version_s'] != "" ? " ".$data['version_s'] : "");
-			$addon_author = ($data['addon_author_name'] == "" ? $locale['addondb409'] : $data['addon_author_name']);
-			$data['addon_date'] + 604800 > time() + ($settings['timeoffset'] * 3600) ? 
-			$time = nicetime(showdate("%Y-%m-%d %H:%M:%S",$data['addon_date'])) : 
-			$time = showdate("%d. %B",$data['addon_date']); ?>
+<?php endif; ?>
+<?php $ver = "v".$data['version_h'].".".$data['version_l'].($data['version_s'] != "" ? " ".$data['version_s'] : ""); ?>
+<?php $addon_author = ($data['addon_author_name'] == "" ? $locale['addondb409'] : $data['addon_author_name']); ?>
+<?php $data['addon_date'] + 604800 > time() + ($settings['timeoffset'] * 3600) ? $time = nicetime(showdate("%Y-%m-%d %H:%M:%S",$data['addon_date'])) : $time = showdate("%d. %B",$data['addon_date']); ?>
 	<tr>
 		<td class="tbl1" style="white-space:nowrap"><a href="view.php?addon_id=<?php echo $data['addon_id']; ?>"><?php echo trimlink($data['addon_name'], 30); ?></a></td>
 		<td class="tbl2" width="1%" style="white-space:nowrap"><?php echo $time; ?></td>
@@ -182,13 +179,7 @@ opentable($locale['addondb400']); ?>
 		<td class="tbl2" width="1%" style="white-space:nowrap"><?php echo $data['addon_version']; ?></td>
 		<td class="tbl1" width="1%" style="white-space:nowrap"><?php echo $ver; ?></td>
 	</tr>
-	<?php $addon_cat_old = $data['addon_cat_id']; ?>
-	<?php else : ?>
-	<tr>
-		<td class="tbl2" width="3%" align="center">-</td>
-		<td class="tbl1" colspan="7"><?php echo (isset($addon_cat_id) || isset($version) || isset($type) ? $locale['addondb424'] : $locale['addondb422']); ?></td>
-	</tr>
-	<?php endif; ?>
+<?php $addon_cat_old = $data['addon_cat_id']; ?>
 <?php endwhile; ?>
 <?php if(!$rows) : ?>
 	<tr>
