@@ -32,6 +32,7 @@ if (!iMEMBER) { redirect(ADDON."index.php"); }
                               addon_id, 
                               addon_name, 
                               addon_version, 
+                              addon_date, 
                               addon_download_count, 
                               addon_approved_rating FROM ".DB_ADDONS." 
                               WHERE addon_status = '0' 
@@ -48,16 +49,19 @@ opentable($locale['addondb_600']);
      echo "<th class='forum-caption' align='center'>".$locale['addondb_603']."</th>";
      echo "<th class='forum-caption' align='center'>".$locale['addondb_601']."</th>";
      echo "<th class='forum-caption'>".$locale['addondb_604']."</th>";
+     echo "<th class='forum-caption'>".$locale['addondb_615']."</th>";
      
      echo "</tr>\n";
 	
 	    while($data = dbarray($result)) {
+	if ($data['addon_date'] + $settings_global['set_new_time'] > time() + ($settings['timeoffset'] * 3600)) { $new = "<img src='".ADDON_IMG."new.png' border='0' alt='' />";} else {$new = "";}
 		  echo "<tr>\n<td class='tbl1'>";
-		  echo "<a href='".ADDON."view.php?addon_id=$data[addon_id]' class='side' title='".$data['addon_name']."'>".trimlink($data['addon_name'], 22)."</a></td>\n";
+		  echo $new."<a href='".ADDON."view.php?addon_id=$data[addon_id]' class='side' title='".$data['addon_name']."'>".trimlink($data['addon_name'], 22)."</a></td>\n";
 		  echo "<td class='tbl1' align='center'>".$data['addon_version']."</td>";
 		  echo "<td class='tbl1' align='center'>".$data['addon_download_count']."</td>";
 		  $staff_rating = str_repeat("<img src='".ADDON_IMG."star.png' alt='".$locale['addondb_604']."' />",$data['addon_approved_rating']);
 		  echo "<td class='tbl1'>".$staff_rating."</td>";
+		  echo "<td class='tbl1'>".showdate("%d-%m-%Y %H:%M",$data['addon_date'])."</td>";
 		  echo "</tr>\n";
 		  }
 		  echo "<tr>\n";
