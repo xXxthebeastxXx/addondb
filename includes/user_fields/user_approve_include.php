@@ -18,7 +18,7 @@
 if (!defined("IN_FUSION")) { die("Access Denied"); }
 
 if ($profile_method == "display") {
-	if (iADMIN && checkrights("M")) {
+	if (iADMIN && checkrights("M") && $user_data['user_testimonial']) {
 		echo "<tr>\n";
 		echo "<td width='1%' class='tbl1' style='white-space:nowrap'>".$locale['uf_approve']."</td>\n";
 		$aa = "<a class='button' href='".INFUSIONS."testimonials_admin/testimonials_admin.php".$aidlink."'><span>".$locale['uf_approve_002']."</span></a>";
