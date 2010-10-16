@@ -32,25 +32,26 @@ require_once THEMES."templates/header.php";
 	</dl>
 </div>
 <br />
-<table border="0" width="950" class="tbl-border" align="center" cellspacing="1">
+<div class="clearfix">&nbsp;</div>
+<table width="950" class="tbl-border">
   <tr>
     <th colspan="15" class="forum-caption">Features</th>
     </tr><tr>
     <td colspan="15">&nbsp;</td>
     </tr><tr>
-    <td width="80" align="center"><img border="0" src="images/news.png" width="72" alt="" align="left" /></td>
+    <td width="80" align="center"><img src="images/news.png" width="72" alt="" /></td>
      <td width="1%">&nbsp;</td>
     <td valign="top" width="155"><p>PHP-Fusion comes with a built in news system for keeping your members up to date.</td>
      <td width="1%">&nbsp;</td>
-    <td width="80" align="center"><img border="0" src="images/members.png" width="64" alt="" align="left" /></td>
+    <td width="80" align="center"><img src="images/members.png" width="64" alt="" /></td>
      <td width="1%">&nbsp;</td>
     <td valign="top" width="155"><p>It is a permissions based CMS giving you full control over access.</td>
     <td width="1%">&nbsp;</td>
-    <td width="80" align="center"><img border="0" src="images/theme.png" width="80" alt="" align="left" /></td>
+    <td width="80" align="center"><img src="images/theme.png" width="80" alt="" /></td>
      <td width="1%">&nbsp;</td>
     <td valign="top" width="155"><p>There are hundreds of colour schemes or &quot;themes&quot; to choose from.</td>
     <td width="1%">&nbsp;</td>
-    <td width="80" align="center"><img border="0" src="images/developer.png" width="80" alt="" align="left" hspace="3" /></td>
+    <td width="80" align="center"><img src="images/developer.png" width="80" alt="" /></td>
      <td width="1%">&nbsp;</td>
     <td valign="top" width="155"><p>PHP-Fusion has a small but dedicated team of developers, join in on our Dev site.</td>
   </tr><tr>
@@ -62,7 +63,42 @@ require_once THEMES."templates/header.php";
     <td width="1%">&nbsp;</td>
     <td align="center" colspan="3"><a class="button" target="_blank" href="http://dev.php-fusion.co.uk/"><span>more</span></a></td>
   </tr>
-</table>
+</table><br />
 
 <?php
+$limit = "4";
+              
+              $result=dbquery("
+                               SELECT 
+                               user_id, 
+                               user_name, 
+                               user_status, 
+                               user_testimonial 
+                               FROM ".DB_USERS." 
+                               WHERE user_status = '0' 
+                               AND user_testimonial !='' 
+                               AND user_approve !='1'
+                               ORDER BY RAND() LIMIT 1,$limit");
+
+if (dbrows($result)) { ?>
+
+     <table width="950" class="tbl-border"><tr>
+     <thead>
+     <th class="forum-caption" colspan="<?php echo $limit; ?>">Testimonials</th></tr>
+     </thead><tbody>
+     <tr>
+     <td colspan="<?php echo $limit; ?>">&nbsp;</td>
+     </tr><tr>
+
+	<?php while($data = dbarray($result)) { ?>
+	<td width="25%">
+	<?php $text = nl2br(parseubb(censorwords($data['user_testimonial']))); ?>
+	<blockquote><?php echo (isset($text) ? $text : ""); ?></blockquote>
+	<br />by <?php echo profile_link($data['user_id'], $data['user_name'], $data['user_status']); ?></td>
+	<?php } ?>
+	
+	</tr></tbody></table>
+<?php }
+
 require_once THEMES."templates/footer.php";
+?>
