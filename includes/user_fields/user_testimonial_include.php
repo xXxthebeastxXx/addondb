@@ -19,7 +19,6 @@
 if (!defined("IN_FUSION")) { die("Access Denied"); }
 
 if ($profile_method == "input") {
-	require_once INCLUDES."bbcode_include.php";
 	
 add_to_head("<style type='text/css'>
 .countx {
@@ -41,7 +40,7 @@ add_to_head("<style type='text/css'>
     <div class='small'>".$locale['uf_testimonial_003']."<strong id='counter'>0</strong></div>
 	<textarea id='testim' name='user_testimonial' onkeyup='maxlength(120);' onfocus='maxlength(120);' cols='60' rows='3' style='width:295px'>".(isset($user_data['user_testimonial']) ? $user_data['user_testimonial'] : "")."</textarea>
 	<div id='exceed' style='display: none' class='exceed'>".$locale['uf_testimonial_004']."</div>\n";
-	echo display_bbcodes("300px", "user_testimonial", "inputform", "smiley|b|i|u||center|small|color")."</td>\n";
+	echo "</td>\n";
 	echo "</tr>\n";
 } elseif ($profile_method == "display") {
 	// Not shown in profile
