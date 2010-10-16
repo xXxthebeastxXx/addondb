@@ -8,4 +8,5 @@ $locale['ltp_005'] = "No Testimonials have been approved";
 $locale['ltp_006'] = "Submit";
 $locale['ltp_007'] = "Approve";
 $locale['ltp_008'] = "Deny";
+$locale['ltp_009'] = "Testimonials Approval";
 ?>

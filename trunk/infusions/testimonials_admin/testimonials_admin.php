@@ -76,16 +76,16 @@ opentable($locale['ltp_001']);
                                ORDER BY user_lastvisit 
                                DESC LIMIT 0,$limit
                                ");
-
+if (dbrows($result)) {
      echo "<form id='approve_test' name='approve_test' method='post' action='".FUSION_SELF.$aidlink."'>\n";
-     echo "<table border='0' width='650' class='tbl-border'>\n<tr>\n";
+     echo "<table width='650' class='tbl-border'>\n<tr>\n";
      echo "<th class='forum-caption' colspan='4'>".$locale['ltp_002']."</th>\n";
      echo "</tr>\n<tr>\n";
      echo "<td colspan='2'>&nbsp;</td>\n";
      echo "<td class='tbl1'>".$locale['ltp_007']."</td>\n";
      echo "<td class='tbl1'>".$locale['ltp_008']."</td>\n";
      echo "</tr>\n";
-if (dbrows($result)) {
+
 	while($data = dbarray($result)) {
 	echo "<tr>\n<td class='tbl1'>".profile_link($data['user_id'], $data['user_name'], $data['user_status'])."</td>\n";
 	echo "<td class='tbl2'>";
@@ -96,9 +96,15 @@ if (dbrows($result)) {
 	echo "<td class='tbl2' align='center'><label><input type='checkbox' name='user_deny[]' value='".$data['user_id']."' /></label></td>\n";
 	echo "</tr>\n";
 	}
-} else { echo "<tr>\n<td class='tbl1'>".$locale['ltp_004']."</td>\n</tr>\n"; }
-    echo "<tr>\n<td class='tbl2' colspan='3' align='center'><input type='submit' name='approve_test' value='".$locale['ltp_006']."' class='button' />\n";
+	echo "<tr>\n<td class='tbl2' colspan='3' align='center'><input type='submit' name='approve_test' value='".$locale['ltp_006']."' class='button' />\n";
 	echo "</tr>\n</table>\n</form>\n";
+} else { echo "<table width='650' class='tbl-border'>\n<tr>\n";
+         echo "<th class='forum-caption'>".$locale['ltp_002']."</th>\n";
+         echo "</tr>\n<tr>\n";
+         echo "<td>&nbsp;</td>\n";
+         echo "</tr>\n<tr>\n";
+         echo "<tr>\n<td class='tbl1' align='center'>".$locale['ltp_004']."</td>\n";
+         echo "</tr>\n</table>\n"; }
 
 $counter = (dbcount("(user_id)", DB_USERS, "user_approve !='1'"));
 if (isset($_GET['rowstart']) && isnum($_GET['rowstart'])) {
