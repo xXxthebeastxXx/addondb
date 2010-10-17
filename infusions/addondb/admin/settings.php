@@ -37,6 +37,7 @@ if (isset($_POST['savesettings'])) {
 	    set_addondb_comm='".(isnum($_POST['set_addondb_comm']) ? $_POST['set_addondb_comm'] : "0")."',
 	    set_addondb_sub='".(isnum($_POST['set_addondb_sub']) ? $_POST['set_addondb_sub'] : "0")."',
 	    addons_per_page='".(isnum($_POST['addons_per_page']) ? $_POST['addons_per_page'] : "20")."',
+	    addons_dev_qual='".(isnum($_POST['addons_dev_qual']) ? $_POST['addons_dev_qual'] : "2")."',
 	    set_new_time='".(isNum($_POST['set_new_time']) ? $_POST['set_new_time'] : "0")."',
 	    set_addon_maintmsg='".addslash(descript($_POST['set_addon_maintmsg']))."'
 	");
@@ -69,7 +70,6 @@ if (isset($_POST['savesettings'])) {
   echo "<td class='tbl2' align='left'>";
   echo "<label><input type='radio' name='set_addondb_comm' value='0'".($settings_global['set_addondb_comm'] == "0" ? " checked='checked'" : "")." />&nbsp;".$locale['addondbs105']."</label>";
   echo "<label><input type='radio' name='set_addondb_comm' value='1'".($settings_global['set_addondb_comm'] == "1" ? " checked='checked'" : "")." />&nbsp;".$locale['addondbs106']."</label>\n</td>\n";
-  
   echo "</tr>\n<tr>\n";
  
   // Allow Submissions
@@ -77,7 +77,6 @@ if (isset($_POST['savesettings'])) {
   echo "<td class='tbl2' align='left'>";
   echo "<label><input type='radio' name='set_addondb_sub' value='0'".($settings_global['set_addondb_sub'] == "0" ? " checked='checked'" : "")." />&nbsp;".$locale['addondbs105']."</label>";
   echo "&nbsp;<label><input type='radio' name='set_addondb_sub' value='1'".($settings_global['set_addondb_sub'] == "1" ? " checked='checked'" : "")." />&nbsp;".$locale['addondbs106']."</label>\n</td>\n";
-  
   echo "</tr>\n<tr>\n";
   
   // Addons per page
@@ -85,8 +84,14 @@ if (isset($_POST['savesettings'])) {
   echo "<td class='tbl2' align='left' colspan='2'>";
   echo "<input type='text' name='addons_per_page' value='".$settings_global['addons_per_page']."' maxlength='10' class='textbox' style='width:40px;' />";
   echo "</td>\n";
-  
-    echo "</tr>\n<tr>\n";
+  echo "</tr>\n<tr>\n";
+    
+  // Addon number to qualify for official status
+  echo "<td class='tbl2' align='right' valign='top'><b>".$locale['addondbs120'].":</b></td>\n";
+  echo "<td class='tbl2' align='left' colspan='2'>";
+  echo "<input type='text' name='addons_dev_qual' value='".$settings_global['addons_dev_qual']."' maxlength='10' class='textbox' style='width:40px;' />";
+  echo "</td>\n";
+  echo "</tr>\n<tr>\n";
   
   // New Time
   

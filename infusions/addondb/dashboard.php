@@ -98,6 +98,7 @@ closetable();
            $total_subs = dbcount("(submit_id)", DB_SUBMISSIONS, "submit_user = '".$userdata['user_id']."'");
            $total_appr = dbcount("(assign_id)", DB_ADDON_ASSIGN, "assign_author = '".$userdata['user_id']."'");
            $total_rev = ($total_subs - $total_appr);
+           $status_check = dbarray(dbquery("SELECT addon_author_status FROM ".DB_ADDONS." WHERE addon_author_name = '".$userdata['user_name']."'"));
 
           opentable($locale['addondb_608']);
  
@@ -111,6 +112,17 @@ closetable();
        echo "<td class='tbl1' align='right' width='50%'>".$locale['addondb_612']."</td><td class='tbl1'>";
        if (isset($db_check['assign_id'])) { echo profile_link($db_check['assign_user'], $db_check['user_name'], $db_check['user_status']); } else { echo "---"; }
        echo "</td>\n";
+       if ($status_check['addon_author_status'] == '0') {
+       echo "</tr>\n<tr>\n";
+       echo "<td class='tbl1' align='right' width='50%'>".$locale['addondb_616']."</td><td class='tbl1'><a href='".ADDON."apply_dev.php'>".$locale['addondb_617']."</a></td>\n"; }
+       
+       elseif ($status_check['addon_author_status'] == '1') {
+       echo "</tr>\n<tr>\n";
+       echo "<td class='tbl1' align='right' width='50%'>".$locale['addondb_616']."</td><td class='tbl1'><i>".$locale['addondb_618']."</i></td>\n"; }
+  
+       elseif ($status_check['addon_author_status'] == '2') {
+       echo "</tr>\n<tr>\n";
+       echo "<td class='tbl1' align='center' colspan='2'><img src='".ADDON_IMG."approved_dev.png' width='182' alt ='' /></td>\n"; }
        echo "</tr>\n</table>\n";
 
 closetable();

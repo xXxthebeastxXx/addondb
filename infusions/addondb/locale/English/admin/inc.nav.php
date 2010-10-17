@@ -8,5 +8,6 @@ $locale['incnav_005'] = "Error Reports";
 $locale['incnav_006'] = "Categories";
 $locale['incnav_007'] = "PHP-Fusion Versions";
 $locale['incnav_008'] = "DB Settings";
+$locale['incnav_009'] = "Dev Approvals";
 
 ?>

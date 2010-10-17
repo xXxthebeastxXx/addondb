@@ -24,10 +24,10 @@ require_once INFUSIONS."addondb/infusion_db.php";
 require_once INFUSIONS."addondb/inc/inc.functions.php";
 require_once INFUSIONS."addondb/inc/inc.nav.php";
 
-if (file_exists(INFUSIONS."addondb/locale/".LOCALESET."submit_error.php")) {
-	include INFUSIONS."addondb/locale/".LOCALESET."submit_error.php";
+if (file_exists(ADDON_LOCALE.LOCALESET."submit_error.php")) {
+	include ADDON_LOCALE.LOCALESET."submit_error.php";
 } else {
-	include INFUSIONS."addondb/locale/English/submit_error.php";
+	include ADDON_LOCALE."English/submit_error.php";
 }
 
 function error_type($value){

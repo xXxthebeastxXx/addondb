@@ -38,6 +38,10 @@ echo $dot." <a href='".ADDON_ADMIN."support_thread.php".$aidlink."'>".$locale['i
 $error_count = (dbcount("(error_id)", DB_ADDON_ERRORS, "error_active = '0'"));
 if ($error_count =='0') { $display_e = ""; } else { $display_e = "[<span class='small error'>".$error_count."</span>]"; }
 echo $dot." <a href='".ADDON_ADMIN."error.php".$aidlink."'>".$locale['incnav_005']."</a>&nbsp;".$display_e."&nbsp;\n";
+$devap_count = (dbcount("(apply_id)", DB_ADDON_DEV_APPLY));
+if ($devap_count =='0') { $display_d = ""; } else { $display_d = "[<span class='small error'>".$devap_count."</span>]"; }
+echo $dot." <a href='".ADDON_ADMIN."dev_applications.php".$aidlink."'>".$locale['incnav_009']."</a>&nbsp;".$display_d."&nbsp;\n";
+echo $dot."</center>\n<br />\n<center>\n";
 echo $dot." <a href='".ADDON_ADMIN."cats.php".$aidlink."'>".$locale['incnav_006']."</a> 
 ".$dot." <a href='".ADDON_ADMIN."versions.php".$aidlink."'>".$locale['incnav_007']."</a> 
 ".$dot." <a href='".ADDON_ADMIN."settings.php".$aidlink."'>".$locale['incnav_008']."</a> 

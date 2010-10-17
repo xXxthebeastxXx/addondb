@@ -35,13 +35,14 @@ if (!defined("DB_ADDON_ERRORS")) {
 if (!defined("DB_ADDON_TRANS")) {
 	define("DB_ADDON_TRANS", DB_PREFIX."addondb_translations");
 }
-
 if (!defined("DB_ADDON_STGS")) {
 	define("DB_ADDON_STGS", DB_PREFIX."addondb_settings");
 }
-
 if (!defined("DB_ADDON_ASSIGN")) {
 	define("DB_ADDON_ASSIGN", DB_PREFIX."addondb_assign");
+}
+if (!defined("DB_ADDON_DEV_APPLY")) {
+	define("DB_ADDON_DEV_APPLY", DB_PREFIX."addondb_dev_apply");
 }
 
 ?>
