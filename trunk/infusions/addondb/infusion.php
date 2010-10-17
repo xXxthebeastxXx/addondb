@@ -61,6 +61,7 @@ addon_submitter_id varchar(100) NOT NULL default '',
 addon_forum_status tinyint(1) unsigned NOT NULL default '0',
 addon_share_status tinyint(1) unsigned NOT NULL default '0',
 addon_author_name varchar(100) NOT NULL default '',
+addon_author_status tinyint(1) unsigned NOT NULL default '0',
 addon_co_author_name varchar(100) NOT NULL default '',
 addon_author_email varchar(100) NOT NULL default '',
 addon_author_www varchar(100) NOT NULL default '',
@@ -128,6 +129,7 @@ set_addondb_onf TINYINT(1) DEFAULT '0' NOT NULL,
 set_addondb_comm TINYINT(1) DEFAULT '0' NOT NULL,
 set_addondb_sub TINYINT(1) DEFAULT '0' NOT NULL,
 addons_per_page SMALLINT(5) DEFAULT '20' NOT NULL,
+addons_dev_qual SMALLINT(5) DEFAULT '20' NOT NULL,
 set_new_time INT(10) UNSIGNED DEFAULT '0' NOT NULL,
 set_addon_maintmsg text NOT NULL,
 PRIMARY KEY (addons_per_page)
@@ -141,7 +143,15 @@ assign_author smallint(5) unsigned NOT NULL default '0',
 PRIMARY KEY (assign_id)
 ) TYPE=MyISAM;";
 
-$inf_insertdbrow[1] = DB_ADDON_STGS." (set_addondb_onf, set_addondb_comm, set_addondb_sub, addons_per_page, set_new_time) VALUES('0', '0', '0', '20', '86400')";
+$inf_newtable[9] = DB_DEV_APPLY." (
+apply_id smallint(5) unsigned NOT NULL auto_increment,
+apply_user smallint(5) unsigned NOT NULL default '0',
+apply_comment text NOT NULL,
+apply_status tinyint(1) unsigned NOT NULL default '0',
+PRIMARY KEY (apply_id)
+) TYPE=MyISAM;";
+
+$inf_insertdbrow[1] = DB_ADDON_STGS." (set_addondb_onf, set_addondb_comm, set_addondb_sub, addons_per_page, addons_dev_qual, set_new_time) VALUES('0', '0', '0', '20', '2', '86400')";
 
 $inf_droptable[1] = DB_ADDON_CATS;
 $inf_droptable[2] = DB_ADDONS;
@@ -151,6 +161,7 @@ $inf_droptable[5] = DB_ADDON_ERRORS;
 $inf_droptable[6] = DB_ADDON_TRANS;
 $inf_droptable[7] = DB_ADDON_STGS;
 $inf_droptable[8] = DB_ADDON_ASSIGN;
+$inf_droptable[9] = DB_ADDON_DEV_APPLY;
 
 $inf_deldbrow[1] = "DELETE FROM ".DB_COMMENTS." WHERE comment_type='M'";
 $inf_deldbrow[2] = "DELETE FROM ".DB_RATINGS." WHERE rating_type='M'";

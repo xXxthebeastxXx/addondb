@@ -4,7 +4,7 @@
 | Copyright (C) 2002 - 2010 Nick Jones
 | http://www.php-fusion.co.uk/
 +--------------------------------------------------------+
-| Filename: process_thread.php
+| Filename: support_thread.php
 | Author: PHP-Fusion Addons Team
 +--------------------------------------------------------+
 | This program is released as free software under the
@@ -33,6 +33,7 @@ if (file_exists(ADDON_LOCALE.LOCALESET."admin/support_thread.php")) {
     if (isset($_POST['postaddonthread'])) {
     
     $addon_data = dbarray(dbquery("SELECT addon_id, addon_name, addon_description, addon_submitter_id FROM ".DB_ADDONS." WHERE addon_id  = '".$_REQUEST['addon_id']."'"));
+    $status_check = dbarray(dbquery("SELECT addon_author_status FROM ".DB_ADDONS." WHERE addon_author_name = '".$addon_data['addon_submitter_id']."'"));
  
 	$addon_id = stripinput($_POST['addon_id']);
 	$addon_name = $addon_data['addon_name'];
@@ -41,7 +42,8 @@ if (file_exists(ADDON_LOCALE.LOCALESET."admin/support_thread.php")) {
 	} else {
 	$addon_description = ("[img]".$settings['siteurl']."infusions/addondb/img/addon_logo.png[/img]");
 	}
-	$addon_description .= ("[img]".$settings['siteurl']."infusions/addondb/img/approved_addon.png[/img]");
+	if ($status_check['addon_author_status'] == '2') {
+	$addon_description .= ("[img]".$settings['siteurl']."infusions/addondb/img/approved_addon.png[/img]"); }
 	$addon_description .= $addon_data['addon_description'];
 	$addon_description .= ("".$locale['addondb711']."[addon=".$addon_id."]".$locale['addondb605']."[/addon]");
 	$addon_submitter = $addon_data['addon_submitter_id'];

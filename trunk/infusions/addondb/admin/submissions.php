@@ -260,6 +260,7 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
         
         // Author
         $submit_info['addon_author_name'] = stripinput($_POST['addon_author_name']);
+        $submit_info['addon_author_status'] = stripinput($_POST['addon_author_status']);
         $submit_info['addon_co_author_name'] = stripinput($_POST['addon_co_author_name']);
         $submit_info['addon_author_email'] = stripinput($_POST['addon_author_email']);
         $submit_info['addon_author_www'] = stripinput($_POST['addon_author_www']);
@@ -361,6 +362,7 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
             '".$submit_info['addon_forum_status']."',
             '".$submit_info['addon_share_status']."',
             '".$submit_info['addon_author_name']."',
+            '".$submit_info['addon_author_status']."',
             '".$submit_info['addon_co_author_name']."',
             '".$submit_info['addon_author_email']."',
             '".$submit_info['addon_author_www']."',
@@ -419,6 +421,7 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
 			$addon_forum_status = $submit_criteria['addon_forum_status'];
 			$addon_share_status = $submit_criteria['addon_share_status'];
 			$addon_author_name = $submit_criteria['addon_author_name'];
+			$addon_author_status = $submit_criteria['addon_author_status'];
 			$addon_co_author_name = $submit_criteria['addon_co_author_name'];
 			$addon_author_email = $submit_criteria['addon_author_email'];
 			$addon_author_www = $submit_criteria['addon_author_www'];
@@ -604,6 +607,9 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
 			<td class='tbl1' nowrap valign='top'>&nbsp;</td>
 			<td class='tbl1'><textarea class='textbox' name='addon_approved_comment' style='width:300px; height:48px;'>".$addon_approved_comment."</textarea></td>";
 			echo "</tr>\n</table>\n";
+			$status_check = dbarray(dbquery("SELECT addon_author_status FROM ".DB_ADDONS." WHERE addon_author_name = '".$addon_author_name."'"));
+			if (isset($status['addon_author_status'])) { $status = $status_check['addon_author_status']; } else { $status = "0"; } 
+			echo "<input type='hidden' class='textbox' name='addon_author_status' value='".$status."' />";
 			echo "<div style='text-align:center'><br />\n";
 			
 			 $assign_check = dbcount("(assign_id)", DB_ADDON_ASSIGN, "assign_addon = '".$data['submit_id']."'");

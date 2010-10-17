@@ -95,7 +95,9 @@ if (!isnum($addon_id) || dbrows($q_addons) == 0 || ($d_addons['addon_status'] !=
     echo"<div align='center'><a href='img/screenshots/".$d_addons['addon_img']."' rel='lightbox' style='outline: none;border:none;'>
     <img src='".ADDON_SCRN."t_".$d_addons['addon_img']."' style='outline: none;border:none;'></a></div>\n";
     }
-	echo"<br />\n<center><img src='".ADDON_IMG."approved_addon.png' alt='' border='0' /></center>\n";
+    $status_check = dbarray(dbquery("SELECT addon_author_status FROM ".DB_ADDONS." WHERE addon_author_name = '".$d_addons['addon_author_name']."'"));
+	if ($status_check['addon_author_status'] == '2') { echo"<br />\n<center><img src='".ADDON_IMG."approved_addon.png' alt='' border='0' /></center>\n"; }
+	
 	if ($d_addons['addon_share_status']) {include ADDON_INC."share_links_include.php";}
 	echo "</td>
 	<td>

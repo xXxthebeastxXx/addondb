@@ -47,6 +47,7 @@ if (!iMEMBER) {
 	$submit_info['addon_forum_status'] = stripinput($_POST['addon_forum_status']);
 	$submit_info['addon_share_status'] = stripinput($_POST['addon_share_status']);
 	$submit_info['addon_author_name'] = stripinput($_POST['addon_author_name']);
+	$submit_info['addon_author_status'] = stripinput($_POST['addon_author_status']);
 	$submit_info['addon_co_author_name'] = stripinput($_POST['addon_co_author_name']);
 	$submit_info['addon_author_email'] = stripinput($_POST['addon_author_email']);
 	$submit_info['addon_author_www'] = stripinput($_POST['addon_author_www']);
@@ -221,8 +222,11 @@ echo "
 <td class='tbl1' colspan='2' align='center'><hr />
 <input type='submit' class='button' name='btn_submit' value='".$locale['addondb412']."' /></td>
 </tr>
-</table>
-<input type='hidden' class='textbox' name='addon_submitter_name' value='".$userdata['user_name']."' />
+</table>\n";
+$status_check = dbarray(dbquery("SELECT addon_author_status FROM ".DB_ADDONS." WHERE addon_author_name = '".$userdata['user_name']."'"));
+if (isset($status['addon_author_status'])) { $status = $status_check['addon_author_status']; } else { $status = "0"; }
+echo "<input type='hidden' class='textbox' name='addon_author_status' value='".$status."' />";
+echo "<input type='hidden' class='textbox' name='addon_submitter_name' value='".$userdata['user_name']."' />
 <input type='hidden' class='textbox' name='addon_submitter_id' value='".$userdata['user_id']."' />
 <input type='hidden' class='textbox' name='addon_type' value='0' />
 </form>\n";
