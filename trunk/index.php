@@ -85,43 +85,41 @@ require_once THEMES."templates/header.php";
   </tr>
 </table>
 <br />
+<div class="grid_12 alpha">
+<h3>something here maybe</h3>
+</div>
 <?php
 $limit = "4";
-              
-              $result=dbquery("
-                               SELECT 
-                               user_id, 
-                               user_name, 
-                               user_status, 
-                               user_testimonial 
-                               FROM ".DB_USERS." 
-                               WHERE user_status = '0' 
-                               AND user_testimonial !='' 
-                               AND user_approve !='1'
-                               ORDER BY RAND() LIMIT 1,$limit");
+$result=dbquery("
+	SELECT user_id, user_name, user_status, user_testimonial 
+	FROM ".DB_USERS." 
+	WHERE user_status = '0' 
+	AND user_testimonial !='' 
+	AND user_approve !='1'
+	ORDER BY RAND() LIMIT 1,$limit
+");
 
 if (dbrows($result)) { ?>
-<table width="950" class="tbl-border"> 
-  <thead> 
-  <tr>
-    <th class="forum-caption" colspan="<?php echo $limit; ?>">Testimonials</th>
-  </tr>
-    </thead>
-  <tbody>
-    <tr>
-      <td colspan="<?php echo $limit; ?>">&nbsp;</td>
-    </tr>
-    <tr>
-      <?php while($data = dbarray($result)) { ?>
-      <td width="25%"><?php $text = nl2br(parseubb(censorwords($data['user_testimonial']))); ?>
-        <blockquote><?php echo (isset($text) ? $text : ""); ?></blockquote>
+<div class="grid_12 omega">
+  <h3>Testimonials</h3>
+  <ul id="testimonials" class="tbl-border">
+    <?php while($data = dbarray($result)) { ?>
+    <li>
+      <?php $text = nl2br(censorwords($data['user_testimonial'])); ?>
+      <blockquote>
+        <p><?php echo (isset($text) ? $text : ""); ?></p>
         <br />
-        by <?php echo profile_link($data['user_id'], $data['user_name'], $data['user_status']); ?></td>
-      <?php } ?>
-    </tr>
-  </tbody>
-</table>
-<?php }
+        <cite>&mdash; <?php echo profile_link($data['user_id'], $data['user_name'], $data['user_status']); ?></cite> </blockquote>
+    </li>
+    <?php } ?>
+  </ul>
+<div class="grid_6 alpha omega">
+<h3>Twitter Updates</h3>
+<?php twitterify(getLastXTwitterStatus('PHPFusion',5)); ?>
+</div>
+</div>
+<?php } ?>
 
+<?php
 require_once THEMES."templates/footer.php";
 ?>
