@@ -13,7 +13,15 @@ function get_footer_tags(){
 <script src="<?php echo static_content(); ?>js/combined.js?v=1"></script>
 <?php endif; ?>
 <script>
+$(function(){
+    $('#testimonials li:gt(0)').hide();
+    setInterval(function(){
+      $('#testimonials li:first-child').hide()
+         .next('li').fadeIn()
+         .end().appendTo('#testimonials');}, 
 
+      10000);
+});
 </script>
 <!--[if lt IE 7 ]><script src="<?php echo static_content(); ?>js/dd_belatedpng.js?v=1"></script><![endif]-->
 <?php if (ANALYTICS) : ?>

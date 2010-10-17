@@ -89,14 +89,13 @@ require_once THEMES."templates/header.php";
 <h3>something here maybe</h3>
 </div>
 <?php
-$limit = "4";
 $result=dbquery("
-	SELECT user_id, user_name, user_status, user_testimonial 
+	SELECT user_id, user_name, user_status, user_testimonial, user_avatar 
 	FROM ".DB_USERS." 
 	WHERE user_status = '0' 
 	AND user_testimonial !='' 
 	AND user_approve !='1'
-	ORDER BY RAND() LIMIT 1,$limit
+	ORDER BY RAND() LIMIT 5
 ");
 
 if (dbrows($result)) { ?>
