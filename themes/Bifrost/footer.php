@@ -12,6 +12,9 @@ function get_footer_tags(){
 <?php else : ?>
 <script src="<?php echo static_content(); ?>js/combined.js?v=1"></script>
 <?php endif; ?>
+<script>
+
+</script>
 <!--[if lt IE 7 ]><script src="<?php echo static_content(); ?>js/dd_belatedpng.js?v=1"></script><![endif]-->
 <?php if (ANALYTICS) : ?>
 <script>
