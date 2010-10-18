@@ -35,7 +35,7 @@ echo $dot." <a href='".ADDON_ADMIN."submissions.php".$aidlink."'>".$locale['incn
 $thread_count = (dbcount("(addon_id)", DB_ADDONS, "addon_status = '0' && addon_forum_status = '0'"));
 if ($thread_count =='0') { $display_t = ""; } else { $display_t = "[<span class='small error'>".$thread_count."</span>]"; }
 echo $dot." <a href='".ADDON_ADMIN."support_thread.php".$aidlink."'>".$locale['incnav_004']."</a>&nbsp;".$display_t."&nbsp;\n";
-$error_count = (dbcount("(error_id)", DB_ADDON_ERRORS, "error_active = '0'"));
+$error_count = (dbcount("(error_id)", DB_ADDON_ERRORS, "error_active = '1'"));
 if ($error_count =='0') { $display_e = ""; } else { $display_e = "[<span class='small error'>".$error_count."</span>]"; }
 echo $dot." <a href='".ADDON_ADMIN."error.php".$aidlink."'>".$locale['incnav_005']."</a>&nbsp;".$display_e."&nbsp;\n";
 $devap_count = (dbcount("(apply_id)", DB_ADDON_DEV_APPLY));

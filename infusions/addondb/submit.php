@@ -223,12 +223,12 @@ echo "
 <input type='submit' class='button' name='btn_submit' value='".$locale['addondb412']."' /></td>
 </tr>
 </table>\n";
-$status_check = dbarray(dbquery("SELECT addon_author_status FROM ".DB_ADDONS." WHERE addon_author_name = '".$userdata['user_name']."'"));
-if (isset($status['addon_author_status'])) { $status = $status_check['addon_author_status']; } else { $status = "0"; }
-echo "<input type='hidden' class='textbox' name='addon_author_status' value='".$status."' />";
-echo "<input type='hidden' class='textbox' name='addon_submitter_name' value='".$userdata['user_name']."' />
-<input type='hidden' class='textbox' name='addon_submitter_id' value='".$userdata['user_id']."' />
-<input type='hidden' class='textbox' name='addon_type' value='0' />
+$status_check = dbarray(dbquery("SELECT addon_author_status FROM ".DB_ADDONS." WHERE addon_author_name = '".$userdata['user_name']."' AND addon_author_status !='0'"));
+if (isset($status_check['addon_author_status'])) { $status = $status_check['addon_author_status']; } else { $status = "0"; }
+echo "<input type='hidden' class='textbox' name='addon_author_status' value='".$status."' />\n";
+echo "<input type='hidden' class='textbox' name='addon_submitter_name' value='".$userdata['user_name']."' />\n
+<input type='hidden' class='textbox' name='addon_submitter_id' value='".$userdata['user_id']."' />\n
+<input type='hidden' class='textbox' name='addon_type' value='0' />\n
 </form>\n";
 	} else {
 		echo "<center><br />".$locale['addondb611']."<br /><br />".$locale['addondb612']."<br /><br /></center>\n";

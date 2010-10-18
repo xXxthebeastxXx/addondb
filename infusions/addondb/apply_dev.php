@@ -36,6 +36,7 @@ if (iMEMBER) { $addoncount = number_format(dbcount("(addon_id)", DB_ADDONS, "add
 		opentable($locale['apdev005']);
         echo "<center><br />".$locale['apdev008']."</br /></center>\n";
         echo "<center><br />".$locale['apdev011'].$settings_global['addons_dev_qual']."</br /></center>\n";
+        echo "<center><br /><a href='".ADDON."dashboard.php'>".$locale['apdev013']."</a><br /><br /></center>";
         closetable();
         
         } elseif (iMEMBER && !isset($_POST['post_apply'])) {

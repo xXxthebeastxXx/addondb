@@ -65,6 +65,8 @@ $locale['addondb459y'] = "Yes";
 $locale['addondb459n'] = "No";
 $locale['addondb459x'] = "Allow Social Sharing?";
 $locale['addondb459z'] = "Live Demo URL: ";
+$locale['addondb459p'] = "Approved Dev?";
+$locale['addondb459a'] = "Awaiting Approval";
 
 //Notifications
 $locale['addondb460'] = " has been ";
