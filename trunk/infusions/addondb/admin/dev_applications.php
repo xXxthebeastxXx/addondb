@@ -51,10 +51,10 @@ if (isset($_POST['cancel'])) {
 }
 
 if (isset($_POST['dev_approve'])) {
-$apply_id = stripinput($_POST['apply_id']);
 if(isset($_POST['user_approve'])) {
         $Si['user_approve'] = stripinput_fix($_POST['user_approve']);
         foreach($Si['user_approve'] as $key) {
+        $apply_id = stripinput($_POST['apply_id']);
                 $update = dbquery("UPDATE ".DB_ADDONS." SET addon_author_status='2' WHERE addon_author_name='".$key."'");
                 $result = dbquery("DELETE FROM ".DB_ADDON_DEV_APPLY." WHERE apply_id='".$apply_id."'");     
         }
@@ -62,6 +62,7 @@ if(isset($_POST['user_approve'])) {
 if(isset($_POST['user_deny'])) {
         $Si['user_deny'] = stripinput_fix($_POST['user_deny']);
         foreach($Si['user_deny'] as $key) {
+        $apply_id = stripinput($_POST['apply_id']);
                 $update = dbquery("UPDATE ".DB_ADDONS." SET addon_author_status='0' WHERE addon_author_name='".$key."'");
                 $result = dbquery("DELETE FROM ".DB_ADDON_DEV_APPLY." WHERE apply_id='".$apply_id."'");
         }
@@ -122,7 +123,9 @@ opentable($locale['apdev036']);
 				               $result = dbquery("SELECT a.addon_id, 
 				                                         a.addon_name, 
 				                                         a.addon_author_name, 
-				                                         a.addon_author_status, 
+				                                         a.addon_author_status,
+				                                         a.addon_date,
+				                                         a.addon_download_count,   
 				                                         u.user_id, 
 				                                         u.user_name,
 				                                         u.user_joined, 
@@ -133,7 +136,7 @@ opentable($locale['apdev036']);
 				                                         ON a.addon_submitter_id=u.user_id 
 				                                         WHERE a.addon_status = '0' 
 				                                         AND a.addon_author_status = '2' 
-				                                         ORDER BY a.addon_author_name ASC
+				                                         ORDER BY a.addon_date DESC
 				                                         ");
        
 
@@ -146,17 +149,17 @@ opentable($locale['apdev036']);
   if(dbrows($result) != 0) {
 
         echo "<td class='tbl1'>".$locale['apdev003']."</td>\n";
-        echo "<td class='tbl1' align='center'>".$locale['apdev037']."</td>\n";
+        echo "<td class='tbl1'>".$locale['apdev037']."</td>\n";
         echo "<td class='tbl1'>".$locale['apdev038']."</td>\n";
-        echo "<td class='tbl1'>".$locale['apdev039']."</td>\n";
+        echo "<td class='tbl1' align='center'>".$locale['apdev039']."</td>\n";
         echo "</tr>\n";
 
 		while ($data = dbarray($result)) {
-		$addon_count = dbcount("(addon_id)", DB_ADDONS, "addon_submitter_id = '".$data['user_id']."'");
-         echo "<tr>\n<td claas='tbl1' valign='top'>".profile_link($data['user_id'], $data['user_name'], $data['user_status'])."</td>";
-         echo "<td claas='tbl1' valign='top' align='center'>".$addon_count."</td>";
-         echo "<td claas='tbl1' valign='top'>".showdate("shortdate", $data['user_joined'])."</td>";
-         echo "<td claas='tbl1' valign='top'>".showdate("shortdate", $data['user_lastvisit'])."</td>";
+
+		 echo "<tr>\n<td claas='tbl1'><a href='".ADDON."view.php?addon_id=".$data['addon_id']."'>".$data['addon_name']."</a></td>";
+         echo "<td claas='tbl1'>".profile_link($data['user_id'], $data['user_name'], $data['user_status'])."</td>";
+         echo "<td claas='tbl1'>".showdate("shortdate", $data['addon_date'])."</td>";
+         echo "<td claas='tbl1' align='center'>".$data['addon_download_count']."</td>";
          echo "</tr>\n";
         }
         echo "</table>\n";

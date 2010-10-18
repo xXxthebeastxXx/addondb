@@ -94,6 +94,7 @@ if (dbrows($q_addon_cats) == 0) {
 		$addon_forum_status = stripinput($_POST['addon_forum_status']);
 		$addon_share_status = stripinput($_POST['addon_share_status']);
 		$addon_author_name = stripinput($_POST['addon_author_name']);
+		$addon_author_status = stripinput($_POST['addon_author_status']);
 		$addon_co_author_name = stripinput($_POST['addon_co_author_name']);
 		$addon_author_email = stripinput($_POST['addon_author_email']);
 		$addon_author_www = stripinput($_POST['addon_author_www']);
@@ -131,6 +132,7 @@ if (dbrows($q_addon_cats) == 0) {
 						version_id='".$version_id."',
 						addon_share_status='".$addon_share_status."',
 						addon_author_name='".$addon_author_name."',
+						addon_author_status='".$addon_author_status."',
 						addon_co_author_name='".$addon_co_author_name."',
 						addon_author_email='".$addon_author_email."',
 						addon_author_www='".$addon_author_www."',
@@ -164,7 +166,7 @@ if (dbrows($q_addon_cats) == 0) {
 						'".$addon_submitter_id."',
 						'".$addon_forum_status."',
 						'".$addon_share_status."',
-						'".$addon_author_name."',
+						'".$addon_author_status."',
 						'".$addon_co_author_name."',
 						'".$addon_author_email."',
 						'".$addon_author_www."',
@@ -274,6 +276,7 @@ if (dbrows($q_addon_cats) == 0) {
 		$addon_forum_status = $data['addon_forum_status'];
 		$addon_share_status = $data['addon_share_status'];
 		$addon_author_name = $data['addon_author_name'];
+		$addon_author_status = $data['addon_author_status'];
 		$addon_co_author_name = $data['addon_co_author_name'];
 		$addon_author_email = $data['addon_author_email'];
 		$addon_author_www = $data['addon_author_www'];
@@ -315,6 +318,7 @@ if (dbrows($q_addon_cats) == 0) {
 		$addon_forum_status = "";
 		$addon_share_status = "";
 		$addon_author_name = $userdata['user_name'];
+		$addon_author_status = "0";
 		$addon_co_author_name = "";
 		$addon_author_email = $userdata['user_email'];
 		$addon_author_www = $userdata['user_web'];
@@ -486,6 +490,13 @@ if (dbrows($q_addon_cats) == 0) {
 	echo "<td class='tbl1' nowrap>&nbsp;</td><td class='tbl1'><select id='addon_share_status' name='addon_share_status' class='textbox'>";
 	echo "<option value='1'".($addon_share_status == "1" ? " selected" : "").">".$locale['addondb459y']."</option>\n";
 	echo "<option value='0'".($addon_share_status == "0" ? " selected" : "").">".$locale['addondb459n']."</option>\n";
+	echo "</select>\n";
+	echo "</tr>\n<tr>\n";
+	echo "<td class='tbl1' nowrap>".$locale['addondb459p']."</td>";
+	echo "<td class='tbl1' nowrap>&nbsp;</td><td class='tbl1'><select id='addon_author_status' name='addon_author_status' class='textbox'>";
+	echo "<option value='2'".($addon_author_status == "2" ? " selected" : "").">".$locale['addondb459y']."</option>\n";
+	echo "<option value='1'".($addon_author_status == "1" ? " selected" : "").">".$locale['addondb459a']."</option>\n";
+	echo "<option value='0'".($addon_author_status == "0" ? " selected" : "").">".$locale['addondb459n']."</option>\n";
 	echo "</select>\n";
 	echo "</tr>\n<tr>\n";
 	echo "<td class='tbl1' nowrap>".$locale['addondb459z']."</td>";
