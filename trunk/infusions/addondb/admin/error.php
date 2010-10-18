@@ -71,7 +71,7 @@ $result = dbquery("SELECT e.error_id, e.error_addon, e.error_link, e.error_user,
                           WHERE e.error_active ='1' 
                           ORDER BY e.error_datestamp DESC
                           ");
-  opentable($locale['addondb463']);
+  opentable($locale['addondb411']);
   echo"<div align='center'><table class='tbl-border' align='center' width='100%'><tr>
        <th class='forum-caption'>".$locale['addondb464']."</th>
        <th class='forum-caption'>".$locale['addondb468']."</th>
