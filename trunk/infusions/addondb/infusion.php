@@ -36,91 +36,91 @@ $inf_weburl = "http://www.phpfusion.co.uk";
 $inf_folder = "addondb";
 
 $inf_newtable[1] = DB_ADDON_CATS." (
-addon_cat_id smallint(5) unsigned NOT NULL auto_increment,
-addon_cat_type tinyint(1) unsigned NOT NULL default '0',
-addon_cat_name varchar(100) NOT NULL default '',
-addon_cat_description text NOT NULL,
-addon_cat_access tinyint(1) unsigned NOT NULL default '0',
-addon_cat_order smallint(5) unsigned NOT NULL default '0',
+addon_cat_id SMALLINT(5) UNSIGNED NOT NULL AUTO_INCREMENT,
+addon_cat_type TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
+addon_cat_name VARCHAR(100) NOT NULL DEFAULT '',
+addon_cat_description TEXT NOT NULL,
+addon_cat_access TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
+addon_cat_order SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',
 PRIMARY KEY (addon_cat_id)
 ) TYPE=MyISAM;";
 
 $inf_newtable[2] = DB_ADDONS." (
-addon_id smallint(5) unsigned NOT NULL auto_increment,
-addon_cat_id smallint(5) unsigned NOT NULL default '0',
-addon_type tinyint(1) unsigned NOT NULL default '0',
-addon_status tinyint(1) unsigned NOT NULL default '0',
-addon_name varchar(50) NOT NULL default '',
-addon_description text NOT NULL,
-addon_demo_url varchar(100) NOT NULL default '',
-addon_copyright text NOT NULL,
-addon_version varchar(15) NOT NULL default '',
-version_id smallint(5) unsigned NOT NULL default '0',
-addon_submitter_name varchar(100) NOT NULL default '',
-addon_submitter_id varchar(100) NOT NULL default '',
-addon_forum_status tinyint(1) unsigned NOT NULL default '0',
-addon_share_status tinyint(1) unsigned NOT NULL default '0',
-addon_author_name varchar(100) NOT NULL default '',
-addon_author_status tinyint(1) unsigned NOT NULL default '0',
-addon_co_author_name varchar(100) NOT NULL default '',
-addon_author_email varchar(100) NOT NULL default '',
-addon_author_www varchar(100) NOT NULL default '',
-addon_date int(10) unsigned NOT NULL default '0',
-addon_download varchar(50) NOT NULL default '',
-addon_comments smallint(5) unsigned NOT NULL default '0',
-addon_approved_user smallint(5) unsigned NOT NULL default '0',
-addon_approved_rating tinyint(1) unsigned NOT NULL default '0',
-addon_approved_comment text NOT NULL,
-addon_download_count smallint(5) unsigned NOT NULL default '0',
-addon_img varchar(100) NOT NULL default '',
+addon_id SMALLINT(5) UNSIGNED NOT NULL AUTO_INCREMENT,
+addon_cat_id SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',
+addon_type TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
+addon_status TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
+addon_name VARCHAR(50) NOT NULL DEFAULT '',
+addon_description TEXT NOT NULL,
+addon_demo_url VARCHAR(100) NOT NULL DEFAULT '',
+addon_copyright TEXT NOT NULL,
+addon_version VARCHAR(15) NOT NULL DEFAULT '',
+version_id SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',
+addon_submitter_name VARCHAR(100) NOT NULL DEFAULT '',
+addon_submitter_id VARCHAR(100) NOT NULL DEFAULT '',
+addon_forum_status TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
+addon_share_status TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
+addon_author_name VARCHAR(100) NOT NULL DEFAULT '',
+addon_author_status TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
+addon_co_author_name VARCHAR(100) NOT NULL DEFAULT '',
+addon_author_email VARCHAR(100) NOT NULL DEFAULT '',
+addon_author_www VARCHAR(100) NOT NULL DEFAULT '',
+addon_date INT(10) UNSIGNED NOT NULL DEFAULT '0',
+addon_download VARCHAR(50) NOT NULL DEFAULT '',
+addon_comments SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',
+addon_approved_user SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',
+addon_approved_rating TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
+addon_approved_comment TEXT NOT NULL,
+addon_download_count SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',
+addon_img VARCHAR(100) NOT NULL DEFAULT '',
 PRIMARY KEY (addon_id)
 ) TYPE=MyISAM;";
 
 $inf_newtable[3] = DB_ADDON_VERSIONS." (
-version_id smallint(5) unsigned NOT NULL auto_increment,
-version_h varchar(5) NOT NULL default '',
-version_l varchar(5) NOT NULL default '',
-version_s varchar(12) NOT NULL default '',
-version_description text,
-version_order smallint(5) unsigned NOT NULL default '0',
+version_id SMALLINT(5) UNSIGNED NOT NULL AUTO_INCREMENT,
+version_h VARCHAR(5) NOT NULL DEFAULT '',
+version_l VARCHAR(5) NOT NULL DEFAULT '',
+version_s VARCHAR(12) NOT NULL DEFAULT '',
+version_description TEXT,
+version_order SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',
 PRIMARY KEY (version_id)
 ) TYPE=MyISAM;";
 
 $inf_newtable[4] = DB_ADDON_LOCALES." (  
-file_id smallint(5) unsigned NOT NULL auto_increment,  
-file_mod smallint(5) unsigned NOT NULL default '0',  
-file_name varchar(200) NOT NULL default '',  
-file_user smallint(5) unsigned NOT NULL default '0',  
-file_language varchar(200) NOT NULL default '',  
-file_translator varchar(200) NOT NULL default '',  
-file_datestamp int(10) unsigned NOT NULL default '0',  
+file_id SMALLINT(5) UNSIGNED NOT NULL AUTO_INCREMENT,  
+file_mod SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',  
+file_name VARCHAR(200) NOT NULL DEFAULT '',  
+file_user SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',  
+file_language VARCHAR(200) NOT NULL DEFAULT '',  
+file_translator VARCHAR(200) NOT NULL DEFAULT '',  
+file_datestamp INT(10) UNSIGNED NOT NULL DEFAULT '0',  
 PRIMARY KEY (file_id)  
 ) TYPE=MyISAM;";  
 
 $inf_newtable[5] = DB_ADDON_ERRORS." (
-error_id smallint(5) unsigned NOT NULL auto_increment,
-error_addon smallint(5) unsigned NOT NULL default '0',
-error_type tinyint(1) unsigned NOT NULL default '0',
-error_link tinyint(1) unsigned NOT NULL default '0',
-error_active tinyint(1) unsigned NOT NULL default '0',
-error_user smallint(5) unsigned NOT NULL default '0',
-error_report varchar(200) NOT NULL default '',
-error_datestamp int(10) unsigned NOT NULL default '0',
-error_assign_user varchar(200) NOT NULL default '',
+error_id SMALLINT(5) UNSIGNED NOT NULL AUTO_INCREMENT,
+error_addon SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',
+error_type TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
+error_link TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
+error_active TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
+error_user SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',
+error_report VARCHAR(200) NOT NULL DEFAULT '',
+error_datestamp INT(10) UNSIGNED NOT NULL DEFAULT '0',
+error_assign_user VARCHAR(200) NOT NULL DEFAULT '',
 PRIMARY KEY (error_id)
 ) TYPE=MyISAM;";
 
 $inf_newtable[6] = DB_ADDON_TRANS." (
-trans_id smallint(5) unsigned NOT NULL auto_increment,
-trans_mod smallint(5) unsigned NOT NULL default '0',
-trans_modname varchar(200) NOT NULL default '',
-trans_active tinyint(1) unsigned NOT NULL default '1',
-trans_type tinyint(2) unsigned NOT NULL default '0',
-trans_user smallint(5) unsigned NOT NULL default '0',
-trans_datestamp int(10) unsigned NOT NULL default '0',
-trans_file varchar(200) NOT NULL default '',  
-trans_approved_user smallint(5) unsigned NOT NULL default '0',
-trans_approved_comment text NOT NULL,
+trans_id SMALLINT(5) UNSIGNED NOT NULL AUTO_INCREMENT,
+trans_mod SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',
+trans_modname VARCHAR(200) NOT NULL DEFAULT '',
+trans_active TINYINT(1) UNSIGNED NOT NULL DEFAULT '1',
+trans_type TINYINT(2) UNSIGNED NOT NULL DEFAULT '0',
+trans_user SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',
+trans_datestamp INT(10) UNSIGNED NOT NULL DEFAULT '0',
+trans_file VARCHAR(200) NOT NULL DEFAULT '',  
+trans_approved_user SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',
+trans_approved_comment TEXT NOT NULL,
 PRIMARY KEY (trans_id)
 ) TYPE=MyISAM;";
 
@@ -131,23 +131,22 @@ set_addondb_sub TINYINT(1) DEFAULT '0' NOT NULL,
 addons_per_page SMALLINT(5) DEFAULT '20' NOT NULL,
 addons_dev_qual SMALLINT(5) DEFAULT '20' NOT NULL,
 set_new_time INT(10) UNSIGNED DEFAULT '0' NOT NULL,
-set_addon_maintmsg text NOT NULL,
+set_addon_maintmsg TEXT NOT NULL,
 PRIMARY KEY (addons_per_page)
 ) TYPE=MyISAM;";
 
 $inf_newtable[8] = DB_ADDON_ASSIGN." (
-assign_id smallint(5) unsigned NOT NULL auto_increment,
-assign_addon smallint(5) unsigned NOT NULL default '0',
-assign_user smallint(5) unsigned NOT NULL default '0',
-assign_author smallint(5) unsigned NOT NULL default '0',
+assign_id SMALLINT(5) UNSIGNED NOT NULL AUTO_INCREMENT,
+assign_addon SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',
+assign_user SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',
+assign_author SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',
 PRIMARY KEY (assign_id)
 ) TYPE=MyISAM;";
 
-$inf_newtable[9] = DB_DEV_APPLY." (
-apply_id smallint(5) unsigned NOT NULL auto_increment,
-apply_user smallint(5) unsigned NOT NULL default '0',
-apply_comment text NOT NULL,
-apply_status tinyint(1) unsigned NOT NULL default '0',
+$inf_newtable[9] = DB_ADDON_DEV_APPLY." (
+apply_id SMALLINT(5) UNSIGNED NOT NULL AUTO_INCREMENT,
+apply_user SMALLINT(5) UNSIGNED NOT NULL DEFAULT '0',
+apply_comment TEXT NOT NULL,
 PRIMARY KEY (apply_id)
 ) TYPE=MyISAM;";
 
@@ -163,26 +162,15 @@ $inf_droptable[7] = DB_ADDON_STGS;
 $inf_droptable[8] = DB_ADDON_ASSIGN;
 $inf_droptable[9] = DB_ADDON_DEV_APPLY;
 
-$inf_deldbrow[1] = "DELETE FROM ".DB_COMMENTS." WHERE comment_type='M'";
-$inf_deldbrow[2] = "DELETE FROM ".DB_RATINGS." WHERE rating_type='M'";
+$inf_deldbrow[1] = DB_COMMENTS." WHERE comment_type='M'";
+$inf_deldbrow[2] = DB_RATINGS." WHERE rating_type='M'";
+$inf_deldbrow[3] = DB_SUBMISSIONS." WHERE submit_type='m'";
 
 $inf_adminpanel[1] = array(
 	"title" => $locale['addondb100'],
 	"image" => "",
-	"panel" => "admin/index.php",
+	"panel" => "admin/submissions.php",
 	"rights" => "ADNX"
-);
-
-$inf_sitelink[1] = array(
-	"title" => $locale['addondb100'],
-	"url" => "addons.php",
-	"visibility" => ""
-);
-
-$inf_sitelink[2] = array(
-	"title" => $locale['addondb102'],
-	"url" => "submit_addon.php",
-	"visibility" => "101"
 );
 
 ?>
