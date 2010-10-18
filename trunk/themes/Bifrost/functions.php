@@ -139,26 +139,29 @@ class Cache {
 
 }
 
-function getLastXTwitterStatus($userid,$x){
-$url = "http://twitter.com/statuses/user_timeline/$userid.xml?count=$x";
+function limit_words($words, $limit, $append = ' &hellip;') {
+      
+       $limit = $limit+1;
 
-$xml = simplexml_load_file($url) or die('could not connect');
-	echo '<ul>';
-       foreach($xml->status as $status){
-       $text = twitterify( $status->text );
-	   echo '<li>'.utf8_decode($text).'</li>';
-       }
-    echo '</ul>';
- }
-
-function twitterify($ret) {
-  $ret = preg_replace("#(^|[\n ])([\w]+?://[\w]+[^ \"\n\r\t< ]*)#", "\\1<a href=\"\\2\" >\\2</a>", $ret);
-  $ret = preg_replace("#(^|[\n ])((www|ftp)\.[^ \"\t\n\r< ]*)#", "\\1<a href=\"http://\\2\" >\\2</a>", $ret);
-  $ret = preg_replace("/@(\w+)/", "<a href=\"http://www.twitter.com/\\1\" >@\\1</a>", $ret);
-  $ret = preg_replace("/#(\w+)/", "<a href=\"http://search.twitter.com/search?q=\\1\" >#\\1</a>", $ret);
-return $ret;
+       $words = explode(' ', $words, $limit);
+      
+       array_pop($words);
+       $words = implode(' ', $words) . $append;
+       return $words;
 }
 
+function cleanInput($input) {
+
+  $search = array(
+    '@<script[^>]*?>.*?</script>@si',   // Strip out javascript
+    '@<[\/\!]*?[^<>]*?>@si',            // Strip out HTML tags
+    '@<style[^>]*?>.*?</style>@siU',    // Strip style tags properly
+    '@<![\s\S]*?--[ \t\n\r]*>@'         // Strip multi-line comments
+  );
+
+    $output = preg_replace($search, '', $input);
+    return $output;
+  }
 
 if (iADMIN && isset($_POST['savelink']) || isset($_GET['action']) && FUSION_SELF == "site_links.php") { $cache = new Cache(); Cache::delete('navigation'); Cache::delete('footer'); }
 

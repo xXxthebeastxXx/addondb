@@ -86,7 +86,28 @@ require_once THEMES."templates/header.php";
 </table>
 <br />
 <div class="grid_12 alpha">
-<h3>something here maybe</h3>
+  <?php $result = dbquery("
+		SELECT news_id as id, news_subject as title, news_news as news, news_datestamp as date, tu.user_name as author
+		FROM ".DB_NEWS." 
+		LEFT JOIN ".DB_USERS." tu ON news_name=tu.user_id
+		WHERE ".groupaccess('news_visibility')." AND (news_start='0'||news_start<=".time().") AND (news_end='0'||news_end>=".time().") AND news_draft='0'
+		ORDER BY news_sticky DESC, news_datestamp DESC 
+		LIMIT 5
+"); $i = 0; ?>
+  <h2>Latest News</h2>
+  <?php while ($data = dbarray($result)) : $i++ ?>
+  <div class="item<?php echo $i == 1 ? " first" : ""; ?>">
+    <h4 class="title"><a title="<?php echo $data['title']; ?>" href="/news.php?readmore=<?php echo $data['id']; ?>"><?php echo trimlink($data['title'], 60); ?></a></h4>
+    <p class="meta"> by 
+    <span class="author"><?php echo $data['author']; ?></span> on 
+    <span class="date"><?php echo showdate("%B %d, %Y", $data['date']); ?></span> with 
+    <span class="comments"> <a title="Comment on <?php echo $data['title']; ?>" href="/news.php?readmore=<?php echo $data['id']; ?>#comments"><?php echo dbcount("(comment_id)", DB_COMMENTS, "comment_type='N' AND comment_item_id='".$data['id']."' AND comment_hidden='0'"); ?> Comments</a></span> 
+    </p>
+    <?php if ($i == 1) : ?>
+    <p class="excerpt"><?php echo limit_words($data['news'], 75); ?></p>
+	<?php endif; ?>
+  </div>
+  <?php endwhile; ?>
 </div>
 <?php
 $result=dbquery("
@@ -100,7 +121,7 @@ $result=dbquery("
 
 if (dbrows($result)) { ?>
 <div class="grid_12 omega">
-  <h3>Testimonials</h3>
+  <h2>Testimonials</h2>
   <ul id="testimonials" class="tbl-border">
     <?php while($data = dbarray($result)) { ?>
     <li>
@@ -112,13 +133,8 @@ if (dbrows($result)) { ?>
     </li>
     <?php } ?>
   </ul>
-<div class="grid_6 alpha omega">
-<h3>Twitter Updates</h3>
-<?php twitterify(getLastXTwitterStatus('PHPFusion',5)); ?>
-</div>
 </div>
 <?php } ?>
-
 <?php
 require_once THEMES."templates/footer.php";
 ?>

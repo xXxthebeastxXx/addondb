@@ -302,6 +302,35 @@ border:0;
 #accordion dd img{float:right;margin:0 0 0 30px;}
 #accordion h2{font-size:2.5em;margin-top:10px}
 #accordion .more{padding-top:10px;display:block}
+
+.title {
+margin:0 0 6px;
+}
+.meta {
+color:#999999;
+font-family:Tahoma,Geneva,sans-serif;
+font-size:11px;
+}
+.meta a, .excerpt a {
+color:#777777;
+text-decoration:underline;
+}
+.meta a:hover, .excerpt a:hover  {
+text-decoration:none;
+}
+.excerpt {
+font-size:12px;
+margin:6px 0 0;
+display:block;
+}
+.item {
+border-top:1px solid #E5E5E5;
+padding:10px 0;
+}
+.alpha .first {
+border-top:0 none;
+padding-top:0;
+}
 /* 
  * addons
  */
