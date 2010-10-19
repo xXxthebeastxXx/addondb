@@ -95,19 +95,17 @@ require_once THEMES."templates/header.php";
 		LIMIT 5
 "); $i = 0; ?>
   <h2>Latest News</h2>
-  <?php while ($data = dbarray($result)) : $i++ ?>
-  <div class="item<?php echo $i == 1 ? " first" : ""; ?>">
-    <h4 class="title"><a title="<?php echo $data['title']; ?>" href="/news.php?readmore=<?php echo $data['id']; ?>"><?php echo trimlink($data['title'], 60); ?></a></h4>
-    <p class="meta"> by 
-    <span class="author"><?php echo $data['author']; ?></span> on 
-    <span class="date"><?php echo showdate("%B %d, %Y", $data['date']); ?></span> with 
-    <span class="comments"> <a title="Comment on <?php echo $data['title']; ?>" href="/news.php?readmore=<?php echo $data['id']; ?>#comments"><?php echo dbcount("(comment_id)", DB_COMMENTS, "comment_type='N' AND comment_item_id='".$data['id']."' AND comment_hidden='0'"); ?> Comments</a></span> 
-    </p>
-    <?php if ($i == 1) : ?>
-    <p class="excerpt"><?php echo limit_words($data['news'], 75); ?></p>
-	<?php endif; ?>
+  <div class="tbl-border latestnews">
+    <?php while ($data = dbarray($result)): $i++ ?>
+    <div class="item<?php echo $i == 1 ? " first" : ""; ?>">
+      <h4 class="title"><a title="<?php echo $data['title']; ?>" href="/news.php?readmore=<?php echo $data['id']; ?>"><?php echo trimlink($data['title'], 60); ?></a></h4>
+      <p class="meta"> by <span class="author"><?php echo $data['author']; ?></span> on <span class="date"><?php echo showdate("%B %d, %Y", $data['date']); ?></span> with <span class="comments"> <a title="Comment on <?php echo $data['title']; ?>" href="/news.php?readmore=<?php echo $data['id']; ?>#comments"><?php echo dbcount("(comment_id)", DB_COMMENTS, "comment_type='N' AND comment_item_id='".$data['id']."' AND comment_hidden='0'"); ?> Comments</a></span> </p>
+      <?php if ($i == 1): ?>
+      <p class="excerpt"><?php echo limit_words($data['news'], 75); ?></p>
+      <?php endif ?>
+    </div>
+    <?php endwhile ?>
   </div>
-  <?php endwhile; ?>
 </div>
 <?php
 $result=dbquery("
@@ -119,22 +117,24 @@ $result=dbquery("
 	ORDER BY RAND() LIMIT 5
 ");
 
-if (dbrows($result)) { ?>
+if (dbrows($result)): ?>
 <div class="grid_12 omega">
   <h2>Testimonials</h2>
   <ul id="testimonials" class="tbl-border">
-    <?php while($data = dbarray($result)) { ?>
+    <?php while($data = dbarray($result)): ?>
     <li>
       <?php $text = nl2br(censorwords($data['user_testimonial'])); ?>
       <blockquote>
-        <p><?php echo (isset($text) ? $text : ""); ?></p>
+        <p>
+          <?php if(!empty($data['user_avatar'])): ?>
+          <img src="/images/avatars/<?php echo $data['user_avatar']; ?>" alt="<?php echo $data['user_name']; ?>" title="<?php echo $data['user_name']; ?>" />
+          <?php endif ?>
+          <?php echo $text ?></p>
         <br />
         <cite>&mdash; <?php echo profile_link($data['user_id'], $data['user_name'], $data['user_status']); ?></cite> </blockquote>
     </li>
-    <?php } ?>
+    <?php endwhile ?>
   </ul>
 </div>
-<?php } ?>
-<?php
-require_once THEMES."templates/footer.php";
-?>
+<?php endif ?>
+<?php require_once THEMES."templates/footer.php";
