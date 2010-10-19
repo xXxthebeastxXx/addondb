@@ -303,33 +303,45 @@ border:0;
 #accordion h2{font-size:2.5em;margin-top:10px}
 #accordion .more{padding-top:10px;display:block}
 
-.title {
+.latestnews { padding:20px;}
+.latestnews .title {
 margin:0 0 6px;
 }
-.meta {
+.latestnews .meta {
 color:#999999;
 font-family:Tahoma,Geneva,sans-serif;
 font-size:11px;
 }
-.meta a, .excerpt a {
+.latestnews .meta a, .latestnews .excerpt a {
 color:#777777;
 text-decoration:underline;
 }
-.meta a:hover, .excerpt a:hover  {
+.latestnews .meta a:hover, .latestnews .excerpt a:hover  {
 text-decoration:none;
 }
-.excerpt {
+.latestnews .excerpt {
 font-size:12px;
 margin:6px 0 0;
 display:block;
 }
-.item {
+.latestnews .item {
 border-top:1px solid #E5E5E5;
 padding:10px 0;
 }
-.alpha .first {
+.alpha .latestnews .first {
 border-top:0 none;
 padding-top:0;
+}
+#testimonials {
+	padding:20px;
+	margin:0;
+	list-style:none;
+}
+#testimonials img {
+	float:left;
+	margin: 0 10px 10px 0;
+	width:50px;
+	height:50px;
 }
 /* 
  * addons
