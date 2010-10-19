@@ -29,15 +29,17 @@ $addonsub = dbcount("(submit_id)", DB_SUBMISSIONS, "submit_type='m'");
 $addontrans = dbcount("(trans_id)", DB_ADDON_TRANS, "trans_active='1'");
 $devapply = dbcount("(apply_id)", DB_ADDON_DEV_APPLY);
 $testimonial = dbcount("(user_id)", DB_USERS, "user_testimonial !='' && user_approve = '1'");
+$support_thread = dbcount("(addon_id)", DB_ADDONS, "addon_forum_status='0'");
 $total = ($submission + $addonsub + $addontrans + $devapply + $testimonial);
 
 if (iADMIN && ($total != 0)) {
 openside($locale['att_101']);
 
- if ($submission > '1') { $plural1 = $locale['att_102'].$locale['att_106']; } else { $plural1 = $locale['att_102']; }
-   if ($addonsub > '1' || $addontrans > '1') { $plural2 = $locale['att_103'].$locale['att_106']; } else { $plural2 = $locale['att_103']; }
-   if ($devapply > '1') { $plural3 = $locale['att_104'].$locale['att_106']; } else { $plural3 = $locale['att_104']; }
-if ($testimonial > '1') { $plural4 = $locale['att_105'].$locale['att_106']; } else { $plural4 = $locale['att_105']; }
+    if ($submission > '1') { $plural1 = $locale['att_102'].$locale['att_107']; } else { $plural1 = $locale['att_102']; }
+      if ($addonsub > '1' || $addontrans > '1') { $plural2 = $locale['att_103'].$locale['att_107']; } else { $plural2 = $locale['att_103']; }
+      if ($devapply > '1') { $plural3 = $locale['att_104'].$locale['att_107']; } else { $plural3 = $locale['att_104']; }
+   if ($testimonial > '1') { $plural4 = $locale['att_105'].$locale['att_107']; } else { $plural4 = $locale['att_105']; }
+if ($support_thread > '1') { $plural5 = $locale['att_106'].$locale['att_107']; } else { $plural5 = $locale['att_106']; }
 
 	if ($submission != 0 && checkrights("SU")) {
 		echo "<a href='".ADMIN."submissions.php".$aidlink."' class='side'>".sprintf($plural1, $submission)."</a><br />";
@@ -50,6 +52,9 @@ if ($testimonial > '1') { $plural4 = $locale['att_105'].$locale['att_106']; } el
 	}
     if ($testimonial != 0 && checkrights("M")) {
 		echo "<a href='".INFUSIONS."testimonials_admin/testimonials_admin.php".$aidlink."' class='side'>".sprintf($plural4, $testimonial)."</a><br />";
+	}
+	if (($support_thread != 0) && checkrights("ADNX")) {
+		echo "<a href='".INFUSIONS."addondb/admin/support_thread.php".$aidlink."' class='side'>".sprintf($plural5, $support_thread)."</a><br />";
 	}
 
 closeside();
