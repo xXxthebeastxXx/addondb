@@ -1,11 +1,10 @@
 <?php
 /*-------------------------------------------------------+
 | PHP-Fusion Content Management System
-| Copyright © 2002 - 2009 Nick Jones
+| Copyright © 2002 - 2010 Nick Jones
 | http://www.php-fusion.co.uk/
 +--------------------------------------------------------+
 | Filename: guidelines.php
-| CVS Version: 1.00
 | Author: PHP-Fusion Addons Team
 +--------------------------------------------------------+
 | This program is released as free software under the

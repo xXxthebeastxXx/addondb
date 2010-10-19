@@ -1,11 +1,10 @@
 <?php
 /*-------------------------------------------------------+
 | PHP-Fusion Content Management System
-| Copyright © 2002 - 2009 Nick Jones
+| Copyright © 2002 - 2010 Nick Jones
 | http://www.php-fusion.co.uk/
 +--------------------------------------------------------+
 | Filename: guidelines.php
-| CVS Version: 1.00
 | Author: PHP-Fusion Addons Team
 +--------------------------------------------------------+
 | This program is released as free software under the
@@ -36,9 +35,9 @@ echo "<div align='left'><a href='".ADDON."index.php' title=''><img src='".ADDON_
 echo "<br />";
 echo $locale['tsg002'];
 echo "<br /><br />";
-echo "<div class='small'>".$locale['tsg003']."</div>";
+echo "<div class='small'>".$locale['msg003']."</div>";
 echo "<br />";
-echo "<b>".$locale['tsg004']."</b>";
+echo "<b>".$locale['msg004']."</b>";
 echo "<br />";
 echo "<ul>";
 	  echo "<li>".$locale['tsg005']."</li>";
@@ -52,9 +51,9 @@ echo "<ul>";
     echo "<li>".$locale['tsg011']."</li><br />";
     echo "<img src='".ADDON_IMG."header_info_trans.jpg' width='462' alt ='' /><br /><br />\n";
 	echo "<li>".$locale['tsg012']."</li>";
-	echo "<li>".$locale['tsg013']."</li>";
+	echo "<li>".$locale['msg014']."</li>";
 echo "</ul>";
-echo "<b>".$locale['tsg014']."</b>";
+echo "<b>".$locale['msg015']."</b>";
 echo "<br />";
 echo "<ul>";
 
@@ -65,7 +64,7 @@ echo "<ul>";
 	  echo "<li>".$locale['tsg019']."</li>";
 	  echo "<li>".$locale['tsg020']."</li>";
 	  echo "</ul>";
-	echo "<li>".$locale['tsg021']."</li>";
+	echo "<li>".$locale['msg024']."</li>";
 	echo "<li>".$locale['tsg022']."</li><br />";
 	echo "</ul>\n";
 	
@@ -81,10 +80,7 @@ echo "<ul>";
 	
 	echo "<br /><br />\n";
 	
-	echo "<div class='tbl2'><b>".$locale['tsg027']."</b><br />";
-	echo "".$locale['tsg028']."<br />\n";
-	echo "<br />\n";
-    echo "".$locale['tsg029']." <img src='".ADDON_IMG."translate.png' width='37' alt ='' />\n</div>\n";
+	echo "<div class='tbl2'>".$locale['tsg029']." <img src='".ADDON_IMG."translate.png' width='37' alt ='' />\n</div>\n";
 
     echo "<br /><div align='right' class='small'>".$locale['tsg200']."</div>\n";
 
