@@ -36,14 +36,14 @@ document.location.href = x
 ");  
     
 opentable($locale['sub_001']);
-    echo "<center><img src='".IMAGES."php-fusion-logo.png' width='200' alt ='Logo' /></center>\n";
+    echo "<center><img src='".INFUSIONS."submit_stuff/submit_stuff.png' width='180' alt ='".$locale['sub_001']."' /></center>\n";
     echo "<form name='form1'>\n";
     echo "<br /><table cellpadding='0' cellspacing='1' width='80%' class='tbl-border center'>\n<tr>\n";
     echo "<th class='tbl1' colspan='3'>".$locale['sub_002']."</th>\n";
     echo "</tr>\n<tr>\n";
     echo "<td class='tbl1'>&nbsp;</td>\n";
     echo "<td class='tbl1' align='right'>".$locale['sub_003']."</td>";
-    echo "<td class='tbl1'>\n";
+    echo "<td class='tbl1' valign='top'>\n";
     echo "<select name='jumpmenu' class='textbox' onChange='jumpto(document.form1.jumpmenu.options[document.form1.jumpmenu.options.selectedIndex].value)'>\n";
     echo "<option value='".FUSION_SELF."'>".$locale['sub_004']."</option>\n";
     echo "<option value='".$settings['siteurl']."submit.php?stype=a'>".$locale['sub_005']."</option>\n";
