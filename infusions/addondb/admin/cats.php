@@ -33,8 +33,8 @@ if (file_exists(ADDON_LOCALE.LOCALESET."admin/admin.php")) {
 // Error Messages
 if (isset($_GET['error']) && isnum($_GET['error'])) {
 	$errormsg = "<div class='admin-message'>\n";
-	if ($_GET['error'] == 1) { $errormsg .= $locale['addondb482'];
-	} elseif ($_GET['error'] == 2) { $errormsg .= $locale['addondb483'];
+	if ($_GET['error'] == 1) { $errormsg .= $locale['addondb608'];
+	} elseif ($_GET['error'] == 2) { $errormsg .= $locale['addondb609'];
 	} elseif ($_GET['error'] == 3) { $errormsg .= "Unknown action error occurred!";
 	} elseif ($_GET['error'] == 4) { $errormsg .= "Selected cat does not exist in the database!";
 	} else { $errormsg .= "An unknown error occurred!"; }
@@ -200,23 +200,23 @@ if ($rows != 0) {
 			$up = $d_addon_cats['addon_cat_order'] - 1;
 			$down = $d_addon_cats['addon_cat_order'] + 1;
 			if ($d_addon_cats['addon_cat_order'] == 1) {
-				$up_down = "<a href='".FUSION_SELF.$aidlink."&amp;action=move_down&order=".$down."&addon_cat_id=".$addon_cat_id."' title='".$locale['addondb503']."'><img src='".THEME."images/down.gif' border='0' /></a>";
+				$up_down = "<a href='".FUSION_SELF.$aidlink."&amp;action=move_down&order=".$down."&addon_cat_id=".$addon_cat_id."' title='".$locale['addondb703']."'><img src='".ADDON_IMG."down.png' border='0' /></a>";
 			} elseif ($d_addon_cats['addon_cat_order'] < $rows) {
-				$up_down = "<a href='".FUSION_SELF.$aidlink."&amp;action=move_up&order=".$up."&addon_cat_id=".$addon_cat_id."' title='".$locale['addondb502']."'><img src='".THEME."images/up.gif' border='0' /></a>&nbsp;";
-				$up_down .= "<a href='".FUSION_SELF.$aidlink."&amp;action=move_down&order=".$down."&addon_cat_id=".$addon_cat_id."' title='".$locale['addondb503']."'><img src='".THEME."images/down.gif' border='0' /></a>";
+				$up_down = "<a href='".FUSION_SELF.$aidlink."&amp;action=move_up&order=".$up."&addon_cat_id=".$addon_cat_id."' title='".$locale['addondb702']."'><img src='".ADDON_IMG."up.png' border='0' /></a>&nbsp;";
+				$up_down .= "<a href='".FUSION_SELF.$aidlink."&amp;action=move_down&order=".$down."&addon_cat_id=".$addon_cat_id."' title='".$locale['addondb703']."'><img src='".ADDON_IMG."down.png' border='0' /></a>";
 			} else {
-				$up_down="<a href='".FUSION_SELF.$aidlink."&amp;action=move_up&order=".$up."&addon_cat_id=".$addon_cat_id."' title='".$locale['addondb502']."'><img src='".THEME."images/up.gif' border='0' /></a>";
+				$up_down="<a href='".FUSION_SELF.$aidlink."&amp;action=move_up&order=".$up."&addon_cat_id=".$addon_cat_id."' title='".$locale['addondb702']."'><img src='".ADDON_IMG."up.png' border='0' /></a>";
 			}
 		}
 		$cls = ($r++%2 == 0 ? "tbl1" : "tbl2");
 		echo " <tr>
-		<td class='".$cls."'><a href='".FUSION_SELF.$aidlink."&amp;action=edit&addon_cat_id=".$d_addon_cats['addon_cat_id']."' title='".$locale['addondb500']."'>".$d_addon_cats['addon_cat_name']."</a></td>
+		<td class='".$cls."'><a href='".FUSION_SELF.$aidlink."&amp;action=edit&addon_cat_id=".$d_addon_cats['addon_cat_id']."' title='".$locale['addondb700']."'>".$d_addon_cats['addon_cat_name']."</a></td>
 		<td class='".$cls."'><span class='small'>".get_addon_type($d_addon_cats['addon_cat_type'])."</span></td>
 		<td class='".$cls."'><span class='small'>".getgroupname($d_addon_cats['addon_cat_access'])."</span></td>
 		<td class='".$cls."' align='center'><span class='small'>".$d_addon_cats['addon_count']."</span></td>
 		<td class='".$cls."' align='center'><span class='small'>".$d_addon_cats['addon_cat_order']."</span></td>
 		<td class='".$cls."' align='center'>".$up_down."</td>
-		<td class='".$cls."' align='right'><span class='small'>".($d_addon_cats['addon_count'] == 0 ? "<a href='".FUSION_SELF.$aidlink."&amp;action=delete&addon_cat_id=".$d_addon_cats['addon_cat_id']."' onClick=\"return confirmDeleteAddonCat('".$d_addon_cats['addon_cat_name']."')\" title='".$locale['addondb501']."'>".$locale['addondb422']."</a>" : "-")."</span></td>
+		<td class='".$cls."' align='right'><span class='small'>".($d_addon_cats['addon_count'] == 0 ? "<a href='".FUSION_SELF.$aidlink."&amp;action=delete&addon_cat_id=".$d_addon_cats['addon_cat_id']."' onClick=\"return confirmDeleteAddonCat('".$d_addon_cats['addon_cat_name']."')\" title='".$locale['addondb701']."'>".$locale['addondb422']."</a>" : "-")."</span></td>
 		</tr>\n";
 	}
 	echo "</table>";
