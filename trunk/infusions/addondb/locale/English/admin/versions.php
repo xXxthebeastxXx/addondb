@@ -18,6 +18,9 @@ $locale['addondb412'] = "Error: Version already exists";
 $locale['addondb413'] = "<span class='small'>(Fields marked <span class='error'>*</span> are required)</span>";
 $locale['addondb414'] = "<span class='small'>(Click to edit)</span>";
 $locale['addondb415'] = "Delete the Version: ";
+$locale['addondb416'] = "Unknown action error occurred!";
+$locale['addondb417'] = "Selected cat does not exist in the database!";
+$locale['addondb418'] = "An unknown error occurred!";
 // Error Messages
 
 $locale['addondb420'] = "Error";
@@ -30,4 +33,7 @@ $locale['addondb500'] = "Click to edit this Version";
 $locale['addondb501'] = "Click to move this Version up";
 $locale['addondb502'] = "Click to move this Version down";
 $locale['addondb503'] = "Click to delete this Version";
+$locale['addondb504'] = "Up";
+$locale['addondb505'] = "Down";
+$locale['addondb506'] = "Edit";
 ?>

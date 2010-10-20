@@ -35,9 +35,9 @@ if (isset($_GET['error']) && isnum($_GET['error'])) {
 	echo "<div class='admin-message'>\n";
 	if ($_GET['error'] == 1) { echo $locale['addondb411'];
 	} elseif ($_GET['error'] == 2) { echo $locale['addondb412'];
-	} elseif ($_GET['error'] == 3) { echo "Unknown action error occurred!";
-	} elseif ($_GET['error'] == 4) { echo "Selected cat does not exist in the database!";
-	} else { echo "An unknown error occurred!"; }
+	} elseif ($_GET['error'] == 3) { echo $locale['addondb416'];
+	} elseif ($_GET['error'] == 4) { echo $locale['addondb417'];
+	} else { echo $locale['addondb418']; }
 	echo "</div>\n";
 }
 
@@ -183,22 +183,22 @@ if (dbrows($result)) {
 			$up = $data['version_order'] - 1;
 			$down = $data['version_order'] + 1;
 			if ($data['version_order'] == 1) {
-				$up_down = "<a href='".FUSION_SELF.$aidlink."&amp;action=move_down&order=".$down."&version_id=".$version_id."' title='".$locale['addondb502']."'><img src='".THEME."images/down.gif' border='0' /></a>";
+				$up_down = "<a href='".FUSION_SELF.$aidlink."&amp;action=move_down&order=".$down."&version_id=".$version_id."' title='".$locale['addondb505']."'><img src='".ADDON_IMG."down.png' border='0' /></a>";
 			} elseif ($data['version_order'] < $rows) {
-				$up_down = "<a href='".FUSION_SELF.$aidlink."&amp;action=move_up&order=".$up."&version_id=".$version_id."' title='".$locale['addondb501']."'><img src='".THEME."images/up.gif' border='0' /></a>";
-				$up_down .= "<a href='".FUSION_SELF.$aidlink."&amp;action=move_down&order=".$down."&version_id=".$version_id."' title='".$locale['addondb502']."'><img src='".THEME."images/down.gif' border='0' /></a>";
+				$up_down = "<a href='".FUSION_SELF.$aidlink."&amp;action=move_up&order=".$up."&version_id=".$version_id."' title='".$locale['addondb504']."'><img src='".ADDON_IMG."up.png' border='0' /></a>";
+				$up_down .= "<a href='".FUSION_SELF.$aidlink."&amp;action=move_down&order=".$down."&version_id=".$version_id."' title='".$locale['addondb505']."'><img src='".ADDON_IMG."down.png' border='0' /></a>";
 			} else {
-				$up_down = "<a href='".FUSION_SELF.$aidlink."&amp;action=move_up&order=".$up."&version_id=".$version_id."' title='".$locale['addondb501']."'><img src='".THEME."images/up.gif' border='0' /></a>";
+				$up_down = "<a href='".FUSION_SELF.$aidlink."&amp;action=move_up&order=".$up."&version_id=".$version_id."' title='".$locale['addondb504']."'><img src='".ADDON_IMG."up.png' border='0' /></a>";
 			}
 		} else {
 			$up_down = "-";
 		}
 		$cls = ($r++%2 == 0 ? "tbl1" : "tbl2");
 		echo "<tr>\n";
-		echo "<td class='".$cls."'><a href='".FUSION_SELF.$aidlink."&amp;action=edit&version_id=".$data['version_id']."' title='".$locale['addondb500']."'>".$ver."</a></td>\n";
+		echo "<td class='".$cls."'><a href='".FUSION_SELF.$aidlink."&amp;action=edit&version_id=".$data['version_id']."' title='".$locale['addondb506']."'>".$ver."</a></td>\n";
 		echo "<td class='".$cls."' align='center'>".$data['version_order']."</td>\n";
 		echo "<td class='".$cls."' align='center'>".$up_down."</td>\n";
-		echo "<td class='".$cls."' align='right'><a href='".FUSION_SELF.$aidlink."&amp;action=delete&version_id=".$data['version_id']."' onClick=\"return confirmDeleteVersion('".$ver."')\" title='".$locale['addondb503']."'>".$locale['addondb405']."</a></td>\n";
+		echo "<td class='".$cls."' align='right'><a href='".FUSION_SELF.$aidlink."&amp;action=delete&version_id=".$data['version_id']."' onClick=\"return confirmDeleteVersion('".$ver."')\" title='".$locale['addondb405']."'>".$locale['addondb405']."</a></td>\n";
 		echo "</tr>\n";
 	}
 	echo "</table>";
