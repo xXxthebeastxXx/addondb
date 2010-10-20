@@ -33,24 +33,32 @@ document.location.href = x
      }
    }
 </script>
-");  
+");
     
 opentable($locale['sub_001']);
-    echo "<center><img src='".INFUSIONS."submit_stuff/submit_stuff.png' width='180' alt ='".$locale['sub_001']."' /></center>\n";
+    echo "<center><img src='".INFUSIONS."/submit_stuff/submit_stuff.png' width='180' alt ='Logo' /></center>\n";
     echo "<form name='form1'>\n";
     echo "<br /><table cellpadding='0' cellspacing='1' width='80%' class='tbl-border center'>\n<tr>\n";
     echo "<th class='tbl1' colspan='3'>".$locale['sub_002']."</th>\n";
     echo "</tr>\n<tr>\n";
     echo "<td class='tbl1'>&nbsp;</td>\n";
     echo "<td class='tbl1' align='right'>".$locale['sub_003']."</td>";
-    echo "<td class='tbl1' valign='top'>\n";
+    echo "<td class='tbl1'>\n";
     echo "<select name='jumpmenu' class='textbox' onChange='jumpto(document.form1.jumpmenu.options[document.form1.jumpmenu.options.selectedIndex].value)'>\n";
     echo "<option value='".FUSION_SELF."'>".$locale['sub_004']."</option>\n";
-    echo "<option value='".$settings['siteurl']."submit.php?stype=a'>".$locale['sub_005']."</option>\n";
-    echo "<option value='".$settings['siteurl']."submit.php?stype=n'>".$locale['sub_006']."</option>\n";
-    echo "<option value='".$settings['siteurl']."submit.php?stype=p'>".$locale['sub_007']."</option>\n";
-    echo "<option value='".$settings['siteurl']."submit.php?stype=l'>".$locale['sub_008']."</option>\n";
-    echo "<option value='".$settings['siteurl']."infusions/addondb/submit_addon.php'>".$locale['sub_009']."</option>\n";
+    $resulta = dbquery("SELECT article_cat_id FROM ".DB_ARTICLE_CATS); if (dbrows($resulta)) {
+    echo "<option value='".$settings['siteurl']."submit.php?stype=a'>".$locale['sub_005']."</option>\n"; }
+    $resultb = dbquery("SELECT news_cat_id FROM ".DB_NEWS_CATS); if (dbrows($resultb)) {
+    echo "<option value='".$settings['siteurl']."submit.php?stype=n'>".$locale['sub_006']."</option>\n"; }
+    $resultc = dbquery("SELECT album_id FROM ".DB_PHOTO_ALBUMS); if (dbrows($resultc)) { 
+    echo "<option value='".$settings['siteurl']."submit.php?stype=p'>".$locale['sub_007']."</option>\n"; }
+    $resultd = dbquery("SELECT weblink_cat_id FROM ".DB_WEBLINK_CATS); if (dbrows($resultd)) { 
+    echo "<option value='".$settings['siteurl']."submit.php?stype=l'>".$locale['sub_008']."</option>\n"; }
+    if (file_exists(INFUSIONS."addondb/infusion_db.php")) {
+    require_once INFUSIONS."addondb/infusion_db.php";
+    $resulte = dbquery("SELECT addon_cat_id FROM ".DB_ADDON_CATS); if (dbrows($resulte)) {
+    echo "<option value='".$settings['siteurl']."infusions/addondb/submit_addon.php'>".$locale['sub_009']."</option>\n"; }
+    }
     echo "</select>\n</td>\n";
 	echo "</tr>\n</table>\n";
 	echo "</form>\n";
