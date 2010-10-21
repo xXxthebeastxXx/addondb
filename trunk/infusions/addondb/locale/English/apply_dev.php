@@ -13,6 +13,7 @@ $locale['apdev010'] = "An administrator will review your application and contact
 $locale['apdev011'] = "The number of approved Addons to qualify: ";
 $locale['apdev012'] = "Only one application per member!";
 $locale['apdev013'] = "Addon Dashboard";
+$locale['apdev014'] = "I verify all submitted addons by me are my own work.";
 
 //Admin
 $locale['apdev030'] = "Addon Dev Applicants";
@@ -21,10 +22,21 @@ $locale['apdev032'] = "Approve";
 $locale['apdev033'] = "Deny";
 $locale['apdev034'] = "Reset";
 $locale['apdev035'] = "There are no new applications";
-$locale['apdev036'] = "Approved Members";
-$locale['apdev037'] = "Addon Count";
-$locale['apdev038'] = "User Joined";
-$locale['apdev039'] = "Last Visit";
+$locale['apdev036'] = "Approved Addons";
+$locale['apdev037'] = "Author";
+$locale['apdev038'] = "Posted";
+$locale['apdev039'] = "Download Count";
 $locale['apdev040'] = "No Members approved";
+$locale['apdev041'] = "Congratulations, your application for official Addon Developer status has been approved.";
+$locale['apdev042'] = "We\'re sorry, but your application for official Addon Developer status has been denied.";
+$locale['apdev043'] = " An Admin may not review their own application!";
+
+//Error msg
+$locale['apdev060'] = "Error! Members inbox is full";
+$locale['apdev061'] = "Error! Reciever and sender are the same user, please contact DB Administrator.";
+$locale['apdev062'] = "Error! Sender does not exist in DB, please contact DB Administrator.";
+$locale['apdev063'] = "Error! Reciever does not exist in DB, please contact DB Administrator.";
+$locale['apdev064'] = "Error! Flood control exceeded, please PM member manually.";
+$locale['apdev065'] = "Member notified, Private message sent.";
 
 ?>
