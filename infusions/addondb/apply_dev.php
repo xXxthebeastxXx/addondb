@@ -48,7 +48,7 @@ if (iMEMBER) { $addoncount = number_format(dbcount("(addon_id)", DB_ADDONS, "add
         if ($status_check['addon_author_status'] == '0') {
 
         echo "<form name='apply' method='post' action='".FUSION_SELF."' >\n";
-        echo "<table cellpadding='0' cellspacing='0' class='tbl-border'>\n<tr>\n";
+        echo "<table cellpadding='0' align='center' cellspacing='0' class='tbl-border'>\n<tr>\n";
         echo "<th colspan='2' class='forum-caption'>".$locale['apdev002']."</th>\n";
         echo "</tr>\n<tr>\n";
         echo "<td class='tbl1' colspan='2'>&nbsp;</td>";
@@ -59,12 +59,14 @@ if (iMEMBER) { $addoncount = number_format(dbcount("(addon_id)", DB_ADDONS, "add
         echo "<td class='tbl1' valign='top'>".$locale['apdev004']."</td>";
         echo "<td class='tbl1' valign='top'><textarea class='textbox' name='apply_comment' style='width:300px; height:100px;'></textarea></td>";
         echo "</tr>\n<tr>\n";
-        echo "<td colspan='2' align='center'><input type='submit' name='post_apply' value='".$locale['apdev007']."' class='button' /><td>";
+        echo "<td colspan='2' align='center'><input type='checkbox' id='verify' name='verify' value='1' onclick='checkverify()' /><span class='small'><label for='verify'>".$locale['apdev014']."</label></span>";
+        echo "<br />";
+        echo "<input type='submit' name='post_apply' value='".$locale['apdev007']."' class='button'".($settings_global['set_addondb_sub'] == 0 ? " disabled='disabled'" : "")." />\n";
+        echo "<td>";
         echo "</tr>\n<tr>\n";
         echo "<td class='tbl1' valign='top' align='center' colspan='2'><img src='".ADDON_IMG."approved_dev.png' width='182' alt ='' /></td>";
-        echo "</tr>\n</table>\n";
-        echo "<input type='hidden' class='textbox' name='apply_user' value='".$userdata['user_name']."' />";
-        echo "</form>\n"; 
+        echo "<input type='hidden' class='textbox' name='apply_user' value='".$userdata['user_name']."' />\n";
+        echo "</tr>\n</table>\n</form>\n"; 
         } else {
         echo "<center><br />".$locale['apdev012']."</br /></center>\n"; }
 
@@ -78,6 +80,16 @@ if (iMEMBER) { $addoncount = number_format(dbcount("(addon_id)", DB_ADDONS, "add
         echo "<center><br /><a href='".ADDON."dashboard.php'>".$locale['apdev013']."</a><br /><br /></center>";
         closetable();      
        }
+       
+		echo "<script language='JavaScript' type='text/javascript'>
+			function checkverify() {
+				if(document.apply.verify.checked) {
+					document.apply.post_apply.disabled=false;
+				} else {
+					document.apply.post_apply.disabled=true;
+				}
+			}
+		</script>";
 
 
 require_once THEMES."templates/footer.php";

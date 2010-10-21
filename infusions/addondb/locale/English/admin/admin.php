@@ -61,58 +61,55 @@ $locale['addondb456'] = "Language";
 $locale['addondb457'] = "Tran..";
 $locale['addondb458'] = "Submitted by";
 $locale['addondb459'] = "Create Support Thread:";
-$locale['addondb459y'] = "Yes";
-$locale['addondb459n'] = "No";
-$locale['addondb459x'] = "Allow Social Sharing?";
-$locale['addondb459z'] = "Live Demo URL: ";
-$locale['addondb459p'] = "Approved Dev?";
-$locale['addondb459a'] = "Awaiting Approval";
+$locale['addondb460'] = "Yes";
+$locale['addondb461'] = "No";
+$locale['addondb462'] = "Allow Social Sharing?";
+$locale['addondb463'] = "Live Demo URL: ";
+$locale['addondb464'] = "Approved Dev?";
+$locale['addondb465'] = "Awaiting Approval";
+$locale['addondb466'] = "There are no submissions";
 
 //Notifications
-$locale['addondb460'] = " has been ";
-$locale['addondb461'] = " with to the following comment:\r\n\r";
-$locale['addondb462'] = "You have a new private message waiting at ".$settings['sitename'];
-$locale['addondb463'] = ",\r\nYou have received a new Private Message titled [SUBJECT] from [USER] at ".$settings['sitename'].". You can read your private message at ".$settings['siteurl']."messages.php\r\n\r\nYou can disable email notification through the options panel of the Private Message page if you no longer wish to be notified of new messages.";
-
+$locale['addondb500'] = " has been ";
+$locale['addondb501'] = " with to the following comment:\r\n\r";
+$locale['addondb502'] = "You have a new private message waiting at ".$settings['sitename'];
+$locale['addondb503'] = ",\r\nYou have received a new Private Message titled [SUBJECT] from [USER] at ".$settings['sitename'].". You can read your private message at ".$settings['siteurl']."messages.php\r\n\r\nYou can disable email notification through the options panel of the Private Message page if you no longer wish to be notified of new messages.";
 
 // Error Messages
-
-$locale['addondb470'] = "Error";
-$locale['addondb471'] = "Return to Admin Index";
-$locale['addondb472'] = "Return to Addon Categories Admin";
-$locale['addondb473'] = "Return to Addon Admin";
-$locale['addondb474'] = "Invalid Addon ID";
-$locale['addondb475'] = "Invalid Addon Category ID";
-$locale['addondb480'] = "Addon Category Cannot be Deleted";
-$locale['addondb481'] = "There are Addons linked to this Category";
-$locale['addondb482'] = "Error: Required fields not completed";
-$locale['addondb483'] = "Error: Category Name and Type already exists";
-$locale['addondb484'] = "Error: Addon Name with same version already exists";
-$locale['addondb485'] = "Error: Invalid Email Address";
-$locale['addondb486'] = "Error: Addon file must be less than %u bytes.";
-$locale['addondb487'] = "Error: Addon file must be a %s file.";
-$locale['addondb488'] = "Error: Screenshot must be less than %u bytes.";
-$locale['addondb489'] = "Error: Screenshot must be a %s file.";
+$locale['addondb600'] = "Error";
+$locale['addondb601'] = "Return to Admin Index";
+$locale['addondb602'] = "Return to Addon Categories Admin";
+$locale['addondb603'] = "Return to Addon Admin";
+$locale['addondb604'] = "Invalid Addon ID";
+$locale['addondb605'] = "Invalid Addon Category ID";
+$locale['addondb606'] = "Addon Category Cannot be Deleted";
+$locale['addondb607'] = "There are Addons linked to this Category";
+$locale['addondb608'] = "Error: Required fields not completed";
+$locale['addondb609'] = "Error: Category Name and Type already exists";
+$locale['addondb610'] = "Error: Addon Name with same version already exists";
+$locale['addondb611'] = "Error: Invalid Email Address";
+$locale['addondb612'] = "Error: Addon file must be less than %u bytes.";
+$locale['addondb613'] = "Error: Addon file must be a %s file.";
+$locale['addondb614'] = "Error: Screenshot must be less than %u bytes.";
+$locale['addondb615'] = "Error: Screenshot must be a %s file.";
 
 // Tooltips
-
-$locale['addondb500'] = "Click to edit this Category";
-$locale['addondb501'] = "Click to delete this Category";
-$locale['addondb502'] = "Click to move this Category up";
-$locale['addondb503'] = "Click to move this Category down";
-$locale['addondb504'] = "Click to edit this Addon";
-$locale['addondb505'] = "Click to delete this Addon";
-$locale['addondb506'] = "Click to view this Addon";
-$locale['addondb507'] = "Click to manage comments";
-$locale['addondb508'] = "Click to manage ratings";
+$locale['addondb700'] = "Click to edit this Category";
+$locale['addondb701'] = "Click to delete this Category";
+$locale['addondb702'] = "Click to move this Category up";
+$locale['addondb703'] = "Click to move this Category down";
+$locale['addondb704'] = "Click to edit this Addon";
+$locale['addondb705'] = "Click to delete this Addon";
+$locale['addondb706'] = "Click to view this Addon";
+$locale['addondb707'] = "Click to manage comments";
+$locale['addondb708'] = "Click to manage ratings";
 
 // Other
-
-$locale['addondb600'] = "Unassigned";
-$locale['addondb601'] = "Assigned to: ";
-$locale['addondb602'] = "Undo Assignment";
-$locale['addondb603'] = "Admins may not Approve their own Addons.";
-$locale['addondb604'] = "Not Allowed <span style='color:#ff0000'>*</span>";
-$locale['addondb605'] = "Addon must be assigned to an Admin";
+$locale['addondb800'] = "Unassigned";
+$locale['addondb801'] = "Assigned to: ";
+$locale['addondb802'] = "Undo Assignment";
+$locale['addondb803'] = "Admins may not Approve their own Addons.";
+$locale['addondb804'] = "Not Allowed <span style='color:#ff0000'>*</span>";
+$locale['addondb805'] = "Addon must be assigned to an Admin";
 
 ?>
