@@ -1,27 +1,43 @@
 <?php
 
-include "maincore.php";
+require_once "maincore.php";
+require_once "feed.class.php";
 
-include "feed.class.php";
+isset($_GET['type']) || !empty($_GET['type']) ? $_GET['type'] : $_GET['type'] = "404";
 
-$result = "SELECT tn.*, tc.*, tu.user_id, tu.user_name, tu.user_status FROM ".DB_NEWS." tn
-			LEFT JOIN ".DB_USERS." tu ON tn.news_name=tu.user_id
-			LEFT JOIN ".DB_NEWS_CATS." tc ON tn.news_cat=tc.news_cat_id
-			WHERE ".groupaccess('news_visibility')." AND (news_start='0'||news_start<=".time().") AND (news_end='0'||news_end>=".time().") AND news_draft='0'
-			ORDER BY news_sticky DESC, news_datestamp DESC LIMIT 10";
-
-$feed = new Feed();
-$feed->title = "PHP-Fusion News Feed";
-$feed->link = $settings['siteurl']."rss.php";
-$feed->description = "Recent news on PHP-Fusion.";
-
-$result = dbquery($result);
-while($data = dbarray($result)) {
-	$item = new RSSItem;
-	$item->title = $data['news_subject'];
-	$item->link  = $settings['siteurl']."news.php?readmore=".$data['news_id'];
-	$item->setPubDate($data['news_datestamp']);
-	$item->description = $data['news_news'];
-	$feed->addItem($item);
+switch($_GET['type']) {
+	case "addon":
+	$result = "
+	SELECT addon_id, addon_name, addon_description, addon_date
+	FROM ".DB_ADDONS."
+	WHERE addon_status = 0
+	ORDER BY addon_date
+	DESC LIMIT 10";
+	$feed = new Feed();
+	$feed->title = "Addons Feed";
+	$feed->link = $settings['siteurl']."rss.php";
+	$feed->description = "Latest Addons on PHP-Fusion.";
+	$result = dbquery($result);
+	while($data = dbarray($result)) {
+		$item = new RSSItem;
+		$item->title = $data['addon_name'];
+		$item->link  = $settings['siteurl']."/infusions/addondb/view.php?addon_id=".$data['addon_id'];
+		$item->setPubDate($data['addon_date']);
+		$item->description = $data['addon_description'];
+		$feed->addItem($item);
+	}
+	$feed->displayFeed();
+	break;
 }
-$feed->displayFeed();
+
+
+
+if ($settings['login_method'] == "sessions") {
+	session_write_close();
+}
+
+if (ob_get_length() !== FALSE){
+	ob_end_flush();
+}
+
+mysql_close($db_connect);
