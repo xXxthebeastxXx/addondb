@@ -11,49 +11,53 @@ require_once THEME."footer.php";
 function render_page() {
 	global $aidlink, $locale, $settings, $userdata; add_handler("theme_head_output"); ?>
 <div id="content" class="container_24">
-  <div id="header">
-    <div id="logo" class="grid_6"> <?php echo showbanners(); ?> </div><!-- /logo -->
-    <div id="nav" class="grid_16 push_1">
-      <?php navigation(); ?>
-    </div><!-- /nav -->
-    <div class="grid_9 hinfo">
-      <h4>National Support Network</h4>
-      <p id="profile"></p>
-    </div><!-- /nss -->
-    <div class="grid_6 push_1 hinfo">
-      <h4>Search the site</h4>
-      <form action="/search.php" id="search" method="get" role="search">
-        <div>
-          <label for="s" class="screen-reader-text">Search for:</label>
-          <input type="text" id="s" name="stext" value="">
-          <input type="submit" value="Search" id="searchsubmit">
-        </div>
-      </form>
-    </div><!-- /search -->
-    <div class="grid_6 push_2 userinfo hinfo">
-      <?php userinfo(); ?>
-    </div><!-- /userinfo -->
-  </div><!-- /header -->
-<div id="main" class="<?php echo (in_forum() || in_addon()) || !RIGHT && !LEFT ? 'grid_24' : 'grid_16'; ?>">
-<?php echo U_CENTER; ?>
-<?php echo CONTENT; ?>
-<?php echo L_CENTER; ?>
-</div><!-- /main -->
-<?php echo in_forum() || in_addon() ? "" : (LEFT || RIGHT ? '<div id="aside" class="grid_6 push_1">' : ''); ?> <?php echo in_forum() || in_addon() ? "" : (LEFT ? LEFT : '').(RIGHT ? RIGHT : ''); ?> <?php echo in_forum() || in_addon() ? "" : (LEFT || RIGHT ? '</div><!-- /aside -->' : ''); ?>
-<div class="clearfix"></div>
-</div><!-- /content -->
+	<div id="header">
+		<div id="logo" class="grid_6"> <?php echo showbanners(); ?> </div>
+		<!-- /logo -->
+		<div id="nav" class="grid_16 push_1">
+			<?php navigation(); ?>
+		</div>
+		<!-- /nav -->
+		<div class="grid_9 hinfo">
+			<h4>National Support Network</h4>
+			<p id="profile"></p>
+		</div>
+		<!-- /nss -->
+		<div class="grid_6 push_1 hinfo">
+			<h4>Search the site</h4>
+			<form action="/search.php" id="search" method="get" role="search">
+				<div>
+					<label for="s" class="screen-reader-text">Search for:</label>
+					<input type="text" id="s" name="stext" value="">
+					<input type="submit" value="Search" id="searchsubmit">
+				</div>
+			</form>
+		</div>
+		<!-- /search -->
+		<div class="grid_6 push_2 userinfo hinfo">
+			<?php userinfo(); ?>
+		</div>
+		<!-- /userinfo --> 
+	</div>
+	<!-- /header -->
+	<div id="main" class="<?php echo (in_forum() || in_addon()) || !RIGHT && !LEFT ? 'grid_24' : 'grid_16'; ?>"> <?php echo U_CENTER; ?> <?php echo CONTENT; ?> <?php echo L_CENTER; ?> </div>
+	<!-- /main --> 
+	<?php echo in_forum() || in_addon() ? "" : (LEFT || RIGHT ? '<div id="aside" class="grid_6 push_1">' : ''); ?> <?php echo in_forum() || in_addon() ? "" : (LEFT ? LEFT : '').(RIGHT ? RIGHT : ''); ?> <?php echo in_forum() || in_addon() ? "" : (LEFT || RIGHT ? '</div><!-- /aside -->' : ''); ?>
+	<div class="clearfix"></div>
+</div>
+<!-- /content -->
 <div id="footer">
-  <div class="container_24">
-    <?php navigation(false); ?>
-    <div class="grid_6 push_1">
-      <h3>some pretty content</h3>
-    </div>
-    <div class="clearfix"></div>
-    <div id="subfooter">
-      <small>Copyright &copy; 2002 - 2010 by Nick Jones.</small>
-    </div><!-- /subfooter --> 
-  </div>
-</div><!-- /footer -->
+	<div class="container_24">
+		<?php navigation(false); ?>
+		<div class="grid_6 push_1">
+			<h3>some pretty content</h3>
+		</div>
+		<div class="clearfix"></div>
+		<div id="subfooter"> <small>Copyright &copy; 2002 - 2010 by Nick Jones.</small> </div>
+		<!-- /subfooter --> 
+	</div>
+</div>
+<!-- /footer -->
 <?php get_footer_tags(); ?>
 <?php echo (DEBUG ? "<div id='debug'><strong>Debug is on </strong>" : "<!-- ").showrendertime().(DEBUG ? "</div><!-- /debug -->": " -->")."\n";
 }
@@ -94,3 +98,4 @@ function openside($title="", $collapse = false, $state = "on") {
 function closeside() {
 	echo "<!-- /side -->";
 }
+
