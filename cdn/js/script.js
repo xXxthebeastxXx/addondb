@@ -75,10 +75,18 @@ $("#s")
             $(this).val("Search...");
         }
     });
-$('#accordion').easyAccordion({ 
-			autoStart: false, 
-			slideInterval: 5000
-	});
+	$('blockquote').quovolver();
+$('#slidwshow').anythingSlider({
+				width               : 600,       
+				height              : 350, 
+				buildArrows         : false,       
+				resizeContents      : false,      
+				buildNavigation     : false,
+				toggleControls      : false,
+				delay               : 5000,
+				autoPlay            : true    
+
+			});
 var lang = {
 	"SA":"Find support in <a href=\"http://www.phpfusion-ar.com\" target=\"_blank\" rel=\"nofollow\">PHP-Fusion Arabia</a>",
 	"BE":"Find support in <a href=\"http://www.phpfusion-nederlands.info\" target=\"_blank\" rel=\"nofollow\">PHP-Fusion Belgium</a>",
