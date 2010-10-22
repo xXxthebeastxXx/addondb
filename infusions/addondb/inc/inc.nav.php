@@ -44,8 +44,9 @@ echo $dot." <a href='".ADDON_ADMIN."dev_applications.php".$aidlink."'>".$locale[
 echo $dot."</center>\n<br />\n<center>\n";
 echo $dot." <a href='".ADDON_ADMIN."cats.php".$aidlink."'>".$locale['incnav_006']."</a> 
 ".$dot." <a href='".ADDON_ADMIN."versions.php".$aidlink."'>".$locale['incnav_007']."</a> 
-".$dot." <a href='".ADDON_ADMIN."settings.php".$aidlink."'>".$locale['incnav_008']."</a> 
-".$dot."</center>\n";
+".$dot;
+if (iSUPERADMIN) { echo "&nbsp;<a href='".ADDON_ADMIN."settings.php".$aidlink."'>".$locale['incnav_008']."</a>&nbsp;".$dot; }
+echo "</center>\n";
 
 closetable();
 

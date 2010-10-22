@@ -32,6 +32,15 @@ if (file_exists(ADDON_LOCALE.LOCALESET."admin/admin.php")) {
 	include ADDON_LOCALE."English/admin/admin.php";
 }
 
+// Check for installed categories
+
+if (file_exists(ADDON_ADMIN."populate_cats.php")) {
+	$install_check = dbcount("(addon_cat_id)", DB_ADDON_CATS);
+	if ($install_check == '0')  { 
+	redirect("populate_cats.php".$aidlink."");
+	  }
+	}
+	
 $addons = "";
 $trans = "";
 
@@ -75,18 +84,18 @@ if (!isset($_GET['action']) || $_GET['action'] == "1") {
 				
                 if ($assigned_user['assign_addon'] == $data['submit_id']) {
                 $assign_del = dbarray(dbquery("SELECT assign_id FROM ".DB_ADDON_ASSIGN." WHERE assign_addon = '".$data['submit_id']."'"));
-                $addons .= "<span class='small'>".$locale['addondb601'].profile_link($assigned_user['assign_user'], $assigned_user['user_name'], $assigned_user['user_status'])."</span>&nbsp;
-                <span class='small'><a href='".FUSION_SELF.$aidlink."&action=del&assign_id=".$assign_del['assign_id']."' title='".$locale['addondb602']."'>
-                <img src='".ADDON_IMG."undo.png' alt='".$locale['addondb602']."' /></a>\n";
+                $addons .= "<span class='small'>".$locale['addondb801'].profile_link($assigned_user['assign_user'], $assigned_user['user_name'], $assigned_user['user_status'])."</span>&nbsp;
+                <span class='small'><a href='".FUSION_SELF.$aidlink."&action=del&assign_id=".$assign_del['assign_id']."' title='".$locale['addondb802']."'>
+                <img src='".ADDON_IMG."undo.png' alt='".$locale['addondb802']."' /></a>\n";
                 } else {
                 if ($userdata['user_id'] == $data['submit_user']) {
-                $addons .= $locale['addondb604']; $warn = "<center><span style='color:#ff0000'>*</span> ".$locale['addondb603']."</center>"; } else { 
-				$addons .= "<a href='".FUSION_SELF.$aidlink."&action=assign&assign_addon=".$data['submit_id']."&assign_author=".$data['submit_user']."'>".$locale['addondb600']."</a>\n"; $warn = "";}
+                $addons .= $locale['addondb804']; $warn = "<center><span style='color:#ff0000'>*</span> ".$locale['addondb803']."</center>"; } else { 
+				$addons .= "<a href='".FUSION_SELF.$aidlink."&action=assign&assign_addon=".$data['submit_id']."&assign_author=".$data['submit_user']."'>".$locale['addondb800']."</a>\n"; $warn = "";}
 				}
 				$addons .= "</td>\n</tr>\n";
 			}
 		} else {
-			$addons = "<tr>\n<td colspan='2' class='tbl1'>".$locale['414']."</td>\n</tr>\n";
+			$addons = "<tr>\n<td colspan='2' class='tbl1'>".$locale['addondb466']."</td>\n</tr>\n";
 		}
 		opentable($locale['410']);
 		echo "<table cellpadding='0' cellspacing='1' width='600' class='tbl-border center'>\n<tr>\n";
@@ -130,7 +139,7 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
 			}
 			}
 
-			notify($_POST['trans_name'], $_POST['addon_name'].$locale['addondb460'].get_addon_status_mail(4), $_POST['addon_name'].$locale['addondb460'].get_addon_status_mail(4).$locale['addondb461'].$_POST['trans_approved_comment']);
+			notify($_POST['trans_name'], $_POST['addon_name'].$locale['addondb500'].get_addon_status_mail(4), $_POST['addon_name'].$locale['addondb500'].get_addon_status_mail(4).$locale['addondb501'].$_POST['trans_approved_comment']);
 									
 			opentable($locale['400']);
 			echo "<br /><div style='text-align:center'>".$locale['401']."<br /><br />\n";
@@ -148,7 +157,7 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
               WHERE trans_id = '".$_GET['trans_id']."'
               ");
           
-           notify($_POST['trans_name'], $_POST['addon_name'].$locale['addondb460'].get_addon_status_mail($_POST['trans_status']), $_POST['addon_name'].$locale['addondb460'].get_addon_status_mail($_POST['trans_status']).$locale['addondb461'].$_POST['trans_approved_comment']);
+           notify($_POST['trans_name'], $_POST['addon_name'].$locale['addondb500'].get_addon_status_mail($_POST['trans_status']), $_POST['addon_name'].$locale['addondb500'].get_addon_status_mail($_POST['trans_status']).$locale['addondb501'].$_POST['trans_approved_comment']);
    
     }
    
@@ -222,7 +231,7 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
 			@unlink($addon_upload_dir_img."t_".$_POST['addon_screenshot']);
 			@unlink($addon_upload_dir_img.$_POST['addon_screenshot']);
 
-			notify($_POST['addon_submitter_name'], $_POST['addon_name'].$locale['addondb460'].get_addon_status_mail(4), $_POST['addon_name'].$locale['addondb460'].get_addon_status_mail(4).$locale['addondb461'].$_POST['addon_approved_comment']);
+			notify($_POST['addon_submitter_name'], $_POST['addon_name'].$locale['addondb500'].get_addon_status_mail(4), $_POST['addon_name'].$locale['addondb500'].get_addon_status_mail(4).$locale['addondb501'].$_POST['addon_approved_comment']);
 			$result = dbquery("DELETE FROM ".DB_SUBMISSIONS." WHERE submit_id='".$_GET['submit_id']."'");
 			
 			// Delete Assigned Approver
@@ -279,7 +288,7 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
 
           if (is_uploaded_file($_FILES['addon_download']['tmp_name'])) {
             if ($_FILES['addon_download']['size'] > $addon_upload_maxsize) {
-              $error = sprintf($locale['addondb486'], $addon_upload_maxsize);
+              $error = sprintf($locale['addondb612'], $addon_upload_maxsize);
             }
             foreach (array_keys($addon_upload_exts) as $addon_upload_ext) {
               if (stristr($_FILES['addon_download']['name'], $addon_upload_ext) == $addon_upload_ext) $addon_ext = $addon_upload_ext;
@@ -287,7 +296,7 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
             if ($addon_ext != "") {
               $addon_ext = ".".$addon_ext;
             } else {
-              $error = sprintf($locale['addondb487'],implode(", ",array_keys($addon_upload_exts)));
+              $error = sprintf($locale['addondb613'],implode(", ",array_keys($addon_upload_exts)));
             }
             if ($error == "") {
             
@@ -307,7 +316,7 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
           if (is_uploaded_file($_FILES['addon_screen']['tmp_name'])) {
           
                   if ($_FILES['addon_screen']['size'] > $addon_upload_maxsize_img) {
-                    $error = sprintf($locale['addondb488'], $addon_upload_maxsize_img);
+                    $error = sprintf($locale['addondb614'], $addon_upload_maxsize_img);
                   }
                   foreach (array_keys($addon_upload_exts_img) as $addon_upload_ext_img) {
                     if (stristr($_FILES['addon_screen']['name'], $addon_upload_ext_img) == $addon_upload_ext_img) $addon_ext_img = $addon_upload_ext_img;
@@ -315,7 +324,7 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
                   if ($addon_ext_img != "") {
                     $addon_ext_img = ".".$addon_ext_img;
                   } else {
-                    $error = sprintf($locale['addondb489'],implode(", ",array_keys($addon_upload_exts_img)));
+                    $error = sprintf($locale['addondb615'],implode(", ",array_keys($addon_upload_exts_img)));
                   }
                   
         
@@ -382,7 +391,7 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
             $hunt = dbarray(dbquery("SELECT assign_id  FROM ".DB_ADDON_ASSIGN." WHERE assign_addon = '".$_GET['submit_id']."'"));
           $result = dbquery("DELETE FROM ".DB_ADDON_ASSIGN." WHERE assign_id='".$hunt['assign_id']."' LIMIT 1");
           
-          notify($_POST['addon_submitter_name'], $_POST['addon_name'].$locale['addondb460'].get_addon_status_mail($_POST['addon_status']), $_POST['addon_name'].$locale['addondb460'].get_addon_status_mail($_POST['addon_status']).$locale['addondb461'].$_POST['addon_approved_comment']);
+          notify($_POST['addon_submitter_name'], $_POST['addon_name'].$locale['addondb500'].get_addon_status_mail($_POST['addon_status']), $_POST['addon_name'].$locale['addondb500'].get_addon_status_mail($_POST['addon_status']).$locale['addondb501'].$_POST['addon_approved_comment']);
         } else {
           echo $error;
         }
@@ -569,15 +578,15 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
 			<tr>
 			<td class='tbl1' nowrap>".$locale['addondb459']."</td>
 			<td class='tbl1' nowrap>&nbsp;</td><td class='tbl1'>
-			<input type='hidden' class='textbox' name='addon_forum_status' value='".$addon_forum_status."'>".($addon_forum_status == 0 ? $locale['addondb459y'] : $locale['addondb459n'])."</td>
+			<input type='hidden' class='textbox' name='addon_forum_status' value='".$addon_forum_status."'>".($addon_forum_status == 0 ? $locale['addondb460'] : $locale['addondb461'])."</td>
 			</tr>
 			<tr>
-			<td class='tbl1' nowrap>".$locale['addondb459x']."</td>
+			<td class='tbl1' nowrap>".$locale['addondb462']."</td>
 			<td class='tbl1' nowrap>&nbsp;</td><td class='tbl1'>
-			<input type='hidden' class='textbox' name='addon_share_status' value='".$addon_share_status."'>".($addon_share_status == 0 ? $locale['addondb459y'] : $locale['addondb459n'])."</td>
+			<input type='hidden' class='textbox' name='addon_share_status' value='".$addon_share_status."'>".($addon_share_status == 0 ? $locale['addondb460'] : $locale['addondb461'])."</td>
 			</tr>
 			<tr>
-			<td class='tbl1' nowrap>".$locale['addondb459z']."</td>
+			<td class='tbl1' nowrap>".$locale['addondb463']."</td>
 			<td class='tbl1' nowrap>&nbsp;</td><td class='tbl1'>
 			<input type='hidden' class='textbox' name='addon_demo_url' value='".$addon_demo_url."'>";
 			if ($addon_demo_url) { echo "<a target='_blank' href='".$urlprefix.$addon_demo_url."'>".$addon_demo_url."</a>"; } else { echo "---"; }
@@ -587,7 +596,7 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
 			<td class='tbl1' nowrap colspan='3'><hr></td>
 			</tr>
 			<tr>\n";
-			if($userdata['user_id'] == $addon_submitter_id) { $approver = $locale['addondb603']; } else { $approver = $userdata['user_name']; }
+			if($userdata['user_id'] == $addon_submitter_id) { $approver = $locale['addondb803']; } else { $approver = $userdata['user_name']; }
 			echo "<td class='tbl1' nowrap>".$locale['addondb442'].":</td>
 			<td class='tbl1' nowrap>&nbsp;</td>
 			<td class='tbl1'><select class='textbox' name='addon_status' style='width:300px;'>".$addon_status_list."</select></td>
@@ -614,7 +623,7 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
 			
 			 $assign_check = dbcount("(assign_id)", DB_ADDON_ASSIGN, "assign_addon = '".$data['submit_id']."'");
 			 if($userdata['user_id'] == $addon_submitter_id) { $disable = "onchange='submit();' disabled"; } else { $disable = ""; }
-			 if ($assign_check == '0') { $submit = "<a href='".FUSION_SELF.$aidlink."'>".$locale['addondb605']."</a>"; } else { $submit = "<input type='submit' name='add' onClick=\"return confirm('".$locale['addondb444']."')\" value='".$locale['addondb427']."' class='button' $disable />\n"; }
+			 if ($assign_check == '0') { $submit = "<a href='".FUSION_SELF.$aidlink."'>".$locale['addondb805']."</a>"; } else { $submit = "<input type='submit' name='add' onClick=\"return confirm('".$locale['addondb444']."')\" value='".$locale['addondb427']."' class='button' $disable />\n"; }
 			echo $submit;
 			echo "</div>\n";
 			echo "</form>\n";

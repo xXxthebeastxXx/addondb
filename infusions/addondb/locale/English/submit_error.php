@@ -46,4 +46,5 @@ $locale['addondb475'] = "Translation file must be a %s file.";
 $locale['addondb476'] = "Language";
 $locale['addondb477'] = "Submit";
 $locale['addondb478'] = "Translations Guidelines";
+$locale['addondb479'] = "Thank you";
 ?>

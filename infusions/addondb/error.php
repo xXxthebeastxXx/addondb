@@ -109,7 +109,7 @@ if (isset($_GET['error']) && isset($_GET['addon_id']) && isnum($_GET['addon_id']
           $upload_name = $_GET['addon_id']."_".time();
           if (is_uploaded_file($_FILES['addon_download']['tmp_name'])) {
             if ($_FILES['addon_download']['size'] > $trans_upload_maxsize) {
-              $error = sprintf($locale['addondb474'], $trans_upload_maxsize);
+              $error = sprintf($locale['addondb604'], $trans_upload_maxsize);
             }
             foreach (array_keys($trans_upload_exts) as $addon_upload_ext) {
               if (stristr($_FILES['addon_download']['name'], $addon_upload_ext) == $addon_upload_ext) $addon_ext = $addon_upload_ext;
@@ -117,7 +117,7 @@ if (isset($_GET['error']) && isset($_GET['addon_id']) && isnum($_GET['addon_id']
             if ($addon_ext != "") {
              $addon_ext = ".".$addon_ext;
             } else {
-            $error = sprintf($locale['addondb475'],implode(", ",array_keys($trans_upload_exts)));
+            $error = sprintf($locale['addondb605'],implode(", ",array_keys($trans_upload_exts)));
             }
 						
             if ($error == "") {

@@ -23,6 +23,10 @@ require_once ADDON."infusion_db.php";
 include ADDON_LOCALE.LOCALESET."apply_dev.php";
 
 if (iMEMBER) { $addoncount = number_format(dbcount("(addon_id)", DB_ADDONS, "addon_author_name='".$userdata['user_name']."' && addon_status = '0'")); } else { $addoncount = "0"; }
+if (iMEMBER) { $suspend_check = dbarray(dbquery("SELECT suspended_user, reinstate_date FROM ".DB_SUSPENDS." WHERE suspended_user = '".$userdata['user_id']."'"));
+$time = time();
+if (($suspend_check['reinstate_date'] + $settings_global['susp_time']) > ($time + $settings['timeoffset'] * 3600)) { define("SUSPEND_USER", true); } else { define("SUSPEND_USER", false); }
+}
 
      if (!iMEMBER) {
 	    
@@ -39,10 +43,27 @@ if (iMEMBER) { $addoncount = number_format(dbcount("(addon_id)", DB_ADDONS, "add
         echo "<center><br /><a href='".ADDON."dashboard.php'>".$locale['apdev013']."</a><br /><br /></center>";
         closetable();
         
-        } elseif (iMEMBER && !isset($_POST['post_apply'])) {
+        } elseif (iMEMBER && SUSPEND_USER == true) {
+        
+//Suspend Time
+
+	     if ($settings_global['susp_time'] == 604800) { $date = $locale['set_time03']; }
+	elseif ($settings_global['susp_time'] == 1209600) { $date = $locale['set_time04']; }
+	elseif ($settings_global['susp_time'] == 2419200) { $date = $locale['set_time05']; }
+	elseif ($settings_global['susp_time'] == 4838400) { $date = $locale['set_time06']; }
+   elseif ($settings_global['susp_time'] == 14515200) { $date = $locale['set_time07']; }
+	else { $date = ""; }
+		
+	    opentable($locale['apdev005']);
+        echo "<center><br />".$locale['apdev005']."</br /></center>\n";
+        echo "<center><br />".$locale['apdev015'].$date.$locale['apdev016']."</br /></center>\n";
+        echo "<center><br /><a href='".ADDON."dashboard.php'>".$locale['apdev013']."</a><br /><br /></center>";
+        closetable();
+
+		
+		} elseif (iMEMBER && !isset($_POST['post_apply'])) {
       
         opentable($locale['apdev001']);
-        
         $status_check = dbarray(dbquery("SELECT addon_author_status FROM ".DB_ADDONS." WHERE addon_author_name = '".$userdata['user_name']."'"));
         
         if ($status_check['addon_author_status'] == '0') {

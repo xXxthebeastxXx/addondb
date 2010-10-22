@@ -14,11 +14,14 @@ $locale['addondbs110'] = "Maintenance Message";
 $locale['addondbs111'] = "Set time for Addons to be marked as NEW";
 $locale['addondbs119'] = "Save Settings";
 $locale['addondbs120'] = "Number of Addons to qualify to apply for Official Addon Dev status";
+$locale['addondbs121'] = "Length of time after suspension before user can apply for Addon Dev status";
 
 $locale['set_time01'] = "24 Hours";
 $locale['set_time02'] = "48 Hours";
 $locale['set_time03'] = "1 Week";
 $locale['set_time04'] = "2 Weeks";
 $locale['set_time05'] = "1 Month";
+$locale['set_time06'] = "2 Months";
+$locale['set_time07'] = "6 Months";
 
 ?>

@@ -119,6 +119,7 @@ $result = dbquery("
 	LIMIT ".$_GET['rowstart'].",".$settings_global['addons_per_page']
 );
 add_to_title($locale['addondb435'].$locale['addondb400']);
+include ADDON_INC."view_nav.php";
 opentable($locale['addondb400']); ?>
 <form name="filterform" method="get" action="<?php echo FUSION_SELF; ?>">
 	<div class="dropselect grid_5">
