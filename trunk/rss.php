@@ -1,15 +1,16 @@
 <?php
 
 require_once "maincore.php";
-require_once "feed.class.php";
+require_once INCLUDES."feed.class.php";
 
 isset($_GET['type']) || !empty($_GET['type']) ? $_GET['type'] : $_GET['type'] = "404";
 
 switch($_GET['type']) {
 	case "addon":
 	$result = "
-	SELECT addon_id, addon_name, addon_description, addon_date
-	FROM ".DB_ADDONS."
+	SELECT tm.addon_id, tm.addon_name, tm.addon_description, tm.addon_date, tm.addon_download, tc.addon_cat_type, tc.addon_cat_name 
+	FROM ".DB_PREFIX."addondb_cats tc
+	LEFT JOIN ".DB_PREFIX."addondb_addons tm USING(addon_cat_id)
 	WHERE addon_status = 0
 	ORDER BY addon_date
 	DESC LIMIT 10";
@@ -19,11 +20,14 @@ switch($_GET['type']) {
 	$feed->description = "Latest Addons on PHP-Fusion.";
 	$result = dbquery($result);
 	while($data = dbarray($result)) {
+		$filesize = filesize(INFUSIONS."addondb/files/".$data['addon_download']);
 		$item = new RSSItem;
 		$item->title = $data['addon_name'];
 		$item->link  = $settings['siteurl']."/infusions/addondb/view.php?addon_id=".$data['addon_id'];
 		$item->setPubDate($data['addon_date']);
 		$item->description = $data['addon_description'];
+		$item->category($data['addon_cat_name']);
+		$item->enclosure($settings['siteurl']."infusions/addondb/files/".$data['addon_download'], "application/zip", $filesize );
 		$feed->addItem($item);
 	}
 	$feed->displayFeed();
