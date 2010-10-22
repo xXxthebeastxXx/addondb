@@ -75,6 +75,7 @@ class RSSItem extends Feed {
 	private $attachment;
 	private $length;
 	private $mimetype;
+	private $cat;
 	private $xml;
 
 	public function setPubDate($when) {
@@ -98,6 +99,7 @@ class RSSItem extends Feed {
 		$this->xml .= "			<description><![CDATA[ " . $this->description . " ]]></description>\n";
 		$this->xml .= "			<pubDate>" . $this->getPubDate() . "</pubDate>\n";
 		if($this->attachment != NULL) $this->xml .= "			<enclosure url=\"".$this->attachment."\" length=\"".$this->length."\" type=\"".$this->mimetype."\" />\n";
+		if($this->cat != NULL) $this->xml .= "			<category>".$this->cat."</category>\n";
 		if(empty($this->guid)) $this->guid = $this->link;
 		$this->xml .= "			<guid>" . $this->guid . "</guid>\n";
 		$this->xml .= "		</item>\n";
@@ -108,5 +110,9 @@ class RSSItem extends Feed {
 		$this->attachment = $url;
 		$this->mimetype   = $mimetype;
 		$this->length     = $length;
+	}
+	
+	public function category($cat) {
+		$this->cat = $cat;
 	}
 }
