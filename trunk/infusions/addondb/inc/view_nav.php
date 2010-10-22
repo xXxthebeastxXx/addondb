@@ -9,7 +9,8 @@ include ADDON_LOCALE.LOCALESET."view_nav.php";
 	      <a href='".ADDON."index.php?type=3&version=0&orderby=addon_name&sort=ASC' title ='".$locale['addondbv103']."'>".$locale['addondbv103']."</a>".$nav_bullet."
 	      <a href='".ADDON."index.php?type=4&version=&orderby=addon_name&sort=ASC' title ='".$locale['addondbv104']."'>".$locale['addondbv104']."</a>".$nav_bullet;
 	      if (iMEMBER) {
-	      echo "<a href='".ADDON."dashboard.php' title ='".$locale['addondbv105']."'>".$locale['addondbv105']."</a>".$nav_bullet; }
+	      echo "<a href='".ADDON."dashboard.php' title ='".$locale['addondbv105']."'>".$locale['addondbv105']."</a>".$nav_bullet; 
+	      echo "<a href='".ADDON."submit_addon.php' title ='".$locale['addondbv106']."'>".$locale['addondbv106']."</a>".$nav_bullet;}
 	      echo "</td>
 	      </tr>\n</table>\n";
 ?>

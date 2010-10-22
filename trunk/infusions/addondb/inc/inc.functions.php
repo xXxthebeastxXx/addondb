@@ -293,10 +293,10 @@ function notify($to, $subject_g, $message_g){
 							
 					if ($msg_settings['pm_inbox'] == "0" || ($data['message_count'] + 1) <= $msg_settings['pm_inbox']) {
 						$result = dbquery("INSERT INTO ".DB_MESSAGES." (message_to, message_from, message_subject, message_message, message_smileys, message_read, message_datestamp, message_folder) VALUES('".$data['user_id']."','".$userdata['user_id']."','".$subject."','".$message."','".$smileys."','0','".time()."','0')");
-						$message_content = str_replace("[SUBJECT]", $subject, $locale['addondb463']);
+						$message_content = str_replace("[SUBJECT]", $subject, $locale['addondb503']);
 						$message_content = str_replace("[USER]", $userdata['user_name'], $message_content);
 						$send_email = isset($data['pm_email_notify']) ? $data['pm_email_notify'] : $msg_settings['pm_email_notify'];
-						if ($send_email == "1") { sendemail($data['user_name'], $data['user_email'], $settings['siteusername'], $settings['siteemail'], $locale['addondb462'], $data['user_name'].$message_content); }
+						if ($send_email == "1") { sendemail($data['user_name'], $data['user_email'], $settings['siteusername'], $settings['siteemail'], $locale['addondb502'], $data['user_name'].$message_content); }
 					
 				}
 			} else {

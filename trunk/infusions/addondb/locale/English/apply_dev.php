@@ -13,7 +13,9 @@ $locale['apdev010'] = "An administrator will review your application and contact
 $locale['apdev011'] = "The number of approved Addons to qualify: ";
 $locale['apdev012'] = "Only one application per member!";
 $locale['apdev013'] = "Addon Dashboard";
-$locale['apdev014'] = "I verify all submitted addons by me are my own work.";
+$locale['apdev014'] = "I verify all addons submitted by me are my own work.";
+$locale['apdev015'] = "Due to your recent suspension, you do not currently qualify for developer status.<br />The probationary period is ";
+$locale['apdev016'] = " from date of reinstating.<br />If you feel this in error, please contact an administrator.";
 
 //Admin
 $locale['apdev030'] = "Addon Dev Applicants";
@@ -28,8 +30,8 @@ $locale['apdev038'] = "Posted";
 $locale['apdev039'] = "Download Count";
 $locale['apdev040'] = "No Members approved";
 $locale['apdev041'] = "Congratulations, your application for official Addon Developer status has been approved.";
-$locale['apdev042'] = "We\'re sorry, but your application for official Addon Developer status has been denied.";
-$locale['apdev043'] = " An Admin may not review their own application!";
+$locale['apdev042'] = "We\'re sorry, but your application for official Addon Developer status has been denied.<br />We feel your work does not yet come up to the standard required. We sincerely hope this not not discourage you from trying to improve your coding skills. If you need help or advice, please ask on our forums.";
+$locale['apdev043'] = "Admins may not review their own application!";
 
 //Error msg
 $locale['apdev060'] = "Error! Members inbox is full";
@@ -38,5 +40,12 @@ $locale['apdev062'] = "Error! Sender does not exist in DB, please contact DB Adm
 $locale['apdev063'] = "Error! Reciever does not exist in DB, please contact DB Administrator.";
 $locale['apdev064'] = "Error! Flood control exceeded, please PM member manually.";
 $locale['apdev065'] = "Member notified, Private message sent.";
+
+//time
+$locale['set_time03'] = "1 Week";
+$locale['set_time04'] = "2 Weeks";
+$locale['set_time05'] = "1 Month";
+$locale['set_time06'] = "2 Months";
+$locale['set_time07'] = "6 Months";
 
 ?>

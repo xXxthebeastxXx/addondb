@@ -18,7 +18,7 @@
 require_once "../../../maincore.php";
 require_once THEMES."templates/admin_header.php";
 
-if (!checkrights("ADNX") || !defined("iAUTH") || $_GET['aid'] != iAUTH) { redirect("../index.php"); }
+if (!checkrights("ADNX") || !iSUPERADMIN || !defined("iAUTH") || $_GET['aid'] != iAUTH) { redirect("../index.php"); }
 
 require_once INFUSIONS."addondb/inc/inc.functions.php";
 require_once ADDON."infusion_db.php";
@@ -39,6 +39,7 @@ if (isset($_POST['savesettings'])) {
 	    addons_per_page='".(isnum($_POST['addons_per_page']) ? $_POST['addons_per_page'] : "20")."',
 	    addons_dev_qual='".(isnum($_POST['addons_dev_qual']) ? $_POST['addons_dev_qual'] : "2")."',
 	    set_new_time='".(isNum($_POST['set_new_time']) ? $_POST['set_new_time'] : "0")."',
+	    susp_time='".(isNum($_POST['susp_time']) ? $_POST['susp_time'] : "0")."',
 	    set_addon_maintmsg='".addslash(descript($_POST['set_addon_maintmsg']))."'
 	");
     if (!$result) { $error = 1; }
@@ -113,7 +114,27 @@ if (isset($_POST['savesettings'])) {
   echo "<option value='".$ntime['5']."'".($settings_global['set_new_time'] == "".$ntime['5']."" ? " selected" : "").">".$locale['set_time05']."</option>";
   echo "</select>\n";
   echo "</td>\n";
+  echo "</tr>\n<tr>\n";
   
+  //Suspend Time
+    $stime = array(
+	1 => "604800",
+	2 => "1209600",
+	3 => "2419200",
+	4 => "4838400",
+	5 => "14515200"
+);
+
+  echo "<td class='tbl2' align='right' valign='top'><b>".$locale['addondbs121'].":</b></td>\n";
+  echo "<td class='tbl2' align='left' colspan='2'>";
+  echo "<select name='susp_time' class='textbox'>";
+  echo "<option value='".$stime['1']."'".($settings_global['susp_time'] == "".$stime['1']."" ? " selected" : "").">".$locale['set_time03']."</option>";
+  echo "<option value='".$stime['2']."'".($settings_global['susp_time'] == "".$stime['2']."" ? " selected" : "").">".$locale['set_time04']."</option>";
+  echo "<option value='".$stime['3']."'".($settings_global['susp_time'] == "".$stime['3']."" ? " selected" : "").">".$locale['set_time05']."</option>";
+  echo "<option value='".$stime['4']."'".($settings_global['susp_time'] == "".$stime['4']."" ? " selected" : "").">".$locale['set_time06']."</option>";
+  echo "<option value='".$stime['5']."'".($settings_global['susp_time'] == "".$stime['5']."" ? " selected" : "").">".$locale['set_time07']."</option>";
+  echo "</select>\n";
+  echo "</td>\n";
   echo "</tr>\n<tr>\n";
 
   echo "<td colspan='3' align='center'>";
