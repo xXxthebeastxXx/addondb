@@ -31,185 +31,100 @@ $.fn.styleddropdown = function(){
 };
 
 /*
- * 	easyAccordion 0.1 - jQuery plugin
- *	written by Andrea Cima Serniotti	
- *	http://www.madeincima.eu
+ * jQuery Quovolver v1.0 - http://sandbox.sebnitu.com/jquery/quovolver
  *
- *	Copyright (c) 2010 Andrea Cima Serniotti (http://www.madeincima.eu)
- *	Dual licensed under the MIT (MIT-LICENSE.txt) and GPL (GPL-LICENSE.txt) licenses.
- *	Built for jQuery library http://jquery.com
+ * By Sebastian Nitu - Copyright 2009 - All rights reserved
+ * 
  */
-jQuery.fn.easyAccordion = function(options) {
 
-var defaults = {			
-	slideNum: true,
-	autoStart: false,
-	slideInterval: 3000
-};
+	$.fn.quovolver = function(speed, delay) {
 		
-this.each(function() {
-	
-	var settings = jQuery.extend(defaults, options);		
-	jQuery(this).find('dl').addClass('easy-accordion');
-	
-	
-	// -------- Set the variables ------------------------------------------------------------------------------
-	
-	jQuery.fn.setVariables = function() {
-		dlWidth = jQuery(this).width();
-		dlHeight = jQuery(this).height();
-		dtWidth = jQuery(this).find('dt').outerHeight();
-		if (jQuery.browser.msie){ dtWidth = $(this).find('dt').outerWidth();}
-		dtHeight = dlHeight - (jQuery(this).find('dt').outerWidth()-jQuery(this).find('dt').width());
-		slideTotal = jQuery(this).find('dt').size();
-		ddWidth = dlWidth - (dtWidth*slideTotal) - (jQuery(this).find('dd').outerWidth(true)-jQuery(this).find('dd').width());
-		ddHeight = dlHeight - (jQuery(this).find('dd').outerHeight(true)-jQuery(this).find('dd').height());
-	};
-	jQuery(this).setVariables();
-
-	
-	// -------- Fix some weird cross-browser issues due to the CSS rotation -------------------------------------
-
-	if (jQuery.browser.safari){ var dtTop = (dlHeight-dtWidth)/2; var dtOffset = -dtTop;  /* Safari and Chrome */ }
-	if (jQuery.browser.mozilla){ var dtTop = dlHeight - 20; var dtOffset = - 20; /* FF */ }
-	if (jQuery.browser.msie){ var dtTop = 0; var dtOffset = 0; /* IE */ }
-	
-	
-	// -------- Getting things ready ------------------------------------------------------------------------------
-	
-	var f = 1;
-	jQuery(this).find('dt').each(function(){
-		jQuery(this).css({'width':dtHeight,'top':dtTop,'margin-left':dtOffset});	
-		if(settings.slideNum == true){
-			jQuery('<span class="slide-number">'+0+f+'</span>').appendTo(this);
-			if(jQuery.browser.msie){	
-				var slideNumLeft = parseInt(jQuery(this).find('.slide-number').css('left')) - 14;
-				jQuery(this).find('.slide-number').css({'left': slideNumLeft})
-				if(jQuery.browser.version == 6.0 || jQuery.browser.version == 7.0){
-					jQuery(this).find('.slide-number').css({'bottom':'auto'});
-				}
-				if(jQuery.browser.version == 8.0){
-				var slideNumTop = jQuery(this).find('.slide-number').css('bottom');
-				var slideNumTopVal = parseInt(slideNumTop) + parseInt(jQuery(this).css('padding-top'))  - 12; 
-				jQuery(this).find('.slide-number').css({'bottom': slideNumTopVal}); 
-				}
-			} else {
-				var slideNumTop = jQuery(this).find('.slide-number').css('bottom');
-				var slideNumTopVal = parseInt(slideNumTop) + parseInt(jQuery(this).css('padding-top')); 
-				jQuery(this).find('.slide-number').css({'bottom': slideNumTopVal}); 
-			}
-		}
-		f = f + 1;
-	});
-	
-	if(jQuery(this).find('.active').size()) { 
-		jQuery(this).find('.active').next('dd').addClass('active');
-	} else {
-		jQuery(this).find('dt:first').addClass('active').next('dd').addClass('active');
-	}
-	
-	jQuery(this).find('dt:first').css({'left':'0'}).next().css({'left':dtWidth});
-	jQuery(this).find('dd').css({'width':ddWidth,'height':ddHeight});	
-
-	
-	// -------- Functions ------------------------------------------------------------------------------
-	
-	jQuery.fn.findActiveSlide = function() {
-			var i = 1;
-			this.find('dt').each(function(){
-			if(jQuery(this).hasClass('active')){
-				activeID = i; // Active slide
-			} else if (jQuery(this).hasClass('no-more-active')){
-				noMoreActiveID = i; // No more active slide
-			}
-			i = i + 1;
-		});
-	};
+		/* Sets default values */
+		if (!speed) speed = 500;
+		if (!delay) delay = 6000;
 		
-	jQuery.fn.calculateSlidePos = function() {
-		var u = 2;
-		jQuery(this).find('dt').not(':first').each(function(){	
-			var activeDtPos = dtWidth*activeID;
-			if(u <= activeID){
-				var leftDtPos = dtWidth*(u-1);
-				jQuery(this).animate({'left': leftDtPos});
-				if(u < activeID){ // If the item sits to the left of the active element
-					jQuery(this).next().css({'left':leftDtPos+dtWidth});	
-				} else{ // If the item is the active one
-					jQuery(this).next().animate({'left':activeDtPos});
-				}
-			} else {
-				var rightDtPos = dlWidth-(dtWidth*(slideTotal-u+1));
-				jQuery(this).animate({'left': rightDtPos});
-				var rightDdPos = rightDtPos+dtWidth;
-				jQuery(this).next().animate({'left':rightDdPos});	
-			}
-			u = u+ 1;
-		});
-		setTimeout( function() {
-			jQuery('.easy-accordion').find('dd').not('.active').each(function(){ 
-				jQuery(this).css({'display':'none'});
-			});
-		}, 400);
+		// If "delay" is less than 4 times the "speed", it will break the effect 
+		// If that's the case, make "delay" exactly 4 times "speed"
+		var quaSpd = (speed*4);
+		if (quaSpd > (delay)) delay = quaSpd;
 		
-	};
-
-	jQuery.fn.activateSlide = function() {
-		this.parent('dl').setVariables();	
-		this.parent('dl').find('dd').css({'display':'block'});
-		this.parent('dl').find('dd.plus').removeClass('plus');
-		this.parent('dl').find('.no-more-active').removeClass('no-more-active');
-		this.parent('dl').find('.active').removeClass('active').addClass('no-more-active');
-		this.addClass('active').next().addClass('active');	
-		this.parent('dl').findActiveSlide();
-		if(activeID < noMoreActiveID){
-			this.parent('dl').find('dd.no-more-active').addClass('plus');
-		}
-		this.parent('dl').calculateSlidePos();	
-	};
-
-	jQuery.fn.rotateSlides = function(slideInterval, timerInstance) {
-		var accordianInstance = jQuery(this);
-		timerInstance.value = setTimeout(function(){accordianInstance.rotateSlides(slideInterval, timerInstance);}, slideInterval);
-		jQuery(this).findActiveSlide();
-		var totalSlides = jQuery(this).find('dt').size();
-		var activeSlide = activeID;
-		var newSlide = activeSlide + 1;
-		if (newSlide > totalSlides) newSlide = 1;
-		jQuery(this).find('dt:eq(' + (newSlide-1) + ')').activateSlide(); // activate the new slide
-	}
-
-
-	// -------- Let's do it! ------------------------------------------------------------------------------
-	
-	function trackerObject() {this.value = null}
-	var timerInstance = new trackerObject();
-	
-	jQuery(this).findActiveSlide();
-	jQuery(this).calculateSlidePos();
-	
-	if (settings.autoStart == true){
-		var accordianInstance = jQuery(this);
-		var interval = parseInt(settings.slideInterval);
-		timerInstance.value = setTimeout(function(){
-			accordianInstance.rotateSlides(interval, timerInstance);
-			}, interval);
-	} 
-
-	jQuery(this).find('dt').not('active').click(function(){		
-		jQuery(this).activateSlide();
-		clearTimeout(timerInstance.value);
-	});	
+		// Create the variables needed
+		var	quote = $(this),
+			firstQuo = $(this).filter(':first'),
+			lastQuo = $(this).filter(':last'),
+			wrapElem = '<div id="quote_wrap"></div>';
+		
+		// Wrap the quotes
+		$(this).wrapAll(wrapElem);
+		
+		// Hide all the quotes, then show the first
+		$(this).hide();
+		$(firstQuo).show();
+		
+		// Set the hight of the wrapper
+		$(this).parent().css({height: $(firstQuo).height()});		
+		
+		// Where the magic happens
+		setInterval(function(){
 			
-	if (!(jQuery.browser.msie && jQuery.browser.version == 6.0)){ 
-		jQuery('dt').hover(function(){
-			jQuery(this).addClass('hover');
-		}, function(){
-			jQuery(this).removeClass('hover');
-		});
-	}
-});
-};
+			// Set required hight and element in variables for animation
+			if($(lastQuo).is(':visible')) {
+				var nextElem = $(firstQuo);
+				var wrapHeight = $(nextElem).height();
+			} else {
+				var nextElem = $(quote).filter(':visible').next();
+				var wrapHeight = $(nextElem).height();
+			}
+			
+			// Fadeout the quote that is currently visible
+			$(quote).filter(':visible').fadeOut(speed);
+			
+			// Set the wrapper to the hight of the next element, then fade that element in
+			setTimeout(function() {
+				$(quote).parent().animate({height: wrapHeight}, speed);
+			}, speed);
+			
+			if($(lastQuo).is(':visible')) {
+				setTimeout(function() {
+					$(firstQuo).fadeIn(speed*2);
+				}, speed*2);
+				
+			} else {
+				setTimeout(function() {
+					$(nextElem).fadeIn(speed);
+				}, speed*2);
+			}
+			
+		}, delay);
+	
+	};
+	/*
+ AnythingSlider v1.4.5 minified using Google Closure Compiler
+ By Chris Coyier: http://css-tricks.com
+ with major improvements by Doug Neiner: http://pixelgraphics.us/
+ based on work by Remy Sharp: http://jqueryfordesigners.com/
+*/
+$.anythingSlider=function(f,g){var a=this;a.$el=$(f).addClass("anythingBase").wrap('<div class="anythingSlider"><div class="anythingWindow" /></div>');a.$el.data("AnythingSlider",a);a.init=function(){a.options=$.extend({},$.anythingSlider.defaults,g);a.$wrapper=a.$el.parent().closest("div.anythingSlider").addClass("anythingSlider-"+a.options.theme);a.$window=a.$el.closest("div.anythingWindow");a.$controls=$('<div class="anythingControls"></div>').appendTo(a.$wrapper);a.$items=a.$el.find("> li").addClass("panel");
+a.pages=a.$items.length;a.timer=null;a.flag=false;a.playing=false;a.hovered=false;a.panelSize=[];a.currentPage=a.options.startPanel;a.hasEmb=!!a.$items.find("embed[src*=youtube]").length;a.hasSwfo=typeof swfobject!=="undefined"&&swfobject.hasOwnProperty("embedSWF")&&$.isFunction(swfobject.embedSWF)?true:false;a.runTimes=$("div.anythingSlider").index(a.$wrapper)+1;if(!$.isFunction($.easing[a.options.easing]))a.options.easing="swing";a.options.theme!="default"&&!$("link[href*="+a.options.theme+"]").length&&
+$("body").append('<link rel="stylesheet" href="'+a.options.themeDirectory.replace(/\{themeName\}/g,a.options.theme)+'" type="text/css" />');a.hasEmb&&a.hasSwfo&&a.$items.find("embed[src*=youtube]").each(function(b){($(this).parent()[0].tagName=="OBJECT"?$(this).parent():$(this)).wrap('<div id="ytvideo'+b+'"></div>');swfobject.embedSWF($(this).attr("src")+"&enablejsapi=1&version=3&playerapiid=ytvideo"+b,"ytvideo"+b,"100%","100%","10",null,null,{allowScriptAccess:"always",wmode:a.options.addWmodeToObject},
+{})});if(a.options.resizeContents){a.options.width&&a.$wrapper.add(a.$items).css("width",a.options.width);a.options.height&&a.$wrapper.add(a.$items).css("height",a.options.height);a.hasEmb&&a.$el.find("object, embed").css({width:"100%",height:"100%"})}if(a.pages===1){a.options.autoPlay=false;a.options.buildNavigation=false;a.options.buildArrows=false}if(a.options.autoPlay){a.playing=!a.options.startStopped;a.buildAutoPlay()}a.buildNavigation();a.$el.prepend(a.$items.filter(":last").clone().addClass("cloned").removeAttr("id"));
+a.$el.append(a.$items.filter(":first").clone().addClass("cloned").removeAttr("id"));a.$items=a.$el.find("> li");a.setDimensions();a.options.resizeContents||$(window).load(function(){a.setDimensions()});a.options.buildArrows&&a.buildNextBackButtons();a.options.pauseOnHover&&a.$wrapper.hover(function(){if(a.playing){a.$el.trigger("slideshow_paused",a);$.isFunction(a.options.onShowPause)&&a.options.onShowPause(a);a.clearTimer(true)}},function(){if(a.playing){a.$el.trigger("slideshow_unpaused",a);$.isFunction(a.options.onShowUnpause)&&
+a.options.onShowUnpause(a);a.startStop(a.playing,true)}});if(a.options.hashTags===true&&!a.gotoHash()||a.options.hashTags===false)a.setCurrentPage(a.options.startPanel,false);a.$items.find("a").focus(function(){a.$items.find(".focusedLink").removeClass("focusedLink");$(this).addClass("focusedLink");a.$items.each(function(b){if($(this).find("a.focusedLink").length){a.gotoPage(b);return false}})});a.slideControls(false);a.$wrapper.hover(function(b){a.hovered=b.type=="mouseenter"?true:false;a.slideControls(a.hovered,
+false)});$(document).keyup(function(b){if(a.$wrapper.is(".activeSlider"))switch(b.which){case 39:a.goForward();break;case 37:a.goBack()}})};a.buildNavigation=function(){a.$nav=$('<ul class="thumbNav" />').appendTo(a.$controls);a.options.playRtl&&a.$wrapper.addClass("rtl");a.options.buildNavigation&&a.pages>1&&a.$items.each(function(b){var c=b+1;b=$("<a href='#'></a>").addClass("panel"+c).wrap("<li />");a.$nav.append(b.parent());if($.isFunction(a.options.navigationFormatter)){var d=a.options.navigationFormatter(c,
+$(this));b.html(d);parseInt(b.css("text-indent"),10)<0&&b.addClass(a.options.tooltipClass).attr("title",d)}else b.text(c);b.bind(a.options.clickControls,function(e){if(!a.flag){a.flag=true;setTimeout(function(){a.flag=false},100);a.gotoPage(c);a.options.hashTags&&a.setHash("panel"+a.runTimes+"-"+c)}e.preventDefault()})})};a.buildNextBackButtons=function(){a.$forward=$('<span class="arrow forward"><a href="#">'+a.options.forwardText+"</a></span>");a.$back=$('<span class="arrow back"><a href="#">'+
+a.options.backText+"</a></span>");a.$back.bind(a.options.clickArrows,function(b){a.goBack();b.preventDefault()});a.$forward.bind(a.options.clickArrows,function(b){a.goForward();b.preventDefault()});a.$back.add(a.$forward).find("a").bind("focusin focusout",function(){$(this).toggleClass("hover")});a.$wrapper.prepend(a.$forward).prepend(a.$back);a.$arrowWidth=a.$forward.width()};a.buildAutoPlay=function(){a.$startStop=$("<a href='#' class='start-stop'></a>").html(a.playing?a.options.stopText:a.options.startText);
+a.$controls.append(a.$startStop);a.$startStop.bind(a.options.clickSlideshow,function(b){a.startStop(!a.playing);if(a.playing)a.options.playRtl?a.goBack(true):a.goForward(true);b.preventDefault()}).bind("focusin focusout",function(){$(this).toggleClass("hover")});a.startStop(a.playing)};a.setDimensions=function(){var b,c,d,e,i,h=0,j=a.$window.width(),k=$(window).width();a.$items.each(function(l){d=$(this).children("*");if(a.options.resizeContents){b=parseInt(a.options.width,10)||j;c=parseInt(a.options.height,
+10)||a.$window.height();$(this).css({width:b,height:c});d.length==1&&d.css({width:"100%",height:"100%"})}else{b=$(this).width();i=b>=k?true:false;if(d.length==1&&i){e=d.width()>=k?j:d.width();$(this).css("width",e);d.css("max-width",e);b=e}b=i?a.options.width||j:b;$(this).css("width",b);c=$(this).outerHeight();$(this).css("height",c)}a.panelSize[l]=[b,c,h];h+=b});a.$el.css("width",h<a.options.maxOverallWidth?h:a.options.maxOverallWidth)};a.gotoPage=function(b,c){if(typeof b==="undefined"||b===null){b=
+a.options.startPage;a.setCurrentPage(a.options.startPage)}if(!a.checkVideo(a.playing)){a.$el.trigger("slide_init",a);$.isFunction(a.options.onSlideInit)&&a.options.onSlideInit(a);a.slideControls(true,false);if(b>a.pages+1)b=a.pages;if(b<0)b=1;if(c!==true)c=false;if(!c||a.options.stopAtEnd&&b==a.pages)a.startStop(false);a.$el.trigger("slide_begin",a);$.isFunction(a.options.onSlideBegin)&&a.options.onSlideBegin(a);a.options.resizeContents||a.$wrapper.filter(":not(:animated)").animate({width:a.panelSize[b][0],
+height:a.panelSize[b][1]},{queue:false,duration:a.options.animationTime,easing:a.options.easing});a.$window.filter(":not(:animated)").animate({scrollLeft:a.panelSize[b][2]},{queue:false,duration:a.options.animationTime,easing:a.options.easing,complete:function(){a.endAnimation(b)}})}};a.endAnimation=function(b){if(b===0){a.$window.scrollLeft(a.panelSize[a.pages][2]);b=a.pages}else if(b>a.pages){a.$window.scrollLeft(a.panelSize[1][2]);b=1}a.setCurrentPage(b,false);a.hovered||a.slideControls(false);
+if(a.hasEmb){b=a.$items.eq(a.currentPage).find("object[id*=ytvideo], embed[id*=ytvideo]");b.length&&$.isFunction(b[0].getPlayerState)&&b[0].getPlayerState()>0&&b[0].getPlayerState()!=5&&b[0].playVideo()}a.$el.trigger("slide_complete",a);$.isFunction(a.options.onSlideComplete)&&setTimeout(function(){a.options.onSlideComplete(a)},0)};a.setCurrentPage=function(b,c){if(a.options.buildNavigation){a.$nav.find(".cur").removeClass("cur");a.$nav.find("a").eq(b-1).addClass("cur")}if(!c){a.$wrapper.css({width:a.panelSize[b][0],
+height:a.panelSize[b][1]});a.$wrapper.scrollLeft(0);a.$window.scrollLeft(a.panelSize[b][2])}a.currentPage=b;if(!a.$wrapper.is(".activeSlider")){$(".activeSlider").removeClass("activeSlider");a.$wrapper.addClass("activeSlider")}};a.goForward=function(b){if(b!==true){b=false;a.startStop(false)}a.gotoPage(a.currentPage+1,b)};a.goBack=function(b){if(b!==true){b=false;a.startStop(false)}a.gotoPage(a.currentPage-1,b)};a.gotoHash=function(){var b=window.location.hash.match(/^#?panel(\d+)-(\d+)$/);if(b)if(parseInt(b[1],
+10)==a.runTimes){b=parseInt(b[2],10);if(a.$items.filter(":eq("+b+")").length!==0){a.setCurrentPage(b,false);return true}}return false};a.setHash=function(b){if(typeof window.location.hash!=="undefined"){if(window.location.hash!==b)window.location.hash=b}else if(location.hash!==b)location.hash=b;return b};a.slideControls=function(b){var c=b?"slideDown":"slideUp",d=b?0:a.options.animationTime,e=b?a.options.animationTime:0;b=b?0:1;a.options.toggleControls&&a.$controls.stop(true,true).delay(d)[c](a.options.animationTime/
+2).delay(e);if(a.options.toggleArrows){if(!a.hovered&&a.playing)b=1;a.$forward.stop(true,true).delay(d).animate({right:b*a.$arrowWidth,opacity:e},a.options.animationTime/2);a.$back.stop(true,true).delay(d).animate({left:b*a.$arrowWidth,opacity:e},a.options.animationTime/2)}};a.clearTimer=function(b){if(a.timer){window.clearInterval(a.timer);if(!b){a.$el.trigger("slideshow_stop",a);$.isFunction(a.options.onShowStop)&&a.options.onShowStop(a)}}};a.startStop=function(b,c){if(b!==true)b=false;if(b&&!c){a.$el.trigger("slideshow_start",
+a);$.isFunction(a.options.onShowStart)&&a.options.onShowStart(a)}a.playing=b;if(a.options.autoPlay){a.$startStop.toggleClass("playing",b).html(b?a.options.stopText:a.options.startText);if(parseInt(a.$startStop.css("text-indent"),10)<0)a.$startStop.addClass(a.options.tooltipClass).attr("title",b?"Stop":"Start")}if(b){a.clearTimer(true);a.timer=window.setInterval(function(){a.checkVideo(b)||(a.options.playRtl?a.goBack(true):a.goForward(true))},a.options.delay)}else a.clearTimer()};a.checkVideo=function(b){var c,
+d,e=false;a.hasEmb&&a.$items.find("object[id*=ytvideo], embed[id*=ytvideo]").each(function(){c=$(this);if(c.length&&$.isFunction(c[0].getPlayerState)){d=c[0].getPlayerState();if(b&&(d==1||d>2)&&a.$items.index(c.closest("li.panel"))==a.currentPage&&a.options.resumeOnVideoEnd)e=true;else d>0&&c[0].pauseVideo()}});return e};a.init()};$.anythingSlider.defaults={width:null,height:null,resizeContents:true,tooltipClass:"tooltip",theme:"default",themeDirectory:"css/theme-{themeName}.css",startPanel:1,hashTags:true,
+buildArrows:true,toggleArrows:false,buildNavigation:true,toggleControls:false,navigationFormatter:null,forwardText:"&raquo;",backText:"&laquo;",autoPlay:true,startStopped:false,pauseOnHover:true,resumeOnVideoEnd:true,stopAtEnd:false,playRtl:false,startText:"Start",stopText:"Stop",delay:3E3,animationTime:600,easing:"swing",onShowStart:null,onShowStop:null,onShowPause:null,onShowUnpause:null,onSlideInit:null,onSlideBegin:null,onSlideComplete:null,clickArrows:"click",clickControls:"click focusin",clickSlideshow:"click",
+addWmodeToObject:"opaque",maxOverallWidth:32766};$.fn.anythingSlider=function(f){if((typeof f).match("object|undefined"))return this.each(function(){$(this).is(".anythingBase")||new $.anythingSlider(this,f)});else if(/\d/.test(f)&&!isNaN(f))return this.each(function(){var g=$(this).data("AnythingSlider");if(g){var a=typeof f=="number"?f:parseInt($.trim(f),10);a<1||a>g.pages||g.gotoPage(a)}})}
 })(window.jQuery);
 
 
@@ -229,5 +144,6 @@ window.log = function(){
     if (/docwriteregexwhitelist/.test(q)) write.apply(doc,arguments);  
   };
 })(document);
+
 
 
