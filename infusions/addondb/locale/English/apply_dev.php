@@ -13,7 +13,7 @@ $locale['apdev010'] = "An administrator will review your application and contact
 $locale['apdev011'] = "The number of approved Addons to qualify: ";
 $locale['apdev012'] = "Only one application per member!";
 $locale['apdev013'] = "Addon Dashboard";
-$locale['apdev014'] = "I verify all addons submitted by me are my own work.";
+$locale['apdev014'] = "I verify all addons submitted by me are my own work<br />and that I have read, understood and accepted the terms of the EPAL license.";
 $locale['apdev015'] = "Due to your recent suspension, you do not currently qualify for developer status.<br />The probationary period is ";
 $locale['apdev016'] = " from date of reinstating.<br />If you feel this in error, please contact an administrator.";
 
