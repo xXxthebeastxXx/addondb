@@ -12,17 +12,16 @@ function render_page() {
 	global $aidlink, $locale, $settings, $userdata; add_handler("theme_head_output"); ?>
 <div id="content" class="container_24">
 	<div id="header">
-		<div id="logo" class="grid_6"> <?php echo showbanners(); ?> </div>
-		<!-- /logo -->
+		<div id="logo" class="grid_6">
+		<?php echo showbanners(); ?>
+		</div><!-- /logo -->
 		<div id="nav" class="grid_16 push_1">
 			<?php navigation(); ?>
-		</div>
-		<!-- /nav -->
+		</div><!-- /nav -->
 		<div class="grid_9 hinfo">
 			<h4>National Support Network</h4>
 			<p id="profile"></p>
-		</div>
-		<!-- /nss -->
+		</div><!-- /nss -->
 		<div class="grid_6 push_1 hinfo">
 			<h4>Search the site</h4>
 			<form action="/search.php" id="search" method="get" role="search">
@@ -32,18 +31,14 @@ function render_page() {
 					<input type="submit" value="Search" id="searchsubmit">
 				</div>
 			</form>
-		</div>
-		<!-- /search -->
+		</div><!-- /search -->
 		<div class="grid_6 push_2 userinfo hinfo">
 			<?php userinfo(); ?>
-		</div>
-		<!-- /userinfo --> 
-	</div>
-	<!-- /header -->
-	<div id="main" class="<?php echo (in_forum() || in_addon()) || !RIGHT && !LEFT ? 'grid_24' : 'grid_16'; ?>"> <?php echo U_CENTER; ?> <?php echo CONTENT; ?> <?php echo L_CENTER; ?> </div>
-	<!-- /main --> 
-	<?php echo in_forum() || in_addon() ? "" : (LEFT || RIGHT ? '<div id="aside" class="grid_6 push_1">' : ''); ?> <?php echo in_forum() || in_addon() ? "" : (LEFT ? LEFT : '').(RIGHT ? RIGHT : ''); ?> <?php echo in_forum() || in_addon() ? "" : (LEFT || RIGHT ? '</div><!-- /aside -->' : ''); ?>
-	<div class="clearfix"></div>
+		</div><!-- /userinfo --> 
+	</div><!-- /header -->
+	<div id="main" class="grid_24">
+	<?php echo U_CENTER; ?> <?php echo CONTENT; ?> <?php echo L_CENTER; ?>
+	</div><!-- /main --> 
 </div>
 <!-- /content -->
 <div id="footer">
@@ -53,7 +48,7 @@ function render_page() {
 			<h3>some pretty content</h3>
 		</div>
 		<div class="clearfix"></div>
-		<div id="subfooter"> <small>Copyright &copy; 2002 - 2010 by Nick Jones.</small> </div>
+		<div id="subfooter"> <small>PHP-Fusion &copy; 2002 - 2010 by Nick Jones.</small> </div>
 		<!-- /subfooter --> 
 	</div>
 </div>
