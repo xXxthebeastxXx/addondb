@@ -69,6 +69,33 @@ function navigation($main_menu=true){
 	}
 }
 
+function build_navigation($title,$d=false) {
+	$list_open = false;
+	if ($d) {
+		openside($title);
+		echo "<div id='navigation'>\n";
+		foreach($d as $d) {
+			if ($d['link_name'] != "---" && $d['link_url'] == "---") {
+				if ($list_open) { echo "</ul>\n"; $list_open = false; }
+				echo "<h4>".$d['link_name']."</h4>\n";
+			} else if ($d['link_name'] == "---" && $d['link_url'] == "---") {
+				if ($list_open) { echo "</ul>\n"; $list_open = false; }
+				echo "<hr class='side-hr' />\n";
+			} else {
+				if (!$list_open) { echo "<ul>\n"; $list_open = true; }
+				$link_target = ($d['link_window'] == "1" ? " target='_blank'" : "");
+				if (strstr($d['link_url'], "http://") || strstr($d['link_url'], "https://")) {
+					echo "<li><a href='".$d['link_url']."'".$link_target." class='side'><span>".$d['link_name']."</span></a></li>\n";
+				} else {
+					echo "<li><a href='/".$d['link_url']."'".$link_target." class='side'><span>".$d['link_name']."</span></a></li>\n";
+				}
+			}
+		}
+		if ($list_open) { echo "</ul>\n"; }
+		echo "</div>\n";
+	}
+}
+
 function userinfo() {
 	global $userdata, $locale, $aidlink;
 	if (iMEMBER): 
@@ -102,14 +129,6 @@ function curr_virtdir($part=false){
         return $dir;
 }
 
-function in_forum(){
-	return curr_virtdir() == 'forum' ? true : false;
-}
-
-function in_addon(){
-	return curr_virtdir(true) == 'addondb' ? true : false;
-}
-
 class Cache {
 
 	public static function read($fileName) {
@@ -138,12 +157,9 @@ class Cache {
 
 }
 
-function limit_words($words, $limit, $append = ' &hellip;') {
-      
+function limit_words($words, $limit, $append = ' &hellip;') {    
        $limit = $limit+1;
-
-       $words = explode(' ', $words, $limit);
-      
+       $words = explode(' ', $words, $limit);    
        array_pop($words);
        $words = implode(' ', $words) . $append;
        return $words;
@@ -152,13 +168,10 @@ function limit_words($words, $limit, $append = ' &hellip;') {
 function cleanInput($input) {
 
   $search = array(
-    '@<script[^>]*?>
-.*?</script>@si',   // Strip out javascript
-    '@<[\/\!]*?[^<>]*?>@si',            // Strip out HTML tags
-    '@<style[^>]*?>.*?
-    </style>
-@siU',    // Strip style tags properly
-    '@<![\s\S]*?--[ \t\n\r]*>@'         // Strip multi-line comments
+    '@<script[^>]*?>.*?</script>@si',
+    '@<[\/\!]*?[^<>]*?>@si',
+    '@<style[^>]*?>.*?</style>@siU',
+    '@<![\s\S]*?--[ \t\n\r]*>@'
   );
 
     $output = preg_replace($search, '', $input);
