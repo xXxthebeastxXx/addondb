@@ -105,7 +105,7 @@ var lang = {
 	"RU":"Find support in <a href=\"http://netck.ru\" target=\"_blank\" rel=\"nofollow\">PHP-Fusion Russia</a>",
 	"RS":"Find support in <a href=\"http://www.yu-fusion.org\" target=\"_blank\" rel=\"nofollow\">PHP-Fusion Serbia</a>",
 	"ES":"Find support in <a href=\"http://php-fusion.uni.cc\" target=\"_blank\" rel=\"nofollow\">PHP-Fusion Spain</a>",
-	"SE":"Få hjälp på <a href=\"http://www.php-fusion.se\" target=\"_blank\" rel=\"nofollow\">PHP-Fusion Sverige</a>",
+	"SE":"Find support in <a href=\"http://www.php-fusion.se\" target=\"_blank\" rel=\"nofollow\">PHP-Fusion Sweden</a>",
 	"TR":"Find support in <a href=\"http://www.phpfusionturkiye.com\" target=\"_blank\" rel=\"nofollow\">PHP-Fusion Turkey</a>",
 	"DF":"There is no national support site for your language."
 }
