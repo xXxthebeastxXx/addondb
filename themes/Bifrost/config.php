@@ -2,7 +2,7 @@
 
 if (!defined("IN_FUSION")) { die("Access Denied"); }
 
-define("DEBUG", true);
+define("DEBUG", false);
 
 /*
  * Host for static content.
@@ -17,8 +17,8 @@ define("STATIC_DOMAIN", "http://cdn.php-fusion.co.uk/");
  * 3. Turn multi subdomain on or off.
  * 4. Analytics Domain name.
  */
-define("ANALYTICS", false);
-define("ANALYTICS_ACCOUNT", "UA-XXXXXXXX-X");
+define("ANALYTICS", true);
+define("ANALYTICS_ACCOUNT", "UA-7125957-2");
 define("ANALYTICS_MULTI", false);
 define("ANALYTICS_DOMAIN", ".php-fusion.co.uk");
 

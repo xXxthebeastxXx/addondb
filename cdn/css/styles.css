@@ -382,7 +382,7 @@ body { background:#F2F6F7 url(../cssimg/header_footer_bg.png) 0 -270px repeat-x;
 h1,
 h2 { margin:10px 0 }
 #subfooter small { font-size:9px }
-#footer { background:url(../cssimg/header_footer_bg.png) repeat-x 0 0 #0A0E11; clear:both; height:240px }
+#footer { background:url(../cssimg/header_footer_bg.png) repeat-x 0 0 #0A0E11; clear:both; }
 #footer .container_24 { background:url(../cssimg/footer_bg_center.png) no-repeat scroll center top transparent; padding-top:40px }
 #footer h3,
 .hinfo h4 { border-bottom:1px solid #363A3B; color:#FFF; font-family:MergeRegular-1, MergeRegular-2, Arial, sans-serif; font-size:20px; margin-bottom:10px; padding-bottom:10px }
@@ -476,7 +476,7 @@ border:0;
 .button input { border:none; color:#333; font-size:11px; font-weight:700; margin:0; text-shadow:1px 1px 0 #fff }
 .forumbutton input:hover,
 .button input:hover { border:none }
-.quote { background:#F2F9FD; border:1px solid #D7E9F2; overflow:hidden; padding:30px 34px; margin-left:40px; }
+.quote { background:#F2F9FD; border:1px solid #D7E9F2; overflow:hidden; padding:10px; margin-left:40px; }
 .quote strong:first-child { color:#6692B8; }
 .bbcode-popup { padding:2px; width:auto !important; border:2px solid #D7E9F2 !important; -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; background:#FFF; }
 .bbcode-popup img { cursor:pointer; opacity:.5 }
@@ -498,7 +498,7 @@ border:0;
  */
 .latestnews { padding:20px; }
 .latestnews .title { margin:0 0 6px; }
-.latestnews .meta { color:#999999; font-family:Tahoma, Geneva, sans-serif; font-size:11px; }
+.latestnews .meta { color:#999999; font-family:Tahoma, Geneva, sans-serif; font-size:11px; margin:0; }
 .latestnews .meta a,
 .latestnews .excerpt a { color:#777777; text-decoration:underline; }
 .latestnews .meta a:hover,
