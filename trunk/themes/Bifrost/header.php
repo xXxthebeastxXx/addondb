@@ -10,7 +10,6 @@ function theme_head_output($output) {
 		"@<body>@si",
 		"@<link rel='stylesheet' href='(.*?)themes/Bifrost/styles.css' type='text/css' media='screen' />\n@si",
 		"@<link rel='shortcut icon' href='(.*?)images/favicon.ico' type='image/x-icon' />\n@si",
-		"@<script type='text/javascript' src='(.*?)includes/jscript.js'></script>\n@si",
 		"@<script type='text/javascript' src='(.*?)includes/jquery.js'></script>\n@si",
 		"@<a id='content' name='content'></a>\n@si",
 		"@<!--news_prepost_(.*?)-->\n@si",
@@ -25,13 +24,12 @@ function theme_head_output($output) {
 	$replace = array(
 		'<!DOCTYPE html>',
 		'<html lang="en">',
-		'<meta charset="utf-8" />',
+		'<meta charset="iso-8859-1" />',
 		'<!--[if lt IE 7 ]> <body class="ie6"> <![endif]-->
 <!--[if IE 7 ]>    <body class="ie7"> <![endif]-->
 <!--[if IE 8 ]>    <body class="ie8"> <![endif]-->
 <!--[if IE 9 ]>    <body class="ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <body> <!--<![endif]-->',
-		'',
 		'',
 		'',
 		'',
