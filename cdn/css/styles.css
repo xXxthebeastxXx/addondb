@@ -438,6 +438,15 @@ select { width:auto; }
 input:focus,
 textarea:focus,
 select:focus { border-color:#FFC954; outline:0 none; }
+#close-message {background: #C4C4C2;
+min-width: 999px;
+padding-bottom: 10px;}
+#admin-message {
+background: #FFFFE1;
+border-bottom: 1px solid #8D8C8C;
+line-height: 1.381;
+padding: 6px 20px;
+}
 #debug { background:#FF9; bottom:0; font-size:10px; left:0; padding:5px; position:fixed }
 #debug:hover { opacity:0 }
 a.forumbutton,
