@@ -177,3 +177,32 @@ $.getJSON("http://api.wipmania.com/jsonp?callback=?", function(data){
 		break;
 	}
 });
+$('.spoiler_click').click(function () {
+			if ($(this).next().is(':hidden')) {
+				$(this).next().slideDown('normal');
+			} else {
+				$(this).next().slideUp('normal');
+			}
+		});
+		$('a.slide_click').click().toggle(
+		
+		//One Button
+		function () {
+			$('.spoiler_click').next().slideDown('normal');
+			return false;
+		},
+		
+		function () {
+			$('.spoiler_click').next().slideUp('normal');
+			return false;
+		});
+		
+		//Two Buttons
+		$('a.slide_down').click(function () {
+			$('.spoiler_click').next().slideDown('normal');
+			return false;
+		});
+		$('a.slide_up').click(function () {
+			$('.spoiler_click').next().slideUp('normal');
+			return false;
+		});

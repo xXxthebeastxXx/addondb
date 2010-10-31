@@ -45,8 +45,9 @@ function render_page() {
 	<div class="container_24">
 		<?php navigation(false); ?>
 		<div class="grid_6 push_1">
-			<h3>some pretty content</h3>
-			<h4>Hosting provided by: <a href="#"><img style="height:50px;position:relative;top:3px;" src="http://cdn.php-fusion.co.uk/images/xls.png" alt="xls" /></a></h4>
+			<h3>Partners</h3>
+			<h4>Hosting provided by:</h4>
+			<a target="_blank" href="http://www.xlshosting.nl/"><img style="height:50px;position:relative;top:3px;" src="http://cdn.php-fusion.co.uk/images/xls.png" alt="xls" /></a>
 		</div>
 		<div class="clearfix"></div>
 		<div id="subfooter"> <small>PHP-Fusion &copy; 2002 - 2010 by Nick Jones.</small> </div>
@@ -94,4 +95,3 @@ function openside($title="", $collapse = false, $state = "on") {
 function closeside() {
 	echo "<!-- /side -->";
 }
-
