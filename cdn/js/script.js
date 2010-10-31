@@ -106,7 +106,7 @@ var lang = {
 	"RS":"Find support in <a href=\"http://www.yu-fusion.org\" target=\"_blank\" rel=\"nofollow\">PHP-Fusion Serbia</a>",
 	"ES":"Find support in <a href=\"http://php-fusion.uni.cc\" target=\"_blank\" rel=\"nofollow\">PHP-Fusion Spain</a>",
 	"SE":"Find support in <a href=\"http://www.php-fusion.se\" target=\"_blank\" rel=\"nofollow\">PHP-Fusion Sweden</a>",
-	"TR":"Find support in <a href=\"http://www.phpfusionturkiye.com\" target=\"_blank\" rel=\"nofollow\">PHP-Fusion Turkey</a>",
+	"TR":"<a href=\"http://www.phpfusionturkiye.com\" target=\"_blank\">PHP-Fusion Türkiye</a> destek sitesinden Türkçe destek alabilirsiniz.",
 	"DF":"There is no national support site for your language."
 }
 $.getJSON("http://api.wipmania.com/jsonp?callback=?", function(data){
