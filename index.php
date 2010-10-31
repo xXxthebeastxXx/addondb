@@ -123,5 +123,4 @@ if (dbrows($result)): ?>
   <?php endwhile ?>
 </div>
 <?php endif ?>
-<?php require_once THEMES."templates/footer.php";
-
+<?php require_once THEMES."templates/footer.php"; ?>
