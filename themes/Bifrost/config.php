@@ -36,6 +36,8 @@ set_image("foldernew", STATIC_DOMAIN."cssimg/forum/foldernew.png");
 set_image("folderlock", STATIC_DOMAIN."cssimg/forum/folderlock.png");
 set_image("stickythread", STATIC_DOMAIN."cssimg/forum/stickythread.png");
 set_image("printer", STATIC_DOMAIN."cssimg/forum/print.gif");
+set_image("panel_on", STATIC_DOMAIN."cssimg/on.png");
+set_image("panel_off", STATIC_DOMAIN."cssimg/off.png");
 set_image("reply", "reply");
 set_image("newthread", "newthread");
 set_image("web", "web");
