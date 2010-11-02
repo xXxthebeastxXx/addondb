@@ -198,8 +198,8 @@ echo "
 <option value='1'>".$locale['addondb419']."</option></select>
 <label for='addon_share_status' style='margin-top:16px'>".$locale['addondb430']."&nbsp;<img src='".ADDON_IMG."facebook.png' alt='' />&nbsp;<img src='".ADDON_IMG."twitter.png' alt='' /></label>
 <select id='addon_share_status' name='addon_share_status' class='textbox'>
-<option value='0'>".$locale['addondb418']."</option>
-<option value='1'>".$locale['addondb419']."</option></select>
+<option value='1'>".$locale['addondb418']."</option>
+<option value='0'>".$locale['addondb419']."</option></select>
 </td>
 </tr>
 <tr>

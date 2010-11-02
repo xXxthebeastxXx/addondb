@@ -78,7 +78,7 @@ opentable($locale['ltp_001']);
                                ");
 if (dbrows($result)) {
      echo "<form id='approve_test' name='approve_test' method='post' action='".FUSION_SELF.$aidlink."'>\n";
-     echo "<table width='650' class='tbl-border'>\n<tr>\n";
+     echo "<table width='100%' class='tbl-border'>\n<tr>\n";
      echo "<th class='forum-caption' colspan='4'>".$locale['ltp_002']."</th>\n";
      echo "</tr>\n<tr>\n";
      echo "<td colspan='2'>&nbsp;</td>\n";
@@ -98,7 +98,7 @@ if (dbrows($result)) {
 	}
 	echo "<tr>\n<td class='tbl2' colspan='3' align='center'><input type='submit' name='approve_test' value='".$locale['ltp_006']."' class='button' />\n";
 	echo "</tr>\n</table>\n</form>\n";
-} else { echo "<table width='650' class='tbl-border'>\n<tr>\n";
+} else { echo "<table width='100%' class='tbl-border'>\n<tr>\n";
          echo "<th class='forum-caption'>".$locale['ltp_002']."</th>\n";
          echo "</tr>\n<tr>\n";
          echo "<td>&nbsp;</td>\n";
@@ -106,7 +106,7 @@ if (dbrows($result)) {
          echo "<tr>\n<td class='tbl1' align='center'>".$locale['ltp_004']."</td>\n";
          echo "</tr>\n</table>\n"; }
 
-$counter = (dbcount("(user_id)", DB_USERS, "user_approve !='1'"));
+$counter = (dbcount("(user_id)", DB_USERS, "user_approve !='1' && user_testimonial != '' && user_status = '0'"));
 if (isset($_GET['rowstart']) && isnum($_GET['rowstart'])) {
 		$rowstart = $_GET['rowstart'];
 	    } else {
@@ -129,7 +129,7 @@ $limit = "20";
                                DESC LIMIT $rowstart,$limit
                                ");
  
-     echo "<table border='0' width='650' class='tbl-border'>\n<tr>\n";
+     echo "<table border='0' width='100%' class='tbl-border'>\n<tr>\n";
      echo "<th class='forum-caption' colspan='2'>".$locale['ltp_003']."</th>\n";
      echo "</tr>\n<tr>\n";
      echo "<td colspan='2'>&nbsp;</td>\n";

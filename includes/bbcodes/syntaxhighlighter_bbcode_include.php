@@ -17,6 +17,15 @@
 +--------------------------------------------------------*/
 if (!defined("IN_FUSION")) { die("Access Denied"); }
 
+if (!function_exists("add_to_head")) {
+function add_to_head($tag=""){
+	global $fusion_page_head_tags;
+	if(!stristr($fusion_page_head_tags, $tag)){
+		$fusion_page_head_tags .= $tag."\n";
+	}
+  }
+}
+
 if (preg_match("/\/forum\//i", FUSION_REQUEST)) global $data;
 
 add_to_head('<link type="text/css" rel="stylesheet" href="'.INCLUDES.'bbcodes/syntaxhighlighter/styles/shCoreDefault.css" />
