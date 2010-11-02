@@ -415,7 +415,7 @@ if (dbrows($q_addon_cats) == 0) {
 		echo "<tr>\n";
 		echo "<td class='tbl1' nowrap>".$locale['addondb429'].":</td>\n";
 		echo "<td class='tbl1' nowrap>&nbsp;</td>\n";
-		echo "<td class='tbl1'>(".$addon_comments_count.") <a href='".ADMIN."comments.php".$aidlink."&ctype=M&amp;cid=".$addon_id."' target='_blank' title='".$locale['addondb507']."'>".$locale['addondb431']."</a></td>\n";
+		echo "<td class='tbl1'>(".$addon_comments_count.") <a href='".ADMIN."comments.php".$aidlink."&ctype=M&amp;cid=".$addon_id."' target='_blank' title='".$locale['addondb431']."'>".$locale['addondb431']."</a></td>\n";
 		echo "</tr>\n";
 	}
 	if (($addon_ratings_count > 0) && ($settings['addon_ratings_manage'] == 1)) {
@@ -486,20 +486,20 @@ if (dbrows($q_addon_cats) == 0) {
 	echo "<td class='tbl1'><input type='hidden' class='textbox' name='addon_submitter_name' value='".$addon_submitter_name."' style='width:300px;'><a href='".BASEDIR."profile.php?lookup=$addon_submitter_id'>".$addon_submitter_name."<input type='hidden' class='textbox' name='addon_submitter_id' value='".$addon_submitter_id."'></td>"; } else {
 	echo "<td class='tbl1'><input type='hidden' class='textbox' name='addon_submitter_name' value='".$userdata['user_name']."' style='width:300px;'><a href='".BASEDIR."profile.php?lookup=".$userdata['user_id']."'>".$userdata['user_name']."<input type='hidden' class='textbox' name='addon_submitter_id' value='".$userdata['user_id']."'></td>"; }
 	echo "</tr>\n<tr>\n";
-    echo "<td class='tbl1' nowrap>".$locale['addondb459x']."</td>";
+    echo "<td class='tbl1' nowrap>".$locale['addondb462']."</td>";
 	echo "<td class='tbl1' nowrap>&nbsp;</td><td class='tbl1'><select id='addon_share_status' name='addon_share_status' class='textbox'>";
-	echo "<option value='1'".($addon_share_status == "1" ? " selected" : "").">".$locale['addondb459y']."</option>\n";
-	echo "<option value='0'".($addon_share_status == "0" ? " selected" : "").">".$locale['addondb459n']."</option>\n";
+	echo "<option value='1'".($addon_share_status == "1" ? " selected" : "").">".$locale['addondb460']."</option>\n";
+	echo "<option value='0'".($addon_share_status == "0" ? " selected" : "").">".$locale['addondb461']."</option>\n";
 	echo "</select>\n";
 	echo "</tr>\n<tr>\n";
-	echo "<td class='tbl1' nowrap>".$locale['addondb459p']."</td>";
+	echo "<td class='tbl1' nowrap>".$locale['addondb464']."</td>";
 	echo "<td class='tbl1' nowrap>&nbsp;</td><td class='tbl1'><select id='addon_author_status' name='addon_author_status' class='textbox'>";
-	echo "<option value='2'".($addon_author_status == "2" ? " selected" : "").">".$locale['addondb459y']."</option>\n";
-	echo "<option value='1'".($addon_author_status == "1" ? " selected" : "").">".$locale['addondb459a']."</option>\n";
-	echo "<option value='0'".($addon_author_status == "0" ? " selected" : "").">".$locale['addondb459n']."</option>\n";
+	echo "<option value='2'".($addon_author_status == "2" ? " selected" : "").">".$locale['addondb460']."</option>\n";
+	echo "<option value='1'".($addon_author_status == "1" ? " selected" : "").">".$locale['addondb465']."</option>\n";
+	echo "<option value='0'".($addon_author_status == "0" ? " selected" : "").">".$locale['addondb461']."</option>\n";
 	echo "</select>\n";
 	echo "</tr>\n<tr>\n";
-	echo "<td class='tbl1' nowrap>".$locale['addondb459z']."</td>";
+	echo "<td class='tbl1' nowrap>".$locale['addondb463']."</td>";
 	echo "<td class='tbl1' nowrap>&nbsp;</td><td class='tbl1'><input type='text' class='textbox' name='addon_demo_url' value='".$addon_demo_url."' style='width:300px;'></td>\n";
 	echo "</tr>\n<tr>\n";
 	echo "<td class='tbl1' nowrap colspan='3'><hr></td>\n";

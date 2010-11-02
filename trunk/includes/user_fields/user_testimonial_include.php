@@ -34,7 +34,7 @@ add_to_head("<style type='text/css'>
 </style>");
 	
 	echo "<tr>\n";
-	echo "<td valign='top' class='tbl'>".$locale['uf_testimonial']."</td>\n";
+	echo "<td valign='top' class='tbl'>".$locale['uf_testimonial']."<br /><br /><span class='small'><i>".$locale['uf_testimonial_005']."</i></span></td>\n";
 	echo "<td class='tbl'>
 	<div class='small'>".$locale['uf_testimonial_002']."<strong>120</strong></div>
     <div class='small'>".$locale['uf_testimonial_003']."<strong id='counter'>0</strong></div>

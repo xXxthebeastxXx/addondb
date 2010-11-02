@@ -23,28 +23,28 @@ require_once THEMES."templates/header.php"; ?>
 		<div><span style="float:right;"><img src="images/forum_splash_2.png" width="249" alt="Main Splash" /></span>
 			<h2>PHP-Fusion</h2>
 			<p>Welcome to the official site of PHP-Fusion, a light-weight open-source content management system (CMS). PHP-Fusion is written in PHP and MySQL and includes a simple, comprehensive administration system as well as Forum, Photogallery, Articles, FAQ and much more.<br />
-				<a href="#" class="more">Read more</a></p>
+				<a href="news.php" class="more">Read more</a></p>
 		</div>
 	</li>
 	<li>
 		<div><span style="float:right;"><img src="images/admin_splash.png" width="277" alt="Admin Splash" /></span>
 			<h2>Getting Started</h2>
 			<p>We'll show you how to find your way around your newly installed PHP-Fusion site with pointers and ideas on how to get the best out of it. PHP-Fusion is a highly customizable Content Management System [CMS] and can be configured to suit most website owners needs.<br />
-				<a href="#" class="more">Read more</a></p>
+				<a href="infusions/edocs/getting_started.php" class="more">Read more</a></p>
 		</div>
 	</li>
 	<li>
 		<div><span style="float:right;"><img src="images/member_splash.png" width="312" alt="Admin Splash" /></span>
 			<h2>Requirements</h2>
 			<p>All you need is some web space that supports PHP and access to a MySQL database. We'll show you can easily set up your own site in minutes as well as how best to configure your site to suit your individual needs.<br />
-				<a href="#" class="more">Read more</a></p>
+				<a href="infusions/edocs/requirements.php" class="more">Read more</a></p>
 		</div>
 	</li>
 	<li>
 		<div><span style="float:right;"><img src="images/search_splash.png" width="263" alt="Admin Splash" /></span>
 			<h2>Handbook</h2>
 			<p>As well as extensive documents onsite, you can also download the comprehensive handbook which step by step demonstrates how to install and set up your site. It also details how to configure each section to suit your needs. <br />
-				<a href="#" class="more">Read more</a></p>
+				<a href="downloads.php?cat_id=15" class="more">Read more</a></p>
 		</div>
 	</li>
 </ul>

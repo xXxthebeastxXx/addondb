@@ -92,7 +92,7 @@ if (file_exists(ADDON_LOCALE.LOCALESET."admin/support_thread.php")) {
 	
 	
 	       $fcat_list = ""; $sel = ""; $data_fcat = "";
-			$result = dbquery("SELECT * FROM ".DB_FORUMS." WHERE forum_cat != '0' AND forum_access = '0' ORDER BY forum_name ASC");
+			$result = dbquery("SELECT * FROM ".DB_FORUMS." WHERE forum_id = '77' OR forum_id = '78' OR forum_id = '79' OR forum_id = '80' AND forum_access = '0' ORDER BY forum_name ASC");
 			if (dbrows($result) != 0) {
 		    while ($datam = dbarray($result)) {
 		    $sel = ($data_fcat == $datam['forum_name'] ? " selected='selected'" : "");
