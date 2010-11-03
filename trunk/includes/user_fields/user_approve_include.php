@@ -25,6 +25,12 @@ if ($profile_method == "display") {
 		echo "<td align='right' class='tbl1'>".($user_data['user_approve'] == 1 ? $aa : $locale['uf_approve_001'])."</td>\n";
 		echo "<tr>\n<td class='quote' colspan='2'>".$user_data['user_testimonial']."</td>\n";
 		echo "</tr>\n";
+} elseif ($profile_method == "display") {
+if ($user_data['user_approve'] == '0' && $user_data['user_testimonial']) {
+        echo "<tr>\n";
+		echo "<td class='tbl1'>".$locale['uf_approve_003']."</td>\n";
+		echo "<td class='quote'>".$user_data['user_testimonial']."</td>\n";
+		}
 } elseif ($profile_method == "validate_insert") {
 	$db_fields .= ", user_approve";
 	$db_values .= ", '".(isset($_POST['user_approve']) ? stripinput(trim($_POST['user_approve'])) : "")."'";
