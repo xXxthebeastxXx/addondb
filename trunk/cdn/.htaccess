@@ -57,8 +57,7 @@ Options -Indexes
 
 RewriteEngine On
 RewriteCond %{HTTP_REFERER} !^http://(.+\.)?php-fusion\.co\.uk/ [NC]
-RewriteCond %{HTTP_REFERER} !^http://(.+\.)?phpfusion\.sytes\.net/ [NC]
-RewriteCond %{HTTP_REFERER} !^http://(.+\.)?phpnuclear\.com/ [NC]
+RewriteCond %{HTTP_REFERER} !^http://(.+\.)?phpfusionturkiye\.com/ [NC]
 RewriteCond %{HTTP_REFERER} !^http://(.+\.)?google\.(.+)/ [NC]
 RewriteCond %{HTTP_REFERER} !^http://(.+\.)?(.*\.)?google\.(.+)/ [NC]
 RewriteCond %{HTTP_REFERER} !^http://(.+\.)?bing\.(.+)/ [NC]
