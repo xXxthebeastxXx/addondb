@@ -4,7 +4,7 @@ if (!defined("IN_FUSION")) { die("Access Denied"); }
 
 function get_footer_tags(){
 ?>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
 <script>!window.jQuery && document.write('<script src="<?php echo static_content(); ?>js/jquery-1.4.2.min.js"><\/script>')</script>
 <?php if (DEBUG) : ?>
 <script src="<?php echo static_content(); ?>js/plugins.js?v=1"></script>
