@@ -42,7 +42,7 @@ $locale['pla_127'] = "URL";
 $locale['pla_128'] = "Date";
 $locale['pla_129'] = "Approver";
 $locale['pla_131'] = "Application Form";
-$locale['pla_132'] = "N.B. To apply for the Enduser PHP-Fusion Addon License, EPAL (v1.0), you need to have a minimum of %u Addons in the AddonDB. The form can be accessed in the ";
+$locale['pla_132'] = "N.B. To apply for the Enduser PHP-Fusion Addon License, EPAL (v1.0), you need to have a minimum of %u Addons in the AddonDB.<br />The form can be accessed in the ";
 $locale['pla_133'] = "Status";
 $locale['pla_134'] = "Submit";
 $locale['pla_135'] = "Pending";
@@ -51,7 +51,7 @@ $locale['pla_137'] = "Deny";
 $locale['pla_138'] = "View";
 $locale['pla_139'] = "Delete";
 $locale['pla_140'] = "Full Name: ";
-$locale['pla_141'] = "Only registered members may apply for a license.";
+$locale['pla_141'] = "Only registered members may apply for a license.<br /><br /><a href='".BASEDIR."register.php'>Register</a> or <a href='".BASEDIR."login.php'>Log in</a>";
 $locale['pla_142'] = "This will be sent in a private message to applicant.";
 
 $locale['pla_400'] = "
