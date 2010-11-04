@@ -7,6 +7,7 @@ $locale['att_104'] = "%u Dev Application";
 $locale['att_105'] = "%u Testimonial Approval";
 $locale['att_106'] = "%u Support Thread";
 $locale['att_107'] = "%u Addon Error";
-$locale['att_108'] = "s";
+$locale['att_108'] = "%u License Application";
+$locale['att_109'] = "s";
 
 ?>

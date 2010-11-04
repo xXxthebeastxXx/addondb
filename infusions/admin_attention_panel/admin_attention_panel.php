@@ -15,7 +15,7 @@
 | copyright header is strictly prohibited without
 | written permission from the original author(s).
 +----------------------------------------------------*/
-if (!defined("IN_FUSION")) { die("Access Denied"); }
+//if (!defined("IN_FUSION")) { die("Access Denied"); }
 
 if (file_exists(INFUSIONS."admin_attention_panel/locale/".$settings['locale'].".php")) {
 	include INFUSIONS."admin_attention_panel/locale/".$settings['locale'].".php";
@@ -34,7 +34,7 @@ $support_thread = dbcount("(addon_id)", DB_ADDONS, "addon_forum_status='0'");
          $total = ($submission + $addonsub + $addontrans + $devapply + $testimonial + $support_thread + $addon_error);
 
 if (iADMIN && ($total != 0)) {
-openside($locale['att_101']);
+//openside($locale['att_101']);
 
     if ($submission > '1') { $plural1 = $locale['att_102'].$locale['att_108']; } else { $plural1 = $locale['att_102']; }
       if ($addonsub > '1' || $addontrans > '1') { $plural2 = $locale['att_103'].$locale['att_108']; } else { $plural2 = $locale['att_103']; }
@@ -44,24 +44,24 @@ if ($support_thread > '1') { $plural5 = $locale['att_106'].$locale['att_108']; }
    if ($addon_error > '1') { $plural6 = $locale['att_107'].$locale['att_108']; } else { $plural6 = $locale['att_107']; }
 
 	if ($submission != 0 && checkrights("SU")) {
-		echo "<a href='".ADMIN."submissions.php".$aidlink."' class='side'>".sprintf($plural1, $submission)."</a><br />";
+		echo "<a href='".ADMIN."submissions.php".$aidlink."' class='side small'>".sprintf($plural1, $submission)."</a><br />";
 	}
 	if (($addonsub != 0 || $addontrans != 0) && checkrights("ADNX")) {
-		echo "<a href='".INFUSIONS."addondb/admin/submissions.php".$aidlink."' class='side'>".sprintf($plural2, $addonsub+$addontrans)."</a><br />";
+		echo "<a href='".INFUSIONS."addondb/admin/submissions.php".$aidlink."' class='side small'>".sprintf($plural2, $addonsub+$addontrans)."</a><br />";
 	}
 	if ($devapply != 0 && checkrights("ADNX")) {
-		echo "<a href='".INFUSIONS."addondb/admin/dev_applications.php".$aidlink."' class='side'>".sprintf($plural3, $devapply)."</a><br />";
+		echo "<a href='".INFUSIONS."addondb/admin/dev_applications.php".$aidlink."' class='side small'>".sprintf($plural3, $devapply)."</a><br />";
 	}
     if ($testimonial != 0 && checkrights("M")) {
-		echo "<a href='".INFUSIONS."testimonials_admin/testimonials_admin.php".$aidlink."' class='side'>".sprintf($plural4, $testimonial)."</a><br />";
+		echo "<a href='".INFUSIONS."testimonials_admin/testimonials_admin.php".$aidlink."' class='side small'>".sprintf($plural4, $testimonial)."</a><br />";
 	}
 	if (($support_thread != 0) && checkrights("ADNX")) {
-		echo "<a href='".INFUSIONS."addondb/admin/support_thread.php".$aidlink."' class='side'>".sprintf($plural5, $support_thread)."</a><br />";
+		echo "<a href='".INFUSIONS."addondb/admin/support_thread.php".$aidlink."' class='side small'>".sprintf($plural5, $support_thread)."</a><br />";
 	}
-	if (($support_thread != 0) && checkrights("ADNX")) {
-		echo "<a href='".INFUSIONS."addondb/admin/error.php".$aidlink."' class='side'>".sprintf($plural6, $addon_error)."</a><br />";
+	if (($addon_error != 0) && checkrights("ADNX")) {
+		echo "<a href='".INFUSIONS."addondb/admin/error.php".$aidlink."' class='side small'>".sprintf($plural6, $addon_error)."</a><br />";
 	}
 
-closeside();
+//closeside();
    }
 ?>
