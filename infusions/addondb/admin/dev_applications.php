@@ -106,7 +106,7 @@ opentable($locale['apdev001']);
 		echo "<table cellpadding='0' cellspacing='0' align='center' width='950' class='tbl-border'>\n<tr>\n";
         echo "<th colspan='4' class='forum-caption'>".$locale['apdev030']."</th>\n";
         echo "</tr>\n<tr>\n";
-        echo "<td claas='tbl1' colspan='2'>&nbsp;</td>\n";
+        echo "<td class='tbl1' colspan='2'>&nbsp;</td>\n";
         
         if (dbrows($result)) {
         echo "<td class='tbl1'>".$locale['apdev032']."</td>\n";
@@ -116,10 +116,10 @@ opentable($locale['apdev001']);
 				              while ($data = dbarray($result)) {
 				              
 		echo "<td class='tbl1' valign='top'>".$locale['apdev003']."</td>";
-        echo "<td claas='tbl1' valign='top'>".profile_link($data['user_id'], $data['user_name'], $data['user_status'])."</td>";
+        echo "<td class='tbl1' valign='top'>".profile_link($data['user_id'], $data['user_name'], $data['user_status'])."</td>";
         echo "</tr>\n<tr>\n";
         echo "<td class='tbl1' valign='top'>".$locale['apdev004']."</td>";
-        echo "<td claas='tbl1' valign='top'>".$data['apply_comment']."</td>";
+        echo "<td class='tbl1' valign='top'>".$data['apply_comment']."</td>";
         if ($data['user_id'] != $userdata['user_id']) {
         echo "<td class='tbl1' align='center'><label><input type='checkbox' name='user_approve[]' value='".$data['user_id']."' /></label></td>\n";
 	    echo "<td class='tbl1' align='center'><label><input type='checkbox' name='user_deny[]' value='".$data['user_id']."' /></label></td>\n"; } else {
@@ -127,7 +127,7 @@ opentable($locale['apdev001']);
         echo "</tr>\n<tr>\n";
         if ($data['user_id'] == $userdata['user_id']) { 
         echo "<tr>\n<td class='admin-message' colspan='4'><img src='".ADDON_IMG."error.png' alt='' />".$locale['apdev043']."</td>\n</tr>\n"; }
-        echo "<td claas='tbl1' colspan='4'><hr /></td>\n";
+        echo "<td class='tbl1' colspan='4'><hr /></td>\n";
         echo "</tr>\n";        	                     
 		      }
 		      echo "<input type='hidden' name='apply_id' value='".$data['apply_id']."' />";
@@ -171,7 +171,7 @@ opentable($locale['apdev036']);
 		echo "<table cellpadding='0' cellspacing='0' align='center' width='950' class='tbl-border'>\n<tr>\n";
         echo "<th colspan='4' class='forum-caption'>".$locale['apdev030']."</th>\n";
         echo "</tr>\n<tr>\n";
-        echo "<td claas='tbl1' colspan='4'>&nbsp;</td>\n";
+        echo "<td class='tbl1' colspan='4'>&nbsp;</td>\n";
         echo "</tr>\n<tr>\n";
         
   if(dbrows($result) != 0) {
@@ -184,10 +184,10 @@ opentable($locale['apdev036']);
 
 		while ($data = dbarray($result)) {
 
-		 echo "<tr>\n<td claas='tbl1'><a href='".ADDON."view.php?addon_id=".$data['addon_id']."'>".$data['addon_name']."</a></td>";
-         echo "<td claas='tbl1'>".profile_link($data['user_id'], $data['user_name'], $data['user_status'])."</td>";
-         echo "<td claas='tbl1'>".showdate("shortdate", $data['addon_date'])."</td>";
-         echo "<td claas='tbl1' align='center'>".$data['addon_download_count']."</td>";
+		 echo "<tr>\n<td class='tbl1'><a href='".ADDON."view.php?addon_id=".$data['addon_id']."'>".$data['addon_name']."</a></td>";
+         echo "<td class='tbl1'>".profile_link($data['user_id'], $data['user_name'], $data['user_status'])."</td>";
+         echo "<td class='tbl1'>".showdate("shortdate", $data['addon_date'])."</td>";
+         echo "<td class='tbl1' align='center'>".$data['addon_download_count']."</td>";
          echo "</tr>\n";
         }
         echo "</table>\n";
