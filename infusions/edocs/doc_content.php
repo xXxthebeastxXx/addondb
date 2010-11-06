@@ -134,7 +134,7 @@ echo $locale['ua_submissions']."</div>\n";
 show_int_links($page_ident);
 
 echo "<div class='tbl-border' id='l240x'>";
-echo "<img src='".ADMIN."images/user_field_cats.gif' alt='".$locale['240']."' style='margin:5px' align='left'  border='0' /><h3>".strtoupper($locale['240'])."</h3><br />";
+echo "<img src='".ADMIN."images/user_fields_cats.gif' alt='".$locale['240']."' style='margin:5px' align='left'  border='0' /><h3>".strtoupper($locale['240'])."</h3><br />";
 echo $locale['ua_uf_cats']."</div>\n";
 show_int_links($page_ident);
 
