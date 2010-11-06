@@ -583,7 +583,7 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
 			<tr>
 			<td class='tbl1' nowrap>".$locale['addondb462']."</td>
 			<td class='tbl1' nowrap>&nbsp;</td><td class='tbl1'>
-			<input type='hidden' class='textbox' name='addon_share_status' value='".$addon_share_status."'>".($addon_share_status == 0 ? $locale['addondb460'] : $locale['addondb461'])."</td>
+			<input type='hidden' class='textbox' name='addon_share_status' value='".$addon_share_status."'>".($addon_share_status == 1 ? $locale['addondb460'] : $locale['addondb461'])."</td>
 			</tr>
 			<tr>
 			<td class='tbl1' nowrap>".$locale['addondb463']."</td>
