@@ -27,6 +27,7 @@ if (file_exists(INFUSIONS."license_admin/locale/".$settings['locale'].".php")) {
 }
 
 if (!checkrights("LCAP") || !defined("iAUTH") || $_GET['aid'] != iAUTH) { redirect("../index.php"); }
+add_to_title(" | ".$locale['pla_131']);
 
 if (isset($_GET['status'])) {
 	if ($_GET['status'] == "del") {
@@ -48,7 +49,9 @@ if (isset($_GET['status'])) {
 		$app_approver_pm = stripinput($_POST['app_approver_pm']);
 		$app_approver_comment = stripinput($_POST['app_approver_comment']);
 		$result = dbquery("UPDATE ".DB_LICENSE_APPLY." SET app_status = '$app_status', app_approver='".$userdata['user_id']."', app_approver_pm='$app_approver_pm', app_approver_comment='$app_approver_comment' WHERE app_id='".$_GET['app_id']."'");
-		$sendpm = send_pm($app_user, $userdata['user_id'], $locale['pla_004'], $app_approver_pm);
+		$send_pm = $_POST['send_pm'];
+		if ($send_pm) {
+		$sendpm = send_pm($app_user, $userdata['user_id'], $locale['pla_004'], $app_approver_pm); }
 		redirect(FUSION_SELF.$aidlink."&status=apr");
 		
 	} elseif ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['app_id']) && isnum($_GET['app_id']))) {
@@ -61,6 +64,10 @@ if (isset($_GET['status'])) {
 			$data = dbarray($result);
 			$app_user = $data['app_user'];
 			$app_realname = $data['app_realname'];
+			$app_address = $data['app_address'];
+			$app_country = $data['app_country'];
+			$app_phone = $data['app_phone'];
+			$app_vat = $data['app_vat'];
 			$app_type = $data['app_type'];
 			$app_url = $data['app_url'];
 			$app_text = $data['app_text'];
@@ -77,6 +84,10 @@ if (isset($_GET['status'])) {
 	} else {
 		$app_user = "";
 		$app_realname = "";
+		$app_address = "";
+		$app_country = "";
+		$app_phone = "";
+		$app_vat = "";
 		$app_approver = "";
 		$app_approver_pm = "";
 		$app_approver_comment = "";
@@ -90,7 +101,7 @@ if (isset($_GET['status'])) {
 );
 
 	if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['app_id']) && isnum($_GET['app_id']))) {
-	$get_user = dbarray(dbquery("SELECT user_name, user_status FROM ".DB_USERS." WHERE user_id = '".$app_user."'"));
+	$get_user = dbarray(dbquery("SELECT user_name, user_email, user_status FROM ".DB_USERS." WHERE user_id = '".$app_user."'"));
 	opentable($form_title);
 
         echo "<form name='appform' method='post' action='".$form_action."' >\n";
@@ -99,24 +110,41 @@ if (isset($_GET['status'])) {
         echo "</tr>\n<tr>\n";
         echo "<td class='tbl1' colspan='2'>&nbsp;</td>";
         echo "</tr>\n<tr>\n";
-        echo "<td class='tbl1' width='20%'>".$locale['pla_112']."</td>";
-        echo "<td claas='tbl1'>".profile_link($app_user, $get_user['user_name'], $get_user['user_status'])."</td>";
+        echo "<td class='tbl1' align='right' width='20%'>".$locale['pla_112'].":</td>";
+        echo "<td class='tbl1'>".profile_link($app_user, $get_user['user_name'], $get_user['user_status'])."</td>";
         echo "</tr>\n<tr>\n";
-        echo "<td class='tbl1' width='20%'>".$locale['pla_140']."</td>";
-        echo "<td claas='tbl1'>".$data['app_realname']."</td>";
+        echo "<td class='tbl1' align='right' width='20%'>".$locale['pla_142'].":</td>";
+        echo "<td class='tbl1'><a href='mailto:".$get_user['user_email']."' title='".$get_user['user_email']."'>".$get_user['user_email']."</a></td>";
         echo "</tr>\n<tr>\n";
-        echo "<td class='tbl1' width='20%'>".$locale['pla_109']."</td>";
+        echo "<td class='tbl1' valign='top' align='right' width='20%'>".$locale['pla_117'].":</td>";
+        if (!strstr($data['app_url'], "http://") && !strstr($data['app_url'], "https://")) {
+			$urlprefix = "http://";
+		} else {
+			$urlprefix = "";
+		}
+        echo "<td class='tbl1' valign='top'>";
+        if ($data['app_url']) { echo "<a href='".$urlprefix.$data['app_url']."' title='".$urlprefix.$data['app_url']."' target='_blank'>".$data['app_url']."</a>"; }
+        else { echo $locale['pla_608']; }
+        echo "</td>";
+        echo "</tr>\n<tr>\n"; 
+        echo "<td class='tbl1' align='right' width='20%'>".$locale['pla_140'].":</td>";
+        echo "<td class='tbl1'>".$data['app_realname']."</td>";
+        echo "</tr>\n<tr>\n";
+        echo "<td class='tbl1' align='right' width='20%'>".$locale['pla_143'].":</td>";
+        echo "<td class='tbl1'>".$data['app_vat']."</td>";
+        echo "</tr>\n<tr>\n";
+        echo "<td class='tbl1' align='right' width='20%'>".$locale['pla_144'].":</td>";
+        echo "<td class='tbl1'>".$data['app_address']."<br />".$data['app_country']."</td>";
+        echo "</tr>\n<tr>\n";
+        echo "<td class='tbl1' align='right' width='20%'>".$locale['pla_109'].":</td>";
         echo "<td class='tbl1' nowrap valign='top'>".$license_types[$data['app_type']]."</td>\n";
 	    echo "</tr>\n<tr>\n";
-        echo "<td class='tbl1' valign='top' width='20%'>".$locale['pla_113']."</td>";
+        echo "<td class='tbl1' align='right' valign='top' width='20%'>".$locale['pla_113'].":</td>";
         echo "<td class='quote' valign='top'>";
         $text = nl2br(parseubb(censorwords($data['app_text'])));
 	    echo (isset($text) ? $text : "");
 	    echo "</td>";
         echo "</tr>\n<tr>\n";
-        echo "<td class='tbl1' valign='top' width='20%'>".$locale['pla_117']."</td>";
-        echo "<td class='tbl1' valign='top'>".(isset($data['app_url']) ? $data['app_url'] : $locale['pla_608'])."</td>";
-        echo "</tr>\n<tr>\n"; 
         echo "<td class='tbl1' width='20%'>".$locale['pla_133'].":</td>";
         echo "<td class='tbl1' nowrap valign='top'>";
     	echo "<select name='app_status' class='textbox'>\n";
@@ -129,10 +157,11 @@ if (isset($_GET['status'])) {
 	    echo "<td class='tbl1' colspan='2'><hr /></td>";
 	    echo "</tr>\n<tr>\n";
 	    echo "<td class='tbl1' valign='top' width='20%'>".$locale['pla_613'].":</td>";
-        echo "<td class='tbl1' valign='top'><textarea class='textbox' name='app_approver_pm' style='width:300px; height:100px;'>".$data['app_approver_pm']."</textarea><br />".$locale['pla_609']."</td>";
+        echo "<td class='tbl1' valign='top'><textarea class='textbox' name='app_approver_pm' style='width:400px; height:50px;'>".$data['app_approver_pm']."</textarea>\n";
+        echo "<input type='checkbox' name='send_pm' value='1' class='textbox' />".$locale['pla_147']."<br />".$locale['pla_609']."</td>";
         echo "</tr>\n<tr>\n";
         echo "<td class='tbl1' valign='top' width='20%'>".$locale['pla_610'].":</td>";
-        echo "<td class='tbl1' valign='top'><textarea class='textbox' name='app_approver_comment' style='width:300px; height:100px;'>".$data['app_approver_comment']."</textarea><br />".$locale['pla_611']."</td>";
+        echo "<td class='tbl1' valign='top'><textarea class='textbox' name='app_approver_comment' style='width:400px; height:50px;'>".$data['app_approver_comment']."</textarea><br />".$locale['pla_611']."</td>";
         echo "</tr>\n<tr>\n"; 
         echo "<td colspan='2' align='center'>";
         echo "<input type='hidden' name='app_user' value='".$data['app_user']."' />\n";
@@ -156,7 +185,7 @@ if (isset($_GET['status'])) {
 		if (dbrows($result)) {
 		$i = 0;
 		echo "<table cellpadding='0' cellspacing='1' width='100%' class='tbl-border center'>\n<tr>\n";
-		echo "<td class='tbl2'>".$locale['pla_124']."</td>\n";
+		echo "<td class='tbl2'>".$locale['pla_112']."</td>\n";
 		echo "<td class='tbl2'>".$locale['pla_140']."</td>\n";
 		echo "<td class='tbl2'>".$locale['pla_125']."</td>\n";
 		echo "<td class='tbl2'>".$locale['pla_127']."</td>\n";
@@ -202,7 +231,7 @@ if (isset($_GET['status'])) {
 		if (dbrows($result)) {
 		$i = 0;
 		echo "<table cellpadding='0' cellspacing='1' width='100%' class='tbl-border center'>\n<tr>\n";
-		echo "<td class='tbl2'>".$locale['pla_124']."</td>\n";
+		echo "<td class='tbl2'>".$locale['pla_112']."</td>\n";
 		echo "<td class='tbl2'>".$locale['pla_140']."</td>\n";
 		echo "<td class='tbl2'>".$locale['pla_125']."</td>\n";
 		echo "<td class='tbl2'>".$locale['pla_612']."</td>\n";
@@ -251,7 +280,7 @@ echo "<br />\n";
 		if (dbrows($result)) {
 		$i = 0;
 		echo "<table cellpadding='0' cellspacing='1' width='100%' class='tbl-border center'>\n<tr>\n";
-		echo "<td class='tbl2'>".$locale['pla_124']."</td>\n";
+		echo "<td class='tbl2'>".$locale['pla_112']."</td>\n";
 		echo "<td class='tbl2'>".$locale['pla_140']."</td>\n";
 		echo "<td class='tbl2'>".$locale['pla_125']."</td>\n";
 		echo "<td class='tbl2'>".$locale['pla_612']."</td>\n";

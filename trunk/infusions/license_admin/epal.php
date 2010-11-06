@@ -30,7 +30,7 @@ $slink = array(
 	array("link_name" => "Introduction", "link_url" => "infusions/license_admin/licenses.php", "link_window" => false),
 	array("link_name" => "Copyright Removal License", "link_url" => "infusions/license_admin/crl.php", "link_window" => false),
 	array("link_name" => "Commercial Core License", "link_url" => "infusions/license_admin/ccl.php", "link_window" => false),
-	array("link_name" => "How to apply for a license", "link_url" => "infusions/license_admin/license_apply.php", "link_window" => false)
+	array("link_name" => "License application", "link_url" => "infusions/license_admin/license_apply.php", "link_window" => false)
 );
 
 opentable($locale['pla_108']);
