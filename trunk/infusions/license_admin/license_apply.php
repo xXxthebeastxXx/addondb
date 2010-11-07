@@ -39,7 +39,7 @@ if (iMEMBER && !isset($_POST['licenseform'])) {
 opentable($locale['pla_004']);
 
 // Delete after testing
-echo "<br /><center><b>This form is currently undergoing testing. No applications wiil be accepted!</B></center><br /><br />\n";
+echo "<br /><center><b>This form is currently undergoing testing. No applications will be accepted!</B></center><br /><br />\n";
 // Delete after testing
 
         echo "<form name='licenseform' method='post' action='".FUSION_SELF."' >\n";
@@ -54,7 +54,7 @@ echo "<br /><center><b>This form is currently undergoing testing. No application
         echo "<td class='tbl1' align='right' valign='top'>".$locale['pla_140'].":</td>";
         echo "<td class='tbl1' valign='top'><input type='textbox' class='textbox' name='app_realname' style='width:300px;'></td>";
         echo "</tr>\n<tr>\n";
-        echo "<td class='tbl1' align='right' valign='top'>".$locale['pla_144'].":</td>";
+        echo "<td class='tbl1' align='right' valign='top'>".$locale['pla_149'].":</td>";
         echo "<td class='tbl1' valign='top'><textarea class='textbox' name='app_address' style='width:300px; height:50px;'></textarea></td>";
         echo "</tr>\n<tr>\n";
         echo "<td class='tbl1' align='right' valign='top'>".$locale['pla_124'].":</td>";
@@ -62,15 +62,55 @@ echo "<br /><center><b>This form is currently undergoing testing. No application
         include INFUSIONS."license_admin/country_include.php";
         echo "</td>";
         echo "</tr>\n<tr>\n";
-        echo "<td class='tbl1' align='right' valign='top'>".$locale['pla_145'].":</td>";
+        echo "<td class='tbl1' align='right' valign='top'>".$locale['pla_150'].":</td>";
         echo "<td class='tbl1' valign='top'><input type='textbox' class='textbox' name='app_phone' style='width:300px;'></td>";
         echo "</tr>\n<tr>\n";
         echo "<td class='tbl1' align='right' valign='top'>".$locale['pla_117'].":</td>";
         echo "<td class='tbl1' valign='top'><input type='textbox' class='textbox' name='app_url' style='width:300px;'></td>";
         echo "</tr>\n<tr>\n";
-        echo "<td class='tbl1' align='right' valign='top'>".$locale['pla_143'].":</td>";
-        echo "<td class='tbl1' valign='top'><input type='textbox' class='textbox' name='app_vat' style='width:300px;'></td>";
+        
+        // Company Details
+        echo "<td class='tbl1' colspan='2'><hr /></td>\n";
         echo "</tr>\n<tr>\n";
+        echo "<td class='tbl2' align='right' valign='top'>".$locale['pla_143']."</td><td class='tbl2' valign='top'>&nbsp;</td>\n";
+        echo "</tr>\n<tr>\n";
+        echo "<td class='tbl2' align='right' valign='top'>".$locale['pla_144']."</td>\n";
+        echo "<td class='tbl2' valign='top'><input type='textbox' class='textbox' name='app_company_name' style='width:300px;'></td>";
+        echo "</tr>\n<tr>\n";
+        echo "<td class='tbl2' align='right' valign='top'>".$locale['pla_149']."</td>\n";
+        echo "<td class='tbl2' valign='top'><textarea class='textbox' name='app_company_address' style='width:300px; height:50px;'></textarea></td>";
+        echo "</tr>\n<tr>\n";
+        echo "<td class='tbl2' align='right' valign='top'>".$locale['pla_150']."</td>\n";
+        echo "<td class='tbl2' valign='top'><input type='textbox' class='textbox' name='app_company_phone' style='width:300px;'></td>";
+        echo "</tr>\n<tr>\n";
+        echo "<td class='tbl2' align='right' valign='top'>".$locale['pla_147']."</td>\n";
+        echo "<td class='tbl2' valign='top'><input type='textbox' class='textbox' name='app_vat' style='width:300px;'></td>";
+        echo "</tr>\n<tr>\n";
+        
+        // Billing contact
+        echo "<td class='tbl2' align='right' valign='top'>".$locale['pla_145']."</td><td class='tbl2' valign='top'>&nbsp;</td>\n";
+        echo "</tr>\n<tr>\n";
+        echo "<td class='tbl2' align='right' valign='top'>&nbsp;</td>\n";
+        echo "<td class='tbl2' valign='top'>".$locale['pla_112'].":&nbsp;&nbsp;<input type='textbox' class='textbox' name='app_bill_name' style='width:255px;'></td>";
+        echo "</tr>\n<tr>\n";
+        echo "<td class='tbl2' align='right' valign='top'>&nbsp;</td>\n";
+        echo "<td class='tbl2' valign='top'>".$locale['pla_148'].":&nbsp;&nbsp;<input type='textbox' class='textbox' name='app_bill_email' style='width:257px;'></td>";
+        echo "</tr>\n<tr>\n";
+        
+        // Tech contact
+        echo "<td class='tbl2' align='right' valign='top'>".$locale['pla_146']."</td><td class='tbl2' valign='top'>&nbsp;</td>\n";
+        echo "</tr>\n<tr>\n";
+        echo "<td class='tbl2' align='right' valign='top'>&nbsp;</td>\n";
+        echo "<td class='tbl2' valign='top'>".$locale['pla_112'].":&nbsp;&nbsp;<input type='textbox' class='textbox' name='app_tech_name' style='width:255px;'></td>";
+        echo "</tr>\n<tr>\n";
+        echo "<td class='tbl2' align='right' valign='top'>&nbsp;</td>\n";
+        echo "<td class='tbl2' valign='top'>".$locale['pla_148'].":&nbsp;&nbsp;<input type='textbox' class='textbox' name='app_tech_email' style='width:257px;'></td>";
+        echo "</tr>\n<tr>\n";
+        
+        // End Company Details
+        echo "<td class='tbl1' colspan='2'><hr /></td>\n";
+        echo "</tr>\n<tr>\n";
+        
         echo "<td class='tbl1' align='right' valign='top'>".$locale['pla_109'].":</td>";
         echo "<td class='tbl1' nowrap valign='top'>";
     	echo "<select name='app_type' class='textbox' style='width:300px;'>\n";
@@ -89,7 +129,7 @@ echo "<br /><center><b>This form is currently undergoing testing. No application
         echo "</tr>\n</table>\n</form>\n<br />\n";
         
         echo "<center><i>".$locale['pla_115']."</i></center>\n";
-        echo "<center><i>".$locale['pla_146']."</i></center>\n";
+        echo "<center><i>".$locale['pla_151']."</i></center>\n";
         echo "<br /><br /><center>".sprintf($locale['pla_132'], $addon_global['addons_dev_qual'])."<a href='".INFUSIONS."addondb/dashboard.php'>".$locale['pla_502']."</a>.</center>\n";
 
 closetable();
@@ -103,9 +143,16 @@ closetable();
                                                                       '".stripinput($_POST['app_address'])."', 
                                                                       '".$_POST['app_country']."', 
                                                                       '".stripinput($_POST['app_phone'])."', 
-                                                                      '".stripinput($_POST['app_vat'])."', 
-                                                                      '".$_POST['app_type']."', 
                                                                       '".stripinput($_POST['app_url'])."', 
+                                                                      '".stripinput($_POST['app_company_name'])."',
+                                                                      '".stripinput($_POST['app_company_address'])."',
+                                                                      '".stripinput($_POST['app_company_phone'])."',
+                                                                      '".stripinput($_POST['app_vat'])."',
+                                                                      '".stripinput($_POST['app_bill_name'])."',
+                                                                      '".stripinput($_POST['app_bill_email'])."',
+                                                                      '".stripinput($_POST['app_tech_name'])."',
+                                                                      '".stripinput($_POST['app_tech_email'])."',
+                                                                      '".$_POST['app_type']."', 
                                                                       '".stripinput($_POST['app_text'])."', 
                                                                       '".$_POST['app_status']."', 
                                                                       '$time', 
