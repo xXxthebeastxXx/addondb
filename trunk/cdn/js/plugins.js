@@ -1,104 +1,12 @@
-(function($){
-$.fn.styleddropdown = function(){
-	return this.each(function(){
-		var obj = $(this)
-		obj.find('.field').click(function() { //onclick event, 'list' fadein
-		obj.find('.list').fadeIn(400);
-
-		$(document).keyup(function(event) { //keypress event, fadeout on 'escape'
-			if(event.keyCode == 27) {
-			obj.find('.list').fadeOut(400);
-			}
-		});
-
-		obj.find('.list').hover(function(){ },
-			function(){
-				$(this).fadeOut(400);
-			});
-		});
-
-		obj.find('.list li').click(function() { //onclick event, change field value with selected 'list' item and fadeout 'list'
-		obj.find('.field')
-			.text($(this).html())
-			.css({
-				'background':'#fff',
-				'color':'#333'
-			});
-		obj.find('.field-h').val($(this).attr('class'));
-		obj.find('.list').fadeOut(400);
-		});
-	});
-};
-
+(function($){$.fn.styleddropdown=function(){return this.each(function(){var obj=$(this)
+obj.find('.field').click(function(){obj.find('.list').fadeIn(400);$(document).keyup(function(event){if(event.keyCode==27){obj.find('.list').fadeOut(400);}});obj.find('.list').hover(function(){},function(){$(this).fadeOut(400);});});obj.find('.list li').click(function(){obj.find('.field').text($(this).html()).css({'background':'#fff','color':'#333'});obj.find('.field-h').val($(this).attr('class'));obj.find('.list').fadeOut(400);});});};
 /*
  * jQuery Quovolver v1.0 - http://sandbox.sebnitu.com/jquery/quovolver
- *
- * By Sebastian Nitu - Copyright 2009 - All rights reserved
- * 
+ * By Sebastian Nitu - Copyright 2009 - All rights reserved 
  */
-
-	$.fn.quovolver = function(speed, delay) {
-		
-		/* Sets default values */
-		if (!speed) speed = 500;
-		if (!delay) delay = 6000;
-		
-		// If "delay" is less than 4 times the "speed", it will break the effect 
-		// If that's the case, make "delay" exactly 4 times "speed"
-		var quaSpd = (speed*4);
-		if (quaSpd > (delay)) delay = quaSpd;
-		
-		// Create the variables needed
-		var	quote = $(this),
-			firstQuo = $(this).filter(':first'),
-			lastQuo = $(this).filter(':last'),
-			wrapElem = '<div id="quote_wrap"></div>';
-		
-		// Wrap the quotes
-		$(this).wrapAll(wrapElem);
-		
-		// Hide all the quotes, then show the first
-		$(this).hide();
-		$(firstQuo).show();
-		
-		// Set the hight of the wrapper
-		$(this).parent().css({height: $(firstQuo).height()});		
-		
-		// Where the magic happens
-		setInterval(function(){
-			
-			// Set required hight and element in variables for animation
-			if($(lastQuo).is(':visible')) {
-				var nextElem = $(firstQuo);
-				var wrapHeight = $(nextElem).height();
-			} else {
-				var nextElem = $(quote).filter(':visible').next();
-				var wrapHeight = $(nextElem).height();
-			}
-			
-			// Fadeout the quote that is currently visible
-			$(quote).filter(':visible').fadeOut(speed);
-			
-			// Set the wrapper to the hight of the next element, then fade that element in
-			setTimeout(function() {
-				$(quote).parent().animate({height: wrapHeight}, speed);
-			}, speed);
-			
-			if($(lastQuo).is(':visible')) {
-				setTimeout(function() {
-					$(firstQuo).fadeIn(speed*2);
-				}, speed*2);
-				
-			} else {
-				setTimeout(function() {
-					$(nextElem).fadeIn(speed);
-				}, speed*2);
-			}
-			
-		}, delay);
-	
-	};
-	/*
+$.fn.quovolver=function(speed,delay){if(!speed)speed=500;if(!delay)delay=6000;var quaSpd=(speed*4);if(quaSpd>(delay))delay=quaSpd;var quote=$(this),firstQuo=$(this).filter(':first'),lastQuo=$(this).filter(':last'),wrapElem='<div id="quote_wrap"></div>';$(this).wrapAll(wrapElem);$(this).hide();$(firstQuo).show();$(this).parent().css({height:$(firstQuo).height()});setInterval(function(){if($(lastQuo).is(':visible')){var nextElem=$(firstQuo);var wrapHeight=$(nextElem).height();}else{var nextElem=$(quote).filter(':visible').next();var wrapHeight=$(nextElem).height();}
+$(quote).filter(':visible').fadeOut(speed);setTimeout(function(){$(quote).parent().animate({height:wrapHeight},speed);},speed);if($(lastQuo).is(':visible')){setTimeout(function(){$(firstQuo).fadeIn(speed*2);},speed*2);}else{setTimeout(function(){$(nextElem).fadeIn(speed);},speed*2);}},delay);};
+/*
  AnythingSlider v1.4.5 minified using Google Closure Compiler
  By Chris Coyier: http://css-tricks.com
  with major improvements by Doug Neiner: http://pixelgraphics.us/
@@ -126,24 +34,4 @@ d,e=false;a.hasEmb&&a.$items.find("object[id*=ytvideo], embed[id*=ytvideo]").eac
 buildArrows:true,toggleArrows:false,buildNavigation:true,toggleControls:false,navigationFormatter:null,forwardText:"&raquo;",backText:"&laquo;",autoPlay:true,startStopped:false,pauseOnHover:true,resumeOnVideoEnd:true,stopAtEnd:false,playRtl:false,startText:"Start",stopText:"Stop",delay:3E3,animationTime:600,easing:"swing",onShowStart:null,onShowStop:null,onShowPause:null,onShowUnpause:null,onSlideInit:null,onSlideBegin:null,onSlideComplete:null,clickArrows:"click",clickControls:"click focusin",clickSlideshow:"click",
 addWmodeToObject:"opaque",maxOverallWidth:32766};$.fn.anythingSlider=function(f){if((typeof f).match("object|undefined"))return this.each(function(){$(this).is(".anythingBase")||new $.anythingSlider(this,f)});else if(/\d/.test(f)&&!isNaN(f))return this.each(function(){var g=$(this).data("AnythingSlider");if(g){var a=typeof f=="number"?f:parseInt($.trim(f),10);a<1||a>g.pages||g.gotoPage(a)}})}
 })(window.jQuery);
-
-
-
-window.log = function(){
-  log.history = log.history || []; 
-  log.history.push(arguments);
-  if(this.console){
-    console.log( Array.prototype.slice.call(arguments) );
-  }
-};
-
-(function(doc){
-  var write = doc.write;
-  doc.write = function(q){ 
-    log('document.write(): ',arguments); 
-    if (/docwriteregexwhitelist/.test(q)) write.apply(doc,arguments);  
-  };
-})(document);
-
-
-
+window.log=function(){log.history=log.history||[];log.history.push(arguments);if(this.console){console.log(Array.prototype.slice.call(arguments));}};(function(doc){var write=doc.write;doc.write=function(q){log('document.write(): ',arguments);if(/docwriteregexwhitelist/.test(q))write.apply(doc,arguments);};})(document);
