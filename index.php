@@ -119,7 +119,7 @@ $result=dbquery("
 ");
 
 if (dbrows($result)): ?>
-<div class="grid_12 omega">
+<div id="testimonials" class="grid_12 omega">
 	<h2>Testimonials</h2>
 	<?php while($data = dbarray($result)): ?>
 	<?php $text = nl2br(censorwords($data['user_testimonial'])); ?>
