@@ -160,7 +160,7 @@ if (!isnum($addon_id) || dbrows($q_addons) == 0 || ($d_addons['addon_status'] !=
 	<tr>
 	<td class='tbl2' nowrap><b>".$locale['addondb429a']."</b></td>
 	<td class='tbl1' nowrap>";
-	if ($d_addons['addon_demo_url']) { echo "<a target='_blank' href='".$urlprefix_demo.$d_addons['addon_demo_url']."'>".$d_addons['addon_demo_url']."</a>"; } else { echo "---"; }
+	if ($d_addons['addon_demo_url']) { echo "<a target='_blank' href='".$urlprefix_demo.$d_addons['addon_demo_url']."'>".trimlink($d_addons['addon_demo_url'],40)."</a>"; } else { echo "---"; }
 	echo "</td>
 	</tr>
 	</table>
