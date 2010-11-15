@@ -16,18 +16,18 @@ switch($_GET['type']) {
 	DESC LIMIT 10";
 	$feed = new Feed();
 	$feed->title = "Addons Feed";
-	$feed->link = $settings['siteurl']."rss.php";
+	$feed->link = $settings['siteurl'].FUSION_SELF."?".FUSION_QUERY;
 	$feed->description = "Latest Addons on PHP-Fusion.";
+	$feed->encoding = "iso-8859-1";
 	$result = dbquery($result);
 	while($data = dbarray($result)) {
 		$filesize = filesize(INFUSIONS."addondb/files/".$data['addon_download']);
 		$item = new RSSItem;
 		$item->title = $data['addon_name'];
-		$item->link  = $settings['siteurl']."/infusions/addondb/view.php?addon_id=".$data['addon_id'];
+		$item->link  = $settings['siteurl']."infusions/addondb/view.php?addon_id=".$data['addon_id'];
 		$item->setPubDate($data['addon_date']);
 		$item->description = $data['addon_description'];
-		$item->category($data['addon_cat_name']);
-		$item->enclosure($settings['siteurl']."infusions/addondb/files/".$data['addon_download'], "application/zip", $filesize );
+		#$item->enclosure($settings['siteurl']."infusions/addondb/files/".$data['addon_download'], "application/zip", $filesize );
 		$feed->addItem($item);
 	}
 	$feed->displayFeed();
