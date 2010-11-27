@@ -33,7 +33,6 @@ $inf_weburl = "http://php-fusion.co.uk";
 
 $inf_folder = "testimonials_admin";
 
-
 $inf_adminpanel[1] = array(
 	"title" => $locale['ltp_009'],
 	"image" => "approval.png",

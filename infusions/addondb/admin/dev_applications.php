@@ -19,7 +19,7 @@ require_once "../../../maincore.php";
 require_once THEMES."templates/admin_header.php";
 require_once INCLUDES."infusions_include.php";
 
-if (!checkrights("ADNX") || !defined("iAUTH") || $_GET['aid'] != iAUTH) { redirect("../index.php"); }
+if (!checkrights("ADNX") || !iSUPERADMIN || !defined("iAUTH") || $_GET['aid'] != iAUTH) { redirect("../index.php"); }
 require_once INFUSIONS."addondb/inc/inc.functions.php";
 require_once ADDON."infusion_db.php";
 require_once ADDON_INC."inc.nav.php";
