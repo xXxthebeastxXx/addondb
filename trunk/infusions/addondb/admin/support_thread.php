@@ -32,13 +32,13 @@ if (file_exists(ADDON_LOCALE.LOCALESET."admin/support_thread.php")) {
               
     if (isset($_POST['postaddonthread'])) {
     
-    $addon_data = dbarray(dbquery("SELECT addon_id, addon_name, addon_description, addon_submitter_id FROM ".DB_ADDONS." WHERE addon_id  = '".$_REQUEST['addon_id']."'"));
+    $addon_data = dbarray(dbquery("SELECT addon_id, addon_name, addon_description, addon_submitter_id, addon_img  FROM ".DB_ADDONS." WHERE addon_id  = '".$_REQUEST['addon_id']."'"));
     $status_check = dbarray(dbquery("SELECT addon_author_status FROM ".DB_ADDONS." WHERE addon_author_name = '".$addon_data['addon_submitter_id']."'"));
  
 	$addon_id = stripinput($_POST['addon_id']);
 	$addon_name = $addon_data['addon_name'];
-	if (file_exists(ADDON_IMG."screenshots/t_".$addon_id.".jpg")) {
-	$addon_description = ("[img]".$settings['siteurl']."infusions/addondb/img/screenshots/t_".$addon_id.".jpg[/img]");
+	if ($addon_data['addon_img']) {
+	$addon_description = ("[img]".$settings['siteurl']."infusions/addondb/img/screenshots/t_".$addon_data['addon_img']."[/img]");
 	} else {
 	$addon_description = ("[img]".$settings['siteurl']."infusions/addondb/img/addon_logo.png[/img]");
 	}

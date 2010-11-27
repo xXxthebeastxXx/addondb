@@ -596,10 +596,10 @@ if (dbrows($q_addon_cats) == 0) {
 		</tr>\n";
 		while ($addon_data = dbarray($inactive_addons)) {
 			echo "<tr class='tbl1'>
-			<td class='tbl1' width='*' nowrap><a href='".ADDON."view.php?addon_id=".$addon_data['addon_id']."' target='_blank' title='".$locale['addondb506']."'>".$addon_data['addon_name']."</a></td>
+			<td class='tbl1' width='*' nowrap><a href='".ADDON."view.php?addon_id=".$addon_data['addon_id']."' target='_blank' title=''>".$addon_data['addon_name']."</a></td>
 			<td class='tbl1' width='1%' nowrap><span class='small'>
-			<a href='".FUSION_SELF.$aidlink."&amp;action=delete&addon_id=".$addon_data['addon_id']."' onClick=\"return confirmDeleteAddon('".$addon_data['addon_name']."')\" title='".$locale['addondb505']."'>".$locale['addondb422']."</a> - 
-			<a href='".FUSION_SELF.$aidlink."&amp;action=edit&addon_id=".$addon_data['addon_id']."' title='".$locale['addondb504']."'>".$locale['addondb421']."</a> - 
+			<a href='".FUSION_SELF.$aidlink."&amp;action=delete&addon_id=".$addon_data['addon_id']."' onClick=\"return confirmDeleteAddon('".$addon_data['addon_name']."')\" title=''>".$locale['addondb422']."</a> - 
+			<a href='".FUSION_SELF.$aidlink."&amp;action=edit&addon_id=".$addon_data['addon_id']."' title=''>".$locale['addondb421']."</a> - 
 			".get_addon_status($addon_data['addon_status'])."</span></td>
 			</tr>\n";
 		}

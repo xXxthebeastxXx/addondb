@@ -7,7 +7,7 @@ $locale['addondb402'] = "No";
 
 $locale['addondb410'] = "Addon";
 $locale['addondb411'] = "Unassigned";
-$locale['addondb412'] = "If you have any problems downloading or accessing Addon: <b>%s</b>.<br />Please use this form. For bug reports please use forum.";
+$locale['addondb412'] = "This form is for reporting faults with the download only!<br />If you have been unable to download <b>%s</b><br />or there is a problem with the download files. Please use this form.<br />For all bug reports please use the forum.";
 $locale['addondb413'] = "Report";
 
 //General

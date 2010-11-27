@@ -67,6 +67,9 @@ if (($suspend_check['reinstate_date'] + $settings_global['susp_time']) > ($time 
         $status_check = dbarray(dbquery("SELECT addon_author_status FROM ".DB_ADDONS." WHERE addon_author_name = '".$userdata['user_name']."'"));
         
         if ($status_check['addon_author_status'] == '0') {
+        
+        echo "<div class='quote'>".$locale['epal_text']."</div>\n";
+        echo "<br /><br />\n";
 
         echo "<form name='apply' method='post' action='".FUSION_SELF."' >\n";
         echo "<table cellpadding='0' align='center' cellspacing='0' class='tbl-border'>\n<tr>\n";
@@ -75,7 +78,7 @@ if (($suspend_check['reinstate_date'] + $settings_global['susp_time']) > ($time 
         echo "<td class='tbl1' colspan='2'>&nbsp;</td>";
         echo "</tr>\n<tr>\n";
         echo "<td class='tbl1'>".$locale['apdev003']."</td>";
-        echo "<td claas='tbl1'>".$userdata['user_name']."</td>";
+        echo "<td class='tbl1'>".$userdata['user_name']."</td>";
         echo "</tr>\n<tr>\n";
         echo "<td class='tbl1' valign='top'>".$locale['apdev004']."</td>";
         echo "<td class='tbl1' valign='top'><textarea class='textbox' name='apply_comment' style='width:300px; height:100px;'></textarea></td>";

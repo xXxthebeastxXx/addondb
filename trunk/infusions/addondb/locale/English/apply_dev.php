@@ -13,7 +13,7 @@ $locale['apdev010'] = "An administrator will review your application and contact
 $locale['apdev011'] = "The number of approved Addons to qualify: ";
 $locale['apdev012'] = "Only one application per member!";
 $locale['apdev013'] = "Addon Dashboard";
-$locale['apdev014'] = "I verify all addons submitted by me are my own work<br />and that I have read, understood and accepted the terms of the EPAL license.";
+$locale['apdev014'] = "I verify all addons submitted by me are my own work<br />and that I have read, understood and accepted the terms of the<br /><b>PHP-Fusion Addon Agreement</b>.";
 $locale['apdev015'] = "Due to your recent suspension, you do not currently qualify for developer status.<br />The probationary period is ";
 $locale['apdev016'] = " from date of reinstating.<br />If you feel this in error, please contact an administrator.";
 
@@ -47,5 +47,17 @@ $locale['set_time04'] = "2 Weeks";
 $locale['set_time05'] = "1 Month";
 $locale['set_time06'] = "2 Months";
 $locale['set_time07'] = "6 Months";
+
+$locale['epal_text'] = "<b>PHP-Fusion Addon Agreement, PAA (v1.0)</b>
+<br /><br />
+PLEASE READ THE TERMS AND CONDITIONS OF THIS PROPRIETARY ADDON LICENSE AGREEMENT CAREFULLY BEFORE APPLYING FOR EPAL. BY EXERCISING ANY OF THE RIGHTS STATED IN THIS AGREEMENT, YOU ACCEPT THE TERMS AND CONDITIONS OF THIS AGREEMENT. IF YOU DO NOT AGREE TO ALL OF THE TERMS AND CONDITIONS OF THIS AGREEMENT, DO NOT EXERT ANY OF THE RIGHTS GRANTED BY THE AGREEMENT.
+<br /><br />
+PHP-Fusion Addon Agreement, PAA (v1.0), is an agreement between you and PHP-Fusion, to be accepted by you when you apply for Enduser PHP-Fusion Addon License, EPAL, v 1.0. This agreement is null and void if any part of this text is modified or not accepted by you.
+<br /><br />
+PHP-Fusion will not be held accountable for the products sold under this agreement, we do however use this agreement for approval of any submitted Addon and PHP-Fusion state that any addon that is approved under this agreement, PAA, at the time for it's approval was coded in accordance with PHP-Fusion coding standards, that PHP-Fusion deems your Addon to be of such a high standard and originality that we allow you to use this agreement in conjunction with the <b>Enduser PHP-Fusion Addon License, EPAL, v 1.0</b>. This also gives You the right to use any kind of logos provided by PHP-Fusion, for public display and for marketing purposes.
+<br /><br />
+PHP-Fusion is not responsible in any way for errors caused by you upgrading or updating your work, this agreement is based on the specific code submitted by you while applying, PHP-Fusion is not responsible for any measures you take with your code after our approval. Hence, it must be stated visibly which version your Addon is valid for in relation this agreement and that version only. If You undertake changes to the code, PHP-Fusion shall be kept notified, and in the case you make a major upgrade, You must apply again with your updated code. This is not necessary for changes to your code based solely on security routines.
+<br /><br />
+This part of the agreement is between you and PHP-Fusion only. PHP-Fusion will provide a License for you to use with your customers. You must use that License in order for this agreement to be valid and of legitimate status. The text of that License, Enduser PHP-Fusion Addon License, EPAL (v1.0), is the enduser license which You must License Your software under and that is the License You accept to use for interacting with Your customers. This agreement cannot be used without the full understanding and acceptance of <b>Enduser PHP-Fusion Addon License, EPAL, v 1.0</b>.<br />";
 
 ?>

@@ -82,8 +82,8 @@ if (dbrows($result)) {
      echo "<th class='forum-caption' colspan='4'>".$locale['ltp_002']."</th>\n";
      echo "</tr>\n<tr>\n";
      echo "<td colspan='2'>&nbsp;</td>\n";
-     echo "<td class='tbl1'>".$locale['ltp_007']."</td>\n";
-     echo "<td class='tbl1'>".$locale['ltp_008']."</td>\n";
+     echo "<td class='tbl1' align='center'>".$locale['ltp_007']."</td>\n";
+     echo "<td class='tbl1' align='center'>".$locale['ltp_008']."</td>\n";
      echo "</tr>\n";
 
 	while($data = dbarray($result)) {
@@ -96,7 +96,7 @@ if (dbrows($result)) {
 	echo "<td class='tbl2' align='center'><label><input type='checkbox' name='user_deny[]' value='".$data['user_id']."' /></label></td>\n";
 	echo "</tr>\n";
 	}
-	echo "<tr>\n<td class='tbl2' colspan='3' align='center'><input type='submit' name='approve_test' value='".$locale['ltp_006']."' class='button' />\n";
+	echo "<tr>\n<td class='tbl2' colspan='4' align='center'><input type='submit' name='approve_test' value='".$locale['ltp_006']."' class='button' />\n";
 	echo "</tr>\n</table>\n</form>\n";
 } else { echo "<table width='100%' class='tbl-border'>\n<tr>\n";
          echo "<th class='forum-caption'>".$locale['ltp_002']."</th>\n";
@@ -148,7 +148,6 @@ if (dbrows($result)) {
 closetable();
 
 if ($counter > $limit) { echo "<div align='center' style='margin-top:5px;'>\n".makePageNav($rowstart, $limit, $counter, 3, FUSION_SELF.$aidlink."&amp;")."</div>"; }
-
 
 require_once THEMES."templates/footer.php";
 ?>

@@ -199,7 +199,7 @@ opentable($locale['addondb500']);
    $total_panel = dbcount("(addon_id)", DB_ADDONS, "addon_status = '0' && addon_type = '3'");
    $total_theme = dbcount("(addon_id)", DB_ADDONS, "addon_status = '0' && addon_type = '2'");
    $total_other = dbcount("(addon_id)", DB_ADDONS, "addon_status = '0' && addon_type = '4'");
-   $total_trans = dbcount("(trans_id)", DB_ADDON_TRANS, "trans_active = '0'");
+   $total_trans = dbcount("(trans_id)", DB_ADDON_TRANS, "trans_active = '1'");
    $total = dbarray(dbquery("SELECT SUM(addon_download_count) download_count, COUNT(addon_id) FROM ".DB_ADDONS." WHERE addon_status = '0'"));
    $total_count = $total['download_count'];
 
