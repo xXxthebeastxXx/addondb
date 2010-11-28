@@ -52,7 +52,7 @@ function get_head_tags(){ ?>
 <!--[if IE]><![endif]-->
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="<?php echo static_content(); ?>css/styles.css?v=1.2" />
+<link rel="stylesheet" href="<?php echo static_content(); ?>css/styles.css?v=1.3" />
 <script defer src="<?php echo static_content(); ?>js/modernizr-1.6.min.js"></script>
 <?php
 }
