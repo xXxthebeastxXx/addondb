@@ -10,6 +10,7 @@ function theme_head_output($output) {
 		"@<link rel='stylesheet' href='(.*?)themes/Bifrost/styles.css' type='text/css' media='screen' />\n@si",
 		"@<link rel='shortcut icon' href='(.*?)images/favicon.ico' type='image/x-icon' />\n@si",
 		"@<script type='text/javascript' src='(.*?)includes/jquery.js'></script>\n@si",
+		"@<body>@si",
 		"@<a id='content' name='content'></a>\n@si",
 		"@<!--news_prepost_(.*?)-->\n@si",
 		"@><img src='reply' alt='(.*?)' style='border:0px' />@si",
@@ -20,6 +21,7 @@ function theme_head_output($output) {
 		"@><img src='forum_edit' alt='(.*?)' style='border:0px;vertical-align:middle' />@si",
 		"@<input type='(submit|button)'(.*?)value='(.*?)'(.*?)/?>@si",
 	);
+	$page = str_replace(".php", "", FUSION_SELF);
 	$replace = array(
 		'<!doctype html>  ',
 		'<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
@@ -31,6 +33,7 @@ function theme_head_output($output) {
 		'',
 		'',
 		'',
+		'<body class="page-'.$page.'">',
 		'',
 		'',
 		'class="forumbutton"><span>$1</span>',
