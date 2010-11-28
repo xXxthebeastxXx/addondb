@@ -108,7 +108,7 @@ function userinfo() {
         <li>Welcome</li>
 <?php endif ?>
         <li><a href="/edit_profile.php" class="settings">Settings</a></li>
-        <li><a href="/messages.php"<?php echo $msg_count ? " title='".sprintf($locale['global_125'], $msg_count).($msg_count == 1 ? $locale['global_126'] : $locale['global_127'])."'" : ""; ?> class="<?php echo $msg_count ? "newmessage" : "messages"; ?>">Messages</a></li>
+        <li><a href="/messages.php"<?php echo $msg_count ? " title='".sprintf($locale['global_125'], $msg_count).($msg_count == 1 ? $locale['global_126'] : $locale['global_127'])."'" : ""; ?>><?php echo $msg_count ? "New message" : "Messages"; ?></a></li>
         <li><a href="/setuser.php?logout=yes" class="logout">Logout</a></li>
       </ul>
 <?php else: ?>

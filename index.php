@@ -49,8 +49,8 @@ require_once THEMES."templates/header.php"; ?>
 	</li>
 </ul>
 <!-- END AnythingSlider #1 --> 
-<br />
 <div class="clearfix">&nbsp;</div>
+<!--
 <table width="950" class="tbl-border">
 	<tr>
 		<th colspan="15" class="forum-caption">Features</th>
@@ -85,7 +85,7 @@ require_once THEMES."templates/header.php"; ?>
 		<td align="center" colspan="3"><a class="button" target="_blank" href="http://dev.php-fusion.co.uk/"><span>more</span></a></td>
 	</tr>
 </table>
-<br />
+<br />-->
 <div class="grid_12 alpha">
 <?php $result = dbquery("
 	SELECT news_id as id, news_subject as title, news_news as news, news_datestamp as date, tu.user_name as author
@@ -125,7 +125,8 @@ if (dbrows($result)): ?>
 	<?php $text = nl2br(censorwords($data['user_testimonial'])); ?>
 	<blockquote>
 		<p><?php echo $text ?></p>
-		<cite>&ndash; <?php echo profile_link($data['user_id'], $data['user_name'], $data['user_status']); ?></cite> </blockquote>
+		<cite>&ndash; <?php echo profile_link($data['user_id'], $data['user_name'], $data['user_status']); ?></cite>
+	</blockquote>
 	<?php endwhile ?>
 </div>
 <?php endif ?>
