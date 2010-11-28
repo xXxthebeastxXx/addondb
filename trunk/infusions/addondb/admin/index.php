@@ -1,7 +1,7 @@
 <?php
 /*-------------------------------------------------------+
 | PHP-Fusion Content Management System
-| Copyright (C) 2002 - 2008 Nick Jones
+| Copyright (C) 2002 - 2010 Nick Jones
 | http://www.php-fusion.co.uk/
 +--------------------------------------------------------+
 | Filename: index.php
@@ -554,8 +554,8 @@ if (dbrows($q_addon_cats) == 0) {
 	<table width='100%' cellpadding='0' cellspacing='0' class='tbl-border'>";
 				while ($d_addons = dbarray($q_addons)) {
 					echo "<tr class='tbl1'>
-	<td class='tbl1' width='' nowrap><a href='../addon_view.php?addon_cat_id=".$d_addon_cats['addon_cat_id']."&addon_id=".$d_addons['addon_id']."' target='_blank' title='".$locale['addondb506']."'>".$d_addons['addon_name']."</a></td>
-	<td class='tbl1' width='1%' nowrap><span class='small'><a href='submissions.php".$aidlink."&tran=".$d_addons['addon_id']."' title='".$locale['addondb449']."'>".$locale['addondb457']."</a>&nbsp;-&nbsp;<a href='".FUSION_SELF.$aidlink."&amp;action=delete&addon_cat_id=".$d_addon_cats['addon_cat_id']."&addon_id=".$d_addons['addon_id']."' onClick=\"return confirmDeleteAddon('".$d_addons['addon_name']."')\" title='".$locale['addondb505']."'>".$locale['addondb422']."</a>&nbsp;-&nbsp;<a href='".FUSION_SELF.$aidlink."&amp;action=edit&addon_cat_id=".$d_addon_cats['addon_cat_id']."&addon_id=".$d_addons['addon_id']."'>".$locale['addondb421']."</a></span></td>
+	<td class='tbl1' width='' nowrap><a href='../addon_view.php?addon_cat_id=".$d_addon_cats['addon_cat_id']."&addon_id=".$d_addons['addon_id']."' target='_blank' title=''>".$d_addons['addon_name']."</a></td>
+	<td class='tbl1' width='1%' nowrap><span class='small'><a href='submissions.php".$aidlink."&tran=".$d_addons['addon_id']."' title='".$locale['addondb449']."'>".$locale['addondb457']."</a>&nbsp;-&nbsp;<a href='".FUSION_SELF.$aidlink."&amp;action=delete&addon_cat_id=".$d_addon_cats['addon_cat_id']."&addon_id=".$d_addons['addon_id']."' onClick=\"return confirmDeleteAddon('".$d_addons['addon_name']."')\" title=''>".$locale['addondb422']."</a>&nbsp;-&nbsp;<a href='".FUSION_SELF.$aidlink."&amp;action=edit&addon_cat_id=".$d_addon_cats['addon_cat_id']."&addon_id=".$d_addons['addon_id']."'>".$locale['addondb421']."</a></span></td>
 	</tr>\n";
 				}
 				echo "</table>
