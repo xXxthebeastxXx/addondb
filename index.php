@@ -16,7 +16,8 @@
 | written permission from the original author(s).
 +--------------------------------------------------------*/
 require_once "maincore.php";
-require_once THEMES."templates/header.php"; ?>
+require_once THEMES."templates/header.php";
+require_once INFUSIONS."addondb/infusion_db.php"; ?>
 <h1>PHP-Fusion Content Management System</h1>
 <ul id="slidwshow">
 	<li>
@@ -129,5 +130,27 @@ if (dbrows($result)): ?>
 	</blockquote>
 	<?php endwhile ?>
 </div>
+<?php endif ?>
+<?php
+$result=dbquery("
+	SELECT addon_id, addon_status, addon_name, addon_description, addon_date, addon_download_count  
+	FROM ".DB_ADDONS." 
+	WHERE addon_status = '0' 
+	ORDER BY addon_date DESC LIMIT 5
+");
+
+if (dbrows($result)): ?>
+
+<div id="addons" class="grid_12 omega">
+	<h2>Latest Addons</h2>
+	<ul style="list-style:none">
+	<?php while($data = dbarray($result)): ?>
+	<li style="padding-left:20px;">
+		<small><?php echo "<a href='".INFUSIONS."addondb/view.php?addon_id=".$data['addon_id']."'>".$data['addon_name']."</a>"; ?></small>
+		<p>&ndash; <?php echo trimlink($data['addon_description'],120); ?></p>
+	</li>
+<?php endwhile ?>
+</div>
+
 <?php endif ?>
 <?php require_once THEMES."templates/footer.php"; ?>
