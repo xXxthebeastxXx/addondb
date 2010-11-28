@@ -440,12 +440,6 @@ if (dbrows($q_addon_cats) == 0) {
 	echo "<td class='tbl1' nowrap>&nbsp;</td>\n";
 	echo "<td class='tbl1'><span class='small'>".substr($addon_upload_dir.$addon_download,6)."</span></td>\n";
 	echo "</tr>\n";
-	echo'
-      <script type="text/javascript" src="../lightbox/prototype.js"></script>
-      <script type="text/javascript" src="../lightbox/scriptaculous.js?load=effects,builder"></script>
-      <script type="text/javascript" src="../lightbox/lightbox.js"></script>
-      <link rel="stylesheet" href="../lightbox/lightbox.css" type="text/css" media="screen" />
-      ';
 			echo"
 			<tr>
 			<td class='tbl1' nowrap>".$locale['addondb447'].":</td>
@@ -528,14 +522,13 @@ if (dbrows($q_addon_cats) == 0) {
 	echo "</tr>\n<tr>\n";
 	echo "<td class='tbl1' nowrap colspan='3' align='center'><hr>".$locale['addondb437']."</td>\n";
 	echo "</tr>\n<tr>\n";
-	echo "<td class='tbl1' nowrap colspan='3' align='center'><input type='submit' class='button' name='btn_save' value='".$locale['addondb427']."'>\n";
+	echo "<td class='tbl1' nowrap colspan='3' align='center'><button type='submit' class='button' name='btn_save'>".$locale['addondb427']."</button>\n";
 	if ((isset($_GET['action']) && $_GET['action'] == "edit") || isset($error)) {
-		echo "&nbsp;<input type='submit' name='btn_cancel' value='".$locale['addondb428']."' class='button'>";
+		echo "&nbsp;<button type='submit' class='button' name='btn_cancel'>".$locale['addondb428']."</button>";
 	}
 	echo "</td>\n";
 	echo "</tr>\n</table>\n</form>\n";
 	closetable();
-
 	opentable($locale['addondb400']);
 	echo "<table width='400' align='center' cellpadding='0' cellspacing='1' class='tbl-border'>
 	<tr>
@@ -548,10 +541,10 @@ if (dbrows($q_addon_cats) == 0) {
 		$c = 0;
 		while ($d_addon_cats = dbarray($q_addon_cats)) {
 			$p_img = "on";
-			$div = "style='display:none'";
+			$div = "";
 			echo "<tr>
 	<td class='tbl2'>".$d_addon_cats['addon_cat_name']." <span class='small2'>(".getgroupname($d_addon_cats['addon_cat_access'])."+)</span></td>
-	<td class='tbl2' align='right'><img onclick=\"javascript:flipBox('".$d_addon_cats['addon_cat_id']."')\" name='b_".$d_addon_cats['addon_cat_id']."' border='0' src='".THEME."images/panel_".$p_img.".gif'></td>
+	<td class='tbl2' align='right'></td>
 	</tr>\n";
 			$q_addons = dbquery("SELECT * FROM ".DB_ADDONS." WHERE addon_cat_id='".$d_addon_cats['addon_cat_id']."' AND addon_status='0' ORDER BY addon_name");
 			if (dbrows($q_addons) != 0) {
@@ -561,8 +554,8 @@ if (dbrows($q_addon_cats) == 0) {
 	<table width='100%' cellpadding='0' cellspacing='0' class='tbl-border'>";
 				while ($d_addons = dbarray($q_addons)) {
 					echo "<tr class='tbl1'>
-	<td class='tbl1' width='*' nowrap><a href='../addon_view.php?addon_cat_id=".$d_addon_cats['addon_cat_id']."&addon_id=".$d_addons['addon_id']."' target='_blank' title='".$locale['addondb506']."'>".$d_addons['addon_name']."</a></td>
-	<td class='tbl1' width='1%' nowrap><span class='small'><a href='submissions.php".$aidlink."&tran=".$d_addons['addon_id']."' title='".$locale['addondb449']."'>".$locale['addondb457']."</a>&nbsp;-&nbsp;<a href='".FUSION_SELF.$aidlink."&amp;action=delete&addon_cat_id=".$d_addon_cats['addon_cat_id']."&addon_id=".$d_addons['addon_id']."' onClick=\"return confirmDeleteAddon('".$d_addons['addon_name']."')\" title='".$locale['addondb505']."'>".$locale['addondb422']."</a>&nbsp;-&nbsp;<a href='".FUSION_SELF.$aidlink."&amp;action=edit&addon_cat_id=".$d_addon_cats['addon_cat_id']."&addon_id=".$d_addons['addon_id']."' title='".$locale['addondb504']."'>".$locale['addondb421']."</a></span></td>
+	<td class='tbl1' width='' nowrap><a href='../addon_view.php?addon_cat_id=".$d_addon_cats['addon_cat_id']."&addon_id=".$d_addons['addon_id']."' target='_blank' title='".$locale['addondb506']."'>".$d_addons['addon_name']."</a></td>
+	<td class='tbl1' width='1%' nowrap><span class='small'><a href='submissions.php".$aidlink."&tran=".$d_addons['addon_id']."' title='".$locale['addondb449']."'>".$locale['addondb457']."</a>&nbsp;-&nbsp;<a href='".FUSION_SELF.$aidlink."&amp;action=delete&addon_cat_id=".$d_addon_cats['addon_cat_id']."&addon_id=".$d_addons['addon_id']."' onClick=\"return confirmDeleteAddon('".$d_addons['addon_name']."')\" title='".$locale['addondb505']."'>".$locale['addondb422']."</a>&nbsp;-&nbsp;<a href='".FUSION_SELF.$aidlink."&amp;action=edit&addon_cat_id=".$d_addon_cats['addon_cat_id']."&addon_id=".$d_addons['addon_id']."'>".$locale['addondb421']."</a></span></td>
 	</tr>\n";
 				}
 				echo "</table>

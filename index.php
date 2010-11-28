@@ -143,9 +143,9 @@ if (dbrows($result)): ?>
 
 <div id="addons" class="grid_12 omega">
 	<h2>Latest Addons</h2>
-	<ul style="list-style:none">
+	<ul class="tbl-border" style="list-style:none">
 	<?php while($data = dbarray($result)): ?>
-	<li style="padding-left:20px;">
+	<li>
 		<small><?php echo "<a href='".INFUSIONS."addondb/view.php?addon_id=".$data['addon_id']."'>".$data['addon_name']."</a>"; ?></small>
 		<p>&ndash; <?php echo trimlink($data['addon_description'],120); ?></p>
 	</li>
