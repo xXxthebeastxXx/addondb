@@ -21,13 +21,15 @@ require_once INFUSIONS."addondb/infusion_db.php"; ?>
 <h1>PHP-Fusion Content Management System</h1>
 <div class="tbl-border" style="position: relative; height: 150px; width: 730px; margin: 20px 0pt;">
 <p style="width:600px; padding:10px">Welcome to the official site of PHP-Fusion, a light-weight open-source content management system (CMS). PHP-Fusion is written in PHP and MySQL and includes a simple, comprehensive administration system as well as Forum, Photogallery, Articles, FAQ and much more.</p>
+<a href="/downloads.php?cat_id=23&download_id=264" target="_blank" class="button"><span>Download PHP-Fusion</span></a> &mdash;  
+<a href="downloads.php?cat_id=15&download_id=263" target="_blank" class="button"><span>Download the handbook</span></a>
 <img style="border-color:#DDDDDD;
 	border-style:solid;
 	border-width:1px 0 0 1px;-moz-box-shadow:1px 1px 0 #bbb;
 	-webkit-box-shadow:1px 1px 0 #bbb;
 	box-shadow:1px 1px 0 #bbb;-moz-border-radius:6px;
 	-webkit-border-radius:6px;
-	border-radius:6px;	position: absolute; padding: 10px; background:#fff; right: -200px; top: -10px;" src="http://cdn.php-fusion.co.uk/images/php-fusion-tmpl.png" alt="php-fusion" />
+	border-radius:6px;	position: absolute; padding: 10px; background:#fff; right: -200px; top: -10px;" src="http://cdn.php-fusion.co.uk/images/php-fusion-tmpl2.png" alt="php-fusion" />
 </div>
 <!--
 <table width="950" class="tbl-border">
