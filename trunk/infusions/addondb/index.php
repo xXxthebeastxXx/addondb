@@ -115,7 +115,7 @@ $result = dbquery("
 	LEFT JOIN ".DB_ADDON_VERSIONS." tv USING(version_id)
 	WHERE ".$db_opts." AND ".groupaccess('tc.addon_cat_access')."
 	GROUP BY addon_id, tc.addon_cat_id
-	ORDER BY addon_cat_order, ".$orderby." ".$sort."
+	ORDER BY addon_cat_name, ".$orderby." ".$sort."
 	LIMIT ".$_GET['rowstart'].",".$settings_global['addons_per_page']
 );
 add_to_title($locale['addondb435'].$locale['addondb400']);
