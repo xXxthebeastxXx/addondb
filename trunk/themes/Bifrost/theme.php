@@ -54,6 +54,27 @@ function render_page() {
 		<!-- /subfooter --> 
 	</div>
 </div>
+<div id="modal-content" style="display:none">
+	<div id="modal-title">Login Modal</div>
+	<div class="close"><a href="#" class="simplemodal-close">x</a></div>
+	<div id="modal-data">
+		<h2>Welcome! Please login below.</h2>
+		<form action="<?php echo FUSION_SELF; ?>" method="post" name="loginform">
+			<fieldset>
+				<legend>Your Login details</legend>
+				<label for="user_name"><strong>Username:</strong></label>
+				<input type="text" name="user_name" id="user_name" size="30" /><br />
+				<label for="user_pass"><strong>Password:</strong></label>
+				<input type="password" name="user_pass" id="user_pass" size="30" /><br />
+				<label for="remember_me"><strong>Remember Me:</strong></label>
+				<input type="checkbox" value="y" name="remember_me" id="remember_me" /><br />
+			</fieldset>
+			<h3>Forgotten your password?</h3>
+			<p>Request a new one <a href="/lostpassword.php">here</a>.</p>
+			<p><button type="submit" class="button"><span>Login</span></button> <a href="#" class="simplemodal-close" style="margin-left:10px">Close</a> <span>(or press ESC)</span></p>
+		</form>
+	</div>
+</div>
 <!-- /footer -->
 <?php get_footer_tags(); ?>
 <?php echo (DEBUG ? "<div id='debug'><strong>Debug is on </strong>" : "<!-- ").showrendertime().(DEBUG ? "</div><!-- /debug -->": " -->")."\n";
