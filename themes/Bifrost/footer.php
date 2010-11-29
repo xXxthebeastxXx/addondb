@@ -10,7 +10,7 @@ function get_footer_tags(){
 <script src="<?php echo static_content(); ?>js/plugins.js?v=1.1"></script>
 <script src="<?php echo static_content(); ?>js/script.js?v=1.1"></script>
 <?php else : ?>
-<script src="<?php echo static_content(); ?>js/combined.js?v=1.5"></script>
+<script src="<?php echo static_content(); ?>js/combined.js?v=1.6"></script>
 <?php endif; ?>
 <!--[if lt IE 7 ]>
 	<script src="<?php echo static_content(); ?>js/dd_belatedpng.js?v=1.1"></script>
