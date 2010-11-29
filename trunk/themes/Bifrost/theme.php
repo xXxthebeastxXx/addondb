@@ -71,7 +71,7 @@ function render_page() {
 			</fieldset>
 			<h3>Forgotten your password?</h3>
 			<p>Request a new one <a href="/lostpassword.php">here</a>.</p>
-			<p><button type="submit" class="button"><span>Login</span></button> <a href="#" class="simplemodal-close" style="margin-left:10px">Close</a> <span>(or press ESC)</span></p>
+			<p><button type="submit" name="login" class="button"><span>Login</span></button> <a href="#" class="simplemodal-close" style="margin-left:10px">Close</a> <span>(or press ESC)</span></p>
 		</form>
 	</div>
 </div>
