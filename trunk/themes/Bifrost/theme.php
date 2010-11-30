@@ -42,18 +42,20 @@ function render_page() {
 </div>
 <!-- /content -->
 <div id="footer">
-	<div class="container_24">
+	<div class="container_24" style="padding-bottom:20px;">
 		<?php navigation(false); ?>
 		<div class="grid_6 push_1">
 			<h3>Partners</h3>
 			<h4>Hosting provided by:</h4>
 			<a target="_blank" href="http://www.xlshosting.nl/"><img style="height:50px;position:relative;top:3px;" src="http://cdn.php-fusion.co.uk/images/xls.png" alt="xls" /></a>
 		</div>
+		<div id="subfooter" class="grid_24">
+			<small style="padding:10px 0">Powered by PHP-Fusion copyright &copy; 2002 - <?php echo date("Y"); ?> by Nick Jones. Released as free software without warranties under <a href='http://www.fsf.org/licensing/licenses/agpl-3.0.html' target="_blank" rel="nofollow">GNU Affero GPL</a> v3.</small>
+		</div><!-- /subfooter --> 
 		<div class="clearfix"></div>
-		<div id="subfooter"> <small>PHP-Fusion &copy; 2002 - 2010 by Nick Jones.</small> </div>
-		<!-- /subfooter --> 
 	</div>
-</div>
+</div><!-- /footer -->
+<?php if(iGUEST) : ?>
 <div id="modal-content" style="display:none">
 	<div id="modal-title">Login Modal</div>
 	<div class="close"><a href="#" class="simplemodal-close">x</a></div>
@@ -71,11 +73,11 @@ function render_page() {
 			</fieldset>
 			<h3>Forgotten your password?</h3>
 			<p>Request a new one <a href="/lostpassword.php">here</a>.</p>
-			<p><button type="submit" name="login" class="button"><span>Login</span></button> <a href="#" class="simplemodal-close" style="margin-left:10px">Close</a> <span>(or press ESC)</span></p>
+			<p><button type="submit" name="login" class="button"><span>Login</span></button> <a href="#" class="simplemodal-close" style="margin-left:10px">Cancel</a> <span>(or press ESC)</span></p>
 		</form>
 	</div>
 </div>
-<!-- /footer -->
+<?php endif ?>
 <?php get_footer_tags(); ?>
 <?php echo (DEBUG ? "<div id='debug'><strong>Debug is on </strong>" : "<!-- ").showrendertime().(DEBUG ? "</div><!-- /debug -->": " -->")."\n";
 }
