@@ -57,10 +57,9 @@ function render_page() {
 </div><!-- /footer -->
 <?php if(iGUEST) : ?>
 <div id="modal-content" style="display:none">
-	<div id="modal-title">Login Modal</div>
+	<div id="modal-title">Welcome! Please login below.</div>
 	<div class="close"><a href="#" class="simplemodal-close">x</a></div>
 	<div id="modal-data">
-		<h2>Welcome! Please login below.</h2>
 		<form action="<?php echo FUSION_SELF; ?>" method="post" name="loginform">
 			<fieldset>
 				<legend>Your Login details</legend>

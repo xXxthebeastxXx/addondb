@@ -108,7 +108,7 @@ function userinfo() {
         <li>Welcome</li>
 <?php endif ?>
         <li><a href="/edit_profile.php" class="settings">Settings</a></li>
-        <li><a href="/messages.php"<?php echo $msg_count ? " title='".sprintf($locale['global_125'], $msg_count).($msg_count == 1 ? $locale['global_126'] : $locale['global_127'])."'" : ""; ?>><?php echo $msg_count ? "New message" : "Messages"; ?></a>
+        <li><a href="/messages.php"<?php echo $msg_count ? " title='".sprintf($locale['global_125'], $msg_count).($msg_count == 1 ? $locale['global_126'] : $locale['global_127'])."'" : ""; ?>><?php echo $msg_count ? "Messages <br />You got $msg_count new" : "Messages"; ?></a>
 <?php echo $msg_count && FUSION_SELF != "messages.php" ? '<audio autoplay="autoplay">
   <source src="http://cdn.php-fusion.co.uk/media/mail.ogg" type="audio/ogg" />
   <source src="http://cdn.php-fusion.co.uk/media/mail.mp3" type="audio/mpeg" />
