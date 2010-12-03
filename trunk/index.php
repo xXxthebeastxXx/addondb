@@ -31,42 +31,6 @@ require_once INFUSIONS."addondb/infusion_db.php"; ?>
 	-webkit-border-radius:6px;
 	border-radius:6px;	position: absolute; padding: 10px; background:#fff; right: -200px; top: -10px;" src="http://cdn.php-fusion.co.uk/images/php-fusion-tmpl2.png" alt="php-fusion" />
 </div>
-<!--
-<table width="950" class="tbl-border">
-	<tr>
-		<th colspan="15" class="forum-caption">Features</th>
-	</tr>
-	<tr>
-		<td colspan="15">&nbsp;</td>
-	</tr>
-	<tr>
-		<td width="80" align="center"><img src="images/news.png" width="72" alt="" /></td>
-		<td width="1%">&nbsp;</td>
-		<td valign="top" width="155"><p>PHP-Fusion comes with a built in news system for keeping your members up to date.</td>
-		<td width="1%">&nbsp;</td>
-		<td width="80" align="center"><img src="images/members.png" width="64" alt="" /></td>
-		<td width="1%">&nbsp;</td>
-		<td valign="top" width="155"><p>It is a permissions based CMS giving you full control over access.</td>
-		<td width="1%">&nbsp;</td>
-		<td width="80" align="center"><img src="images/theme.png" width="80" alt="" /></td>
-		<td width="1%">&nbsp;</td>
-		<td valign="top" width="155"><p>There are hundreds of colour schemes or &quot;themes&quot; to choose from.</td>
-		<td width="1%">&nbsp;</td>
-		<td width="80" align="center"><img src="images/developer.png" width="80" alt="" /></td>
-		<td width="1%">&nbsp;</td>
-		<td valign="top" width="155"><p>PHP-Fusion has a small but dedicated team of developers, join in on our Dev site.</td>
-	</tr>
-	<tr>
-		<td align="center" colspan="3"><a class="button" href="news.php"><span>more</span></a></td>
-		<td width="1%">&nbsp;</td>
-		<td align="center" colspan="3"><a class="button" href="news.php"><span>more</span></a></td>
-		<td width="1%">&nbsp;</td>
-		<td align="center" colspan="3"><a class="button" href="infusions/addondb/addons.php"><span>more</span></a></td>
-		<td width="1%">&nbsp;</td>
-		<td align="center" colspan="3"><a class="button" target="_blank" href="http://dev.php-fusion.co.uk/"><span>more</span></a></td>
-	</tr>
-</table>
-<br />-->
 <div class="grid_12 alpha">
 <?php $result = dbquery("
 	SELECT news_id as id, news_subject as title, news_news as news, news_datestamp as date, tu.user_name as author
@@ -123,13 +87,14 @@ if (dbrows($result)): ?>
 
 <div id="addons" class="grid_12 omega">
 	<h2>Latest Addons</h2>
-	<ul class="tbl-border" style="list-style:none">
+	<ul class="tbl-border latestnews" style="list-style:none">
 	<?php while($data = dbarray($result)): ?>
 	<li>
-		<small><?php echo "<a href='".INFUSIONS."addondb/view.php?addon_id=".$data['addon_id']."'>".$data['addon_name']."</a>"; ?></small>
-		<p><?php echo trimlink($data['addon_description'],120); ?></p>
+		<h5 class="title"><?php echo "<a href='".INFUSIONS."addondb/view.php?addon_id=".$data['addon_id']."'>".$data['addon_name']."</a>"; ?></h5>
+		<p class="excerpt"><?php echo trimlink($data['addon_description'],120); ?></p>
 	</li>
-<?php endwhile ?>
+	<?php endwhile ?>
+	</ul>
 </div>
 
 <?php endif ?>
