@@ -20,6 +20,7 @@ function theme_head_output($output) {
 		"@><img src='quote' alt='(.*?)' style='border:0px;vertical-align:middle' />@si",
 		"@><img src='forum_edit' alt='(.*?)' style='border:0px;vertical-align:middle' />@si",
 		"@<input type='(submit|button)'(.*?)value='(.*?)'(.*?)/?>@si",
+		"@<hr />(.*?)<!--sub_forum_post-->@si"
 	);
 	$page = str_replace(".php", "", FUSION_SELF);
 	$replace = array(
@@ -42,7 +43,9 @@ function theme_head_output($output) {
 		'class="forumbutton"><span>PM</span>',
 		'class="forumbutton"><span>$1</span>',
 		'class="forumbutton"><span>$1</span>',
-		'<button type="$1"$2$4><span>$3</span></button>'
+		'<button type="$1"$2$4><span>$3</span></button>',
+		'<div class="forum_user_sig"><fieldset>
+				<legend>Signature</legend>$1</fieldset></div><!--sub_forum_post-->'
 	);
 	$output = preg_replace($search, $replace, $output);
 	return $output;
@@ -52,7 +55,7 @@ function get_head_tags(){ ?>
 <!--[if IE]><![endif]-->
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="<?php echo static_content(); ?>css/styles.css?v=1.5" />
+<link rel="stylesheet" href="<?php echo static_content(); ?>css/styles.css?v=1.8" />
 <script defer src="<?php echo static_content(); ?>js/modernizr-1.6.min.js"></script>
 <?php
 }
