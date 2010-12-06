@@ -45,9 +45,7 @@ function render_page() {
 	<div class="container_24" style="padding-bottom:20px;">
 		<?php navigation(false); ?>
 		<div class="grid_6 push_1">
-			<h3>Partners</h3>
-			<h4>Hosting provided by:</h4>
-			<a target="_blank" href="http://www.xlshosting.nl/"><img style="height:50px;position:relative;top:3px;" src="http://cdn.php-fusion.co.uk/images/xls.png" alt="xls" /></a>
+			<?php include INFUSIONS."admin_attention_panel/admin_attention_bifrost.php"; ?>
 		</div>
 		<div id="subfooter" class="grid_24">
 			<small style="padding:10px 0">Powered by PHP-Fusion copyright &copy; 2002 - <?php echo date("Y"); ?> by Nick Jones. Released as free software without warranties under <a href='http://www.fsf.org/licensing/licenses/agpl-3.0.html' target="_blank" rel="nofollow">GNU Affero GPL</a> v3.</small>
