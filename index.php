@@ -1,4 +1,5 @@
 <?php
+
 /*-------------------------------------------------------+
 | PHP-Fusion Content Management System
 | Copyright (C) 2002 - 2010 Nick Jones
@@ -15,14 +16,17 @@
 | copyright header is strictly prohibited without
 | written permission from the original author(s).
 +--------------------------------------------------------*/
+
 require_once "maincore.php";
 require_once THEMES."templates/header.php";
 require_once INFUSIONS."addondb/infusion_db.php"; ?>
+
 <h1>PHP-Fusion Content Management System</h1>
 <div class="tbl-border" style="position: relative; height: 150px; width: 730px; margin: 20px 0pt;">
 <p style="width:600px; padding:10px">Welcome to the official site of PHP-Fusion, a light-weight open-source content management system (CMS). PHP-Fusion is written in PHP and MySQL and includes a simple, comprehensive administration system as well as Forum, Photogallery, Articles, FAQ and much more.</p>
 <a href="/downloads.php?cat_id=23&download_id=264" target="_blank" class="button"><span>Download PHP-Fusion</span></a> &mdash;  
-<a href="downloads.php?cat_id=15&download_id=263" target="_blank" class="button"><span>Download the handbook</span></a>
+<a href="downloads.php?cat_id=15&download_id=263" target="_blank" class="button"><span>Download the handbook</span></a> &mdash;
+<a href="infusions/edocs/getting_started.php" class="button"><span>Getting Started</span></a>
 <img style="border-color:#DDDDDD;
 	border-style:solid;
 	border-width:1px 0 0 1px;-moz-box-shadow:1px 1px 0 #bbb;
@@ -40,6 +44,7 @@ require_once INFUSIONS."addondb/infusion_db.php"; ?>
 	ORDER BY news_sticky DESC, news_datestamp DESC 
 	LIMIT 5
 "); $i = 0; ?>
+
 	<h2>Latest News</h2>
 	<div class="tbl-border latestnews">
 		<?php while ($data = dbarray($result)): $i++ ?>
