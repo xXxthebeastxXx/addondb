@@ -113,7 +113,7 @@ if (dbrows($q_addon_cats) == 0) {
 		} elseif ($addon_author_email <> "" && !preg_match("/^[-0-9A-Z_\.]+@([-0-9A-Z_\.]+\.)+([0-9A-Z]){2,4}$/i", $addon_author_email)) {
 			$error = $locale['addondb485'];
 		} elseif (!empty($_POST['addon_id']) && isnum($_POST['addon_id']) && dbresult(dbquery("SELECT COUNT(*) FROM ".DB_ADDONS." WHERE addon_name='".$addon_name."' AND addon_version='".$addon_version."' AND addon_id<>'".$_POST['addon_id']."'"),0) != 0) {
-			$error = $locale['addondb484'];
+			$error = $locale['addondb600'];
 		} else {
 			$addon_download_old = dbresult(dbquery("SELECT addon_download,addon_status FROM ".DB_ADDONS." WHERE addon_id='".$addon_id."'"),0);
 			$addon_download = $addon_download_list;
@@ -130,6 +130,7 @@ if (dbrows($q_addon_cats) == 0) {
 						addon_copyright='".$addon_copyright."',
 						addon_version='".$addon_version."',
 						version_id='".$version_id."',
+						addon_forum_status='".$addon_forum_status."',
 						addon_share_status='".$addon_share_status."',
 						addon_author_name='".$addon_author_name."',
 						addon_author_status='".$addon_author_status."',
