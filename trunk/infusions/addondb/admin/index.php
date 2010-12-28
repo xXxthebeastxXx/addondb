@@ -523,9 +523,10 @@ if (dbrows($q_addon_cats) == 0) {
 	echo "</tr>\n<tr>\n";
 	echo "<td class='tbl1' nowrap colspan='3' align='center'><hr>".$locale['addondb437']."</td>\n";
 	echo "</tr>\n<tr>\n";
-	echo "<td class='tbl1' nowrap colspan='3' align='center'><button type='submit' class='button' name='btn_save'>".$locale['addondb427']."</button>\n";
+	echo "<td class='tbl1' nowrap colspan='3' align='center'>";
+	echo "<input type='submit' name='btn_save' value='".$locale['addondb427']."' class='button' />\n";
 	if ((isset($_GET['action']) && $_GET['action'] == "edit") || isset($error)) {
-		echo "&nbsp;<button type='submit' class='button' name='btn_cancel'>".$locale['addondb428']."</button>";
+	echo "&nbsp;<input type='submit' name='btn_cancel' value='".$locale['addondb428']."' class='button' />\n";
 	}
 	echo "</td>\n";
 	echo "</tr>\n</table>\n</form>\n";
