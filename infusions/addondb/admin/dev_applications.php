@@ -103,7 +103,7 @@ opentable($locale['apdev001']);
 				                                         ");
          if (isset($error)) { echo "<div align='center' class='admin-message'>".$error."</div>\n"; }
 		echo "<form id='dev_approve' name='dev_approve' method='post' action='".FUSION_SELF.$aidlink."'>\n";
-		echo "<table cellpadding='0' cellspacing='0' align='center' width='950' class='tbl-border'>\n<tr>\n";
+		echo "<table cellpadding='0' cellspacing='0' align='center' width='100%' class='tbl-border'>\n<tr>\n";
         echo "<th colspan='4' class='forum-caption'>".$locale['apdev030']."</th>\n";
         echo "</tr>\n<tr>\n";
         echo "<td class='tbl1' colspan='2'>&nbsp;</td>\n";
@@ -127,10 +127,18 @@ opentable($locale['apdev001']);
         echo "</tr>\n<tr>\n";
         if ($data['user_id'] == $userdata['user_id']) { 
         echo "<tr>\n<td class='admin-message' colspan='4'><img src='".ADDON_IMG."error.png' alt='' />".$locale['apdev043']."</td>\n</tr>\n"; }
-        echo "<td class='tbl1' colspan='4'><hr /></td>\n";
-        echo "</tr>\n";        	                     
+        echo "<td class='tbl1' colspan='4'>".$locale['apdev044'].$data['user_name'].":";
+        $result = dbquery("SELECT * FROM ".DB_ADDONS." WHERE addon_author_name = '".$data['user_name']."' AND addon_status = '0' ORDER BY addon_date DESC");
+	if (dbrows($result) != 0) { 
+	while ($datab = dbarray($result)) {
+	echo "<a href='".ADDON."view.php?addon_id=".$datab['addon_id']."'> ".$datab['addon_name']."</a>&nbsp;-&nbsp;\n";
+	  }
+	} else { echo $locale['apdev045'].$data['user_name']; }
+    echo "</td>\n</tr>\n"; 
+    echo "<td class='tbl1' colspan='4'><hr /></td>\n";
+    echo "</tr>\n";             
 		      }
-		      echo "<input type='hidden' name='apply_id' value='".$data['apply_id']."' />";
+		echo "<input type='hidden' name='apply_id' value='".$data['apply_id']."' />";
 		echo "<tr>\n<td class='tbl2' colspan='4' align='center'><input type='submit' name='dev_approve' value='".$locale['apdev031']."' class='button' />\n";
 		echo "&nbsp;<input type='submit' name='cancel' value='".$locale['apdev034']."' class='button' /></td>\n";
 		echo "</tr>\n</table>\n</form>\n";
@@ -168,7 +176,7 @@ opentable($locale['apdev036']);
 				                                         ORDER BY a.addon_date DESC
 				                                         ");      
 
-		echo "<table cellpadding='0' cellspacing='0' align='center' width='950' class='tbl-border'>\n<tr>\n";
+		echo "<table cellpadding='0' cellspacing='0' align='center' width='100%' class='tbl-border'>\n<tr>\n";
         echo "<th colspan='4' class='forum-caption'>".$locale['apdev030']."</th>\n";
         echo "</tr>\n<tr>\n";
         echo "<td class='tbl1' colspan='4'>&nbsp;</td>\n";

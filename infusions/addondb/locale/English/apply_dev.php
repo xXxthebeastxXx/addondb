@@ -32,6 +32,8 @@ $locale['apdev040'] = "No Members approved";
 $locale['apdev041'] = "Congratulations, your application for official Addon Developer status has been approved.";
 $locale['apdev042'] = "We\'re sorry, but your application for official Addon Developer status has been denied.<br />We feel your work does not yet come up to the standard required. We sincerely hope this not not discourage you from trying to improve your coding skills. If you need help or advice, please ask on our forums.";
 $locale['apdev043'] = "Admins may not review their own application!";
+$locale['apdev044'] = "Addons in DB by ";
+$locale['apdev045'] = " Error - Can not find Addons in DB by ";
 
 //Error msg
 $locale['apdev060'] = "Error! Members inbox is full";
