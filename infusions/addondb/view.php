@@ -136,8 +136,8 @@ if (!isnum($addon_id) || dbrows($q_addons) == 0 || ($d_addons['addon_status'] !=
 	                                     user_name = '".$d_addons['addon_author_name']."'
 	                                     "));
 	                                     
-		if ($user_auth['user_hide_email'] != "1" || iADMIN) {
-		if ($d_addons['addon_author_email'] != "") { $author_email = "[<a href='mailto:".$d_addons['addon_author_email']."' title='".$locale['addondb500']."'>".$locale['addondb419']."</a>]"; }
+		if ($user_auth['user_hide_email'] != "1" && $d_addons['addon_author_email'] != "") { 
+		$author_email = "[<a href='mailto:".$d_addons['addon_author_email']."' title='".$locale['addondb500']."'>".$locale['addondb419']."</a>]";
 		} else { $author_email = ""; }
 		if ($d_addons['addon_author_www'] != "")  { $author_www = " [<a href='".$urlprefix.$d_addons['addon_author_www']."' target='_blank' title='".$locale['addondb501']."'>".$locale['addondb420']."</a>]";
 	  } else { $author_www = ""; }
