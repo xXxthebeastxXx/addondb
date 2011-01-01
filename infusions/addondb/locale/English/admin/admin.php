@@ -68,6 +68,7 @@ $locale['addondb463'] = "Live Demo URL: ";
 $locale['addondb464'] = "Approved Dev?";
 $locale['addondb465'] = "Awaiting Approval";
 $locale['addondb466'] = "There are no submissions";
+$locale['addondb467'] = "Already created";
 
 //Notifications
 $locale['addondb500'] = " has been ";
