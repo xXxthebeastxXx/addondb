@@ -481,12 +481,23 @@ if (dbrows($q_addon_cats) == 0) {
 	echo "<td class='tbl1'><input type='hidden' class='textbox' name='addon_submitter_name' value='".$addon_submitter_name."' style='width:300px;'><a href='".BASEDIR."profile.php?lookup=$addon_submitter_id'>".$addon_submitter_name."<input type='hidden' class='textbox' name='addon_submitter_id' value='".$addon_submitter_id."'></td>"; } else {
 	echo "<td class='tbl1'><input type='hidden' class='textbox' name='addon_submitter_name' value='".$userdata['user_name']."' style='width:300px;'><a href='".BASEDIR."profile.php?lookup=".$userdata['user_id']."'>".$userdata['user_name']."<input type='hidden' class='textbox' name='addon_submitter_id' value='".$userdata['user_id']."'></td>"; }
 	echo "</tr>\n<tr>\n";
+
+// Edit Support Thread
+    echo "<td class='tbl1' nowrap>".$locale['addondb459']."</td>";
+	echo "<td class='tbl1' nowrap>&nbsp;</td><td class='tbl1'><select id='addon_forum_status' name='addon_forum_status' class='textbox'>";
+	echo "<option value='1'".($addon_forum_status == "2" ? " selected" : "").">".$locale['addondb467']."</option>\n";
+	echo "<option value='1'".($addon_forum_status == "1" ? " selected" : "").">".$locale['addondb461']."</option>\n";
+	echo "<option value='0'".($addon_forum_status == "0" ? " selected" : "").">".$locale['addondb460']."</option>\n";
+	echo "</select>\n";
+	echo "</tr>\n<tr>\n";
+
+// Edit Social sharing
     echo "<td class='tbl1' nowrap>".$locale['addondb462']."</td>";
 	echo "<td class='tbl1' nowrap>&nbsp;</td><td class='tbl1'><select id='addon_share_status' name='addon_share_status' class='textbox'>";
 	echo "<option value='1'".($addon_share_status == "1" ? " selected" : "").">".$locale['addondb460']."</option>\n";
 	echo "<option value='0'".($addon_share_status == "0" ? " selected" : "").">".$locale['addondb461']."</option>\n";
 	echo "</select>\n";
-	echo "</tr>\n<tr>\n";
+	echo "</tr>\n<tr>\n";	
 	echo "<td class='tbl1' nowrap>".$locale['addondb464']."</td>";
 	echo "<td class='tbl1' nowrap>&nbsp;</td><td class='tbl1'><select id='addon_author_status' name='addon_author_status' class='textbox'>";
 	echo "<option value='2'".($addon_author_status == "2" ? " selected" : "").">".$locale['addondb460']."</option>\n";
