@@ -137,9 +137,9 @@ if (!isnum($addon_id) || dbrows($q_addons) == 0 || ($d_addons['addon_status'] !=
 	                                     "));
 	                                     
 		if ($user_auth['user_hide_email'] != "1" && $d_addons['addon_author_email'] != "") { 
-		$author_email = "[<a href='mailto:".$d_addons['addon_author_email']."' title='".$locale['addondb500']."'>".$locale['addondb419']."</a>]";
+		$author_email = "<a href='mailto:".$d_addons['addon_author_email']."' title='".$locale['addondb500']."' class='button'><span>".$locale['addondb419']."</span></a>";
 		} else { $author_email = ""; }
-		if ($d_addons['addon_author_www'] != "")  { $author_www = " [<a href='".$urlprefix.$d_addons['addon_author_www']."' target='_blank' title='".$locale['addondb501']."'>".$locale['addondb420']."</a>]";
+		if ($d_addons['addon_author_www'] != "")  { $author_www = " <a href='".$urlprefix.$d_addons['addon_author_www']."' target='_blank' title='".$locale['addondb501']."' class='button'><span>".$locale['addondb420']."</span></a>";
 	  } else { $author_www = ""; }
 
 	echo "<td class='tbl1' nowrap>".(isset($user_auth['user_name']) ? profile_link($user_auth['user_id'], $user_auth['user_name'], $user_auth['user_status']) : $d_addons['addon_author_name'])." ".$author_email." ".$author_www."</td>
@@ -227,7 +227,7 @@ if (!isnum($addon_id) || dbrows($q_addons) == 0 || ($d_addons['addon_status'] !=
 	    echo "<tr><td class='tbl2' width='12%' nowrap><b>".$locale['addondb429']."</b></td>";
 	    echo "<td class='tbl2' colspan='3'>";
 	    while ($data = dbarray($result)) { 
-	    echo "<a href='".BASEDIR."forum/viewthread.php?thread_id=".$data['thread_id']."'>".$data['thread_subject']."</a>"; }
+	    echo "<a href='".BASEDIR."forum/viewthread.php?thread_id=".$data['thread_id']."' class='button'><span>".$data['thread_subject']."</span></a>"; }
 	    echo "</td></tr>"; }
         
         echo"<tr>
@@ -247,22 +247,22 @@ if (!isnum($addon_id) || dbrows($q_addons) == 0 || ($d_addons['addon_status'] !=
 		<td class='tbl2' width='12%' nowrap><b>".$locale['addondb428']."</b></td>
 		<td class='tbl1' width='20%'>";
 		if (iMEMBER) {
-		echo "<span class='small'><img src='".ADDON_IMG."error.png' border='0' alt='".$locale['addondb503']."' />&nbsp;
-		<a href ='".ADDON."error.php?error=1&addon_id=".$d_addons['addon_id']."' title='".$locale['addondb503']."'>".$locale['addondb503']."</a></span><br /><br />
-		<span class='small'><img src='".ADDON_IMG."translate.png' border='0' alt='".$locale['addondb506']."' />&nbsp;
-		<a href ='".ADDON."error.php?error=4&addon_id=".$d_addons['addon_id']."' title='".$locale['addondb506']."'>".$locale['addondb506']."</a></span>\n"; } else { echo $locale['addondb438']; }
+		echo "<img src='".ADDON_IMG."error.png' border='0' alt='".$locale['addondb503']."' />&nbsp;
+		<a href ='".ADDON."error.php?error=1&addon_id=".$d_addons['addon_id']."' title='".$locale['addondb503']."' class='button'><span>".$locale['addondb503']."</span></a><br /><br />
+		<img src='".ADDON_IMG."translate.png' border='0' alt='".$locale['addondb506']."' />&nbsp;
+		<a href ='".ADDON."error.php?error=4&addon_id=".$d_addons['addon_id']."' title='".$locale['addondb506']."' class='button'><span>".$locale['addondb506']."</span></a>\n"; } else { echo $locale['addondb438']; }
 		echo "</td>
 		</tr>	
 		";
 		if (checkrights("ADNX")) {
 			if ($d_addons['addon_status'] != 3) {
-				$suspended =  " | <a href='admin/index.php".$aidlink."&amp;action=suspend&amp;addon_id=".$d_addons['addon_id']."'>".$locate['addondb425']."</a>";
+				$suspended =  " | <a href='admin/index.php".$aidlink."&amp;action=suspend&amp;addon_id=".$d_addons['addon_id']."' class='button'><span>".$locate['addondb425']."</span></a>";
 			} else {
 				$suspended = " | <span style='color:red;font-weight:bold;'>".$locate['addondb426']."</span>";
 			}
 			echo "<tr>
 			<td class='tbl2' valign='top'><b>".$locale['addondb423'].":</b></td>
-			<td class='tbl1' colspan='3'><a href='admin/index.php".$aidlink."&amp;action=edit&amp;addon_cat_id=".$d_addons['addon_cat_id']."&amp;addon_id=".$d_addons['addon_id']."'>".$locate['addondb424']."</a>".$suspended." | <a href='admin/submissions.php".$aidlink."&tran=".$d_addons['addon_id']."' title='".$locale['addondb510']."'>".$locale['addondb509']."</a></td>
+			<td class='tbl1' colspan='3'><a href='admin/index.php".$aidlink."&amp;action=edit&amp;addon_cat_id=".$d_addons['addon_cat_id']."&amp;addon_id=".$d_addons['addon_id']."' class='button'><span>".$locate['addondb424']."</span></a>".$suspended." | <a href='admin/submissions.php".$aidlink."&tran=".$d_addons['addon_id']."' title='".$locale['addondb510']."' class='button'><span>".$locale['addondb509']."</span></a></td>
 			</tr>";
 		}
 		echo "</table>";
