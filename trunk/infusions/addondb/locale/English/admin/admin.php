@@ -71,10 +71,10 @@ $locale['addondb466'] = "There are no submissions";
 $locale['addondb467'] = "Already created";
 
 //Notifications
-$locale['addondb500'] = " has been ";
-$locale['addondb501'] = " with to the following comment:\r\n\r";
-$locale['addondb502'] = "You have a new private message waiting at ".$settings['sitename'];
-$locale['addondb503'] = ",\r\nYou have received a new Private Message titled [SUBJECT] from [USER] at ".$settings['sitename'].". You can read your private message at ".$settings['siteurl']."messages.php\r\n\r\nYou can disable email notification through the options panel of the Private Message page if you no longer wish to be notified of new messages.";
+$locale['addondb500'] = "Your Submitted Addon";
+$locale['addondb501'] = "Your Submitted Translation";
+$locale['addondb502'] = "";
+$locale['addondb503'] = "";
 
 // Error Messages
 $locale['addondb600'] = "Error";
@@ -112,5 +112,8 @@ $locale['addondb802'] = "Undo Assignment";
 $locale['addondb803'] = "Admins may not Approve their own Addons.";
 $locale['addondb804'] = "Not Allowed <span style='color:#ff0000'>*</span>";
 $locale['addondb805'] = "Addon must be assigned to an Admin";
+$locale['addondb806'] = "-- Select --";
+$locale['addondb807'] = "Add to Addon";
+$locale['addondb808'] = "Reject";
 
 ?>
