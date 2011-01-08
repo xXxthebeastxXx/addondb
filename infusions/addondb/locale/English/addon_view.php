@@ -85,6 +85,10 @@ $locale['addondb_615'] = "Posted";
 $locale['addondb_616'] = "Apply to be Official Addon Developer.";
 $locale['addondb_617'] = "Application Form.";
 $locale['addondb_618'] = "Your Application will be reviewed by an Administrator.<br />You will contacted by private message as soon as possible..";
+$locale['addondb_619'] = "There are currently %u Addons by other authors awaiting approval.";
+$locale['addondb_620'] = "Unassigned";
+$locale['addondb_621'] = "You have %u translations in the database";
+$locale['addondb_622'] = "Addons by ";
 
 $locale['addondb_700'] = "You currently have no Addons in the DB";
 

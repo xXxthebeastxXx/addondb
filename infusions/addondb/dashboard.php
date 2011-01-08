@@ -22,7 +22,7 @@ require_once INFUSIONS."addondb/infusion_db.php";
 require_once INFUSIONS."addondb/inc/inc.functions.php";
 
 include ADDON_LOCALE.LOCALESET."addon_view.php";
-add_to_title ($locale['addondb517'].$locale['addondb_600'].$locale['addondb517'].$locale['addondb_608']);
+add_to_title ($locale['addondb517'].$locale['addondb_622'].$userdata['user_name'].$locale['addondb517'].$locale['addondb_608']);
 
 include ADDON_INC."view_nav.php";
 
@@ -65,11 +65,13 @@ opentable($locale['addondb_600']);
 		  echo "</tr>\n";
 		  }
 		  echo "<tr>\n";
+		   $sub_trans = dbcount("(trans_id)", DB_ADDON_TRANS, "trans_user = '".$userdata['user_id']."'");
+		  echo "<td class='tbl1' colspan='2'>".sprintf($locale['addondb_621'], $sub_trans)."</td>\n";
 
 		  $total = dbarray(dbquery("SELECT SUM(addon_download_count) download_count, COUNT(addon_ID) FROM ".DB_ADDONS." WHERE addon_submitter_name='".$userdata['user_name']."'"));
 		  $total_count = $total['download_count'];
 		  
-		  echo "<td class='tbl1' align='right' colspan='4'>".$locale['addondb_605']." ".number_format(dbcount("(addon_id)", DB_ADDONS, "addon_author_name='".$userdata['user_name']."' && addon_status = '0'"))." ".$locale['addondb_606']." ".$total_count." ".$locale['addondb_607']."</td>\n";
+		  echo "<td class='tbl1' align='right' colspan='3'>".$locale['addondb_605']." ".number_format(dbcount("(addon_id)", DB_ADDONS, "addon_author_name='".$userdata['user_name']."' && addon_status = '0'"))." ".$locale['addondb_606']." ".$total_count." ".$locale['addondb_607']."</td>\n";
 	echo "</tr>\n</table>\n"; 
 
 closetable();
@@ -95,6 +97,7 @@ closetable();
 				                                         WHERE a.assign_author = '".$userdata['user_id']."'
 				                                         "));
 
+           $othersubs = dbcount("(submit_id)", DB_SUBMISSIONS, "submit_type='m' && submit_user != '".$userdata['user_id']."'");
            $total_subs = dbcount("(submit_id)", DB_SUBMISSIONS, "submit_user = '".$userdata['user_id']."'");
            $total_appr = dbcount("(assign_id)", DB_ADDON_ASSIGN, "assign_author = '".$userdata['user_id']."'");
            $total_rev = ($total_subs - $total_appr);
@@ -105,12 +108,14 @@ closetable();
        echo "<table width='100%' class='tbl-border' cellpadding='0' cellspacing='0'>\n<tr>\n";
        echo "<th class='forum-caption' colspan='2'>".$locale['addondb_609']."</th>\n";
        echo "</tr>\n<tr>\n";
+       echo "<td class='tbl1' colspan='2' align='center'>".sprintf($locale['addondb_619'], $othersubs)."</td>\n";
+       echo "</tr>\n<tr>\n";
        echo "<td class='tbl1' align='right' width='50%'>".$locale['addondb_610']."</td><td class='tbl1'>".( $total_rev == '' ? $locale['addondb_614'] : $total_rev)."</td>\n";
        echo "</tr>\n<tr>\n";
        echo "<td class='tbl1' align='right' width='50%'>".$locale['addondb_611']."</td><td class='tbl1'>".( $total_appr == '' ? $locale['addondb_614'] : $total_appr)."</td>\n";
        echo "</tr>\n<tr>\n";
        echo "<td class='tbl1' align='right' width='50%'>".$locale['addondb_612']."</td><td class='tbl1'>";
-       if (isset($db_check['assign_id'])) { echo profile_link($db_check['assign_user'], $db_check['user_name'], $db_check['user_status']); } else { echo "---"; }
+       if (isset($db_check['assign_id'])) { echo profile_link($db_check['assign_user'], $db_check['user_name'], $db_check['user_status']); } else { echo $locale['addondb_620']; }
        echo "</td>\n";
        if ($status_check['addon_author_status'] == '0') {
        echo "</tr>\n<tr>\n";
