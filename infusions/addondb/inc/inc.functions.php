@@ -118,16 +118,6 @@ include ADDON_LOCALE.LOCALESET."inc.functions.php";
 	else { return $locale['func020']; }
 }
 
-function get_addon_status_mail($status_id) {
-include ADDON_LOCALE.LOCALESET."inc.functions.php";
-	if ($status_id == 0) { return $locale['func021']; }
-	elseif ($status_id == 1) { return $locale['func012']; }
-	elseif ($status_id == 2) { return $locale['func022']; }
-	elseif ($status_id == 3) { return $locale['func014']; }
-	elseif ($status_id == 4) { return $locale['func015']; }
-	else { return $locale['func019']; }
-}
-
 function get_addon_language($l_id) {
 	if ($l_id == 0) { return "29"; } // The Number Of Languages
 	elseif ($l_id == 1) { return "Arabic"; }
@@ -265,45 +255,6 @@ function nicetime($date)
     }
     
     return "$difference $periods[$j] {$tense}";
-}
-
-function notify($to, $subject_g, $message_g){
-      global $locale, $settings, $userdata;
-      
-      require_once INCLUDES."sendmail_include.php";
-      
-      $subject = stripinput(trim($subject_g));
-      $message = stripinput(trim($message_g));
-      $smileys = "y";
-      $msg_settings = dbarray(dbquery("SELECT * FROM ".DB_MESSAGES_OPTIONS." WHERE user_id='0'"));
-      if(is_numeric($to)){
-      $result1 = dbquery("SELECT user_id FROM ".DB_USERS." WHERE user_id='".$to."'");
-      }else{
-      $result1 = dbquery("SELECT user_id FROM ".DB_USERS." WHERE user_name='".$to."'");
-      }
-      if (dbrows($result1)) {
-				$data1 = dbarray($result1);
-      $result = dbquery(
-				"SELECT u.user_id, u.user_name, u.user_email, mo.pm_email_notify, COUNT(message_id) as message_count FROM ".DB_USERS." u
-				LEFT JOIN ".DB_MESSAGES_OPTIONS." mo USING(user_id)
-				LEFT JOIN ".DB_MESSAGES." ON message_to=u.user_id AND message_folder='0'
-				WHERE u.user_id='".$data1['user_id']."' GROUP BY u.user_name"
-			);
-			$data = dbarray($result);
-							
-					if ($msg_settings['pm_inbox'] == "0" || ($data['message_count'] + 1) <= $msg_settings['pm_inbox']) {
-						$result = dbquery("INSERT INTO ".DB_MESSAGES." (message_to, message_from, message_subject, message_message, message_smileys, message_read, message_datestamp, message_folder) VALUES('".$data['user_id']."','".$userdata['user_id']."','".$subject."','".$message."','".$smileys."','0','".time()."','0')");
-						$message_content = str_replace("[SUBJECT]", $subject, $locale['addondb503']);
-						$message_content = str_replace("[USER]", $userdata['user_name'], $message_content);
-						$send_email = isset($data['pm_email_notify']) ? $data['pm_email_notify'] : $msg_settings['pm_email_notify'];
-						if ($send_email == "1") { sendemail($data['user_name'], $data['user_email'], $settings['siteusername'], $settings['siteemail'], $locale['addondb502'], $data['user_name'].$message_content); }
-					
-				}
-			} else {
-				return false;
-			}
-			
-			return true;
 }
 
 function dbinsert_id() {

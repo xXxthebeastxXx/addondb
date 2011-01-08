@@ -25,6 +25,7 @@ if (!checkrights("ADNX") || !defined("iAUTH") || $_GET['aid'] != iAUTH) { redire
 require_once INFUSIONS."addondb/inc/inc.functions.php";
 require_once ADDON."infusion_db.php";
 require_once ADDON_INC."inc.nav.php";
+require_once INCLUDES."infusions_include.php";
 
 if (file_exists(ADDON_LOCALE.LOCALESET."admin/admin.php")) {
 	include ADDON_LOCALE.LOCALESET."admin/admin.php";
@@ -58,7 +59,7 @@ if (!isset($_GET['action']) || $_GET['action'] == "1") {
 
     if(isset($_GET['tran']) && isnum($_GET['tran'])){
     $result1 = dbquery("SELECT * FROM ".DB_ADDON_TRANS." WHERE trans_mod='".$_GET['tran']."' ORDER BY trans_datestamp DESC");
-    }else{
+    } else {
     		$result = dbquery("SELECT * FROM ".DB_SUBMISSIONS." WHERE submit_type='m' ORDER BY submit_datestamp DESC");
 		if (dbrows($result)) {
 			while ($data = dbarray($result)) {
@@ -122,60 +123,40 @@ if (!isset($_GET['action']) || $_GET['action'] == "1") {
 		echo "</tr>\n".$trans."</table>\n";
 		closetable();
 	
-}else{
+ } else {
 if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && $_GET['t'] == "t")) {
    if (isset($_POST['add']) && (isset($_GET['trans_id']) && isnum($_GET['trans_id']))) {
    
     if($_POST['trans_status'] == 1){
-    // do nothing
-    }elseif ($_POST['trans_status'] == 4){
-    
-		   $result1 = dbquery("SELECT * FROM ".DB_ADDON_TRANS." WHERE trans_mod='".$_GET['trans_id']."'");
-      if (dbrows($result1)) {
-			while ($data1 = dbarray($result1)) {
-			@unlink($trans_upload_dir.$data1['trans_file']);
-			$result = dbquery("DELETE FROM ".DB_ADDON_TRANS." WHERE trans_id='".$data1['trans_id']."'");
-			
-			}
-			}
-
-			notify($_POST['trans_name'], $_POST['addon_name'].$locale['addondb500'].get_addon_status_mail(4), $_POST['addon_name'].$locale['addondb500'].get_addon_status_mail(4).$locale['addondb501'].$_POST['trans_approved_comment']);
-									
-			opentable($locale['400']);
-			echo "<br /><div style='text-align:center'>".$locale['401']."<br /><br />\n";
-			echo "<a href='".FUSION_SELF.$aidlink."'>".$locale['402']."</a><br /><br />\n";
-			echo "<a href='index.php".$aidlink."'>".$locale['403']."</a></div><br />\n";
-			closetable();
-			
-    }else{
-    
-              $result = dbquery("UPDATE ".DB_ADDON_TRANS." SET
-              trans_active = '".stripinput($_POST['trans_status'])."',
+              
+			  $result = dbquery("UPDATE ".DB_ADDON_TRANS." SET
+              trans_active = '0',
               trans_type = '".stripinput($_POST['lang'])."',
               trans_approved_user = '".stripinput($_POST['trans_approved_user'])."',
               trans_approved_comment = '".stripinput($_POST['trans_approved_comment'])."' 
               WHERE trans_id = '".$_GET['trans_id']."'
               ");
-          
-           notify($_POST['trans_name'], $_POST['addon_name'].$locale['addondb500'].get_addon_status_mail($_POST['trans_status']), $_POST['addon_name'].$locale['addondb500'].get_addon_status_mail($_POST['trans_status']).$locale['addondb501'].$_POST['trans_approved_comment']);
-   
-    }
-   
-   }elseif(isset($_GET['trans_id']) && isnum($_GET['trans_id'])){
+              
+            $pm_user = dbarray(dbquery("SELECT trans_user FROM ".DB_ADDON_TRANS." WHERE trans_id='".$_GET['trans_id']."'"));
+			$sendpm = send_pm($pm_user['trans_user'], $userdata['user_id'], $locale['addondb501'], $_POST['trans_approved_comment']);
+    
+    } elseif ($_POST['trans_status'] == 2) {
+    
+			@unlink($trans_upload_dir.$data1['trans_file']);
+			$pm_user = dbarray(dbquery("SELECT trans_user FROM ".DB_ADDON_TRANS." WHERE trans_id='".$_GET['trans_id']."'"));
+			$sendpm = send_pm($pm_user['trans_user'], $userdata['user_id'], $locale['addondb501'], $_POST['trans_approved_comment']);
+			$result = dbquery("DELETE FROM ".DB_ADDON_TRANS." WHERE trans_id='".$_GET['trans_id']."'");
+      }
+  } elseif(isset($_GET['trans_id']) && isnum($_GET['trans_id'])) {
           	
 
-   		$result = dbquery("SELECT * FROM ".DB_ADDON_TRANS." WHERE trans_id='".$_GET['trans_id']."' ");
+   	$result = dbquery("SELECT * FROM ".DB_ADDON_TRANS." WHERE trans_id='".$_GET['trans_id']."' ");
       while ($data = dbarray($result)) {
       
       $trans_approved_user_list = builduseroptionlist("");
       $lang = "";
 			for ($i=1;$i <= get_addon_language(0);$i++) {
 				$lang .= "<option value='".$i."'".($data['trans_type'] == $i ? " selected" : "").">".get_addon_language($i)."</option>\n";
-			}
-			
-				$trans_status_list = "";
-			foreach ($addon_status as $k=>$trans_status_name) {
-				$trans_status_list .= "<option value='".$k."'".($data['trans_active'] == $k ? " selected" : "").">".$trans_status_name."</option>\n";
 			}
 			
 			$trans_user = dbarray(dbquery("SELECT 
@@ -186,6 +167,7 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
 			                                      WHERE user_id='".$data['trans_user']."'
 			                                      "));
       
+   		$trans_status = "";
    		opentable($locale['addondb449']);
 			echo "<form name='publish' method='post' action='".FUSION_SELF.$aidlink."&amp;action=2&amp;t=t&amp;trans_id=".$_GET['trans_id']."' enctype='multipart/form-data'>\n";
 			echo "<table cellpadding='0' cellspacing='0' class='center'>\n<tr>\n";
@@ -196,15 +178,20 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
 			<td class='tbl1'><select class='textbox' name='lang' style='width:300px;'>".$lang."</select></td>
 			</tr><tr>
 			<td class='tbl1' nowrap>".$locale['addondb412'].":</td>
-			<td class='tbl1'><span class='small'><a href='".$trans_upload_dir.$data['trans_file']."' target='_BLANK'>".substr($trans_upload_dir.$data['trans_file'],6)."</a></span></td>
+			<td class='tbl1'><a href='".$trans_upload_dir.$data['trans_file']."' class='button' target='_BLANK'><span>".$data['trans_file']."</span></a></td>
 			</tr><tr>
 			<td class='tbl1' nowrap>".$locale['addondb458'].":</td>
 			<td class='tbl1'><span class='small'>
 			<input type='hidden' class='textbox' name='trans_name' value='".$data['trans_user']."'>".profile_link($data['trans_user'], $trans_user['user_name'], $trans_user['user_status'])."</td>
 			</tr><tr>
 			<td class='tbl1' nowrap>".$locale['addondb442'].":</td>
-			<td class='tbl1'><select class='textbox' name='trans_status' style='width:300px;'>".$trans_status_list."</select></td>
-			</tr><tr>
+			<td class='tbl1'>";
+			echo "<select name='trans_status' class='textbox' style='width:300px;'>\n";
+			echo "<option value='0'>".$locale['addondb806']."</option>\n";
+			echo "<option value='1'>".$locale['addondb807']."</option>\n";
+			echo "<option value='2'>".$locale['addondb808']."</option>\n";
+			echo "</select>\n</td>\n";
+			echo "</tr><tr>
 			<td class='tbl1' nowrap>".$locale['addondb417'].":</td>
 			<td class='tbl1'><input type='hidden' class='textbox' name='trans_approved_user' value='".$userdata['user_id']."' style='width:300px;'>".$userdata['user_name']."</td>
 			</tr><tr>
@@ -219,8 +206,7 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
    
    }
 
-
-}elseif ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && $_GET['t'] == "m")) {
+} elseif ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && $_GET['t'] == "m")) {
 	if (isset($_POST['add']) && (isset($_GET['submit_id']) && isnum($_GET['submit_id']))) {
 
     if($_POST['addon_status'] == 1){
@@ -230,8 +216,10 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
 			@unlink($addon_upload_dir.$_POST['addon_download_list']);
 			@unlink($addon_upload_dir_img."t_".$_POST['addon_screenshot']);
 			@unlink($addon_upload_dir_img.$_POST['addon_screenshot']);
-
-			notify($_POST['addon_submitter_name'], $_POST['addon_name'].$locale['addondb500'].get_addon_status_mail(4), $_POST['addon_name'].$locale['addondb500'].get_addon_status_mail(4).$locale['addondb501'].$_POST['addon_approved_comment']);
+			
+			$pm_user = dbarray(dbquery("SELECT user_id FROM ".DB_USERS." WHERE user_name='".$_POST['addon_submitter_name']."'"));
+			$sendpm = send_pm($pm_user['user_id'], $userdata['user_id'], $locale['addondb500'], $_POST['addon_approved_comment']);
+			
 			$result = dbquery("DELETE FROM ".DB_SUBMISSIONS." WHERE submit_id='".$_GET['submit_id']."'");
 			
 			// Delete Assigned Approver
@@ -391,10 +379,11 @@ if ((isset($_GET['action']) && $_GET['action'] == "2") && (isset($_GET['t']) && 
             $hunt = dbarray(dbquery("SELECT assign_id  FROM ".DB_ADDON_ASSIGN." WHERE assign_addon = '".$_GET['submit_id']."'"));
           $result = dbquery("DELETE FROM ".DB_ADDON_ASSIGN." WHERE assign_id='".$hunt['assign_id']."' LIMIT 1");
           
-          notify($_POST['addon_submitter_name'], $_POST['addon_name'].$locale['addondb500'].get_addon_status_mail($_POST['addon_status']), $_POST['addon_name'].$locale['addondb500'].get_addon_status_mail($_POST['addon_status']).$locale['addondb501'].$_POST['addon_approved_comment']);
-        } else {
+          $pm_user = dbarray(dbquery("SELECT user_id FROM ".DB_USERS." WHERE user_name='".$submit_info['addon_submitter_name']."'"));
+          $sendpm = send_pm($pm_user['user_id'], $userdata['user_id'], $locale['addondb500'], $_POST['addon_approved_comment']);
+               } else {
           echo $error;
-        }
+         }
     
         echo "<br /><div style='text-align:center'>".$locale['431']."<br /><br />\n";
         echo "<a href='".FUSION_SELF.$aidlink."'>".$locale['402']."</a><br /><br />\n";

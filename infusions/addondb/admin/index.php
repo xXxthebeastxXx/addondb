@@ -148,7 +148,10 @@ if (dbrows($q_addon_cats) == 0) {
 				$addon_id = $_POST['addon_id'];
 				$addon_ed = 1;
 				if($addon_download_old  != $addon_status_value){
-          notify($addon_submitter_name, $addon_name.$locale['addondb460'].get_addon_status_mail($addon_status_value), $addon_name.$locale['addondb460'].get_addon_status_mail($addon_status_value).$locale['addondb461'].$addon_approved_comment);
+          
+          $pm_user = dbarray(dbquery("SELECT user_id FROM ".DB_USERS." WHERE user_name='".$addon_submitter_name."'"));
+		  $sendpm = send_pm($pm_user['user_id'], $userdata['user_id'], $locale['addondb500'], $addon_approved_comment);
+          
         }
 			} else {
 				$result = dbquery(
