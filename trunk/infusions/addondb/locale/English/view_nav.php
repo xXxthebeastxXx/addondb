@@ -7,5 +7,6 @@ $locale['addondbv103'] = "Panels";
 $locale['addondbv104'] = "Other";
 $locale['addondbv105'] = "Dashboard";
 $locale['addondbv106'] = "Submit an Addon";
+$locale['addondbv107'] = "Top Addons";
 
 ?>
