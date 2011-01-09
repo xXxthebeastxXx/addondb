@@ -56,7 +56,7 @@ $locale['addondb607'] = "Please try again later.";
 $locale['addondb608'] = "Warning! Submissions have been deactivated!";
 $locale['addondb609'] = "Submissions are temporarily offline.";
 
-$locale['paddon_001'] = "Popular Addons";
+$locale['paddon_001'] = "Top %u Addons";
 $locale['paddon_002'] = "Addon";
 $locale['paddon_003'] = "Type";
 $locale['paddon_004'] = "Author";

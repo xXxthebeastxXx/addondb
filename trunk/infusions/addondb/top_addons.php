@@ -24,7 +24,7 @@ include ADDON_LOCALE.LOCALESET."addons.php";
 $popaddons = $settings_global['addons_per_page'];
 include ADDON_INC."view_nav.php";
 
-opentable($locale['paddon_001']);
+opentable(sprintf($locale['paddon_001'],$popaddons));
 
 $addon_type = array(
 	       1 => $locale['paddon_008'], 
