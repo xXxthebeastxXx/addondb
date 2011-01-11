@@ -67,5 +67,7 @@ $locale['paddon_008'] = "Infusion";
 $locale['paddon_009'] = "Theme";
 $locale['paddon_010'] = "Panel";
 $locale['paddon_011'] = "Other";
+$locale['paddon_012'] = "Latest %u Addons";
+$locale['paddon_013'] = "Posted";
 
 ?>
