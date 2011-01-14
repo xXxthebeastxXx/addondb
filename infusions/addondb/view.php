@@ -216,11 +216,13 @@ if (!isnum($addon_id) || dbrows($q_addons) == 0 || ($d_addons['addon_status'] !=
 		echo "</td>";
 		echo "</tr>";
         
-        $result = dbquery("SELECT t.thread_id, t.thread_author, t.thread_subject, a.addon_name, a.addon_submitter_name   
+        $result = dbquery("SELECT t.forum_id, t.thread_id, t.thread_author, t.thread_subject, a.addon_name, a.addon_submitter_name   
                           FROM ".DB_THREADS." t 
                           LEFT JOIN ".DB_ADDONS." a 
                           ON t.thread_author=a.addon_submitter_name
                           WHERE t.thread_subject ='".$d_addons['addon_name']."'
+                          AND (t.forum_id = '77' OR t.forum_id = '78' OR t.forum_id = '79' OR t.forum_id = '80')
+                          ORDER BY thread_id DESC LIMIT 1
                           ");
 
         if (dbrows($result) != 0) { 
