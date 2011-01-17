@@ -99,7 +99,7 @@ opentable($locale['apdev001']);
 				                                         FROM ".DB_ADDON_DEV_APPLY." a
 				                                         LEFT JOIN ".DB_USERS." u 
 				                                         ON a.apply_user=u.user_id 
-				                                         ORDER BY u.user_lastvisit DESC
+				                                         ORDER BY a.apply_id DESC
 				                                         ");
          if (isset($error)) { echo "<div align='center' class='admin-message'>".$error."</div>\n"; }
 		echo "<form id='dev_approve' name='dev_approve' method='post' action='".FUSION_SELF.$aidlink."'>\n";
@@ -111,11 +111,11 @@ opentable($locale['apdev001']);
         if (dbrows($result)) {
         echo "<td class='tbl1'>".$locale['apdev032']."</td>\n";
         echo "<td class='tbl1'>".$locale['apdev033']."</td>\n";
-        echo "</tr>\n<tr>\n";               
+        echo "</tr>\n";               
 				              
 				              while ($data = dbarray($result)) {
 				              
-		echo "<td class='tbl1' valign='top'>".$locale['apdev003']."</td>";
+		echo "<tr>\n<td class='tbl1' valign='top'>".$locale['apdev003']."</td>";
         echo "<td class='tbl1' valign='top'>".profile_link($data['user_id'], $data['user_name'], $data['user_status'])."</td>";
         echo "</tr>\n<tr>\n";
         echo "<td class='tbl1' valign='top'>".$locale['apdev004']."</td>";
@@ -126,11 +126,11 @@ opentable($locale['apdev001']);
 	    echo "<td class='tbl1' colspan='2' align='center'><img src='".ADDON_IMG."error.png' alt='' /></td>\n"; }
         echo "</tr>\n<tr>\n";
         if ($data['user_id'] == $userdata['user_id']) { 
-        echo "<tr>\n<td class='admin-message' colspan='4'><img src='".ADDON_IMG."error.png' alt='' />".$locale['apdev043']."</td>\n</tr>\n"; }
+        echo "<tr>\n<td class='admin-message' colspan='4'><img src='".ADDON_IMG."error.png' alt='' />&nbsp;".$locale['apdev043']."</td>\n</tr>\n"; }
         echo "<td class='tbl1' colspan='4'>".$locale['apdev044'].$data['user_name'].":";
-        $result = dbquery("SELECT * FROM ".DB_ADDONS." WHERE addon_author_name = '".$data['user_name']."' AND addon_status = '0' ORDER BY addon_date DESC");
-	if (dbrows($result) != 0) { 
-	while ($datab = dbarray($result)) {
+        $resultb = dbquery("SELECT * FROM ".DB_ADDONS." WHERE addon_author_name = '".$data['user_name']."' AND addon_status = '0' ORDER BY addon_date DESC");
+	if (dbrows($resultb) != 0) { 
+	while ($datab = dbarray($resultb)) {
 	echo "<a href='".ADDON."view.php?addon_id=".$datab['addon_id']."'> ".$datab['addon_name']."</a>&nbsp;-&nbsp;\n";
 	  }
 	} else { echo $locale['apdev045'].$data['user_name']; }

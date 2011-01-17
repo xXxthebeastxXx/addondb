@@ -1,0 +1,33 @@
+#splashScreen img{
+	margin:0 auto;
+}
+
+#splashScreen{
+	position:absolute;
+	top:0;
+	left:0;
+	height:100%;
+	width:100%;
+	background-color:#252525;
+	background-repeat:no-repeat;
+	text-align:center;
+}
+
+#condolences{
+	background:url('../img/nick-jones.jpg') no-repeat;
+	height:632px;
+	margin-bottom:15px;
+	text-align:center;
+	width:890px;
+	margin:40px auto;
+}
+
+#condolences img, #condolences span{
+	margin-top:80px;
+}
+
+#condolences {
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;	
+}

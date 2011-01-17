@@ -9,6 +9,7 @@ if (file_exists(INFUSIONS."admin_attention_panel/locale/".$settings['locale'].".
 }
 require_once INFUSIONS."addondb/infusion_db.php";
 include INFUSIONS."license_admin/infusion_db.php";
+include INFUSIONS."book_of_condolences/infusion_db.php";
 
          $submission = dbcount("(submit_id)", DB_SUBMISSIONS, "submit_type !='m'");
            $addonsub = dbcount("(submit_id)", DB_SUBMISSIONS, "submit_type='m'");
@@ -18,7 +19,8 @@ include INFUSIONS."license_admin/infusion_db.php";
      $support_thread = dbcount("(addon_id)", DB_ADDONS, "addon_forum_status='0' && addon_status='0'");
         $addon_error = dbcount("(error_id)", DB_ADDON_ERRORS, "error_active='1'");
 $license_application = dbcount("(app_id)", DB_LICENSE_APPLY, "app_status='1'");
-         $total = ($submission + $addonsub + $addontrans + $devapply + $testimonial + $support_thread + $addon_error + $license_application);
+        $condolences = dbcount("(m4n_id)", DB_CONDOLENCES, "m4n_status='0'");
+         $total = ($submission + $addonsub + $addontrans + $devapply + $testimonial + $support_thread + $addon_error + $license_application + $condolences);
 
 }
 if (iADMIN && ($total != 0)) {
@@ -32,6 +34,7 @@ echo "<h3>Action Required</h3>";
 if ($support_thread > '1') { $plural5 = $locale['att_106'].$locale['att_109']; } else { $plural5 = $locale['att_106']; }
    if ($addon_error > '1') { $plural6 = $locale['att_107'].$locale['att_109']; } else { $plural6 = $locale['att_107']; }
    if ($license_application > '1') { $plural7 = $locale['att_108'].$locale['att_109']; } else { $plural7 = $locale['att_108']; }
+   if ($condolences > '1') { $plural8 = $locale['att_110'].$locale['att_109']; } else { $plural8 = $locale['att_110']; }
 
 	if ($submission != 0 && checkrights("SU")) {
 		echo "<a href='".ADMIN."submissions.php".$aidlink."' class='side small'>".sprintf($plural1, $submission)."</a><br />";}
@@ -47,6 +50,8 @@ if ($support_thread > '1') { $plural5 = $locale['att_106'].$locale['att_109']; }
 		echo "<a href='".INFUSIONS."addondb/admin/error.php".$aidlink."' class='side small'>".sprintf($plural6, $addon_error)."</a><br />";}
 	if (($license_application != 0) && checkrights("LCAP")) {
 		echo "<a href='".INFUSIONS."license_admin/license_admin.php".$aidlink."' class='side small'>".sprintf($plural7, $license_application)."</a><br />";}
+	if (($condolences != 0) && checkrights("MSFN")) {
+		echo "<a href='".INFUSIONS."book_of_condolences/condolences_admin.php".$aidlink."' class='side small'>".sprintf($plural8, $condolences)."</a><br />";}
 
    } else {
    echo "<h3>Partners</h3>

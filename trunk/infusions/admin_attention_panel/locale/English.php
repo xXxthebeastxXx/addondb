@@ -9,5 +9,6 @@ $locale['att_106'] = "%u Support Thread";
 $locale['att_107'] = "%u Addon Error";
 $locale['att_108'] = "%u License Application";
 $locale['att_109'] = "s";
+$locale['att_110'] = "%u Condolence message";
 
 ?>
