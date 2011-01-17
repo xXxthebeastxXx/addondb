@@ -71,7 +71,7 @@ opentable($locale['addondb_600']);
 		  $total = dbarray(dbquery("SELECT SUM(addon_download_count) download_count, COUNT(addon_ID) FROM ".DB_ADDONS." WHERE addon_submitter_name='".$userdata['user_name']."'"));
 		  $total_count = $total['download_count'];
 		  
-		  echo "<td class='tbl1' align='right' colspan='3'>".$locale['addondb_605']." ".number_format(dbcount("(addon_id)", DB_ADDONS, "addon_author_name='".$userdata['user_name']."' && addon_status = '0'"))." ".$locale['addondb_606']." ".$total_count." ".$locale['addondb_607']."</td>\n";
+		  echo "<td class='tbl1' align='right' colspan='3'>".$locale['addondb_605']." ".number_format(dbcount("(addon_id)", DB_ADDONS, "addon_submitter_name='".$userdata['user_name']."' && addon_status = '0'"))." ".$locale['addondb_606']." ".$total_count." ".$locale['addondb_607']."</td>\n";
 	echo "</tr>\n</table>\n"; 
 
 closetable();
