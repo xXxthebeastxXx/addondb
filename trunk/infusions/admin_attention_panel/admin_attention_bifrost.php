@@ -56,6 +56,9 @@ if ($support_thread > '1') { $plural5 = $locale['att_106'].$locale['att_109']; }
    } else {
    echo "<h3>Partners</h3>
 			<h4>Hosting provided by:</h4>
-			<a target='_blank' href='http://www.xlshosting.nl/'><img style='height:50px;position:relative;top:3px;' src='http://cdn.php-fusion.co.uk/images/xls.png' alt='xls' /></a>";	
+			<a target='_blank' href='http://www.xlshosting.nl/'><img style='height:50px;position:relative;top:3px;' src='http://cdn.php-fusion.co.uk/images/xls.png' alt='xls' /></a>
+			<div style='margin:10px;'></div>
+			<h4>Sponsor</h4>
+			<a href='http://webhostinggeeks.com' name='web hosting' target='_blank'>webhostinggeeks.com</a>";	
 			 }
 ?>
