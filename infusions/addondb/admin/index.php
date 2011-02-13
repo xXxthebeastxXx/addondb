@@ -366,7 +366,7 @@ if (dbrows($q_addon_cats) == 0) {
 		$day_list .= "<option value='".$i."'".($i == $addon_date_d ? " selected" : "").">".$i."</option>\n";
 	}
 	$dld_list = makefilelist($addon_upload_dir, ".|..|index.php", true);
-	$addon_download_list = makefileopts($dld_list, $addon_download);
+	$addon_download_list = $addon_download ? makefileopts($dld_list, $addon_download) : "";
 	$addon_status_list = "";
 	foreach ($addon_status as $k=>$addon_status_name) {
 		$addon_status_list .= "<option value='".$k."'".($addon_status_value == $k ? " selected='selected'" : "").">".$addon_status_name."</option>\n";
@@ -444,7 +444,7 @@ if (dbrows($q_addon_cats) == 0) {
 	echo "<td class='tbl1' nowrap>&nbsp;</td>\n";
 	echo "<td class='tbl1'><span class='small'>".substr($addon_upload_dir.$addon_download,6)."</span></td>\n";
 	echo "</tr>\n";
-			echo"
+		echo "
 			<tr>
 			<td class='tbl1' nowrap>".$locale['addondb447'].":</td>
 			<td class='tbl1' nowrap>&nbsp;</td>
@@ -546,50 +546,51 @@ if (dbrows($q_addon_cats) == 0) {
 	echo "</tr>\n</table>\n</form>\n";
 	closetable();
 	opentable($locale['addondb400']);
-	echo "<table width='400' align='center' cellpadding='0' cellspacing='1' class='tbl-border'>
-	<tr>
-	<td class='forum-caption'>".$locale['addondb402']."</td>
-	<td class='forum-caption' align='right'>".$locale['addondb420']."</td>
-	</tr>
-	<tr>
-	<td class='tbl1' colspan='2'></td>
-	</tr>\n";
-		$c = 0;
-		while ($d_addon_cats = dbarray($q_addon_cats)) {
-			$p_img = "on";
-			$div = "";
-			echo "<tr>
-	<td class='tbl2'>".$d_addon_cats['addon_cat_name']." <span class='small2'>(".getgroupname($d_addon_cats['addon_cat_access'])."+)</span></td>
-	<td class='tbl2' align='right'></td>
-	</tr>\n";
-			$q_addons = dbquery("SELECT * FROM ".DB_ADDONS." WHERE addon_cat_id='".$d_addon_cats['addon_cat_id']."' AND addon_status='0' ORDER BY addon_name");
-			if (dbrows($q_addons) != 0) {
-				echo "<tr>
-	<td class='tbl1' colspan='2'>
-	<div id='box_".$d_addon_cats['addon_cat_id']."'".$div.">
-	<table width='100%' cellpadding='0' cellspacing='0' class='tbl-border'>";
-				while ($d_addons = dbarray($q_addons)) {
-					echo "<tr class='tbl1'>
-	<td class='tbl1' width='' nowrap><a href='../addon_view.php?addon_cat_id=".$d_addon_cats['addon_cat_id']."&addon_id=".$d_addons['addon_id']."' target='_blank' title=''>".$d_addons['addon_name']."</a></td>
-	<td class='tbl1' width='1%' nowrap><span class='small'><a href='submissions.php".$aidlink."&tran=".$d_addons['addon_id']."' title='".$locale['addondb449']."'>".$locale['addondb457']."</a>&nbsp;-&nbsp;<a href='".FUSION_SELF.$aidlink."&amp;action=delete&addon_cat_id=".$d_addon_cats['addon_cat_id']."&addon_id=".$d_addons['addon_id']."' onClick=\"return confirmDeleteAddon('".$d_addons['addon_name']."')\" title=''>".$locale['addondb422']."</a>&nbsp;-&nbsp;<a href='".FUSION_SELF.$aidlink."&amp;action=edit&addon_cat_id=".$d_addon_cats['addon_cat_id']."&addon_id=".$d_addons['addon_id']."'>".$locale['addondb421']."</a></span></td>
-	</tr>\n";
-				}
-				echo "</table>
-	</div>
-	</td>
-	</tr>\n";
-			} else {
-				echo "<tr>
-	<td class='tbl1' colspan='2'>
-	<div id='box_".$d_addon_cats['addon_cat_id']."'".$div.">
-	<table width='100%' cellpadding='0' cellspacing='0'><tr><td class='tbl1'>".$locale['addondb423']."</td></tr></table>
-	</div>
-	</td>
-	</tr>\n";
+	echo "Disabled due to query intencity.";
+	/*
+	echo "<table width='400' align='center' cellpadding='0' cellspacing='1' class='tbl-border'>\n<tr>\n";
+	echo "<td class='forum-caption'>".$locale['addondb402']."</td>\n";
+	echo "<td class='forum-caption' align='right'>".$locale['addondb420']."</td>\n";
+	echo "</tr>\n<tr>\n";
+	echo "<td class='tbl1' colspan='2'></td>\n";
+	echo "</tr>\n";
+	$c = 0;
+	while ($d_addon_cats = dbarray($q_addon_cats)) {
+		$p_img = "on";
+		$div = "";
+		echo "<tr>\n";
+		echo "<td class='tbl2'>".$d_addon_cats['addon_cat_name']." <span class='small2'>(".getgroupname($d_addon_cats['addon_cat_access'])."+)</span></td>\n";
+		echo "<td class='tbl2' align='right'></td>\n";
+		echo "</tr>\n";
+		$q_addons = dbquery("SELECT * FROM ".DB_ADDONS." WHERE addon_cat_id='".$d_addon_cats['addon_cat_id']."' AND addon_status='0' ORDER BY addon_name");
+		if (dbrows($q_addons) != 0) {
+			echo "<tr>\n";
+			echo "<td class='tbl1' colspan='2'>\n";
+			echo "<div id='box_".$d_addon_cats['addon_cat_id']."'".$div.">\n";
+			echo "<table width='100%' cellpadding='0' cellspacing='0' class='tbl-border'>\n";
+			while ($d_addons = dbarray($q_addons)) {
+				echo "<tr class='tbl1'>\n";
+				echo "<td class='tbl1' width='' nowrap><a href='../addon_view.php?addon_cat_id=".$d_addon_cats['addon_cat_id']."&addon_id=".$d_addons['addon_id']."' target='_blank' title=''>".$d_addons['addon_name']."</a></td>\n";
+				echo "<td class='tbl1' width='1%' nowrap><span class='small'><a href='submissions.php".$aidlink."&tran=".$d_addons['addon_id']."' title='".$locale['addondb449']."'>".$locale['addondb457']."</a>&nbsp;-&nbsp;<a href='".FUSION_SELF.$aidlink."&amp;action=delete&addon_cat_id=".$d_addon_cats['addon_cat_id']."&addon_id=".$d_addons['addon_id']."' onClick=\"return confirmDeleteAddon('".$d_addons['addon_name']."')\" title=''>".$locale['addondb422']."</a>&nbsp;-&nbsp;<a href='".FUSION_SELF.$aidlink."&amp;action=edit&addon_cat_id=".$d_addon_cats['addon_cat_id']."&addon_id=".$d_addons['addon_id']."'>".$locale['addondb421']."</a></span></td>\n";
+				echo "</tr>\n";
+			}
+			echo "</table>\n";
+			echo "</div>\n";
+			echo "</td>\n";
+			echo "</tr>\n";
+		} else {
+			echo "<tr>\n";
+			echo "<td class='tbl1' colspan='2'>\n";
+			echo "<div id='box_".$d_addon_cats['addon_cat_id']."'".$div.">\n";
+			echo "<table width='100%' cellpadding='0' cellspacing='0'><tr><td class='tbl1'>".$locale['addondb423']."</td></tr></table>\n";
+			echo "</div>\n";
+			echo "</td>\n";
+			echo "</tr>\n";
 		}
 		$c++;
 	}
 	echo "</table>\n";
+	*/
 	closetable();
 	$inactive_addons = dbquery("SELECT * FROM ".DB_ADDONS." WHERE addon_status!='0' ORDER BY addon_name");
 	if (dbrows($inactive_addons) != 0) {
@@ -626,6 +627,5 @@ if (dbrows($q_addon_cats) == 0) {
 	}
 	</script>\n";
 }
-
 require_once THEMES."templates/footer.php";
 ?>
