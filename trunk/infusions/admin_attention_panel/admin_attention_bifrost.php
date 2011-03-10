@@ -52,8 +52,19 @@ if ($support_thread > '1') { $plural5 = $locale['att_106'].$locale['att_109']; }
 		echo "<a href='".INFUSIONS."license_admin/license_admin.php".$aidlink."' class='side small'>".sprintf($plural7, $license_application)."</a><br />";}
 	if (($condolences != 0) && checkrights("MSFN")) {
 		echo "<a href='".INFUSIONS."book_of_condolences/condolences_admin.php".$aidlink."' class='side small'>".sprintf($plural8, $condolences)."</a><br />";}
+		echo "<br />\n";
+		include INFUSIONS."spam_report_panel/spam_report_panel.php";
 
-   } else {
+   } elseif (iMEMBER) {
+   echo "<h3>Partners</h3>
+			<h4>Hosting provided by:</h4>
+			<a target='_blank' href='http://www.xlshosting.nl/'><img style='height:50px;position:relative;top:3px;' src='http://cdn.php-fusion.co.uk/images/xls.png' alt='xls' /></a><br />
+			<div style='margin:10px;'></div>
+			<h4>Sponsor</h4>
+			<a href='http://webhostinggeeks.com' name='web hosting' target='_blank'>webhostinggeeks.com</a>";
+			echo "<br />\n";
+			include INFUSIONS."spam_report_panel/spam_report_panel.php";
+			} else {
    echo "<h3>Partners</h3>
 			<h4>Hosting provided by:</h4>
 			<a target='_blank' href='http://www.xlshosting.nl/'><img style='height:50px;position:relative;top:3px;' src='http://cdn.php-fusion.co.uk/images/xls.png' alt='xls' /></a>
