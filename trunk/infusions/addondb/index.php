@@ -1,7 +1,7 @@
 <?php
 /*-------------------------------------------------------+
 | PHP-Fusion Content Management System
-| Copyright (C) 2002 - 2010 Nick Jones
+| Copyright (C) 2002 - 2011 Nick Jones
 | http://www.php-fusion.co.uk/
 +--------------------------------------------------------+
 | Filename: index.php
@@ -122,7 +122,7 @@ add_to_title($locale['addondb435'].$locale['addondb400']);
 include ADDON_INC."view_nav.php";
 opentable($locale['addondb400']); ?>
 <form name="filterform" method="get" action="<?php echo FUSION_SELF; ?>">
-	<div class="dropselect grid_5">
+	<div class="dropselect threecol">
 		<?php echo $locale['addondb432']; ?>
 		<p class="field"><?php echo $add; ?></p>
 		<input type="hidden" name="type" value="<?php echo $type; ?>" class="field-h" />
@@ -130,7 +130,7 @@ opentable($locale['addondb400']); ?>
 			<?php echo $addon_type_list; ?>
 		</ul>
 	</div>
-	<div class="dropselect grid_5">
+	<div class="dropselect threecol">
 		<?php echo $locale['addondb433']; ?>
 		<p class="field"><?php echo $versel; ?></p>
 		<input type="hidden" name="version" value="<?php echo $version; ?>" class="field-h" />
@@ -138,7 +138,7 @@ opentable($locale['addondb400']); ?>
 			<?php echo $ver_list; ?>
 		</ul>
 	</div>
-	<div class="dropselect grid_5">
+	<div class="dropselect threecol">
 		<?php echo $locale['addondb434']; ?>
 		<p class="field"><?php echo $aob; ?></p>
 		<input type="hidden" name="orderby" value="<?php echo $orderby; ?>" class="field-h" />
@@ -146,7 +146,7 @@ opentable($locale['addondb400']); ?>
 			<?php echo $addon_orderby_list; ?>
 		</ul>
 	</div>
-	<div class="dropselect grid_5">
+	<div class="dropselect threecol">
 		Sort	
 		<p class="field"><?php echo $aobl; ?></p>
 		<input type="hidden" name="sort" value="<?php echo $sort; ?>" class="field-h" />
@@ -154,7 +154,7 @@ opentable($locale['addondb400']); ?>
 			<?php echo $addon_orderby_dir_list; ?>
 		</ul>
 	</div>
-	<div class="dropselect grid_4"><br />
+	<div class="dropselect onecol"><br />
 		<button type="submit" class="button"><span><?php echo $locale['addondb436']; ?></span></button>
 	</div>
 </form>
